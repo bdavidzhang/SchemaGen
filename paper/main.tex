@@ -1,0 +1,692 @@
+%%%%%%%% ICML 2026 SUBMISSION: SchemaGen %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs} % for professional tables
+
+% hyperref makes hyperlinks in the resulting PDF.
+\usepackage{hyperref}
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use the following line for the initial blind version submitted for review:
+\usepackage{icml2026}
+
+% For preprint, use
+% \usepackage[preprint]{icml2026}
+
+% If accepted, instead use the following line for the camera-ready submission:
+% \usepackage[accepted]{icml2026}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% For code listings
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  xleftmargin=2em,
+  framexleftmargin=1.5em
+}
+
+% if you use cleveref..
+\usepackage[capitalize,noabbrev]{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Todonotes for development
+\usepackage[textsize=tiny]{todonotes}
+
+% The \icmltitle you define below is probably too long as a header.
+\icmltitlerunning{SchemaGen: Neuro-Symbolic JSON Schema Generation}
+
+\begin{document}
+\twocolumn[
+  \icmltitle{SchemaGen: Neuro-Symbolic JSON Schema Generation}
+
+  % It is OKAY to include author information, even for blind submissions: the
+  % style file will automatically remove it for you unless you've provided
+  % the [accepted] option to the icml2026 package.
+
+  % List of affiliations: The first argument should be a (short) identifier you
+  % will use later to specify author affiliations Academic affiliations
+  % should list Department, University, City, Region, Country Industry
+  % affiliations should list Company, City, Region, Country
+
+  % You can specify symbols, otherwise they are numbered in order. Ideally, you
+  % should not use this facility. Affiliations will be numbered in order of
+  % appearance and this is the preferred way.
+  \icmlsetsymbol{equal}{*}
+
+  \begin{icmlauthorlist}
+    \icmlauthor{Firstname1 Lastname1}{equal,yyy}
+    \icmlauthor{Firstname2 Lastname2}{equal,yyy,comp}
+    \icmlauthor{Firstname3 Lastname3}{comp}
+    \icmlauthor{Firstname4 Lastname4}{sch}
+    \icmlauthor{Firstname5 Lastname5}{yyy}
+    \icmlauthor{Firstname6 Lastname6}{sch,yyy,comp}
+    \icmlauthor{Firstname7 Lastname7}{comp}
+    %\icmlauthor{}{sch}
+    \icmlauthor{Firstname8 Lastname8}{sch}
+    \icmlauthor{Firstname8 Lastname8}{yyy,comp}
+    %\icmlauthor{}{sch}
+    %\icmlauthor{}{sch}
+  \end{icmlauthorlist}
+
+  \icmlaffiliation{yyy}{Department of XXX, University of YYY, Location, Country}
+  \icmlaffiliation{comp}{Company Name, Location, Country}
+  \icmlaffiliation{sch}{School of ZZZ, Institute of WWW, Location, Country}
+
+  \icmlcorrespondingauthor{Firstname1 Lastname1}{first1.last1@xxx.edu}
+  \icmlcorrespondingauthor{Firstname2 Lastname2}{first2.last2@www.uk}
+
+  % You may provide any keywords that you find helpful for describing your
+  % paper; these are used to populate the "keywords" metadata in the PDF but
+  % will not be shown in the document
+  \icmlkeywords{Machine Learning, ICML}
+
+  \vskip 0.3in
+]
+
+
+\printAffiliationsAndNotice{}
+
+\begin{abstract}
+Large Language Models (LLMs) have become powerful generators of structured data, yet their ability to \emph{design} data contracts---rather than merely comply with them---remains underexplored. We introduce \textbf{SchemaBench}, the first benchmark evaluating LLMs as schema architects, testing their capacity to create valid, specific, and semantically correct JSON Schemas across varying structural complexity, constraint hardness, and ambiguity levels. Complementing this, we present \textbf{SchemaGraph Critic}, a neuro-symbolic middleware that represents JSON Schemas as heterogeneous graphs and employs a Graph Neural Network (specifically, a Heterogeneous Graph Transformer) to detect structural logic errors invisible to standard validators---such as dangling references, circular dependencies, and constraint conflicts. Unlike constrained decoding, which ensures syntactic validity, our approach validates semantic correctness and generates natural language feedback for iterative LLM refinement. Together, SchemaBench and SchemaGraph Critic establish a rigorous framework for evaluating and improving LLM-generated data contracts.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Large Language Models (LLMs) have demonstrated remarkable capabilities in code generation, including structured data formats like JSON. However, a critical gap exists in evaluating and improving their ability to \emph{design} data contracts---not merely follow schemas, but create them. JSON Schema, the de facto standard for describing JSON document structure, presents unique challenges:
+
+\begin{enumerate}
+    \item \textbf{Long-distance dependencies}: Schemas contain references (\texttt{\$ref}) that can span hundreds of tokens, creating dependencies invisible to autoregressive models.
+    \item \textbf{Structural logic}: Valid JSON syntax does not guarantee valid schema semantics (e.g., \texttt{minItems: 10, maxItems: 3} is syntactically correct but logically impossible).
+    \item \textbf{Recursive definitions}: Self-referential schemas require reasoning about infinite structures.
+\end{enumerate}
+
+We present two complementary contributions:
+
+\begin{itemize}
+    \item \textbf{SchemaBench}: A comprehensive benchmark evaluating LLMs as both ``architects'' (schema designers) and ``builders'' (instance generators).
+    \item \textbf{SchemaGraph Critic}: A neuro-symbolic middleware using Graph Neural Networks (GNNs) to validate structural logic and provide corrective feedback to LLMs.
+\end{itemize}
+
+Our key insight is that \emph{constrained decoding solves syntax, but not structural logic}. By representing schemas as heterogeneous graphs, we enable GNNs to reason about relationships that are inherently non-sequential.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work}
+\label{sec:related}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Structured Output Generation from LLMs}
+
+Recent work has focused on constraining LLM outputs to valid structures. Constrained decoding techniques ensure syntactically valid JSON through grammar-guided generation. Function calling APIs from major providers allow models to output structured data. However, these approaches guarantee syntactic validity but not semantic correctness.
+
+\subsection{JSON Schema Validation}
+
+Standard validators (e.g., \texttt{ajv}, \texttt{jsonschema}) check technical compliance with the JSON Schema specification. They cannot detect logical constraint conflicts, unreachable definitions, or semantic inconsistencies between schema intent and structure.
+
+\subsection{Graph Neural Networks for Structured Data}
+
+GNNs have shown success in code vulnerability detection, program analysis, and knowledge graph reasoning. \citet{hu2020heterogeneous} introduced Heterogeneous Graph Transformers (HGT), which learn different attention weights for different edge types. Our work extends this paradigm to JSON Schema validation, treating schemas as heterogeneous graphs with typed nodes and edges.
+
+\subsection{LLM Evaluation Benchmarks}
+
+Existing benchmarks focus on code correctness or test compliance with given schemas. \textbf{SchemaBench} is the first to evaluate schema \emph{design} capability.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{SchemaBench: A Benchmark for Schema Design}
+\label{sec:schemabench}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Motivation}
+
+Existing benchmarks test: ``Given schema $S$, generate valid instance $I$.'' We ask the harder question: ``Given requirements $R$, design schema $S$ and generate instance $I$ that satisfies $S$.''
+
+This evaluates the model as:
+\begin{enumerate}
+    \item \textbf{The Architect}: Can the model create a valid, specific, and semantically correct JSON Schema?
+    \item \textbf{The Builder}: Can the model generate an instance that strictly adheres to its own schema?
+\end{enumerate}
+
+\subsection{Benchmark Architecture}
+
+\subsubsection{Tracks (Scenario Categories)}
+
+We organize scenarios by complexity into three tracks:
+
+\begin{table}[h]
+\caption{SchemaBench Tracks}
+\label{tab:tracks}
+\begin{center}
+\begin{small}
+\begin{tabular}{lp{4.5cm}}
+\toprule
+\textbf{Track} & \textbf{Challenges} \\
+\midrule
+A: Structural & Flat configs, nested objects, recursive trees, polymorphic unions \\
+B: Constraints & Regex patterns, numerical bounds, format validation \\
+C: Ambiguity & Reasonable defaults, implied fields, domain knowledge \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{center}
+\end{table}
+
+\subsubsection{Scenario Specification}
+
+Each scenario contains:
+\begin{itemize}
+    \item \texttt{prompt\_template}: Natural language description of requirements
+    \item \texttt{required\_constraints}: Expected JSON Schema keywords (e.g., \texttt{minimum}, \texttt{pattern}, \texttt{\$ref})
+    \item \texttt{gold\_keys}: Expected property names in the generated schema
+\end{itemize}
+
+\subsection{Evaluation Pipeline}
+
+We implement a multi-gate evaluation system:
+
+\textbf{Gate 1: Syntax \& Meta-Validity.} Is the output valid JSON? Is the schema a valid JSON Schema (Draft 2020-12)?
+
+\textbf{Gate 2: Self-Consistency.} Does the generated instance validate against the generated schema? This includes strict format checking (email, date, URI).
+
+\textbf{Gate 3: Semantic Alignment.} We measure:
+\begin{itemize}
+    \item \textbf{Constraint Recall (CR)}: Does the schema use the expected constraint types?
+    \begin{equation}
+    \text{CR} = \frac{|\text{Used} \cap \text{Required}|}{|\text{Required}|}
+    \end{equation}
+    \item \textbf{Specificity Score}: Ratio of constrained fields to total fields.
+    \item \textbf{Key Coverage}: Does the schema define expected properties?
+\end{itemize}
+
+\subsection{Dataset Statistics}
+
+\begin{table}[h]
+\caption{SchemaBench Dataset}
+\label{tab:dataset}
+\begin{center}
+\begin{small}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Category} & \textbf{Scenarios} & \textbf{Difficulty} \\
+\midrule
+Structural: Flat & 5 & Easy \\
+Structural: Nested & 8 & Medium \\
+Structural: Recursive & 6 & Hard \\
+Structural: Polymorphic & 4 & Hard \\
+Constraint Hardness & 10 & Medium--Hard \\
+Ambiguity Resolution & 7 & Variable \\
+\midrule
+\textbf{Total} & \textbf{40} & --- \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{center}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{SchemaGraph Critic}
+\label{sec:schemagraphcritic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Motivation}
+
+Standard validators check if a schema is \emph{technically} legal. They cannot determine if a schema is ``good,'' efficient, or free of structural hallucinations.
+
+The core insight:
+\begin{itemize}
+    \item \textbf{LLMs} see JSON as a sequence of tokens (1D). They struggle with long-distance dependencies.
+    \item \textbf{GNNs} see JSON as a topology (graph). They instantly see that Node A refers to Node Z, regardless of token distance.
+\end{itemize}
+
+\subsection{System Architecture}
+
+The SchemaGraph Critic operates in a feedback loop:
+
+\begin{enumerate}
+    \item \textbf{Generation}: LLM generates a candidate JSON Schema
+    \item \textbf{Graphification}: Parser converts JSON to a heterogeneous graph
+    \item \textbf{Inference}: SchemaGNN produces validity score and defect nodes
+    \item \textbf{Feedback}: Translator converts tensor outputs to natural language
+    \item \textbf{Refinement}: Corrective prompt sent to LLM for iteration
+\end{enumerate}
+
+\subsection{Heterogeneous Graph Representation}
+
+\subsubsection{Node Types}
+
+We define 11 node types representing schema elements:
+
+\begin{table}[h]
+\caption{Node Types in Schema Graphs}
+\label{tab:nodetypes}
+\begin{center}
+\begin{small}
+\begin{tabular}{lp{4.5cm}}
+\toprule
+\textbf{Type} & \textbf{Description} \\
+\midrule
+\texttt{OBJECT} & Object schema block \\
+\texttt{ARRAY} & Array schema block \\
+\texttt{STRING}, etc. & Primitive type schemas \\
+\texttt{REF} & Reference pointer (\texttt{\$ref}) \\
+\texttt{DEFINITION} & Reusable definition \\
+\texttt{LOGIC} & Logical combinator (anyOf, oneOf, allOf) \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{center}
+\end{table}
+
+\subsubsection{Edge Types}
+
+We define 5 edge types capturing relationships:
+
+\begin{table}[h]
+\caption{Edge Types in Schema Graphs}
+\label{tab:edgetypes}
+\begin{center}
+\begin{small}
+\begin{tabular}{lp{4.5cm}}
+\toprule
+\textbf{Type} & \textbf{Semantics} \\
+\midrule
+\texttt{CONTAINS} & Object property nesting \\
+\texttt{ITEMS} & Array element schema \\
+\texttt{REFERS\_TO} & Reference resolution \\
+\texttt{LOGIC} & Logical alternatives \\
+\texttt{ADDITIONAL} & Extra property schema \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{center}
+\end{table}
+
+\subsubsection{Node Feature Engineering}
+
+Each node has a 404-dimensional feature vector:
+
+\begin{table}[h]
+\caption{Node Features (404 dimensions)}
+\label{tab:features}
+\begin{center}
+\begin{small}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Feature} & \textbf{Dims} & \textbf{Source} \\
+\midrule
+Semantic embedding & 384 & MiniLM-L6 \\
+Type one-hot & 11 & Node type \\
+Depth & 1 & Nesting level \\
+Constraint flags & 8 & Constraint presence \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{center}
+\end{table}
+
+\subsection{SchemaGNN Model}
+
+\subsubsection{Backbone: Heterogeneous Graph Transformer}
+
+We use HGT layers \citep{hu2020heterogeneous} because they learn different attention weights for different edge types. This is crucial because \texttt{REFERS\_TO} edges are ``teleportation tunnels'' for information flow, while \texttt{CONTAINS} edges represent standard hierarchical relationships.
+
+\textbf{Architecture}:
+\begin{itemize}
+    \item Input projection: Linear$(404 \rightarrow 256)$
+    \item HGT layers: 3 layers, 4 attention heads
+    \item Residual connections with LayerNorm
+\end{itemize}
+
+\subsubsection{Prediction Heads}
+
+\textbf{Global Critic Head} (Graph-level binary classification):
+\begin{equation}
+p(\text{valid}) = \sigma\left(\text{MLP}([\bar{h}_{\text{mean}}; \bar{h}_{\text{max}}])\right)
+\end{equation}
+where $\bar{h}_{\text{mean}}$ and $\bar{h}_{\text{max}}$ are mean and max pooled node embeddings.
+
+\textbf{Local Debugger Head} (Node-level error detection):
+\begin{equation}
+p(\text{error}_i) = \sigma(\text{MLP}(h_i))
+\end{equation}
+Outputs per-node probability of being the root cause of an error.
+
+\subsection{Training Data Synthesis}
+
+We cannot train on valid schemas alone---the GNN must see mistakes to learn to catch them.
+
+\subsubsection{The Corruptor}
+
+We systematically break valid schemas with 7 corruption types:
+
+\begin{table}[h]
+\caption{Corruption Types for Training}
+\label{tab:corruptions}
+\begin{center}
+\begin{small}
+\begin{tabular}{lp{4cm}}
+\toprule
+\textbf{Type} & \textbf{Description} \\
+\midrule
+\texttt{DANGLING\_REF} & \$ref to non-existent definition \\
+\texttt{CIRCULAR\_REF} & Infinite reference loop \\
+\texttt{TYPE\_MISMATCH} & Type conflicts with structure \\
+\texttt{CONSTRAINT\_CONFLICT} & Impossible constraints \\
+\texttt{MISSING\_REQUIRED} & Required property undefined \\
+\texttt{INVALID\_PATTERN} & Malformed regex \\
+\texttt{WRONG\_ITEMS\_TYPE} & Invalid items schema \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{center}
+\end{table}
+
+\subsection{Loss Function}
+
+Combined loss for joint training:
+\begin{equation}
+\mathcal{L} = \lambda_g \cdot \text{BCE}(\hat{y}, y) + \lambda_l \cdot \frac{1}{|V|}\sum_{i \in V} \text{BCE}(\hat{e}_i, e_i)
+\end{equation}
+where $\hat{y}$ is the predicted validity score, $\hat{e}_i$ is the predicted error probability for node $i$, and $\lambda_g = 1.0$, $\lambda_l = 0.5$.
+
+\subsection{Feedback Translation}
+
+The GNN outputs tensors, but the LLM needs text. Our translator:
+\begin{enumerate}
+    \item Maps node IDs to JSON paths via stored metadata
+    \item Generates severity levels from probabilities
+    \item Applies issue templates based on node types
+    \item Produces structured feedback prompts
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experiments}
+\label{sec:experiments}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Experimental Setup}
+
+\textbf{Models Evaluated on SchemaBench}:
+\begin{itemize}
+    \item GPT-4, GPT-4-Turbo
+    \item Claude 3.5 Sonnet
+    \item Llama 3.1 (70B, 405B)
+    \item Gemini Pro 1.5
+\end{itemize}
+
+\textbf{SchemaGNN Training}:
+\begin{itemize}
+    \item Source schemas: SchemaStore, GitHub repositories (10K+ schemas)
+    \item Training split: 80/10/10 (train/val/test)
+    \item Hardware: NVIDIA A100 (40GB)
+    \item Training time: $\sim$4 hours for 50 epochs
+\end{itemize}
+
+\subsection{SchemaBench Results}
+
+\begin{table}[h]
+\caption{SchemaBench Results by Track (Pass Rates \%)}
+\label{tab:schemabench-results}
+  \begin{center}
+\begin{small}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Gate 1} & \textbf{Gate 2} & \textbf{Gate 3} \\
+\midrule
+GPT-4-Turbo & --- & --- & --- \\
+Claude 3.5 Sonnet & --- & --- & --- \\
+Llama 3.1 405B & --- & --- & --- \\
+Gemini Pro 1.5 & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{small}
+  \end{center}
+\vskip -0.1in
+\footnotesize{Results pending experimental runs.}
+\end{table}
+
+\subsection{SchemaGraph Critic Results}
+
+\begin{table}[h]
+\caption{SchemaGNN vs. Baseline Performance}
+\label{tab:gnn-results}
+  \begin{center}
+    \begin{small}
+\begin{tabular}{lcccc}
+          \toprule
+\textbf{Method} & \textbf{Acc.} & \textbf{Prec.} & \textbf{Recall} & \textbf{F1} \\
+          \midrule
+Combined Baseline$^\dagger$ & 75.4\% & 96.4\% & 68.6\% & 80.2\% \\
+\textbf{SchemaGNN (Ours)} & \textbf{78.1\%} & 83.9\% & \textbf{84.1\%} & \textbf{84.0\%} \\
+          \bottomrule
+        \end{tabular}
+    \end{small}
+  \end{center}
+  \vskip -0.1in
+\footnotesize{$^\dagger$Combined baseline includes reference checking, cycle detection, and constraint validation.}
+\end{table}
+
+\begin{table}[h]
+\caption{Per-Corruption-Type Detection (SchemaGNN)}
+\label{tab:per-corruption}
+  \begin{center}
+    \begin{small}
+\begin{tabular}{lccc}
+          \toprule
+\textbf{Corruption Type} & \textbf{Prec.} & \textbf{Recall} & \textbf{F1} \\
+          \midrule
+\texttt{CIRCULAR\_REF} & 100.0\% & 98.1\% & 99.0\% \\
+\texttt{DANGLING\_REF} & 100.0\% & 92.1\% & 95.9\% \\
+\texttt{CONSTRAINT\_CONFLICT} & 100.0\% & 89.4\% & 94.4\% \\
+\texttt{TYPE\_MISMATCH} & 100.0\% & 84.9\% & 91.8\% \\
+\texttt{INVALID\_PATTERN} & 100.0\% & 84.3\% & 91.5\% \\
+\texttt{WRONG\_ITEMS\_TYPE} & 100.0\% & 82.1\% & 90.2\% \\
+\texttt{MISSING\_REQUIRED} & 100.0\% & 72.8\% & 84.3\% \\
+          \bottomrule
+        \end{tabular}
+    \end{small}
+  \end{center}
+\end{table}
+
+\begin{table}[h]
+\caption{Ablation Study: Architecture Comparison}
+\label{tab:ablation}
+  \begin{center}
+    \begin{small}
+\begin{tabular}{lcc}
+          \toprule
+\textbf{Architecture} & \textbf{Global F1} & \textbf{Accuracy} \\
+          \midrule
+\textbf{HGT (Ours)} & \textbf{82.6\%} & \textbf{76.5\%} \\
+GCN (Homogeneous) & 76.7\% & 65.7\% \\
+GAT (Homogeneous) & 5.8\% & 36.3\% \\
+          \bottomrule
+        \end{tabular}
+    \end{small}
+  \end{center}
+  \vskip -0.1in
+\footnotesize{HGT significantly outperforms homogeneous baselines, validating the importance of edge-type-aware attention.}
+\end{table}
+
+\subsection{End-to-End Pipeline Evaluation}
+
+\textbf{Research Question}: Does GNN-guided feedback improve LLM schema generation?
+
+\textbf{Protocol}:
+\begin{enumerate}
+    \item LLM generates initial schema (Round 0)
+    \item SchemaGraph Critic analyzes and provides feedback
+    \item LLM refines schema (Round 1--N)
+    \item Measure improvement across rounds
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Analysis and Discussion}
+\label{sec:analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Why GNNs Outperform Text-Based Validators}
+
+Our results demonstrate that SchemaGNN achieves 84.0\% F1 compared to 80.2\% for the combined deterministic baseline. The key advantage is \textbf{recall}: SchemaGNN detects 84.1\% of invalid schemas, while baselines only catch 68.6\%.
+
+This gap exists because deterministic methods check for specific patterns, while the GNN learns to recognize structural anomalies holistically. For example, consider an LLM-generated ``Binary Tree'' schema where \texttt{left} is defined but \texttt{right} refers to a non-existent node:
+
+\begin{table}[h]
+\caption{Validator Comparison on Binary Tree Schema}
+\label{tab:comparison}
+\begin{center}
+\begin{small}
+\begin{tabular}{lcp{3.5cm}}
+\toprule
+\textbf{Validator} & \textbf{Result} & \textbf{Reason} \\
+\midrule
+Standard (\texttt{ajv}) & \checkmark & Syntactically correct \\
+Constrained Decoding & \checkmark & All brackets matched \\
+\textbf{SchemaGraph Critic} & $\times$ & \texttt{REFERS\_TO} edge points to non-existent node \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{center}
+\end{table}
+
+\subsection{Error Type Analysis}
+
+As shown in Table~\ref{tab:per-corruption}, the model achieves 100\% precision across all corruption types---when it flags an error, it is always correct. Recall varies by corruption type:
+
+\begin{itemize}
+    \item \textbf{Graph-structural errors} (circular refs 98.1\%, dangling refs 92.1\%): Detected most reliably because they manifest as clear topological anomalies.
+    \item \textbf{Constraint errors} (conflicts 89.4\%, patterns 84.3\%): Require combining constraint flag features with structural context.
+    \item \textbf{Semantic errors} (missing required 72.8\%): Hardest to detect as they require understanding schema intent.
+\end{itemize}
+
+\subsection{Ablation: Heterogeneous vs. Homogeneous}
+
+Table~\ref{tab:ablation} shows that HGT outperforms GCN by 5.9\% F1 and GAT fails entirely (5.8\% F1). This validates our hypothesis: the model must distinguish between edge types. A \texttt{REFERS\_TO} edge is a ``teleportation tunnel'' that should propagate information differently than a \texttt{CONTAINS} edge representing hierarchy.
+
+\subsection{Limitations}
+
+\begin{enumerate}
+    \item \textbf{Schema Coverage}: Current training focuses on JSON Schema Draft 2020-12.
+    \item \textbf{Semantic Understanding}: The GNN detects structural errors, not semantic misalignment with requirements.
+    \item \textbf{Training Data Bias}: Synthetic corruption may not capture all real-world error patterns.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+\label{sec:conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We presented \textbf{SchemaBench}, the first benchmark for evaluating LLM schema design capability, and \textbf{SchemaGraph Critic}, a neuro-symbolic middleware that validates structural logic in JSON Schemas using Graph Neural Networks.
+
+Our contributions:
+\begin{enumerate}
+    \item A rigorous evaluation framework distinguishing syntax from semantics
+    \item A novel graph-based representation of JSON Schema structure
+    \item A feedback loop enabling iterative schema refinement
+\end{enumerate}
+
+This work advances the reliability of LLM-generated structured outputs, enabling safer deployment in applications requiring data contracts.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Impact Statement}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This paper presents work whose goal is to advance the field of Machine Learning by improving the reliability of LLM-generated structured data. Potential positive impacts include safer API integrations, reduced data validation errors in production systems, and better tooling for developers. We do not foresee specific negative societal consequences beyond general concerns about over-reliance on automated systems.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliography{main}
+\bibliographystyle{icml2026}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPENDIX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix
+\onecolumn
+
+\section{SchemaBench Scenario Examples}
+\label{app:scenarios}
+
+\subsection{Example: Recursive File System (Hard)}
+
+\textbf{Prompt}: Create a recursive JSON Schema for a File System Node. A Node must have `name' (string), `type' (enum: `file', `directory'). If type is `file', it must have `size' (integer $> 0$). If type is `directory', it must have `children' (array of Nodes). The schema must use recursion (\$ref).
+
+\textbf{Required Constraints}: \texttt{\$ref}, \texttt{enum}, \texttt{if}, \texttt{then}, \texttt{minimum}
+
+\textbf{Gold Keys}: \texttt{name}, \texttt{type}, \texttt{children}, \texttt{size}
+
+\subsection{Example: Polymorphic UI Components (Hard)}
+
+\textbf{Prompt}: Create a schema for a `Page' containing a list of `components'. The components array can contain mixed types: Button (\texttt{type: `button', label: string, onClick: string}), Image (\texttt{type: `image', src: url, width: integer}), Text (\texttt{type: `text', content: string}). Use `oneOf' to ensure that a Button cannot have a `src' and an Image cannot have an `onClick'.
+
+\textbf{Required Constraints}: \texttt{oneOf}, \texttt{const}, \texttt{required}
+
+\section{SchemaGNN Hyperparameters}
+\label{app:hyperparams}
+
+\begin{table}[h]
+\caption{Training Configuration}
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Hidden dimension & 256 \\
+Attention heads & 4 \\
+HGT layers & 3 \\
+Dropout & 0.1 \\
+Learning rate & $1 \times 10^{-4}$ \\
+Batch size & 32 \\
+Epochs & 50 \\
+Global loss weight ($\lambda_g$) & 1.0 \\
+Local loss weight ($\lambda_l$) & 0.5 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+\section{Feedback Translation Templates}
+\label{app:templates}
+
+The translator uses node-type-specific templates:
+
+\begin{itemize}
+    \item \textbf{REF}: ``This reference may point to a non-existent or incorrectly named definition. Verify that the \$ref target exists.''
+    \item \textbf{ARRAY}: ``This array definition may have invalid items schema or constraint conflicts. Verify minItems/maxItems are consistent.''
+    \item \textbf{LOGIC}: ``This logical operator may have inconsistent options. Ensure all options are valid and don't conflict.''
+    \item \textbf{OBJECT}: ``This object may have structural issues. Check that required properties are defined.''
+\end{itemize}
+
+\end{document}

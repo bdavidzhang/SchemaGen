@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "E-Commerce Order",
+  "description": "Schema for e-commerce order processing",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "pattern": "^ORD-[0-9]{8}$"
+    },
+    "customer": {
+      "$ref": "#/definitions/Customer"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/OrderItem"
+      },
+      "minItems": 1
+    },
+    "shipping": {
+      "$ref": "#/definitions/ShippingInfo"
+    },
+    "payment": {
+      "$ref": "#/definitions/PaymentInfo"
+    },
+    "totals": {
+      "$ref": "#/definitions/OrderTotals"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "processing", "shipped", "delivered", "cancelled"]
+    },
+    "timestamps": {
+      "type": "object",
+      "properties": {
+        "created": {"type": "string", "format": "date-time"},
+        "updated": {"type": "string", "format": "date-time"},
+        "shipped": {"type": "string", "format": "date-time"},
+        "delivered": {"type": "string", "format": "date-time"}
+      },
+      "required": ["created"]
+    }
+  },
+  "required": ["orderId", "customer", "items", "status"],
+  "definitions": {
+    "Customer": {
+      "type": "object",
+      "properties": {
+        "customerId": {"type": "string"},
+        "name": {"type": "string"},
+        "email": {"type": "string", "format": "email"},
+        "phone": {"type": "string"}
+      },
+      "required": ["customerId", "name", "email"]
+    },
+    "OrderItem": {
+      "type": "object",
+      "properties": {
+        "productId": {"type": "string"},
+        "sku": {"type": "string"},
+        "name": {"type": "string"},
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "unitPrice": {
+          "$ref": "#/definitions/Money"
+        },
+        "discount": {
+          "$ref": "#/definitions/Money"
+        }
+      },
+      "required": ["productId", "name", "quantity", "unitPrice"]
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": ["amount", "currency"]
+    },
+    "ShippingInfo": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["standard", "express", "overnight", "pickup"]
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "trackingNumber": {"type": "string"},
+        "estimatedDelivery": {"type": "string", "format": "date"}
+      },
+      "required": ["method", "address"]
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street1": {"type": "string"},
+        "street2": {"type": "string"},
+        "city": {"type": "string"},
+        "state": {"type": "string"},
+        "postalCode": {"type": "string"},
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        }
+      },
+      "required": ["street1", "city", "postalCode", "country"]
+    },
+    "PaymentInfo": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["credit_card", "debit_card", "paypal", "bank_transfer"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "authorized", "captured", "refunded", "failed"]
+        },
+        "transactionId": {"type": "string"}
+      },
+      "required": ["method", "status"]
+    },
+    "OrderTotals": {
+      "type": "object",
+      "properties": {
+        "subtotal": {"$ref": "#/definitions/Money"},
+        "shipping": {"$ref": "#/definitions/Money"},
+        "tax": {"$ref": "#/definitions/Money"},
+        "discount": {"$ref": "#/definitions/Money"},
+        "total": {"$ref": "#/definitions/Money"}
+      },
+      "required": ["subtotal", "total"]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+PyGithub
+requests
+gitpython
+python-dotenv
+jsonschema
