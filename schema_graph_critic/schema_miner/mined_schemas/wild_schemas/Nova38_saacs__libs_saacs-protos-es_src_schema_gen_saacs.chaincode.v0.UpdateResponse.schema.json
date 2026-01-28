@@ -1,0 +1,12 @@
+{
+  "$id": "saacs.chaincode.v0.UpdateResponse.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "item": {
+      "$ref": "saacs.common.v0.Item.schema.json"
+    }
+  },
+  "title": "Update Response",
+  "type": "object"
+}

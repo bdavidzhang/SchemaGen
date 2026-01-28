@@ -1,0 +1,240 @@
+{
+	"pluginAlias": "MqttTelevision",
+	"pluginType": "platform",
+	"singular": false,
+	"headerDisplay": "MQTT must be installed on your system",
+	"footerDisplay": "For help please see the [README](https://github.com/duculete/homebridge-mq-tv).",
+	"schema": {
+		"name": {
+			"title": "Name",
+			"type": "string",
+			"default": "TV",
+			"required": true
+		},
+		"platform": {
+			"title": "Platform",
+			"type": "string",
+			"default": "MqttTelevision",
+			"required": true
+		},
+		"mqtt": {
+			"title": "MQTT Config",
+			"type": "object",
+			"properties": {
+				"server": {
+					"title": "MQTT Broker URL:Port",
+					"type": "string",
+					"placeholder": "e.g. mqtt://192.168.1.xxx",
+					"required": true
+				},
+				"username": {
+					"title": "MQTT Username",
+					"type": "string",
+					"placeholder": ""
+				},
+				"password": {
+					"title": "MQTT Password",
+					"type": "string",
+					"placeholder": ""
+				},
+				"port": {
+					"title": "MQTT port",
+					"type": "integer",
+					"placeholder": "1883",
+					"default": true
+				}
+
+			}
+		},
+		"pinghost": {
+			"title": "Ping TV IP",
+			"type": "object",
+			"properties": {
+				"ip": {
+					"title": "IP Address",
+					"type": "string",
+					"placeholder": "e.g. 192.168.1.yyy"
+				},
+				"interval": {
+					"title": "Ping interval in ms",
+					"type": "integer",
+					"placeholder": "3000"
+				}
+
+			}
+		},
+		"setActive": {
+			"title": "setActive topic",
+			"description": "topic used to set TV power state",
+			"type": "string",
+			"default": "home/tv/cmd/power",
+			"required": true
+		},
+		"getActive": {
+			"title": "getActive topic",
+			"description": "topic used to get TV power state",
+			"type": "string",
+			"default": "home/tv/power",
+			"required": true
+		},
+		"setActiveInput": {
+			"title": "setActiveInput topic",
+			"description": "topic used to ask tv to switch input (ex hdmi1)",
+			"type": "string",
+			"default": "home/tv/cmd/input",
+			"required": true
+		},
+		"getActiveInput": {
+			"title": "getActiveInput topic",
+			"description": " topic used to get TV current source input (ex: Netflix)",
+			"type": "string",
+			"default": "home/tv/input",
+			"required": true
+		},
+		"setRemoteKey": {
+			"title": "setRemoteKey topic",
+			"description": "topic used to sent TV remote key events (using Apple Remote in status bar)",
+			"type": "string",
+			"default": "home/tv/cmd/remote",
+			"required": false
+		},
+		"settingsTopic": {
+			"title": "settingsTopic topic",
+			"description": "topic used to sync settings between plugin and ESP8266 controller",
+			"type": "string",
+			"default": "home/tv/settings",
+			"required": false
+		},
+		"infoTopic": {
+			"title": "infoTopic topic",
+			"description": "topic used by ESP8266 controller to print extra info",
+			"type": "string",
+			"default": "home/tv/info",
+			"required": false
+		},
+		"inputs": {
+			"type": "array",
+			"items": {
+				"title": "TV Source Input Config",
+				"type": "object",
+				"properties": {
+				    "name": {
+						"title": "Name",
+						"type": "string",
+						"default": "",
+						"description": "input name (as it will appear in HomeKit App, ex: Nextflix, HDMI 1, News Channel)"
+					},
+					"value": {
+						"title": "Value",
+						"type": "string",
+						"default": "",
+						"description": "will be sent via mqtt using setActiveInput to TV/EXP8266; example: hdmi1, digitalTV, news_channel,netflix"
+					}
+				}
+			}
+		}		
+	},
+	"layout": [
+		{
+			"type": "fieldset",
+			"items": [
+				"name"
+			]
+		},
+		{
+			"type": "fieldset",
+			"expandable": true,
+			"title": "MQTT Config",
+			"items": [
+				{
+					"type": "flex",
+					"flex-flow": "row wrap",
+					"items": [
+						{
+							"type": "flex",
+							"items": [
+								"mqtt.server"
+							]
+						}
+					]
+				},
+				{
+					"type": "flex",
+					"flex-flow": "row wrap",
+					"items": [
+						{
+							"type": "flex",
+							"flex-flow": "column",
+							"items": [
+								"mqtt.username"
+							]
+						},
+						{
+							"type": "flex",
+							"flex-flow": "column",
+							"items": [
+								"mqtt.password"
+							]
+						},
+						{
+							"type": "flex",
+							"flex-flow": "column",
+							"items": [
+								"mqtt.port"
+							]
+						}
+					]
+				}
+			]
+		},
+				{
+			"type": "fieldset",
+			"expandable": true,
+			"title": "Ping TV IP Address",
+			"items": [
+				"pinghost.ip",
+				"pinghost.interval"
+			]
+		},
+		{
+			"type": "fieldset",
+			"expandable": true,
+			"title": "MQTT Topics",
+			"items": [
+				"setActive",
+				"getActive",
+				"setActiveInput",
+				"getActiveInput",
+				"settingsTopic",
+				"infoTopic",
+				"setRemoteKey"
+			]
+		},
+		{
+			"type": "fieldset",
+			"expandable": true,
+			"title": "Inputs",
+			"items": [
+				{
+					"type": "array",
+					"key": "inputs",
+					"nodescription": true,
+					"notitle": true,
+					"minItems": 0,
+					"items": [
+						{
+							"type": "fieldset",
+							"expandable": true,
+							"expanded": false,
+							"title": "Input",
+							"items": [
+								"inputs[].name",
+								"inputs[].value"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

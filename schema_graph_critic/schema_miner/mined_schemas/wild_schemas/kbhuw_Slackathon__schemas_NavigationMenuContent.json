@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "NavigationMenuContent Props",
+  "description": "Props for NavigationMenuContent component",
+  "properties": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS classes"
+    },
+    "children": {
+      "type": [
+        "string",
+        "object"
+      ],
+      "description": "Child content"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+      "namelist": {
+        "type": "string"
+      },
+      "tstep": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "namelist",
+      "tstep"
+    ]
+  }

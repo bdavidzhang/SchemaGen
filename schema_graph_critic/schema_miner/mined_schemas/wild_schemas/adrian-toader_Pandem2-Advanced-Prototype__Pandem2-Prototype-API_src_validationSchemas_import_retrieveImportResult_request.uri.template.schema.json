@@ -1,0 +1,13 @@
+{
+  "$id": "import.retrieveImportResult.request.uri.template.schema",
+  "description": "Retrieve Import result",
+  "type": "object",
+  "properties": {
+    "importResultId": {
+      "$ref": "/base#/definitions/mongoID"
+    }
+  },
+  "required": [
+    "importResultId"
+  ]
+}

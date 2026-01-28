@@ -1,0 +1,112 @@
+{
+  "x-osdu-review-status": "Accepted",
+  "x-osdu-governance-model": "LOCAL",
+  "x-osdu-governance-authorities": [
+    "Platform Operators"
+  ],
+  "$id": "https://schema.osdu.opengroup.org/json/reference-data/ParentMatchingRuleSets.1.0.0.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ParentMatchingRuleSets",
+  "description": "Given a namespace, source and target schema kinds, provide matching rule sets to configure external to target object matching.",
+  "type": "object",
+  "x-osdu-virtual-properties": {
+    "data.VirtualProperties.DefaultName": {
+      "type": "string",
+      "priority": [
+        {
+          "path": "data.Name"
+        }
+      ]
+    }
+  },
+  "x-osdu-common-resources-version": "AbstractCommonResources.1.0.0",
+  "allOf": [
+    {
+      "$ref": "../abstract/AbstractReferenceType.1.0.0.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "NamespaceID": {
+          "type": "string",
+          "title": "Namespace ID",
+          "description": "A namespace reference grouping a list of records with the goal of providing unique matching criteria by Name/Code. It is strongly recommended to make the NamespaceID's code part of the system property id.",
+          "example": "namespace:reference-data--ExternalCatalogNamespace:EDS:",
+          "pattern": "^[\\w\\-\\.]+:reference-data\\-\\-ExternalCatalogNamespace:[\\w\\-\\.\\:\\%]+:[0-9]*$"
+        },
+        "SourceKind": {
+          "type": "string",
+          "title": "Source Kind",
+          "description": "An optional type identifier in the scope of the connected data source.",
+          "example": "wellbore"
+        },
+        "TargetKind": {
+          "type": "string",
+          "title": "Target Kind",
+          "description": "An optional type identifier in the scope of the target platform.",
+          "example": "osdu:wks:master-data--Wellbore:1."
+        },
+        "MatchingRuleSets": {
+          "type": "array",
+          "title": "Matching Rule Sets",
+          "description": "One or multiple, prioritized  matching rule set, which are expected to be applied to find a matching related target object (e.g., a parent Well/Wellbore for a WellLog) given matching criteria.",
+          "items": {
+            "type": "object",
+            "title": "MatchingRuleSet",
+            "description": "One set of  conditions, which have to be matched to determine sufficient equality of an object.",
+            "properties": {
+              "RuleName": {
+                "type": "string",
+                "title": "Rule Name",
+                "description": "The name of the rule (expected to be unique in the array of MatchingRuleSets[]).",
+                "example": "Match by UWI"
+              },
+              "Description": {
+                "type": "string",
+                "title": "Description",
+                "description": "A text explaining the purpose or goal of this MatchingRuleSet.",
+                "example": "Match by UWI as single condition."
+              },
+              "Conditions": {
+                "type": "array",
+                "title": "Conditions",
+                "description": "The list of conditions, which all have to be met in order to declare a match.",
+                "items": {
+                  "type": "object",
+                  "title": "Condition",
+                  "description": "An exact or approximate condition of equality, which is a match requirement.",
+                  "properties": {
+                    "SourceProperty": {
+                      "type": "string",
+                      "title": "Source Property",
+                      "description": "The source property name to evaluate in the scope of the connected data source.",
+                      "example": "uwi"
+                    },
+                    "TargetKind": {
+                      "type": "string",
+                      "title": "Target Kind",
+                      "description": "The target kind to query for.",
+                      "example": "osdu:wks:master-data--Well:1."
+                    },
+                    "TargetProperty": {
+                      "type": "string",
+                      "title": "Target Property",
+                      "description": "The target property path to search TargetKind instances with the value of the SourceProperty",
+                      "example": "data.WellUWI"
+                    },
+                    "NumericalTolerance": {
+                      "type": "number",
+                      "title": "Numerical Tolerance",
+                      "description": "The optional, numerical tolerance to be used when comparing numbers.",
+                      "x-osdu-frame-of-reference": "UOM:dimensionless"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

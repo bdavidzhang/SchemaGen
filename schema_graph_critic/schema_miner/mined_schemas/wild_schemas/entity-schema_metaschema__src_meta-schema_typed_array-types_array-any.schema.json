@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "http://example.com/schema/array-any#",
+  "title": "Array of Any",
+  "allOf": [
+    {
+      "$ref": "http://example.com/schema/array-type#"
+    },
+    {
+      "properties": {
+        "items": false,
+        "additionalItems": false
+      }
+    }
+  ]
+}

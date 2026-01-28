@@ -1,0 +1,977 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/yewsLongNamesEnumSet.schema.json",
+  "title": "yewsLongNamesEnumSet",
+  "description": "YEWS Long Names",
+  "oneOf": [
+    {
+      "enum": [
+        1,
+        "yewsLongNames1"
+      ],
+      "description": "Start/Stop"
+    },
+    {
+      "enum": [
+        2,
+        "yewsLongNames2"
+      ],
+      "description": "Run mode"
+    },
+    {
+      "enum": [
+        3,
+        "yewsLongNames3"
+      ],
+      "description": "Leaving chilled liquid setpoint"
+    },
+    {
+      "enum": [
+        4,
+        "yewsLongNames4"
+      ],
+      "description": "Leaving chilled liquid setpoint ICS"
+    },
+    {
+      "enum": [
+        5,
+        "yewsLongNames5"
+      ],
+      "description": "Leaving heat liquid setpoint HP"
+    },
+    {
+      "enum": [
+        6,
+        "yewsLongNames6"
+      ],
+      "description": "Leaving heat liquid setpoint High temperature HP"
+    },
+    {
+      "enum": [
+        7,
+        "yewsLongNames7"
+      ],
+      "description": "Fault"
+    },
+    {
+      "enum": [
+        8,
+        "yewsLongNames8"
+      ],
+      "description": "Time limitation"
+    },
+    {
+      "enum": [
+        9,
+        "yewsLongNames9"
+      ],
+      "description": "preheat"
+    },
+    {
+      "enum": [
+        10,
+        "yewsLongNames10"
+      ],
+      "description": "Control mode"
+    },
+    {
+      "enum": [
+        11,
+        "yewsLongNames11"
+      ],
+      "description": "1# digital output"
+    },
+    {
+      "enum": [
+        12,
+        "yewsLongNames12"
+      ],
+      "description": "1# digital input"
+    },
+    {
+      "enum": [
+        13,
+        "yewsLongNames13"
+      ],
+      "description": "leaving condenser liquid temperature"
+    },
+    {
+      "enum": [
+        14,
+        "yewsLongNames14"
+      ],
+      "description": "return condenser liquid temperature"
+    },
+    {
+      "enum": [
+        15,
+        "yewsLongNames15"
+      ],
+      "description": "leaving chilled liquid temperature"
+    },
+    {
+      "enum": [
+        16,
+        "yewsLongNames16"
+      ],
+      "description": "return chilled liquid temperature"
+    },
+    {
+      "enum": [
+        17,
+        "yewsLongNames17"
+      ],
+      "description": "1# discharge temperature"
+    },
+    {
+      "enum": [
+        18,
+        "yewsLongNames18"
+      ],
+      "description": "1# evaporator pressure"
+    },
+    {
+      "enum": [
+        19,
+        "yewsLongNames19"
+      ],
+      "description": "1# discharge pressure"
+    },
+    {
+      "enum": [
+        20,
+        "yewsLongNames20"
+      ],
+      "description": "1# oil pressure"
+    },
+    {
+      "enum": [
+        21,
+        "yewsLongNames21"
+      ],
+      "description": "1# motor current"
+    },
+    {
+      "enum": [
+        22,
+        "yewsLongNames22"
+      ],
+      "description": "1# digital input fault"
+    },
+    {
+      "enum": [
+        23,
+        "yewsLongNames23"
+      ],
+      "description": "1# analog input fault"
+    },
+    {
+      "enum": [
+        24,
+        "yewsLongNames24"
+      ],
+      "description": "1# fault"
+    },
+    {
+      "enum": [
+        25,
+        "yewsLongNames25"
+      ],
+      "description": "water pump work hours"
+    },
+    {
+      "enum": [
+        26,
+        "yewsLongNames26"
+      ],
+      "description": "1# compressor work hours"
+    },
+    {
+      "enum": [
+        27,
+        "yewsLongNames27"
+      ],
+      "description": "2# digital output"
+    },
+    {
+      "enum": [
+        28,
+        "yewsLongNames28"
+      ],
+      "description": "2# digital input"
+    },
+    {
+      "enum": [
+        29,
+        "yewsLongNames29"
+      ],
+      "description": "2# discharge temperature"
+    },
+    {
+      "enum": [
+        30,
+        "yewsLongNames30"
+      ],
+      "description": "2# evaporator pressure"
+    },
+    {
+      "enum": [
+        31,
+        "yewsLongNames31"
+      ],
+      "description": "2# discharge pressure"
+    },
+    {
+      "enum": [
+        32,
+        "yewsLongNames32"
+      ],
+      "description": "2# oil pressure"
+    },
+    {
+      "enum": [
+        33,
+        "yewsLongNames33"
+      ],
+      "description": "2# motor current"
+    },
+    {
+      "enum": [
+        34,
+        "yewsLongNames34"
+      ],
+      "description": "2# digital input fault"
+    },
+    {
+      "enum": [
+        35,
+        "yewsLongNames35"
+      ],
+      "description": "2# analog input fault"
+    },
+    {
+      "enum": [
+        36,
+        "yewsLongNames36"
+      ],
+      "description": "2# fault"
+    },
+    {
+      "enum": [
+        37,
+        "yewsLongNames37"
+      ],
+      "description": "2# compressor work hours"
+    },
+    {
+      "enum": [
+        38,
+        "yewsLongNames38"
+      ],
+      "description": "1st Electronic expansion valve position"
+    },
+    {
+      "enum": [
+        39,
+        "yewsLongNames39"
+      ],
+      "description": "2nd Electronic expansion valve position"
+    },
+    {
+      "enum": [
+        40,
+        "yewsLongNames40"
+      ],
+      "description": "3rd Electronic expansion valve position"
+    },
+    {
+      "enum": [
+        41,
+        "yewsLongNames41"
+      ],
+      "description": "Firmware version"
+    },
+    {
+      "enum": [
+        42,
+        "yewsLongNames42"
+      ],
+      "description": "Compressor motor full load amps"
+    },
+    {
+      "enum": [
+        43,
+        "yewsLongNames43"
+      ],
+      "description": "Total time of compressor operation"
+    },
+    {
+      "enum": [
+        44,
+        "yewsLongNames44"
+      ],
+      "description": "Startup times of compressor"
+    },
+    {
+      "enum": [
+        45,
+        "yewsLongNames45"
+      ],
+      "description": "Compressor operation code"
+    },
+    {
+      "enum": [
+        46,
+        "yewsLongNames46"
+      ],
+      "description": "Compressor capacity"
+    },
+    {
+      "enum": [
+        47,
+        "yewsLongNames47"
+      ],
+      "description": "Suction saturation temperature"
+    },
+    {
+      "enum": [
+        48,
+        "yewsLongNames48"
+      ],
+      "description": "1st Suction superheat"
+    },
+    {
+      "enum": [
+        49,
+        "yewsLongNames49"
+      ],
+      "description": "2nd Suction superheat"
+    },
+    {
+      "enum": [
+        50,
+        "yewsLongNames50"
+      ],
+      "description": "Discharge saturation temperature"
+    },
+    {
+      "enum": [
+        51,
+        "yewsLongNames51"
+      ],
+      "description": "Dsicharge superheat"
+    },
+    {
+      "enum": [
+        52,
+        "yewsLongNames52"
+      ],
+      "description": "1st Electronic expansion valve operation code"
+    },
+    {
+      "enum": [
+        53,
+        "yewsLongNames53"
+      ],
+      "description": "2nd Electronic expansion valve operation code"
+    },
+    {
+      "enum": [
+        54,
+        "yewsLongNames54"
+      ],
+      "description": "3rd Electronic expansion valve operation code"
+    },
+    {
+      "enum": [
+        55,
+        "yewsLongNames55"
+      ],
+      "description": "ECO saturation temperature"
+    },
+    {
+      "enum": [
+        56,
+        "yewsLongNames56"
+      ],
+      "description": "ECO superheat"
+    },
+    {
+      "enum": [
+        57,
+        "yewsLongNames57"
+      ],
+      "description": "Liquid line saturation temperature"
+    },
+    {
+      "enum": [
+        58,
+        "yewsLongNames58"
+      ],
+      "description": "Liquid line subcolling"
+    },
+    {
+      "enum": [
+        59,
+        "yewsLongNames59"
+      ],
+      "description": "Compressor motor current"
+    },
+    {
+      "enum": [
+        60,
+        "yewsLongNames60"
+      ],
+      "description": "Discharge temperature"
+    },
+    {
+      "enum": [
+        61,
+        "yewsLongNames61"
+      ],
+      "description": "1st Suction temperature"
+    },
+    {
+      "enum": [
+        62,
+        "yewsLongNames62"
+      ],
+      "description": "2nd Suction temperature"
+    },
+    {
+      "enum": [
+        63,
+        "yewsLongNames63"
+      ],
+      "description": "ECO temperature"
+    },
+    {
+      "enum": [
+        64,
+        "yewsLongNames64"
+      ],
+      "description": "Suction pressure"
+    },
+    {
+      "enum": [
+        65,
+        "yewsLongNames65"
+      ],
+      "description": "Oil pressure"
+    },
+    {
+      "enum": [
+        66,
+        "yewsLongNames66"
+      ],
+      "description": "Discharge pressure"
+    },
+    {
+      "enum": [
+        67,
+        "yewsLongNames67"
+      ],
+      "description": "ECO pressure"
+    },
+    {
+      "enum": [
+        68,
+        "yewsLongNames68"
+      ],
+      "description": "Liquid refrigerant temperature"
+    },
+    {
+      "enum": [
+        69,
+        "yewsLongNames69"
+      ],
+      "description": "Heat recovery Leaving chilled liquid"
+    },
+    {
+      "enum": [
+        70,
+        "yewsLongNames70"
+      ],
+      "description": "1st Coil tube temperature"
+    },
+    {
+      "enum": [
+        71,
+        "yewsLongNames71"
+      ],
+      "description": "2nd Coil tube temperature"
+    },
+    {
+      "enum": [
+        72,
+        "yewsLongNames72"
+      ],
+      "description": "3rd Coil tube temperature"
+    },
+    {
+      "enum": [
+        73,
+        "yewsLongNames73"
+      ],
+      "description": "4th Coil tube temperature"
+    },
+    {
+      "enum": [
+        74,
+        "yewsLongNames74"
+      ],
+      "description": "Middle tank pressure"
+    },
+    {
+      "enum": [
+        75,
+        "yewsLongNames75"
+      ],
+      "description": "Liquid line refrigerant pressure"
+    },
+    {
+      "enum": [
+        76,
+        "yewsLongNames76"
+      ],
+      "description": "Leaving chilled liquid temperature"
+    },
+    {
+      "enum": [
+        77,
+        "yewsLongNames77"
+      ],
+      "description": "Return chilled liquid temperature"
+    },
+    {
+      "enum": [
+        78,
+        "yewsLongNames78"
+      ],
+      "description": "Compressor motor temperature"
+    },
+    {
+      "enum": [
+        79,
+        "yewsLongNames79"
+      ],
+      "description": "Digital input 08~01"
+    },
+    {
+      "enum": [
+        80,
+        "yewsLongNames80"
+      ],
+      "description": "Digital output 16~01"
+    },
+    {
+      "enum": [
+        81,
+        "yewsLongNames81"
+      ],
+      "description": "Digital output 32~17"
+    },
+    {
+      "enum": [
+        82,
+        "yewsLongNames82"
+      ],
+      "description": "1st Electronic expansion valve position"
+    },
+    {
+      "enum": [
+        83,
+        "yewsLongNames83"
+      ],
+      "description": "2nd Electronic expansion valve position"
+    },
+    {
+      "enum": [
+        84,
+        "yewsLongNames84"
+      ],
+      "description": "3rd Electronic expansion valve position"
+    },
+    {
+      "enum": [
+        85,
+        "yewsLongNames85"
+      ],
+      "description": "Firmware version"
+    },
+    {
+      "enum": [
+        86,
+        "yewsLongNames86"
+      ],
+      "description": "Compressor motor full load amps"
+    },
+    {
+      "enum": [
+        87,
+        "yewsLongNames87"
+      ],
+      "description": "Total time of compressor operation"
+    },
+    {
+      "enum": [
+        88,
+        "yewsLongNames88"
+      ],
+      "description": "Startup times of compressor"
+    },
+    {
+      "enum": [
+        89,
+        "yewsLongNames89"
+      ],
+      "description": "Compressor operation code"
+    },
+    {
+      "enum": [
+        90,
+        "yewsLongNames90"
+      ],
+      "description": "Compressor capacity"
+    },
+    {
+      "enum": [
+        91,
+        "yewsLongNames91"
+      ],
+      "description": "Suction saturation temperature"
+    },
+    {
+      "enum": [
+        92,
+        "yewsLongNames92"
+      ],
+      "description": "1st Suction superheat"
+    },
+    {
+      "enum": [
+        93,
+        "yewsLongNames93"
+      ],
+      "description": "2nd Suction superheat"
+    },
+    {
+      "enum": [
+        94,
+        "yewsLongNames94"
+      ],
+      "description": "Discharge saturation temperature"
+    },
+    {
+      "enum": [
+        95,
+        "yewsLongNames95"
+      ],
+      "description": "Dsicharge superheat"
+    },
+    {
+      "enum": [
+        96,
+        "yewsLongNames96"
+      ],
+      "description": "1st Electronic expansion valve operation code"
+    },
+    {
+      "enum": [
+        97,
+        "yewsLongNames97"
+      ],
+      "description": "2nd Electronic expansion valve operation code"
+    },
+    {
+      "enum": [
+        98,
+        "yewsLongNames98"
+      ],
+      "description": "3rd Electronic expansion valve operation code"
+    },
+    {
+      "enum": [
+        99,
+        "yewsLongNames99"
+      ],
+      "description": "ECO saturation temperature"
+    },
+    {
+      "enum": [
+        100,
+        "yewsLongNames100"
+      ],
+      "description": "ECO superheat"
+    },
+    {
+      "enum": [
+        101,
+        "yewsLongNames101"
+      ],
+      "description": "Liquid line saturation temperature"
+    },
+    {
+      "enum": [
+        102,
+        "yewsLongNames102"
+      ],
+      "description": "Liquid line subcolling"
+    },
+    {
+      "enum": [
+        103,
+        "yewsLongNames103"
+      ],
+      "description": "Fault code"
+    },
+    {
+      "enum": [
+        104,
+        "yewsLongNames104"
+      ],
+      "description": "Fault position"
+    },
+    {
+      "enum": [
+        105,
+        "yewsLongNames105"
+      ],
+      "description": "Begin time Month"
+    },
+    {
+      "enum": [
+        106,
+        "yewsLongNames106"
+      ],
+      "description": "Begin time Day"
+    },
+    {
+      "enum": [
+        107,
+        "yewsLongNames107"
+      ],
+      "description": "Begin time hour"
+    },
+    {
+      "enum": [
+        108,
+        "yewsLongNames108"
+      ],
+      "description": "Begin time minute"
+    },
+    {
+      "enum": [
+        109,
+        "yewsLongNames109"
+      ],
+      "description": "End time Month"
+    },
+    {
+      "enum": [
+        110,
+        "yewsLongNames110"
+      ],
+      "description": "End time Day"
+    },
+    {
+      "enum": [
+        111,
+        "yewsLongNames111"
+      ],
+      "description": "End time hour"
+    },
+    {
+      "enum": [
+        112,
+        "yewsLongNames112"
+      ],
+      "description": "End time minute"
+    },
+    {
+      "enum": [
+        113,
+        "yewsLongNames113"
+      ],
+      "description": "Ambient temperature"
+    },
+    {
+      "enum": [
+        114,
+        "yewsLongNames114"
+      ],
+      "description": "Digital input 08~01"
+    },
+    {
+      "enum": [
+        115,
+        "yewsLongNames115"
+      ],
+      "description": "Digital output 08~01"
+    },
+    {
+      "enum": [
+        116,
+        "yewsLongNames116"
+      ],
+      "description": "Compressor motor current"
+    },
+    {
+      "enum": [
+        117,
+        "yewsLongNames117"
+      ],
+      "description": "Discharge temperature"
+    },
+    {
+      "enum": [
+        118,
+        "yewsLongNames118"
+      ],
+      "description": "1st Suction temperature"
+    },
+    {
+      "enum": [
+        119,
+        "yewsLongNames119"
+      ],
+      "description": "2nd Suction temperature"
+    },
+    {
+      "enum": [
+        120,
+        "yewsLongNames120"
+      ],
+      "description": "ECO temperature"
+    },
+    {
+      "enum": [
+        121,
+        "yewsLongNames121"
+      ],
+      "description": "Suction pressure"
+    },
+    {
+      "enum": [
+        122,
+        "yewsLongNames122"
+      ],
+      "description": "Oil pressure"
+    },
+    {
+      "enum": [
+        123,
+        "yewsLongNames123"
+      ],
+      "description": "Discharge pressure"
+    },
+    {
+      "enum": [
+        124,
+        "yewsLongNames124"
+      ],
+      "description": "ECO pressure"
+    },
+    {
+      "enum": [
+        125,
+        "yewsLongNames125"
+      ],
+      "description": "Liquid refrigerant temperature"
+    },
+    {
+      "enum": [
+        126,
+        "yewsLongNames126"
+      ],
+      "description": "Heat recovery Leaving chilled liquid"
+    },
+    {
+      "enum": [
+        127,
+        "yewsLongNames127"
+      ],
+      "description": "1st Coil tube temperature"
+    },
+    {
+      "enum": [
+        128,
+        "yewsLongNames128"
+      ],
+      "description": "2nd Coil tube temperature"
+    },
+    {
+      "enum": [
+        129,
+        "yewsLongNames129"
+      ],
+      "description": "3rd Coil tube temperature"
+    },
+    {
+      "enum": [
+        130,
+        "yewsLongNames130"
+      ],
+      "description": "4th Coil tube temperature"
+    },
+    {
+      "enum": [
+        131,
+        "yewsLongNames131"
+      ],
+      "description": "Middle tank pressure"
+    },
+    {
+      "enum": [
+        132,
+        "yewsLongNames132"
+      ],
+      "description": "Liquid line refrigerant pressure"
+    },
+    {
+      "enum": [
+        133,
+        "yewsLongNames133"
+      ],
+      "description": "Leaving chilled liquid temperature"
+    },
+    {
+      "enum": [
+        134,
+        "yewsLongNames134"
+      ],
+      "description": "Return chilled liquid temperature"
+    },
+    {
+      "enum": [
+        135,
+        "yewsLongNames135"
+      ],
+      "description": "Compressor motor temperature"
+    },
+    {
+      "enum": [
+        136,
+        "yewsLongNames136"
+      ],
+      "description": "Digital input 08~01"
+    },
+    {
+      "enum": [
+        137,
+        "yewsLongNames137"
+      ],
+      "description": "Digital output 16~01"
+    },
+    {
+      "enum": [
+        138,
+        "yewsLongNames138"
+      ],
+      "description": "Digital output 32~17"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

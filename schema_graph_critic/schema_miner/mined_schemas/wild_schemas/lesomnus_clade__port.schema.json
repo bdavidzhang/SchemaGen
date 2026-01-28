@@ -1,0 +1,143 @@
+{
+	"title": "CLade Port",
+	"allOf": [
+		{
+			"$ref": "#/$defs/image-base-properties"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"name": {
+					"description": "Name of the image this port describe",
+					"type": "string"
+				},
+				"images": {
+					"type": "array",
+					"items": {
+						"description": "Description of the image to build",
+						"allOf": [
+							{
+								"$ref": "#/$defs/image-base-properties"
+							},
+							{
+								"type": "object",
+								"properties": {
+									"tags": {
+										"description": "Tag of the image",
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									},
+									"from": {
+										"oneOf": [
+											{
+												"description": "Canonical name of the base image",
+												"type": "string"
+											},
+											{
+												"type": "object",
+												"properties": {
+													"name": {
+														"description": "Name of the base image",
+														"type": "string"
+													},
+													"tags": {
+														"description": "Tag of the base image",
+														"type": "string"
+													},
+													"with": {
+														"type": "array",
+														"items": {
+															"oneOf": [
+																{
+																	"description": "Canonical name of the base image",
+																	"type": "string"
+																},
+																{
+																	"type": "object",
+																	"properties": {
+																		"name": {
+																			"description": "Name of the base image",
+																			"type": "string"
+																		},
+																		"tag": {
+																			"description": "Tag of the base image",
+																			"type": "string"
+																		},
+																		"as": {
+																			"description": "Alias of the base image that can be referenced during build",
+																			"type": "string"
+																		}
+																	},
+																	"required": [
+																		"name",
+																		"tag"
+																	]
+																}
+															]
+														}
+													}
+												},
+												"required": [
+													"name",
+													"tags"
+												]
+											}
+										]
+									}
+								},
+								"required": [
+									"tags",
+									"from"
+								]
+							}
+						]
+					}
+				}
+			},
+			"required": [
+				"name",
+				"images"
+			]
+		}
+	],
+	"$defs": {
+		"args": {
+			"description": "Variables passed when building the image",
+			"type": "object",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"dockerfile": {
+			"description": "Path to Dockerfile to use for the build",
+			"type": "string"
+		},
+		"context": {
+			"description": "Path to build context",
+			"type": "string"
+		},
+		"platform": {
+			"description": "Boolean expression indicating on which platform it can be built",
+			"type": "string"
+		},
+		"image-base-properties": {
+			"type": "object",
+			"properties": {
+				"args": {
+					"$ref": "#/$defs/args"
+				},
+				"dockerfile": {
+					"$ref": "#/$defs/dockerfile"
+				},
+				"context": {
+					"$ref": "#/$defs/context"
+				},
+				"platform": {
+					"$ref": "#/$defs/platform"
+				}
+			}
+		}
+	}
+}

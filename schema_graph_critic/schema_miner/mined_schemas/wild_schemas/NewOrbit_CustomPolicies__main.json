@@ -1,0 +1,323 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "languageVersion": "2.0",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.36.177.2456",
+      "templateHash": "10999609725728171705"
+    }
+  },
+  "definitions": {
+    "EnforcementMode": {
+      "type": "string",
+      "allowedValues": [
+        "AuditOnly",
+        "DefinitionsOnly",
+        "Enforced"
+      ],
+      "metadata": {
+        "description": "Type of enforcement mode for the policies. DefinitionsOnly is the default and does not enforce the policies allowing you to assign the policy yourself, AuditOnly will assign the policies to everything but not enforce them, and Enforced will assign the policies and enable enforcement where the policies support it.",
+        "__bicep_imported_from!": {
+          "sourceTemplate": "types.bicep"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "applyTagPolicies": {
+      "$ref": "#/definitions/EnforcementMode",
+      "defaultValue": "DefinitionsOnly",
+      "metadata": {
+        "description": "Apply resource tag policies"
+      }
+    },
+    "applyCosmosDbPolicies": {
+      "$ref": "#/definitions/EnforcementMode",
+      "defaultValue": "DefinitionsOnly",
+      "metadata": {
+        "description": "Apply CosmosDb policies"
+      }
+    },
+    "applyApplicationInsightsCapPolicy": {
+      "$ref": "#/definitions/EnforcementMode",
+      "defaultValue": "DefinitionsOnly",
+      "metadata": {
+        "description": "Apply - should have a cap applied to application-insights"
+      }
+    }
+  },
+  "variables": {
+    "$fxv#0": "{\n  \"definitions\": [\n    {\n      \"properties\": {\n        \"name\": \"RequireTag-ResourceGroup-Environment\",\n        \"displayName\": \"Require Tag (Resource Group) - Environment\",\n        \"description\": \"Requires that all resource groups have an environment tag.\",\n        \"mode\": \"All\",\n        \"metadata\": {\n          \"category\": \"Tags\"\n        }\n      },\n      \"roles\": [\n        \"Tag Contributor\"\n      ],\n      \"rules\": {\n        \"if\": {\n          \"allOf\": [\n            {\n              \"field\": \"type\",\n              \"equals\": \"Microsoft.Resources/subscriptions/resourceGroups\"\n            },\n            {\n              \"field\": \"tags['Environment']\",\n              \"notIn\": \"[parameters('allowedValues')]\"\n            }\n          ]\n        },\n        \"then\": {\n          \"effect\": \"deny\"\n        }\n      },\n      \"parameters\": {\n        \"allowedValues\": {\n          \"type\": \"Array\",\n          \"metadata\": {\n            \"displayName\": \"Allowed Values\",\n            \"description\": \"The allowed values for this tag.\"\n          },\n          \"allowedValues\": [\n            \"Live\",\n            \"Testing\",\n            \"UAT\",\n            \"QAT\",\n            \"Demo\",\n            \"Experiment\"\n          ],\n          \"defaultValue\": [\n            \"Live\",\n            \"Testing\",\n            \"UAT\",\n            \"QAT\",\n            \"Demo\",\n            \"Experiment\"\n          ]\n        }\n      }\n    },\n    {\n      \"properties\": {\n        \"name\": \"Require-Cap-ApplicationInsights\",\n        \"displayName\": \"Require A Cap On ApplicationInsights\",\n        \"description\": \"A cap must be set on application insights so that we do not cause unnecessary costs\",\n        \"mode\": \"All\",\n        \"metadata\": {\n          \"category\": \"Tags\"\n        }\n      },\n      \"roles\": [],\n      \"rules\": {\n        \"if\": {\n          \"allOf\": [\n            {\n              \"field\": \"type\",\n              \"equals\": \"Microsoft.OperationalInsights/workspaces\"\n            },\n            {\n              \"field\": \"Microsoft.OperationalInsights/workspaces/workspaceCapping.dailyQuotaGb\",\n              \"equals\": \"-1\"\n            }\n          ]\n        },\n        \"then\": {\n          \"effect\": \"deny\"\n        }\n      },\n      \"parameters\": {\n      }\n    },\n    {\n      \"properties\": {\n        \"name\": \"RequireTag-ResourceGroup-Scale\",\n        \"displayName\": \"Require Tag (Resource Group) - Scale\",\n        \"description\": \"Requires that scalable resources have a scale tag.\",\n        \"mode\": \"All\",\n        \"metadata\": {\n          \"category\": \"Tags\"\n        }\n      },\n      \"roles\": [\n        \"Tag Contributor\"\n      ],\n      \"rules\": {\n        \"if\": {\n          \"allOf\": [\n            {\n              \"anyOf\": [\n                {\n                  \"field\": \"type\",\n                  \"equals\": \"Microsoft.Web/serverFarms\"\n                }\n              ]\n            },\n            {\n              \"field\": \"tags['Scale']\",\n              \"notIn\": [\n                \"Normal\",\n                \"Temporary\"\n              ]\n            }\n          ]\n        },\n        \"then\": {\n          \"effect\": \"deny\"\n        }\n      },\n      \"parameters\": {\n      }\n    },\n    {\n      \"properties\":{\n        \"name\": \"Require-ResourceGroup-Owner\",\n        \"displayName\": \"Require Tag (Resource Group) - Owner\",\n        \"description\": \"Requires that all resources have the Owner tag.\",\n        \"mode\": \"All\",\n        \"metadata\": {\n          \"category\": \"Tags\"\n        }\n      },\n      \"roles\": [\n        \"Tag Contributor\"\n      ],\n      \"rules\": {\n        \"if\": {\n          \"allOf\": [\n            {\n              \"field\": \"type\",\n              \"equals\": \"Microsoft.Resources/subscriptions/resourceGroups\"\n            },\n            {\n              \"field\": \"[concat('tags[', 'Owner', ']')]\",\n              \"exists\": \"false\"\n            }\n          ]\n        },\n        \"then\": {\n          \"effect\": \"deny\"\n        }\n      },\n      \"parameters\": {\n      }\n    },\n    {\n      \"properties\": {\n        \"name\": \"Tag-Owner-InheritFromResourceGroup\",\n        \"displayName\": \"Inherit Owner Tag From Resource Group\",\n        \"description\": \"Inherit the Owner tag from the resource group.\",\n        \"mode\": \"Indexed\",\n        \"metadata\": {\n          \"category\": \"Tags\"\n        }\n      },\n      \"roles\": [\n        \"Tag Contributor\"\n      ],\n      \"rules\": {\n        \"if\": {\n          \"allOf\": [\n            {\n              \"field\": \"[concat('tags[', 'Owner', ']')]\",\n              \"notEquals\": \"[resourcegroup().tags['Owner']]\"\n            },\n            {\n              \"value\": \"[resourceGroup().tags['Owner']]\",\n              \"exists\": \"true\"\n            },\n            {\n              \"value\": \"[resourceGroup().tags['Owner']]\",\n              \"notEquals\": \"\"\n            }\n          ]\n        },\n        \"then\": {\n          \"effect\": \"modify\",\n          \"details\": {\n            \"operations\": [\n              {\n                \"operation\": \"addOrReplace\",\n                \"field\": \"[concat('tags[', 'Owner', ']')]\",\n                \"value\": \"[resourceGroup().tags['Owner']]\"\n              }\n            ],\n            \"roleDefinitionIds\": [\n              \"/providers/Microsoft.Authorization/roleDefinitions/4a9ae827-6dc8-4573-8ac7-8239d42aa03f\"\n            ]\n          }\n        }\n      },\n      \"parameters\": {\n      }\n    }\n  ]\n}",
+    "policies": "[json(variables('$fxv#0'))]",
+    "roleIds": {
+      "tagContributor": "4a9ae827-6dc8-4573-8ac7-8239d42aa03f"
+    }
+  },
+  "resources": {
+    "customPolicies": {
+      "copy": {
+        "name": "customPolicies",
+        "count": "[length(variables('policies').definitions)]"
+      },
+      "type": "Microsoft.Authorization/policyDefinitions",
+      "apiVersion": "2021-06-01",
+      "name": "[variables('policies').definitions[copyIndex()].properties.displayName]",
+      "properties": {
+        "displayName": "[variables('policies').definitions[copyIndex()].properties.displayName]",
+        "description": "[variables('policies').definitions[copyIndex()].properties.description]",
+        "policyType": "Custom",
+        "mode": "[variables('policies').definitions[copyIndex()].properties.mode]",
+        "metadata": "[variables('policies').definitions[copyIndex()].properties.metadata]",
+        "parameters": "[variables('policies').definitions[copyIndex()].parameters]",
+        "policyRule": "[variables('policies').definitions[copyIndex()].rules]"
+      }
+    },
+    "policySetDef": {
+      "type": "Microsoft.Authorization/policySetDefinitions",
+      "apiVersion": "2021-06-01",
+      "name": "Require Tags",
+      "properties": {
+        "description": "Require tags to exist on resource groups and resources",
+        "displayName": "New Orbit recommended tag policies",
+        "metadata": {
+          "category": "compliance",
+          "version": "1.0.0"
+        },
+        "parameters": {},
+        "policyDefinitions": [
+          {
+            "parameters": {},
+            "policyDefinitionId": "[format('/subscriptions/{0}/providers/Microsoft.Authorization/policyDefinitions/Require Tag (Resource Group) - Environment', subscription().subscriptionId)]"
+          },
+          {
+            "parameters": {},
+            "policyDefinitionId": "[format('/subscriptions/{0}/providers/Microsoft.Authorization/policyDefinitions/Require Tag (Resource Group) - Scale', subscription().subscriptionId)]"
+          },
+          {
+            "parameters": {},
+            "policyDefinitionId": "[format('/subscriptions/{0}/providers/Microsoft.Authorization/policyDefinitions/Require Tag (Resource Group) - Owner', subscription().subscriptionId)]"
+          },
+          {
+            "parameters": {},
+            "policyDefinitionId": "[format('/subscriptions/{0}/providers/Microsoft.Authorization/policyDefinitions/Inherit Owner Tag From Resource Group', subscription().subscriptionId)]"
+          }
+        ],
+        "policyType": "Custom"
+      },
+      "dependsOn": [
+        "customPolicies"
+      ]
+    },
+    "policyAssignment": {
+      "condition": "[not(equals(parameters('applyTagPolicies'), 'DefinitionsOnly'))]",
+      "type": "Microsoft.Authorization/policyAssignments",
+      "apiVersion": "2021-06-01",
+      "name": "Tag Policies",
+      "location": "[deployment().location]",
+      "properties": {
+        "description": "Require tags to exist on resource groups and resources",
+        "displayName": "New Orbit recommended tag policies",
+        "enforcementMode": "[if(equals(parameters('applyTagPolicies'), 'Enforced'), 'Default', 'DoNotEnforce')]",
+        "nonComplianceMessages": [],
+        "policyDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/policySetDefinitions', 'Require Tags')]"
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "dependsOn": [
+        "policySetDef"
+      ]
+    },
+    "policyAssignmentContributor": {
+      "condition": "[not(equals(parameters('applyTagPolicies'), 'DefinitionsOnly'))]",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(subscriptionResourceId('Microsoft.Authorization/policyAssignments', 'Tag Policies'), subscription().subscriptionId, variables('roleIds').tagContributor)]",
+      "properties": {
+        "principalId": "[reference('policyAssignment', '2021-06-01', 'full').identity.principalId]",
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roleIds').tagContributor)]",
+        "principalType": "ServicePrincipal"
+      },
+      "dependsOn": [
+        "policyAssignment"
+      ]
+    },
+    "policyAssignmentRequireAppInsightsCap": {
+      "condition": "[not(equals(parameters('applyApplicationInsightsCapPolicy'), 'DefinitionsOnly'))]",
+      "type": "Microsoft.Authorization/policyAssignments",
+      "apiVersion": "2021-06-01",
+      "name": "Require Cap On App Insights",
+      "location": "[deployment().location]",
+      "properties": {
+        "description": "Require a cap on application-insights",
+        "enforcementMode": "[if(equals(parameters('applyApplicationInsightsCapPolicy'), 'Enforced'), 'Default', 'DoNotEnforce')]",
+        "nonComplianceMessages": [],
+        "policyDefinitionId": "[format('/subscriptions/{0}/providers/Microsoft.Authorization/policyDefinitions/Require A Cap On ApplicationInsights', subscription().subscriptionId)]"
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "dependsOn": [
+        "cosmosPolicies"
+      ]
+    },
+    "cosmosPolicies": {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "cosmosPolicies",
+      "location": "[deployment().location]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "applyPolicies": {
+            "value": "[parameters('applyCosmosDbPolicies')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+          "languageVersion": "2.0",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.36.177.2456",
+              "templateHash": "3606109662424770679"
+            }
+          },
+          "definitions": {
+            "EnforcementMode": {
+              "type": "string",
+              "allowedValues": [
+                "AuditOnly",
+                "DefinitionsOnly",
+                "Enforced"
+              ],
+              "metadata": {
+                "description": "Type of enforcement mode for the policies. DefinitionsOnly is the default and does not enforce the policies allowing you to assign the policy yourself, AuditOnly will assign the policies to everything but not enforce them, and Enforced will assign the policies and enable enforcement where the policies support it.",
+                "__bicep_imported_from!": {
+                  "sourceTemplate": "../types.bicep"
+                }
+              }
+            }
+          },
+          "parameters": {
+            "applyPolicies": {
+              "$ref": "#/definitions/EnforcementMode"
+            }
+          },
+          "resources": {
+            "multipleWriteLocations": {
+              "type": "Microsoft.Authorization/policyDefinitions",
+              "apiVersion": "2025-03-01",
+              "name": "Cosmos-Multiple-Write-Locations",
+              "properties": {
+                "displayName": "Multiple Write Locations",
+                "description": "Enabling multiple write locations can cause extra charges make sure a limit is set",
+                "mode": "Indexed",
+                "metadata": {
+                  "category": "Cosmos"
+                },
+                "policyRule": {
+                  "if": {
+                    "allOf": [
+                      {
+                        "field": "type",
+                        "equals": "Microsoft.DocumentDB/databaseAccounts"
+                      },
+                      {
+                        "field": "Microsoft.DocumentDB/databaseAccounts/enableMultipleWriteLocations",
+                        "exists": true
+                      },
+                      {
+                        "field": "Microsoft.DocumentDB/databaseAccounts/enableMultipleWriteLocations",
+                        "notEquals": false
+                      }
+                    ]
+                  },
+                  "then": {
+                    "effect": "deny"
+                  }
+                }
+              }
+            },
+            "partitionAlertPolicyDefinition": {
+              "type": "Microsoft.Authorization/policyDefinitions",
+              "apiVersion": "2020-09-01",
+              "name": "Cosmos-Partition-Full-Alert",
+              "properties": {
+                "displayName": "Partition Near Full Alert",
+                "description": "Be alerted when a partition is near full to avoid data loss",
+                "mode": "Indexed",
+                "metadata": {
+                  "category": "Cosmos"
+                },
+                "policyRule": {
+                  "if": {
+                    "field": "type",
+                    "equals": "Microsoft.DocumentDB/databaseAccounts"
+                  },
+                  "then": {
+                    "effect": "auditIfNotExists",
+                    "details": {
+                      "type": "microsoft.insights/scheduledqueryrules",
+                      "name": "[[concat(field('name'),'-partition-near-full-alert')]"
+                    }
+                  }
+                },
+                "parameters": {}
+              }
+            },
+            "policySetDefCosmos": {
+              "type": "Microsoft.Authorization/policySetDefinitions",
+              "apiVersion": "2021-06-01",
+              "name": "NewOrbit CosmosDb Policies",
+              "properties": {
+                "description": "Applies NewOrbit CosmosDb Policies",
+                "displayName": "NewOrbit CosmosDb Policies",
+                "metadata": {
+                  "category": "compliance",
+                  "version": "1.0.0"
+                },
+                "parameters": {},
+                "policyDefinitions": [
+                  {
+                    "policyDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/policyDefinitions', 'Cosmos-Multiple-Write-Locations')]"
+                  },
+                  {
+                    "policyDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/policyDefinitions', 'Cosmos-Partition-Full-Alert')]"
+                  }
+                ],
+                "policyType": "Custom"
+              },
+              "dependsOn": [
+                "multipleWriteLocations",
+                "partitionAlertPolicyDefinition"
+              ]
+            },
+            "policyAssignment": {
+              "condition": "[not(equals(parameters('applyPolicies'), 'DefinitionsOnly'))]",
+              "type": "Microsoft.Authorization/policyAssignments",
+              "apiVersion": "2021-06-01",
+              "name": "Cosmos Policies",
+              "location": "[deployment().location]",
+              "properties": {
+                "displayName": "New Orbit recommended CosmosDb policies",
+                "enforcementMode": "[if(equals(parameters('applyPolicies'), 'Enforced'), 'Default', 'DoNotEnforce')]",
+                "nonComplianceMessages": [],
+                "policyDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/policySetDefinitions', 'NewOrbit CosmosDb Policies')]"
+              },
+              "dependsOn": [
+                "policySetDefCosmos"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

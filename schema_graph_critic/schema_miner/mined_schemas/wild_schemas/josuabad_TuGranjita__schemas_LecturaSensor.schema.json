@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lecturaSensor",
+  "title": "LecturaSensor",
+  "type": "object",
+  "properties": {
+    "id_lectura": { "type": "string" },
+    "id_sensor": { "type": "string" },
+    "valor": { "type": "number" },
+    "unidad": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "nivel_bateria": { "type": "number", "minimum": 0, "maximum": 100 }
+  },
+  "required": ["id_lectura", "id_sensor", "valor", "unidad", "timestamp"]
+}

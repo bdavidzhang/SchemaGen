@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$schemaVersion": "0.0.8",
+  "modelTags": "",
+  "$id": "https://github.com/SyedMohsan/Edge-Cloud-Data-Model/blob/main/pod.json",
+  "title": "POD",
+  "description": "POD schema definition",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    }
+  ],
+  "properties": {
+    "Id_POD": {
+      "type": "string",
+      "description": "Identifier of the POD"
+    },
+    "listRacks": {
+      "type": "array",
+      "items": {
+        "$ref": "https://github.com/SyedMohsan/Edge-Cloud-Data-Model/blob/main/Rack.json"
+      },
+      "description": "List of racks constituting the POD [reference to the rack schema of Edge-Cloud Continuum Data model]"
+    },
+    "energy_consumption_POD": {
+      "type": "number",
+      "description": "Real-time data of POD's electrical consumption"
+    },
+    "intensity_POD": {
+      "type": "number",
+      "description": "Real-time data of POD's electrical intensity"
+    },
+    "CO2_emission_POD": {
+      "type": "number",
+      "description": "Real-time data of CO2 emission rate by the POD"
+    }
+  },
+  "required": ["Id_POD"]
+}

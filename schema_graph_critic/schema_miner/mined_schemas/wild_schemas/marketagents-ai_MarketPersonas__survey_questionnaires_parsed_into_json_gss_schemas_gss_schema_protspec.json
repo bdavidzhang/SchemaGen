@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "GSS Survey Section: PROTSPEC",
+  "description": "Questions related to PROTSPEC",
+  "properties": {
+    "PROTSPEC": {
+      "type": "string",
+      "title": "PROTSPEC",
+      "description": "Please specify other religion: End If If PROTCHRH <> {yes} Then Goto LabelRELITEN ElseIf RELIG.ContainsAny({protestant}) Then Goto LabelTMPDENOM ElseIf RELIG = {jewish} Then Goto LabelJEW End If"
+    }
+  },
+  "required": [
+    "PROTSPEC"
+  ]
+}

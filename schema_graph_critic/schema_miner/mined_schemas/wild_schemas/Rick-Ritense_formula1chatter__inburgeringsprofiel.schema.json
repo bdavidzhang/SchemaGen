@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "inburgeringsprofiel": {
+      "$ref": "#/definitions/inburgeringsprofiel"
+    }
+  },
+  "definitions": {
+    "inburgeringsprofiel": {
+      "type": "object",
+      "properties": {
+        "typeMigrant": {
+          "type": "string",
+          "title": "Type migrant",
+          "description": "Verplicht. Code uit stamtabel type migrant."
+        },
+        "inburgeringswet": {
+          "type": "string",
+          "title": "Inburgeringswet",
+          "description": "Verplicht. Code uit stamtabel inburgeringswet."
+        },
+        "datumStartMaatschappelijkeBegeleiding": {
+          "type": "string",
+          "format": "date",
+          "title": "Datum start maatschappelijke begeleiding",
+          "description": "Optioneel."
+        },
+        "pipTermijn": {
+          "$ref": "#/definitions/pipTermijn"
+        },
+        "examennummer": {
+          "type": "string",
+          "title": "Examennummer",
+          "description": "Optioneel."
+        }
+      },
+      "required": [
+        "typeMigrant",
+        "inburgeringswet"
+      ],
+      "additionalProperties": false
+    },
+    "pipTermijn": {
+      "type": "object",
+      "properties": {
+        "datumStartTermijnPipOpstellen": {
+          "type": "string",
+          "format": "date",
+          "title": "Datum start termijn pip opstellen",
+          "description": "Optioneel."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+} 

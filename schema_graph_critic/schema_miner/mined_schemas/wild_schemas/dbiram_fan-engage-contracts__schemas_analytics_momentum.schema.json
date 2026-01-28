@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AnalyticsMomentum",
+  "type": "object",
+  "properties": {
+    "series": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "frame_id": { "type": "integer" },
+          "momentum": { "type": ["number", "null"] }
+        },
+        "required": ["frame_id", "momentum"]
+      }
+    }
+  },
+  "required": ["series"]
+}

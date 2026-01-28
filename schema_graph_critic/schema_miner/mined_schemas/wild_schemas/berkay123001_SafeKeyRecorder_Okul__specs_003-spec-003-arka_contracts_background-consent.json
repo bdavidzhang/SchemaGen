@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BackgroundConsentResponse",
+  "type": "object",
+  "required": [
+    "consentDecisionId",
+    "allowBackgroundCapture",
+    "confirmedAtUtc",
+    "mode",
+    "telemetryTicket"
+  ],
+  "properties": {
+    "consentDecisionId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier linking to ConsentDecision record"
+    },
+    "allowBackgroundCapture": {
+      "type": "boolean",
+      "description": "True when user opted into background capture"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["foreground", "background"],
+      "description": "Resulting capture mode"
+    },
+    "confirmedAtUtc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when user confirmed the dialog"
+    },
+    "resumeEvents": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "Identifiers of any resume events linked to this consent"
+    },
+    "telemetryTicket": {
+      "type": "object",
+      "required": ["ticketId", "expiresAtUtc"],
+      "properties": {
+        "ticketId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expiresAtUtc": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "accessibilityAcknowledged": {
+      "type": "boolean",
+      "description": "User confirmed they saw accessibility guidance"
+    }
+  },
+  "additionalProperties": false
+}

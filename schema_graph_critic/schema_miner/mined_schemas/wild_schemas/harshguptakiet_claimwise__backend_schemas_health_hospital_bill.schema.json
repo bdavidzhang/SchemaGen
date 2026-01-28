@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Health - Hospital Bill (placeholder)",
+  "type": "object",
+  "description": "TODO: provide fields for hospital bill",
+  "properties": {},
+  "required": []
+}

@@ -1,0 +1,164 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "required": [
+        "connect",
+        "connector"
+    ],
+    "properties": {
+        "connect": {
+            "$ref": "/schemas/connect"
+        },
+        "connector": {
+            "$ref": "/schemas/connector"
+        }
+    },
+    "$defs": {
+        "connect": {
+            "$id": "/schemas/connect",
+            "type": "object",
+            "required": [
+                "name",
+                "configPrefix",
+                "bootstrapServers",
+                "version"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "configPrefix": {
+                    "type": "string"
+                },
+                "bootstrapServers": {
+                    "type": "array",
+                    "minItems": 1
+                },
+                "tls": {
+                    "$ref": "/schemas/tls"
+                },
+                "authentication": {
+                    "$ref": "/schemas/authentication"
+                },
+                "resources": {
+                    "$ref": "/schemas/resources"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "logging": {
+                    "type": "object",
+                    "properties": {
+                        "loggers": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "imagePullSecrets": {
+                    "type": "array"
+                }
+            }
+        },
+        "connector": {
+            "$id": "/schemas/connector",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "class": {
+                    "type": "string"
+                },
+                "tasksMax": {
+                    "type": "number",
+                    "format": "integer"
+                },
+                "database": {
+                    "type": "object"
+                },
+                "config": {
+                    "type": "object"
+                },
+                "topic_groups": {
+                    "type": "object"
+                }
+            }
+        },
+        "tls": {
+            "$id": "/schemas/tls",
+            "type": "object",
+            "properties": {
+                "trustedCertificates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "/schemas/trustedCertificate"
+                    }
+                }   
+            }
+        },
+        "trustedCertificate": {
+            "$id": "/schemas/trustedCertificate",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "ca": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "trustedCertificate"
+        },
+        "authentication": {
+            "$id": "/schemas/authentication",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["plain","scram-sha-512"]
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "resources": {
+            "$id": "/schemas/resources",
+            "type": "object",
+            "properties": {
+                "requests": {
+                    "$ref": "/schemas/resource"
+                },
+                "limits": {
+                    "$ref": "/schemas/resource"
+                }
+            }
+        },
+        "resource": {
+            "$id": "/schemas/resource",
+            "type": "object",
+            "properties": {
+                "cpu": {
+                    "type": "string"
+                },
+                "memory": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

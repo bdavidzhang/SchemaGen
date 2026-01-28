@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "gameId": {
+        "type": "integer",
+        "description": "The ID of the game."
+      },
+      "gameType": {
+        "type": "string",
+        "description": "The type of the game."
+      },
+      "gameName": {
+        "type": "string",
+        "description": "The name of the game."
+      },
+      "description": {
+        "type": "string",
+        "description": "The description of the game."
+      }
+    },
+    "required": ["gameId", "gameType", "gameName", "description"]
+  }
+  

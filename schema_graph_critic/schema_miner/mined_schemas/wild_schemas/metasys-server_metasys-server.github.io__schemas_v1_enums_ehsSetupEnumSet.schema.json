@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/ehsSetupEnumSet.schema.json",
+  "title": "ehsSetupEnumSet",
+  "description": "EHS Setup",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "proportionalStaging"
+      ],
+      "description": "Proportional Stg"
+    },
+    {
+      "enum": [
+        1,
+        "integrationalStaging"
+      ],
+      "description": "Integrational Stg"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

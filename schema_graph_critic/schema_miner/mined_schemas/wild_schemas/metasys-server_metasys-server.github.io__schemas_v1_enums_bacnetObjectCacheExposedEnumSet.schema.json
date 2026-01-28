@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/bacnetObjectCacheExposedEnumSet.schema.json",
+  "title": "bacnetObjectCacheExposedEnumSet",
+  "description": "BACnet Object Cache Exposed",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "boceIncludeInList"
+      ],
+      "description": "Include in Object List"
+    },
+    {
+      "enum": [
+        1,
+        "boceExcludeFromList"
+      ],
+      "description": "Exclude from Object List"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

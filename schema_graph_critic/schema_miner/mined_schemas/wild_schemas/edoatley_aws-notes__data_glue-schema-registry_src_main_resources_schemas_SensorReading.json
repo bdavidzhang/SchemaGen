@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "SensorReading",
+  "description": "Schema for sensor reading data",
+  "properties": {
+    "sensorId": {
+      "type": "string",
+      "description": "Unique identifier for the sensor"
+    },
+    "temperature": {
+      "type": "number",
+      "description": "Temperature reading in Celsius"
+    },
+    "humidity": {
+      "type": "number",
+      "description": "Humidity reading as percentage"
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix timestamp in milliseconds"
+    }
+  },
+  "required": ["sensorId", "temperature", "humidity", "timestamp"],
+  "additionalProperties": false
+}
+

@@ -1,0 +1,264 @@
+
+
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "headers": {
+      "type": "object",
+      "properties": {
+        "file_number": {
+          "type": "integer"
+        },
+        "file_content": {
+          "type": "string"
+        },
+        "file_content_identifier": {
+          "type": "string"
+        },
+        "origin_country": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "fax": {
+          "type": "string"
+        },
+        "responsible_person_name": {
+          "type": "string"
+        },
+        "number_of_records": {
+          "type": "integer"
+        },
+        "creation_date": {
+          "type": "string"
+        },
+        "destination_country": {
+          "type": "string"
+        },
+        "unique_file_number": {
+          "type": "null"
+        },
+        "file_version": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "file_number",
+        "file_content",
+        "file_content_identifier",
+        "origin_country",
+        "email",
+        "phone",
+        "fax",
+        "responsible_person_name",
+        "number_of_records",
+        "creation_date",
+        "destination_country",
+        "unique_file_number",
+        "file_version"
+      ]
+    },
+    "entries": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "radio_station": {
+              "type": "object",
+              "properties": {
+                "transmission_frequency": {
+                  "type": "string"
+                },
+                "frequency_unit": {
+                  "type": "string"
+                },
+                "frequency_category": {
+                  "type": "string"
+                },
+                "station_type": {
+                  "type": "string"
+                },
+                "service_type": {
+                  "type": "string"
+                },
+                "user_category": {
+                  "type": "string"
+                },
+                "channel_occupancy": {
+                  "type": "string"
+                },
+                "commissioning_date": {
+                  "type": "string"
+                },
+                "station_name": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "coordinates": {
+                  "type": "string"
+                },
+                "radius": {
+                  "type": "string"
+                },
+                "height": {
+                  "type": "string"
+                },
+                "emission_type": {
+                  "type": "string"
+                },
+                "max_radiated_power": {
+                  "type": "string"
+                },
+                "reference_antenna_type": {
+                  "type": "string"
+                },
+                "azimuth_direction": {
+                  "type": "string"
+                },
+                "mechanical_elevation_angle": {
+                  "type": "string"
+                },
+                "polarization": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "transmission_frequency",
+                "frequency_unit",
+                "frequency_category",
+                "station_type",
+                "service_type",
+                "user_category",
+                "channel_occupancy",
+                "commissioning_date",
+                "station_name",
+                "country",
+                "coordinates",
+                "radius",
+                "height",
+                "emission_type",
+                "max_radiated_power",
+                "reference_antenna_type",
+                "azimuth_direction",
+                "mechanical_elevation_angle",
+                "polarization"
+              ]
+            },
+            "antenna": {
+              "type": "object",
+              "properties": {
+                "gain": {
+                  "type": "string"
+                },
+                "height": {
+                  "type": "string"
+                },
+                "type_horizontal": {
+                  "type": "string"
+                },
+                "type_vertical": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "gain",
+                "height",
+                "type_horizontal",
+                "type_vertical"
+              ]
+            },
+            "receiver_station": {
+              "type": "object",
+              "properties": {
+                "transmission_frequency": {
+                  "type": "string"
+                },
+                "frequency_unit": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "transmission_frequency",
+                "frequency_unit"
+              ]
+            },
+            "remarks": {
+              "type": "object",
+              "properties": {
+                "Field": {
+                  "type": "string"
+                },
+                "tech_gen": {
+                  "type": "string"
+                },
+                "cell_identity": {
+                  "type": "string"
+                },
+                "installation_class": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "extra": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Field",
+                "tech_gen",
+                "cell_identity",
+                "installation_class",
+                "location",
+                "extra"
+              ]
+            },
+            "coordination": {
+              "type": "object",
+              "properties": {
+                "coordination_status": {
+                  "type": "string"
+                },
+                "coordination_request_date": {
+                  "type": "string"
+                },
+                "coordination_request_end_date": {
+                  "type": "string"
+                },
+                "coordination_reference": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "coordination_status",
+                "coordination_request_date",
+                "coordination_request_end_date",
+                "coordination_reference"
+              ]
+            }
+          },
+          "required": [
+            "radio_station",
+            "antenna",
+            "receiver_station",
+            "remarks",
+            "coordination"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "headers",
+    "entries"
+  ]
+}
+

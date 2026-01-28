@@ -1,0 +1,87 @@
+{
+   "$schema": "https://json-schema.org/draft/2020-12/schema",
+   "$id": "grafico.schema.json",
+
+   "title": "Grafico 2D",
+   "description": "Definición de figuras en un gráfico 2D",
+
+   "type": "object",
+   "properties": {
+      "unidad": {
+         "description": "Unidad en que se expresan las coordenadas del dibujo",
+         "enum": ["m", "cm", "mm"]
+      },
+      "entidades": {
+         "description": "Figuras del dibujo",
+         "type": "object",
+         "properties": {
+            "puntos": {
+               "description": "Punto 2D",
+               "type": "array",
+               "items": {"$ref": "#/$defs/punto"}
+            },
+            "rectas": {
+               "description": "Recta 2D",
+               "type": "array",
+               "items": {"$ref": "#/$defs/recta"}
+            },
+            "circunferencias": {
+               "description": "Circunferencia 2D",
+               "type": "array",
+               "items": {"$ref": "#/$defs/circunferencia"}
+            },
+            "rectangulos": {
+               "description": "Rectángulo 2D",
+               "type": "array",
+               "items": {"$ref": "#/$defs/rectangulo"}
+            }
+         },
+         "additionalProperties": false
+      }
+   },
+   "required": ["unidad"],
+   "additionalProperties": false,
+
+   "$defs": {
+      "identificador": { "type": "integer" },
+      "coordenada": {
+         "type": "array",
+         "items": { "type": "integer" },
+         "maxItems": 2,
+         "minItems": 2
+      },
+      "punto": {
+         "type": "object",
+         "properties": {
+            "id": {"$ref": "#/$defs/identificador"},
+            "coord": {"$ref": "#/$defs/coordenada"}
+         },
+         "required": ["id", "coord"],
+         "additionalProperties": false
+      },
+      "recta": {
+         "type": "object",
+         "properties": {
+            "id": {"$ref": "#/$defs/identificador"},
+            "ini": {"$ref": "#/$defs/coordenada"},
+            "fin": {"$ref": "#/$defs/coordenada"}
+         },
+         "required": ["id", "ini", "fin"],
+         "additionalProperties": false
+      },
+      "circunferencia": {
+         "type": "object",
+         "properties": {
+            "id": {"$ref": "#/$defs/identificador"},
+            "centro": {"$ref": "#/$defs/coordenada"},
+            "r": {
+               "type": "integer",
+               "exclusiveMinimun": 0
+            }
+         },
+         "required": ["id", "centro", "r"],
+         "additionalProperties": false
+      },
+      "rectangulo": { "$ref": "#/$defs/recta" }
+   }
+}

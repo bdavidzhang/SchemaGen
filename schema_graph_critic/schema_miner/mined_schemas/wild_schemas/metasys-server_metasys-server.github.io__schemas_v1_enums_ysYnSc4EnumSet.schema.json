@@ -1,0 +1,263 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/ysYnSc4EnumSet.schema.json",
+  "title": "ysYnSc4EnumSet",
+  "description": "YS/YN Warning Code SC.4",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "ysYnSc40"
+      ],
+      "description": "NO WARNINGS PRESENT"
+    },
+    {
+      "enum": [
+        1,
+        "ysYnSc41"
+      ],
+      "description": "REAL-TIME CLOCK FAILURE"
+    },
+    {
+      "enum": [
+        2,
+        "ysYnSc42"
+      ],
+      "description": "SETPOINT OVERRIDE"
+    },
+    {
+      "enum": [
+        3,
+        "ysYnSc43"
+      ],
+      "description": "CONDENSER OR EVAPORATOR TRANSDUCER ERROR"
+    },
+    {
+      "enum": [
+        4,
+        "ysYnSc44"
+      ],
+      "description": "EVAPORATOR - LOW PRESSURE LIMIT"
+    },
+    {
+      "enum": [
+        5,
+        "ysYnSc45"
+      ],
+      "description": "CONDENSER - HIGH PRESSURE LIMIT"
+    },
+    {
+      "enum": [
+        6,
+        "ysYnSc46"
+      ],
+      "description": "CONDENSER TRANSDUCER ERROR"
+    },
+    {
+      "enum": [
+        7,
+        "ysYnSc47"
+      ],
+      "description": "FREEZE THREAT FROM OPERATING CHILLER"
+    },
+    {
+      "enum": [
+        8,
+        "ysYnSc48"
+      ],
+      "description": "REFRIGERANT LEVEL OUT OF RANGE"
+    },
+    {
+      "enum": [
+        9,
+        "ysYnSc49"
+      ],
+      "description": "STANDBY LUBE - LOW OIL PRESSURE"
+    },
+    {
+      "enum": [
+        10,
+        "ysYnSc410"
+      ],
+      "description": "PURGE - HIGH PRESSURE"
+    },
+    {
+      "enum": [
+        11,
+        "ysYnSc411"
+      ],
+      "description": "PURGE - FLOAT SWITCH ERROR"
+    },
+    {
+      "enum": [
+        12,
+        "ysYnSc412"
+      ],
+      "description": "PURGE - EXCESS PURGE"
+    },
+    {
+      "enum": [
+        13,
+        "ysYnSc413"
+      ],
+      "description": "OIL - HIGH TEMPERATURE"
+    },
+    {
+      "enum": [
+        14,
+        "ysYnSc414"
+      ],
+      "description": "OIL - LOW PRESSURE LIMIT"
+    },
+    {
+      "enum": [
+        15,
+        "ysYnSc415"
+      ],
+      "description": "VANES UNCALIBRATED"
+    },
+    {
+      "enum": [
+        16,
+        "ysYnSc416"
+      ],
+      "description": "VANES UNCALIBRATED - FIXED SPEED"
+    },
+    {
+      "enum": [
+        17,
+        "ysYnSc417"
+      ],
+      "description": "RESERVED 17"
+    },
+    {
+      "enum": [
+        18,
+        "ysYnSc418"
+      ],
+      "description": "RESERVED 18"
+    },
+    {
+      "enum": [
+        19,
+        "ysYnSc419"
+      ],
+      "description": "RESERVED 19"
+    },
+    {
+      "enum": [
+        20,
+        "ysYnSc420"
+      ],
+      "description": "OIL - DIRTY FILTER"
+    },
+    {
+      "enum": [
+        21,
+        "ysYnSc421"
+      ],
+      "description": "DISCHARGE - HIGH PRESSURE LIMIT"
+    },
+    {
+      "enum": [
+        22,
+        "ysYnSc422"
+      ],
+      "description": "RESERVED 22"
+    },
+    {
+      "enum": [
+        23,
+        "ysYnSc423"
+      ],
+      "description": "LOW DISCHARGE SUPERHEAT LIMIT"
+    },
+    {
+      "enum": [
+        24,
+        "ysYnSc424"
+      ],
+      "description": "LOW DISCHARGE SUPERHEAT DETECTED"
+    },
+    {
+      "enum": [
+        25,
+        "ysYnSc425"
+      ],
+      "description": "SEAL LUBRICATION IN PROCESS"
+    },
+    {
+      "enum": [
+        26,
+        "ysYnSc426"
+      ],
+      "description": "EXTERNAL I/O - SERIAL COMMUNICATIONS"
+    },
+    {
+      "enum": [
+        27,
+        "ysYnSc427"
+      ],
+      "description": "SLIDE VALVE UNCALIBRATED"
+    },
+    {
+      "enum": [
+        28,
+        "ysYnSc428"
+      ],
+      "description": "FREEZE THREAT - CONDENSER FLOW SWITCH"
+    },
+    {
+      "enum": [
+        29,
+        "ysYnSc429"
+      ],
+      "description": "SURGE PROTECTION - EXCESS SURGE LIMIT"
+    },
+    {
+      "enum": [
+        30,
+        "ysYnSc430"
+      ],
+      "description": "EXCESS SURGE DETECTED"
+    },
+    {
+      "enum": [
+        31,
+        "ysYnSc431"
+      ],
+      "description": "PURGE - CANISTER #1 FULL"
+    },
+    {
+      "enum": [
+        32,
+        "ysYnSc432"
+      ],
+      "description": "OIL RECOVERY LIMIT"
+    },
+    {
+      "enum": [
+        33,
+        "ysYnSc433"
+      ],
+      "description": "RESERVED 33"
+    },
+    {
+      "enum": [
+        34,
+        "ysYnSc434"
+      ],
+      "description": "RESERVED 34"
+    },
+    {
+      "enum": [
+        35,
+        "ysYnSc435"
+      ],
+      "description": "RESERVED 35"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

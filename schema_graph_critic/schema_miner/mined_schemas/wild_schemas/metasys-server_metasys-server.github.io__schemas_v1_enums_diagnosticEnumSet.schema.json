@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/diagnosticEnumSet.schema.json",
+  "title": "diagnosticEnumSet",
+  "description": "Diagnostic",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "crcTestIdle"
+      ],
+      "description": "CRC Test Idle"
+    },
+    {
+      "enum": [
+        1,
+        "crcTestInProgress"
+      ],
+      "description": "CRC Test In Progress"
+    },
+    {
+      "enum": [
+        2,
+        "crcTestPass"
+      ],
+      "description": "CRC Test Pass"
+    },
+    {
+      "enum": [
+        3,
+        "crcFailFlash"
+      ],
+      "description": "CRC Fail Flash"
+    },
+    {
+      "enum": [
+        4,
+        "crcFailFixBoot"
+      ],
+      "description": "CRC Fail Fix Boot"
+    },
+    {
+      "enum": [
+        5,
+        "crcFailAltBoot"
+      ],
+      "description": "CRC Fail Alt Boot"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

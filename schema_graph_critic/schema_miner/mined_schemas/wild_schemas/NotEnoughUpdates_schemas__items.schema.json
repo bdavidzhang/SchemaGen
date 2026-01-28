@@ -1,0 +1,410 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "https://notenoughupdates.org/schemas/items.schema.json",
+	"definitions": {
+		"ingredient": {
+			"type": "string",
+			"description": "An ingredient is an item id, optionally followed by `:{itemCount}`. The item count may be a double, if the item id is `SKYBLOCK_COIN`"
+		},
+		"craftingrecipe": {
+			"type": "object",
+			"description": "A crafting recipe.",
+			"patternProperties": {
+				"[A-C][1-3]": {
+					"allOf": [
+						{
+							"$ref": "#/definitions/ingredient"
+						}
+					],
+					"description": "The ingredient needed for the item in this slot."
+				}
+			},
+			"properties": {
+				"count": {
+					"type": "integer",
+					"description": "Count of items output by this crafting recipe",
+					"minimum": 1
+				},
+				"type": {
+					"const": "crafting"
+				},
+				"crafttext": {
+					"type": "string",
+					"description": "The text display when viewing a recipe that the user doesn't have the requirements for."
+				},
+				"overrideOutputId": {
+					"type": "string",
+					"description": "Set to override the internalName of the resulting item"
+				},
+				"supercraftable": {
+					"type": "boolean",
+					"description": "Shows that this recipe can be supercrafted, even if the item should not allow it."
+				}
+			},
+			"required": [
+				"A1",
+				"A2",
+				"A3",
+				"B1",
+				"B2",
+				"B3",
+				"C1",
+				"C2",
+				"C3"
+			],
+			"additionalProperties": false
+		}
+	},
+	"description": "A Hypixel SkyBlock item",
+	"type": "object",
+	"properties": {
+		"itemid": {
+			"type": "string",
+			"description": "The minecraft item id of the item."
+		},
+		"displayname": {
+			"type": "string",
+			"description": "The display name of the item."
+		},
+		"nbttag": {
+			"type": "string",
+			"description": "The NBT tag of the item, in SNBT."
+		},
+		"damage": {
+			"type": "integer",
+			"description": "The damage of the item."
+		},
+		"lore": {
+			"type": "array",
+			"description": "The lore of the item.",
+			"items": {
+				"type": "string"
+			},
+			"minLength": 1
+		},
+		"recipes": {
+			"type": "array",
+			"items": {
+				"anyOf": [
+					{
+						"$ref": "#/definitions/craftingrecipe"
+					},
+					{
+						"description": "A forging recipe",
+						"type": "object",
+						"properties": {
+							"type": {
+								"const": "forge"
+							},
+							"inputs": {
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/ingredient"
+								},
+								"minLength": 1
+							},
+							"overrideOutputId": {
+								"type": "string",
+								"description": "Set to override the internalName of the resulting item"
+							},
+							"count": {
+								"type": "number",
+								"minimum": 1,
+								"description": "Set to override the amount of resulting items"
+							},
+							"duration": {
+								"type": "integer",
+								"description": "The amount of time this item takes to forge in seconds"
+							},
+							"hotmLevel": {
+								"type": "integer",
+								"description": "The Heart of the Mountain level needed to forge this item"
+							}
+						},
+						"required": [
+							"type",
+							"inputs",
+							"duration"
+						],
+						"additionalProperties": false
+					},
+					{
+						"description": "A villager trade on a stranded profile",
+						"type": "object",
+						"properties": {
+							"type": {
+								"const": "trade"
+							},
+							"result": {
+								"allOf": [
+									{
+										"$ref": "#/definitions/ingredient"
+									}
+								],
+								"description": "The output ingredient for this trade."
+							},
+							"cost": {
+								"allOf": [
+									{
+										"$ref": "#/definitions/ingredient"
+									}
+								],
+								"description": "The cost ingredient for this trade."
+							},
+							"min": {
+								"type": "integer",
+								"description": "The minimum amount of items this trade can cost"
+							},
+							"max": {
+								"type": "integer",
+								"description": "The maximum amount of items this trade can cost"
+							}
+						},
+						"anyOf": [
+							{
+								"required": [
+									"type",
+									"result",
+									"cost"
+								]
+							},
+							{
+								"required": [
+									"type",
+									"result",
+									"cost",
+									"min",
+									"max"
+								]
+							}
+						],
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"description": "Mob drops. Should be on the actual monster item itself, not on the drops it produces",
+						"properties": {
+							"type": {
+								"const": "drops"
+							},
+							"drops": {
+								"type": "array",
+								"description": "The drops dropped by the monster after being killed",
+								"items": {
+									"anyOf": [
+										{
+											"$ref": "#/definitions/ingredient"
+										},
+										{
+											"type": "object",
+											"description": "A drop with a drop chance",
+											"properties": {
+												"id": {
+													"$ref": "#/definitions/ingredient"
+												},
+												"chance": {
+													"type": "string",
+													"description": "The drop chance for this item",
+													"pattern": "(100|[0-9]{1,2}(\\.[0-9]+)?)%( per .*)?"
+												},
+												"extra": {
+													"type": "array",
+													"description": "A list of extra lines of information to be added to the drop lore",
+													"items": {
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"id"
+											],
+											"additionalProperties": false
+										}
+									]
+								}
+							},
+							"level": {
+								"type": "integer",
+								"description": "The level of the mob"
+							},
+							"coins": {
+								"type": "integer",
+								"description": "The amount of coins dropped on death"
+							},
+							"xp": {
+								"type": "integer",
+								"description": "The amount of vanilla experience dropped on death"
+							},
+							"combat_xp": {
+								"type": "integer",
+								"description": "The amount of combat experience dropped on death"
+							},
+							"name": {
+								"type": "string",
+								"description": "The name of this mob"
+							},
+							"render": {
+								"type": "string",
+								"description": "The entity renderer to use. Either @neurepo:mobs/somemob.json, or a direct entity reference"
+							},
+							"extra": {
+								"type": "array",
+								"description": "A list of extra lines of information to be added to the mob lore",
+								"items": {
+									"type": "string"
+								}
+							},
+							"panorama": {
+								"type": "string",
+								"enum": [
+									"dynamic",
+									"hub",
+									"mining_1",
+									"mining_2",
+									"mining_3",
+									"combat_1",
+									"crimson_isle",
+									"combat_3",
+									"farming_1",
+									"foraging_1",
+									"foraging_2",
+									"winter",
+									"dungeon",
+									"dungeon_hub",
+									"crystal_hollows",
+									"instanced",
+									"garden",
+									"rift",
+									"mineshaft"
+								],
+								"description": "The /locraw name of the panorama to use for displaying as a background"
+							}
+						},
+						"required": [
+							"name",
+							"type",
+							"drops"
+						],
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"type": {
+								"const": "npc_shop"
+							},
+							"cost": {
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/ingredient"
+								},
+								"minLength": 1
+							},
+							"result": {
+								"$ref": "#/definitions/ingredient"
+							}
+						},
+						"required": [
+							"cost",
+							"type",
+							"result"
+						],
+						"additionalItems": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"type": {
+								"const": "katgrade"
+							},
+							"output": {
+								"$ref": "#/definitions/ingredient"
+							},
+							"input": {
+								"allOf": [
+									{
+										"$ref": "#/definitions/ingredient"
+									}
+								],
+								"description": "The input pet, not extra bonus items to be used while upgrading"
+							},
+							"items": {
+								"type": "array",
+								"description": "Bonus items needed for the upgrade",
+								"items": {
+									"$ref": "#/definitions/ingredient"
+								}
+							},
+							"coins": {
+								"type": "integer",
+								"description": "Amount of coins needed for the upgrade \"at level 0\" (without any cost reductions)"
+							},
+							"time": {
+								"type": "integer",
+								"description": "Time needed for the upgrade in seconds"
+							}
+						},
+						"required": [
+							"type",
+							"input",
+							"output",
+							"coins",
+							"time"
+						],
+						"additionalProperties": false,
+						"description": "A pet upgrade performed at kat"
+					}
+				]
+			}
+		},
+		"recipe": {
+			"$ref": "#/definitions/craftingrecipe"
+		},
+		"internalname": {
+			"type": "string",
+			"description": "The item's Hypixel Skyblock id."
+		},
+		"clickcommand": {
+			"enum": [
+				"viewrecipe",
+				"viewpotion",
+				""
+			],
+			"description": "The command that is executed when the item is clicked in the item list. Deprecated"
+		},
+		"modver": {
+			"type": "string",
+			"description": "The version of the mod last used to edit this item."
+		},
+		"useneucraft": {
+			"type": "boolean",
+			"description": "Whether or not to always use the neu crafting display (instead of hypixels). Deprecated"
+		},
+		"infoType": {
+			"enum": [
+				"WIKI_URL",
+				""
+			],
+			"description": "The type of information in the 'info' field."
+		},
+		"info": {
+			"type": "array",
+			"description": "The information about the item.",
+			"items": {
+				"type": "string"
+			}
+		},
+		"crafttext": {
+			"type": "string",
+			"description": "The text display when viewing a recipe that the user doesn't have the requirements for."
+		}
+	},
+	"required": [
+		"itemid",
+		"displayname",
+		"nbttag",
+		"damage",
+		"lore",
+        "internalname"
+	]
+}

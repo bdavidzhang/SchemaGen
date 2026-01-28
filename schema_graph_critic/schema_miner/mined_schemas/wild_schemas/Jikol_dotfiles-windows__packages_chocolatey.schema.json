@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Chocolatey packages for installation script",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "shell": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "cmd": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cmd",
+              "path"
+            ],
+            "additionalProperties": false
+          },
+          "execPath": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "envAdd": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "autoStartup": {
+            "type": [
+              "boolean",
+              "string"
+            ]
+          },
+          "startShortcut": {
+            "type": [
+              "boolean",
+              "string"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "shell",
+          "execPath",
+          "envAdd",
+          "autoStartup",
+          "startShortcut"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "data"
+  ],
+  "additionalProperties": false
+}

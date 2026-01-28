@@ -1,0 +1,92 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"properties": {
+		"token": {
+			"type": "string",
+			"title": "botのトークン"
+		},
+		"client_id": {
+			"type": "string",
+			"title": "botのユーザーid",
+			"$comment": "いつか廃止する"
+		},
+		"homeserver": {
+			"type": "string",
+			"title": "Botを稼働させるサーバー"
+		},
+		"homechannel": {
+			"type": "string",
+			"title": "Botの家となるチャンネル",
+			"$comment": "未使用"
+		},
+		"admins": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"minItems": 1,
+			"title": "Botへの管理権を持つユーザー"
+		},
+		"hosts": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"minItems": 1,
+			"title": "Botをホストしているユーザー",
+			"description": "ここに追加されたユーザーはexecコマンドなどを実行でき、それを利用してOSコマンドの実行なども可能です。"
+		},
+		"gemini-api-key": {
+			"type": "string",
+			"title": "Gemini ProのAPIキー"
+		},
+		"oauth2": {
+			"title": "Discordと連携するための",
+			"type": "object",
+			"properties": {
+				"secret": {
+					"type": "string",
+					"title": "client secret"
+				},
+				"redirect": {
+					"type": "string",
+					"title": "callbackのuri"
+				},
+				"scope": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"title": "要求する権限"
+				}
+			},
+			"required": [
+				"secret",
+				"redirect",
+				"scope"
+			]
+		},
+		"jwt": {
+			"type": "object",
+			"properties": {
+				"secret": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"secret"
+			]
+		}
+	},
+	"required": [
+		"token",
+		"client_id",
+		"homeserver",
+		"admins",
+		"hosts",
+		"gemini-api-key",
+		"oauth2",
+		"jwt"
+	]
+}

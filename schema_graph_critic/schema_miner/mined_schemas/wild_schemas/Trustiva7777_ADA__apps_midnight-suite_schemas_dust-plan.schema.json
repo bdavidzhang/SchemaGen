@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DustPlan",
+  "type": "object",
+  "properties": {
+    "tps": { "type": "number" },
+    "durationDays": { "type": "number" },
+    "safetyFactor": { "type": "number" },
+    "assumptions": {
+      "type": "object",
+      "properties": {
+        "dustPerTx": { "type": "number" },
+        "dustGenPerNightPerDay": { "type": "number" },
+        "decayRatePerDay": { "type": "number" }
+      },
+      "required": ["dustPerTx","dustGenPerNightPerDay","decayRatePerDay"]
+    },
+    "requiredNight": { "type": "number" },
+    "dustProduced": { "type": "number" },
+    "dustConsumed": { "type": "number" },
+    "headroom": { "type": "number" }
+  },
+  "required": ["tps","durationDays","safetyFactor","assumptions","requiredNight","dustProduced","dustConsumed","headroom"]
+}

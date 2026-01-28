@@ -1,0 +1,6 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Market Events",
+    "description": "Schema for market events like BarEvent, TickEvent, QuoteEvent, OFIEvent",
+    "type": "object"
+}

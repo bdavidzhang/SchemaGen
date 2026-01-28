@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/automanualEnumSet.schema.json",
+  "title": "automanualEnumSet",
+  "description": "Auto Manual",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "automanualAuto"
+      ],
+      "description": "Auto"
+    },
+    {
+      "enum": [
+        1,
+        "automanualManual"
+      ],
+      "description": "Manual"
+    },
+    {
+      "enum": [
+        2,
+        "automanualHold"
+      ],
+      "description": "Hold"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nutritivne informacije raznih proizvoda",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "brand": {
+      "type": ["string", "null"]
+    },
+    "sodium": {
+      "type": "string"
+    },
+    "protein": {
+      "type": "string"
+    },
+    "calories": {
+      "type": "integer"
+    },
+    "allergens": {
+      "type": "array",
+      "items": {
+        "type": ["string", "null"]
+      }
+    },
+    "item_name": {
+      "type": "string"
+    },
+    "total_fat": {
+      "type": "string"
+    },
+    "trans_fat": {
+      "type": "string"
+    },
+    "cholesterol": {
+      "type": "string"
+    },
+    "serving_size": {
+      "type": "string"
+    },
+    "saturated_fat": {
+      "type": "string"
+    },
+    "total_carbohydrates": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string"
+        },
+        "sugars": {
+          "type": "string"
+        },
+        "added_sugars": {
+          "type": "string"
+        },
+        "dietary_fiber": {
+          "type": "string"
+        }
+      },
+      "required": ["total", "sugars", "added_sugars", "dietary_fiber"]
+    },
+    "vitamins_and_minerals": {
+      "type": "object",
+      "properties": {
+        "iron": {
+          "type": "string"
+        },
+        "calcium": {
+          "type": "string"
+        },
+        "vitamin_a": {
+          "type": "string"
+        },
+        "vitamin_c": {
+          "type": "string"
+        }
+      },
+      "required": ["iron", "calcium", "vitamin_a", "vitamin_c"]
+    }
+  },
+  "required": [
+    "id",
+    "sodium",
+    "protein",
+    "calories",
+    "allergens",
+    "item_name",
+    "total_fat",
+    "trans_fat",
+    "cholesterol",
+    "serving_size",
+    "saturated_fat",
+    "total_carbohydrates",
+    "vitamins_and_minerals"
+  ]
+}

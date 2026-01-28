@@ -1,0 +1,208 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "description": "Définition d'une aide/subvention offertes par une collectivité",
+  "definitions": {
+    "AideType": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "$ref": "#/definitions/ReferenceType"
+        },
+        "referenceAdministrative": {
+          "description": "Référence administrative",
+          "$ref": "#/definitions/ReferenceType"
+        },
+        "title": {
+          "description": "Libellé technique de l'aide",
+          "type": "string"
+        },
+        "libelle": {
+          "type": "string",
+          "description": "Libellé public de l'aide (communication)"
+        },
+        "alerte": {
+          "description": "Champ HTML d'alerte sur la page descriptive",
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Mot(s) clé(s) permettant d'associer des mots clés actifs parmi ceux paramétrés sur l'environnement",
+          "items": {
+            "$ref": "#/definitions/LinkType"
+          }
+        },
+        "competences": {
+          "type": "array",
+          "description": "Compétences permettant d'associer des compétences actives parmi celles paramétrées sur l'environnement",
+          "items": {
+            "$ref": "#/definitions/LinkType"
+          }
+        },
+        "entete": {
+          "description": "Description succincte de l'aide",
+          "type": "string"
+        },
+        "documentsInformatifs": {
+          "description": "Documents informatifs permettant d'associer des documents d'informations à l'aide (règlement d'intervention, délibérations...). Pour chaque document, le titre et le fichier sont renseignés.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkDocumentType"
+          }
+        },
+        "objectif": {
+          "description": "Texte HTML Objectif permettant de définir l'objectif de l'aide.",
+          "type": "string"
+        },
+        "publicsBeneficiaire": {
+          "description": "champ de sélection multiple Public bénéficiaire permettant d'associer à l'aide des publics bénéficiaires parmi les mots-clés paramétrés sur l'environnement.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkType"
+          }
+        },
+        "publicsBeneficiairePrecision": {
+          "description": "Champ texte HTML Précision sur le public bénéficiaire permettant d'ajouter des précisions sur le public bénéficiaire de l'aide",
+          "type": "string"
+        },
+        "modalite": {
+          "description": "Champ texte HTML Précision sur le public bénéficiaire permettant d'ajouter des précisions sur le public bénéficiaire de l'aide",
+          "type": "string"
+        },
+        "criteresEligibilite": {
+          "description": "champ texte HTML Critères d'éligibilité permettant de définir les critères d'éligibilité de l'aide.",
+          "type": "string"
+        },
+        "demarches": {
+          "description": "champ texte HTML Démarches permettant de définir les démarches nécessaires de l'aide.",
+          "type": "string"
+      	},
+        "documentsNecessaires": {
+          "description": "champ permettant d'associer les documents utiles au dépôt de l'aide (dossier de candidature, annexe...). Pour chaque document, le titre et le fichier sont renseignés.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkDocumentType"
+          }
+        },
+        "contact": {
+          "description": "Section contact HTML permettant de définir le service à contacter",
+          "type": "string"
+        },
+        "engagementsAssocies": {
+          "description": "champ de sélection multiple Engagements associés permettant de lier une aide à des engagements parmi les engagements actifs paramétrés sur l'environnement.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkType"
+          }
+        },
+        "note": {
+          "description": "champ texte HTML Notes permettant de saisir des notes sur l'aide",
+          "type": "string" 
+        },
+        "deliberationCadre": {
+          "description": "champ texte HTML Notes permettant de saisir des notes sur l'aide",
+          "type": "string" 
+        },
+        "dateOuvertureCampagne": {
+          "description": "champ date Date d'ouverture de la campagne permettant de définir la date de démarrage de la campagne pour cette aide",
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateFinCampagne": {
+          "description": "champ date Date de fin de la campagne permettant de définir la date de fin de la campagne pour cette aide",
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateDebutFutureCampagne": {
+          "description": "champ date Date de début de la futur campagne permettant de définir la date de démarrage de la future campagne pour cette aide",
+          "type": "string",
+          "format": "date-time"
+        },
+        "datePublicationSouhaitee": {
+          "description": "champ date Date de publication souhaitée permettant d'indiquer la date à partir de laquelle l'aide doit être publiée sur le site institutionnel.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "commentaire": {
+          "description": "champ texte HTML Commentaire interne permettant de saisir des commentaires non visibles de l’extérieur.",
+          "type": "string"
+        },
+        "groupeFonctionnel": {
+          "description": "champ de sélection unique Groupe fonctionnel associé permettant de sélectionner un groupe parmi les groupes fonctionnels existants dans l'application",
+          "#ref": "#/definitions/LinkType"
+        },
+        "groupeGestion": {
+          "description": "champ de sélection unique Groupe de gestion associé permettant de sélectionner un groupe parmi les groupes de gestion existants dans l'application",
+          "#ref": "#/definitions/LinkType"
+        },
+        "statut": {
+          "description": "Statut de la publication de l'aide",
+          "type": "string",
+          "enum": [
+            "BROUILLON",
+            "A_VALIDER",
+            "A_RELIRE",
+            "A_PUBLIER",
+            "PUBLIER"
+          ],
+          "default": "BROUILLON"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "ReferenceType": {
+      "pattern": "^[a-zA-Z0-9\\-_\\.]{0,36}$",
+      "type": "string"
+    },
+    "LinkType": {
+      "description": "RFC for Web Linking context",
+      "type": "object",
+      "properties": {
+        "href": {
+          "description": "Specifies the location of the linked document",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "title": {
+          "description": "Used to label the destination",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "href"
+      ]
+    },
+    "LinkDocumentType": {
+      "type": "object",
+      "properties": {
+        "href": {
+          "description": "Identifie les propriétés CMIS du document",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "id": {
+          "description": "Identifie le contenu binaire du document.",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "origin": {
+          "description": "Origine du document lors d'une copie",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "title": {
+          "description": "Libellé du document",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "href",
+        "id"
+      ]
+    }
+  },
+  "$ref": "#/definitions/AideType"
+}

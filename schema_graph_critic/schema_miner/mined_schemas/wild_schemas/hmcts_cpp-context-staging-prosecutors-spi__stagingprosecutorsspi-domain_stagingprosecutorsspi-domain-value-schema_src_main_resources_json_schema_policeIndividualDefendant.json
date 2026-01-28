@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/spi/json/schemas/policeIndividualDefendant.json",
+  "type": "object",
+  "definitions": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "properties": {
+    "personDefendant": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/spi/json/schemas/basePersonDefendant.json"
+    },
+    "perceivedBirthYear": {
+      "type": "string"
+    },
+    "address": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/spi/json/schemas/address.json"
+    },
+    "observedEthnicity": {
+      "type": "integer"
+    },
+    "selfDefinedEthnicity": {
+      "type": "string"
+    },
+    "occupationCode": {
+      "type": "integer"
+    },
+    "occupation": {
+      "type": "string"
+    },
+    "crOnumber": {
+      "type": "string"
+    },
+    "pnCidentifier": {
+      "type": "string"
+    },
+    "offenderCode": {
+      "type": "string"
+    },
+    "custodyStatus": {
+      "type": "string"
+    },
+    "documentationLanguage": {
+      "type": "string"
+    },
+    "hearingLanguage": {
+      "type": "string"
+    },
+    "languageNeeds": {
+      "type": "string"
+    },
+    "specialNeeds": {
+      "type": "string"
+    },
+    "driverNumber": {
+      "type": "string"
+    },
+    "driverLicenceCode": {
+      "type": "string"
+    },
+    "driverLicenceIssue": {
+      "type": "string"
+    },
+    "counterpartIssue": {
+      "type": "string"
+    },
+    "alias": {
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/spi/json/schemas/basePersonName.json"
+      }
+    },
+    "parentGuardianDetails": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/spi/json/schemas/policeParentGuardian.json"
+    }
+  },
+  "additionalProperties": false
+}

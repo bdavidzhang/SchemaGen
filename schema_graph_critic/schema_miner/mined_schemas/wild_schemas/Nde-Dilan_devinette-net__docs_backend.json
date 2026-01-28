@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "Riddle": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Riddle",
+      "type": "object",
+      "description": "Represents a riddle with its question, answer, origin, language, category, and status.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Riddle entity."
+        },
+        "question": {
+          "type": "string",
+          "description": "The riddle question."
+        },
+        "answer": {
+          "type": "string",
+          "description": "The answer to the riddle."
+        },
+        "origin": {
+          "type": "string",
+          "description": "The origin or country of the riddle."
+        },
+        "language": {
+          "type": "string",
+          "description": "The language of the riddle."
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the riddle (e.g., Nature, Animals, etc.)."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the riddle (e.g., pending, validated).",
+          "enum": ["pending", "validated"]
+        }
+      },
+      "required": [
+        "id",
+        "question",
+        "answer",
+        "status"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/riddles/{riddleId}",
+        "definition": {
+          "entityName": "Riddle",
+          "schema": {
+            "$ref": "#/backend/entities/Riddle"
+          },
+          "description": "Collection for all riddles. The 'status' field distinguishes between 'pending' and 'validated' riddles.",
+          "params": [
+            {
+              "name": "riddleId",
+              "description": "Unique identifier for each riddle."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "A single collection for riddles simplifies management. The 'status' field ('pending' or 'validated') controls visibility and workflow. Security rules will enforce that only 'validated' riddles are publicly readable, while new submissions must be 'pending'. This eliminates the need for two separate collections and makes the validation process a simple field update."
+  }
+}

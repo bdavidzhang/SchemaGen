@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NeoPrompt Prompt Template",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "assistant": {"type": "string", "enum": ["chatgpt", "claude", "gemini", "deepseek"]},
+    "category": {"type": "string", "enum": ["coding", "science", "psychology", "law", "politics"]},
+    "operators": {"type": "array", "items": {"type": "string"}},
+    "hparams": {"type": "object"},
+    "guards": {"type": "object"},
+    "examples": {"type": "array", "items": {"type": "string"}},
+    "description": {"type": "string"},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "version": {"type": "string"}
+  },
+  "required": ["id", "assistant", "category", "operators", "hparams"],
+  "additionalProperties": true
+}

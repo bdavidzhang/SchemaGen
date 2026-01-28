@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "track.json",
+  "title": "Track",
+  "description": "An audio track (based on https://schema.org/AudioObject)",
+  "type": "object",
+  "properties": {
+    "title": {
+      "description": "Track title",
+      "type": "string"
+    }
+  },
+  "required": ["title"]
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://litlfred.github.io/notebooks/libraries/core/jupyter-cell/code-input.schema.json",
+  "title": "Jupyter Code Cell Input Schema",
+  "description": "Input schema for Jupyter notebook code cells with output support",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Python code from the notebook cell",
+      "default": "# Jupyter code cell\nprint(\"Hello from Jupyter!\")"
+    },
+    "execute_immediately": {
+      "type": "boolean",
+      "description": "Whether to execute the code immediately",
+      "default": false
+    },
+    "cell_metadata": {
+      "type": "object",
+      "description": "Original Jupyter cell metadata",
+      "default": {}
+    },
+    "outputs": {
+      "type": "array",
+      "description": "Jupyter cell outputs as per nbformat specification",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "output_type": {
+            "type": "string",
+            "enum": ["stream", "display_data", "execute_result", "error"],
+            "description": "Type of output"
+          },
+          "name": {
+            "type": "string",
+            "description": "Stream name for stream outputs"
+          },
+          "text": {
+            "oneOf": [
+              {"type": "string"},
+              {"type": "array", "items": {"type": "string"}}
+            ],
+            "description": "Text content for stream outputs"
+          },
+          "data": {
+            "type": "object",
+            "description": "Output data with MIME type keys",
+            "additionalProperties": true
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Output metadata",
+            "default": {}
+          },
+          "execution_count": {
+            "type": ["integer", "null"],
+            "description": "Execution count for execute_result outputs"
+          },
+          "ename": {
+            "type": "string",
+            "description": "Exception name for error outputs"
+          },
+          "evalue": {
+            "type": "string",
+            "description": "Exception value for error outputs"
+          },
+          "traceback": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Exception traceback for error outputs"
+          }
+        },
+        "required": ["output_type"]
+      }
+    },
+    "execution_count": {
+      "type": ["integer", "null"],
+      "description": "Execution count from the notebook"
+    },
+    "cell_index": {
+      "type": "integer",
+      "description": "Index of cell in original notebook",
+      "minimum": 0,
+      "default": 0
+    }
+  },
+  "required": ["code"],
+  "additionalProperties": false
+}

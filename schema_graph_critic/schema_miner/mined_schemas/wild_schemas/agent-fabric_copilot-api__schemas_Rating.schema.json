@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://datamodel.tmforum.org/Rating.schema.json",
+  "title": "Rating",
+  "definitions": {
+    "Rating": {
+      "$id": "#Rating",
+      "description": "Rating resource representation",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "@type": {
+          "type": "string",
+          "default": "Rating"
+        },
+        "@baseType": {
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "string",
+          "enum": [
+            "thumbs_up",
+            "thumbs_down"
+          ]
+        },
+        "comment": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "../Common/Entity.schema.json#/definitions/Entity"
+        }
+      ]
+    }
+  }
+}

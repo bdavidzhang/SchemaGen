@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VS Code settings - Thoro managed keys (streamlining)",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "chat.promptFilesRecommendations": {
+      "type": "object",
+      "additionalProperties": {"type": "boolean"},
+      "required": ["thoro.start", "thoro.discover", "thoro.plan", "thoro.remediate"],
+      "properties": {
+        "thoro.start": {"const": true},
+        "thoro.discover": {"const": true},
+        "thoro.plan": {"const": true},
+        "thoro.remediate": {"const": true},
+        "thoro.qa": {"const": true}
+      }
+    },
+    "mcpServers": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "properties": {"thoro": false},
+          "additionalProperties": true
+        }
+      ]
+    }
+  }
+}

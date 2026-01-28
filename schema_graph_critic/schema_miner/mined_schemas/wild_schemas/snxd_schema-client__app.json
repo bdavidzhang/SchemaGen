@@ -1,0 +1,634 @@
+{
+  "$id": "https://raw.githubusercontent.com/snxd/schema-client/7.2.185/app.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Application configuration.",
+  "type": "object",
+  "properties": {
+    "allowMultipleInstances": {
+      "description": "Allow multiple instances of the application to run.",
+      "default": false,
+      "type": "boolean"
+    },
+    "alias": {
+      "description": "Global repository alias options.",
+      "$ref": "#/definitions/alias"
+    },
+    "analytics": {
+      "description": "Analytics options.",
+      "$ref": "#/definitions/analytics"
+    },
+    "catalog": {
+      "description": "Global repository catalog options.",
+      "$ref": "#/definitions/catalog"
+    },
+    "cef": {
+      "description": "Chromium Embedded Framework options.",
+      "$ref": "#/definitions/cef"
+    },
+    "certificateStores": {
+      "description": "Pre-defined certificate stores.",
+      "type": "object"
+    },
+    "dataStorePublicKey": {
+      "description": "Name of the public key in the keystore to authenticate against.",
+      "type": "string"
+    },
+    "edge": {
+      "description": "Edge WebView2 options.",
+      "$ref": "#/definitions/edge"
+    },
+    "keyStores": {
+      "description": "Pre-defined base64-encoded keys to use for authentication.",
+      "type": "object"
+    },
+    "killOtherInstances": {
+      "description": "Kills other instances of the application that may be open.",
+      "default": false,
+      "type": "boolean"
+    },
+    "ie": {
+      "description": "Internet Explorer options.",
+      "$ref": "#/definitions/ie"
+    },
+    "localStorage": {
+      "description": "Path where local files such as settings and metafiles can be stored.",
+      "type": "string"
+    },
+    "logExpirationDays": {
+      "description": "Number of days after which to expire/delete logs. The flag DEBUG_FLAG_PERDAY must be enabled.",
+      "default": 7,
+      "type": "integer"
+    },
+    "macros": {
+      "description": "Additional macros that can be expanded using expandString.",
+      "type": "object"
+    },
+    "metafile": {
+      "description": "Global repository metafile options.",
+      "$ref": "#/definitions/metafile"
+    },
+    "name": {
+      "description": "Name of the application.",
+      "type": "string"
+    },
+    "requiresElevated": {
+      "description": "Application requires an elevated account to run.",
+      "default": false,
+      "type": "boolean"
+    },
+    "requiresDataStore": {
+      "description": "Application requires a datastore to run.",
+      "default": false,
+      "type": "boolean"
+    },
+    "requiresPhysicalMedia": {
+      "description": "Application requires to be run from a physical/non-virtual media.",
+      "default": false,
+      "type": "boolean"
+    },
+    "selfUpdateWorkflow": {
+      "description": "Location of the self-update workflow.",
+      "type": "string"
+    },
+    "singleInstanceTimeout": {
+      "description": "Time in seconds to wait for identical instance(s) to exit.",
+      "default": 1,
+      "type": "integer"
+    },
+    "startupWindowConfig": {
+      "description": "Url to the startup window configuration.",
+      "default": "main.yaml",
+      "type": "string"
+    },
+    "storage": {
+      "description": "Global repository storage config options.",
+      "$ref": "#/definitions/storage"
+    },
+    "thumbprintStores": {
+      "description": "Groups of base64 encoded thumbprints used by the certificate store.",
+      "type": "object"
+    },
+    "tls1": {
+      "description": "TLS1 options.",
+      "$ref": "#/definitions/tls1"
+    },
+    "webGet": {
+      "description": "WebGet options.",
+      "$ref": "#/definitions/webGet"
+    },
+    "webGetPool": {
+      "description": "WebGet pool options.",
+      "$ref": "#/definitions/webGetPool"
+    },
+    "webServer": {
+      "description": "WebServer options.",
+      "$ref": "#/definitions/webServer"
+    },
+    "workflow": {
+      "description": "Workflow options.",
+      "$ref": "#/definitions/workflow"
+    }
+  },
+  "definitions": {
+    "alias": {
+      "type": "object",
+      "properties": {
+        "limitSize": {
+          "description": "Maximum size of an alias file to load.",
+          "default": 33554432,
+          "type": "integer"
+        },
+        "url": {
+          "description": "URL to the alias file.",
+          "type": "string"
+        },
+        "webGetCacheMinAge": {
+          "description": "Minimum http cache age (seconds) (0 to disable cache).",
+          "default": 60,
+          "type": "integer"
+        },
+        "webGetCacheMaxSize": {
+          "description": "Maximum http cache size.",
+          "default": 33554432,
+          "type": "integer"
+        }
+      }
+    },
+    "analytics": {
+      "type": "object",
+      "properties": {
+        "crashDump": {
+          "description": "Enable sending crash dumps in analytics.",
+          "default": true,
+          "type": "boolean"
+        },
+        "enabled": {
+          "description": "Enable sending analytics events.",
+          "default": true,
+          "type": "boolean"
+        },
+        "endPoint": {
+          "description": "Endpoint URL.",
+          "default": "https://axis.snxd.com/track/",
+          "type": "string"
+        },
+        "excludeEvents": {
+          "description": "List of event name wildcard strings to exclude when sending events.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "includeEvents": {
+          "description": "List of event name wildcard strings to include when sending events. By default, all events are included. Included list is processed before excluded list.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "key": {
+          "description": "Analytics key.",
+          "type": "string"
+        },
+        "maxEvents": {
+          "description": "Maximum number of events stored in memory.",
+          "default": 1000,
+          "type": "integer"
+        },
+        "maxSendEvents": {
+          "description": "Maximum number of events to queue before sending to service.",
+          "default": 100,
+          "type": "integer"
+        },
+        "sendInterval": {
+          "description": "Send events every number of seconds.",
+          "default": 300,
+          "type": "integer"
+        },
+        "sendWebGetXCache": {
+          "description": "Send WebGet XCache statistics.",
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "catalog": {
+      "type": "object",
+      "properties": {
+        "limitSize": {
+          "description": "Maximum size of a catalog file to load.",
+          "default": 33554432,
+          "type": "integer"
+        },
+        "url": {
+          "description": "URL to the catalog file.",
+          "type": "string"
+        },
+        "webGetCacheMinAge": {
+          "description": "Minimum http cache age (seconds) (0 to disable cache).",
+          "default": 60,
+          "type": "integer"
+        },
+        "webGetCacheMaxSize": {
+          "description": "Maximum http cache size.",
+          "default": 33554432,
+          "type": "integer"
+        }
+      }
+    },
+    "cef": {
+      "type": "object",
+      "properties": {
+        "cachePath": {
+          "description": "Location where cache data will be stored on disk. If empty then browsers will be created in incognito mode where in-memory caches are used for storage and no data is persisted to disk.",
+          "type": "string"
+        },
+        "crossOriginWhitelist": {
+          "description": "List of hostnames to add to CEF cross origin whitelist.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enabled": {
+          "description": "Loads CEF if it exists in the same directory as the host.",
+          "default": false,
+          "type": "boolean"
+        },
+        "experimentalWebFeatures": {
+          "description": "Enable CEF experimental web features.",
+          "default": false,
+          "type": "boolean"
+        },
+        "externalUrls": {
+          "description": "List of urls (without protocol) to open in the user's default system browser. Supports wildcards.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "modelessPopups": {
+          "description": "Opens popups as modeless windows above the main window.",
+          "default": true,
+          "type": "boolean"
+        },
+        "nativeFallback": {
+          "description": "Loads the native web browser if CEF fails to load.",
+          "default": false,
+          "type": "boolean"
+        },
+        "offscreenRender": {
+          "description": "Off-screen/windowless rendering. By default, CEF uses native window rendering mode, creates and attaches its native window as a child of a skin window that enables GPU rendering.",
+          "default": false,
+          "type": "boolean"
+        },
+        "responseHeaders": {
+          "description": "Modify HTTP response headers prior delivering them to the WEB rendering engine.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/responseHeader"
+          }
+        },
+        "persistSessionCookies": {
+          "description": "Persists cookies across multiple sessions. Must be used in conjunction with cachePath.",
+          "default": false,
+          "type": "boolean"
+        },
+        "userAgent": {
+          "description": "User agent string used for CEF browser requests only.",
+          "type": "string"
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "Use Edge WebView2 instead of IE if it is available on the system.",
+          "default": true,
+          "type": "boolean"
+        },
+        "cachePath": {
+          "description": "Location where cache data will be stored on disk. If empty then browsers will be created in incognito mode where in-memory caches are used for storage and no data is persisted to disk.",
+          "type": "string"
+        },
+        "developerTools": {
+          "description": "Enable developer tools.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "ie": {
+      "type": "object",
+      "properties": {
+        "debug": {
+          "description": "Show critical error and security alert dialog boxes.",
+          "default": false,
+          "type": "boolean"
+        },
+        "enabled": {
+          "description": "Whether or not to allow Trident support, or only allow Edge WebView2.",
+          "default": true,
+          "type": "boolean"
+        },
+        "minVersion": {
+          "description": "Minimum major version of IE to support.",
+          "default": 9,
+          "type": "integer"
+        }
+      }
+    },
+    "metafile": {
+      "type": "object",
+      "properties": {
+        "limitSize": {
+          "description": "Maximum size of a metafile to load.",
+          "default": 33554432,
+          "type": "integer"
+        },
+        "webGetCacheMinAge": {
+          "description": "Minimum http cache age (seconds) (0 to disable cache).",
+          "default": 10,
+          "type": "integer"
+        },
+        "webGetCacheMaxSize": {
+          "description": "Maximum http cache size.",
+          "default": 33554432,
+          "type": "integer"
+        }
+      }
+    },
+    "oauth": {
+      "type": "object",
+      "properties": {
+        "redirectUrl": {
+          "description": "The absolute path of the redirect_uri parameter used for OAuth authorization requests through the user's browser.",
+          "type": "string"
+        },
+        "successUrl": {
+          "description": "URL of the content that is displayed in the user's browser if the authorization code is successfully received by the application.",
+          "type": "string"
+        },
+        "errorUrl": {
+          "description": "URL of the content that is displayed in the user's browser if there is no authorization code in the OAuth server response.",
+          "type": "string"
+        }
+      }
+    },
+    "responseHeader": {
+      "description": "HTTP header rules for the source URL.",
+      "type": "object",
+      "properties": {
+        "url": {
+          "description": "Source wildcard URL whose response HTTP headers should be modified.",
+          "type": "string"
+        },
+        "urls": {
+          "description": "List of source wildcard URLs whose response HTTP headers should be modified.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/responseHeaderRule"
+          }
+        }
+      },
+      "oneOf": [
+        {
+          "required": ["url", "rules"]
+        },
+        {
+          "required": ["urls", "rules"]
+        }
+      ]
+    },
+    "responseHeaderRule": {
+      "description": "PCRE2 regex rule for HTTP response header.",
+      "type": "object",
+      "properties": {
+        "header": {
+          "description": "HTTP header name.",
+          "type": "string"
+        },
+        "pattern": {
+          "description": "PCRE2 regex for matching a HTTP header value.",
+          "type": "string"
+        },
+        "replacement": {
+          "description": "Replacement for a matched HTTP header value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "header",
+        "pattern",
+        "replacement"
+      ]
+    },
+    "storage": {
+      "type": "object",
+      "properties": {
+        "deltaCacheSize": {
+          "description": "Cached read buffer (in bytes) used during delta operations. Stops delta operations from having to re-read recently read bytes.",
+          "default": 33554432,
+          "type": "integer"
+        },
+        "deltaFormat": {
+          "description": "File name format for solidpiece delta files.",
+          "default": "{targetInfoHash}/{sourceInfoHash}/{targetDigest}.solidpiece",
+          "type": "string"
+        },
+        "fileCompletes": {
+          "description": "Maximum number of concurrent file completes.",
+          "default": 10,
+          "type": "integer"
+        },
+        "lockDirectory": {
+          "description": "Directory used to rename files when they are locked by the host application during self-update.",
+          "default": "{moduleDirectory}_lock{pathSlash}",
+          "type": "string"
+        },
+        "pieceFormat": {
+          "description": "File name format for solidpiece files.",
+          "default": "{targetDigest}.solidpiece",
+          "type": "string"
+        },
+        "partialExtension": {
+          "description": "File extension used for partial files.",
+          "default": ".solidpartial",
+          "type": "string"
+        },
+        "requests": {
+          "description": "Number of parallel requests used for erasing/uninstalling content.",
+          "default": 8,
+          "type": "integer"
+        },
+        "selfUpdate": {
+          "description": "Repository self-update default value.",
+          "default": false,
+          "type": "boolean"
+        },
+        "skipAttributes": {
+          "description": "Skip file attribute updating when available.",
+          "default": false,
+          "type": "boolean"
+        },
+        "skipTimestamp": {
+          "description": "Skip setting file timestamp information when available.",
+          "default": false,
+          "type": "boolean"
+        },
+        "systemBuffer": {
+          "description": "Use the operating system read/write disk caching.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "redirectItem": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "description": "Regular expression pattern.",
+          "type": "string"
+        },
+        "replacement": {
+          "description": "Regular expression replacement string.",
+          "type": "string"
+        },
+        "mutable": {
+          "description": "Allows redirect to be overwritten or removed.",
+          "default": false,
+          "type": "boolean"
+        },
+        "flags": {
+          "description": "Flags used to separate resource redirection from normal url redirection.",
+          "enum": [
+            "resource"
+          ],
+          "type": "string"
+        },
+        "compileOptions": {
+          "description": "Regular expression compilation items (delimited by comma).",
+          "type": "string"
+        },
+        "substituteOptions": {
+          "description": "Regular expression substitute options (delimited by comma).",
+          "type": "string"
+        }
+      }
+    },
+    "tls1": {
+      "type": "object",
+      "properties": {
+        "cipher": {
+          "description": "Support TLS1 ciphers (OpenSSL names delimited by comma)",
+          "type": "string"
+        },
+        "versionMin": {
+          "description": "Minimum version of TLS specification.",
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2"
+          ],
+          "default": "1.0",
+          "type": "string"
+        },
+        "versionMax": {
+          "description": "Maximum version of TLS specification.",
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2"
+          ],
+          "default": "1.2",
+          "type": "string"
+        }
+      }
+    },
+    "webGet": {
+      "type": "object",
+      "properties": {
+        "macros": {
+          "description": "Additional macros that can be included in urls.",
+          "type": "object"
+        },
+        "redirect": {
+          "description": "URL redirection entries.",
+          "patternProperties": {
+            ".*": {
+              "$ref": "#/definitions/redirectItem"
+            }
+          }
+        },
+        "userAgent": {
+          "description": "User agent string used for all download requests.",
+          "type": "string"
+        }
+      }
+    },
+    "webGetPool": {
+      "type": "object",
+      "properties": {
+        "maxHosts": {
+          "description": "Maximum number of hosts to connect to at one time. The term host refers to a single host:port combination.",
+          "default": 5,
+          "type": "integer"
+        },
+        "maxHostConnections": {
+          "description": "Maximum number of connections allow to each hosts at one time.",
+          "default": 6,
+          "type": "integer"
+        }
+      }
+    },
+    "webServer": {
+      "type": "object",
+      "properties": {
+        "listenPort": {
+          "description": "Port for the internal web server to listen on. This value can be an integer or an array of integers. If the value is an array of integers the web server will attempt to bind on the first port available on the user's machine. If port 0 is specified, it will bind on a random port specified by the operating system.",
+          "default": 0,
+          "type": [
+            "integer",
+            "array"
+          ],
+          "items": {
+            "type": "integer"
+          }
+        },
+        "externalPaths": {
+          "description": "List of wildcard paths to allow external browser processes to access. The root path / is rejected.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "oauth": {
+          "description": "Contains the settings for the receiver of OAuth authorization code.",
+          "$ref": "#/definitions/oauth"
+        }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "properties": {
+        "webGetCacheMinAge": {
+          "description": "Minimum http cache age (seconds).",
+          "default": 10,
+          "type": "integer"
+        },
+        "webGetCacheMaxSize": {
+          "description": "Maximum http cache size.",
+          "default": 33554432,
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

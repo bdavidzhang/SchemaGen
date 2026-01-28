@@ -1,0 +1,24 @@
+{ "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "expense record",
+  "type": "object",
+  "properties": {
+    "client": {
+      "type": "string" },
+    "bill": {
+      "type": "boolean" },
+    "date": {
+      "type": "string",
+      "format": "date-time" },
+    "amount": {
+      "type": "object",
+      "properties": {
+        "dollars": {
+          "type": "integer" },
+        "centers": {
+          "type": "integer" } } },
+    "method": {
+      "enum": [ "credit", "cash", "check" ] },
+    "description": {
+      "type": "string" } },
+  "required": [ "amount", "date", "description", "method" ],
+  "additionalProperties": false }

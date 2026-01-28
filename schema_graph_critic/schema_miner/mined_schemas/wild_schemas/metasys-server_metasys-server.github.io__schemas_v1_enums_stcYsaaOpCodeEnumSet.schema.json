@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/stcYsaaOpCodeEnumSet.schema.json",
+  "title": "stcYsaaOpCodeEnumSet",
+  "description": "STC YSAA Operational Codes",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "stcYsaaOpCode0"
+      ],
+      "description": "NO STATUS"
+    },
+    {
+      "enum": [
+        1,
+        "stcYsaaOpCode1"
+      ],
+      "description": "UNIT SWITCH OFF"
+    },
+    {
+      "enum": [
+        2,
+        "stcYsaaOpCode2"
+      ],
+      "description": "SYSTEM SWITCH OFF"
+    },
+    {
+      "enum": [
+        3,
+        "stcYsaaOpCode3"
+      ],
+      "description": "LOCKOUT"
+    },
+    {
+      "enum": [
+        4,
+        "stcYsaaOpCode4"
+      ],
+      "description": "UNIT FAULT"
+    },
+    {
+      "enum": [
+        5,
+        "stcYsaaOpCode5"
+      ],
+      "description": "SYSTEM FAULT"
+    },
+    {
+      "enum": [
+        6,
+        "stcYsaaOpCode6"
+      ],
+      "description": "REMOTE SHUTDOWN"
+    },
+    {
+      "enum": [
+        7,
+        "stcYsaaOpCode7"
+      ],
+      "description": "DAILY SCHEDULE SHUTDOWN"
+    },
+    {
+      "enum": [
+        8,
+        "stcYsaaOpCode8"
+      ],
+      "description": "NO RUN PERMISSIVE"
+    },
+    {
+      "enum": [
+        9,
+        "stcYsaaOpCode9"
+      ],
+      "description": "NO COOL LOAD"
+    },
+    {
+      "enum": [
+        10,
+        "stcYsaaOpCode10"
+      ],
+      "description": "ANTI-COINCIDENCE TIMER ACTIVE"
+    },
+    {
+      "enum": [
+        11,
+        "stcYsaaOpCode11"
+      ],
+      "description": "ANTI-RECYCLE TIMER ACTIVE"
+    },
+    {
+      "enum": [
+        12,
+        "stcYsaaOpCode12"
+      ],
+      "description": "MANUAL OVERRIDE"
+    },
+    {
+      "enum": [
+        13,
+        "stcYsaaOpCode13"
+      ],
+      "description": "SUCTION PRESSURE LIMITING"
+    },
+    {
+      "enum": [
+        14,
+        "stcYsaaOpCode14"
+      ],
+      "description": "DISCHARGE PRESSURE LIMITING"
+    },
+    {
+      "enum": [
+        15,
+        "stcYsaaOpCode15"
+      ],
+      "description": "RESERVED 15"
+    },
+    {
+      "enum": [
+        16,
+        "stcYsaaOpCode16"
+      ],
+      "description": "RESERVED 16"
+    },
+    {
+      "enum": [
+        17,
+        "stcYsaaOpCode17"
+      ],
+      "description": "COMPRESSOR(S) RUNNING"
+    },
+    {
+      "enum": [
+        18,
+        "stcYsaaOpCode18"
+      ],
+      "description": "RESERVED 18"
+    },
+    {
+      "enum": [
+        19,
+        "stcYsaaOpCode19"
+      ],
+      "description": "FLOW SWITCH SHUTDOWN"
+    },
+    {
+      "enum": [
+        20,
+        "stcYsaaOpCode20"
+      ],
+      "description": "RESERVED 20"
+    },
+    {
+      "enum": [
+        21,
+        "stcYsaaOpCode21"
+      ],
+      "description": "RESERVED 21"
+    },
+    {
+      "enum": [
+        22,
+        "stcYsaaOpCode22"
+      ],
+      "description": "RESERVED 22"
+    },
+    {
+      "enum": [
+        23,
+        "stcYsaaOpCode23"
+      ],
+      "description": "RESERVED 23"
+    },
+    {
+      "enum": [
+        24,
+        "stcYsaaOpCode24"
+      ],
+      "description": "RESERVED 24"
+    },
+    {
+      "enum": [
+        25,
+        "stcYsaaOpCode25"
+      ],
+      "description": "RESERVED 25"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

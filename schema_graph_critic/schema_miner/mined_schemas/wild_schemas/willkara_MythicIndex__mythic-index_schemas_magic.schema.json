@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "World Magic System Schema",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "system": { "type": "string" },
+        "flavor": { "type": "string" }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "name": { "type": "string" },
+          "governor": { "type": "string" },
+          "description": { "type": "string" },
+          "users": { "type": "array", "items": { "type": "string" } },
+          "visual_manifestation": { "type": "string" }
+        }
+      }
+    },
+    "classes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source_ref", "role"],
+        "properties": {
+          "id": { "type": "string" },
+          "source_ref": { "type": "string" },
+          "role": { "type": "string" },
+          "key_mechanic": { "type": "string" },
+          "consequence": { "type": "string" }
+        }
+      }
+    },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "visuals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "table": "events",
+  "primary_key": "id",
+  "columns": [
+    {
+      "name": "id",
+      "type": "INTEGER",
+      "constraints": "PRIMARY KEY"
+    },
+    {
+      "name": "team",
+      "type": "TEXT",
+      "constraints": "NOT NULL"
+    },
+    {
+      "name": "sport",
+      "type": "TEXT",
+      "constraints": "NOT NULL"
+    },
+    {
+      "name": "opponent",
+      "type": "TEXT",
+      "constraints": "NOT NULL"
+    },
+    {
+      "name": "date",
+      "type": "TEXT",
+      "constraints": "NOT NULL"
+    },
+    {
+      "name": "location",
+      "type": "TEXT",
+      "constraints": "NOT NULL"
+    },
+    {
+      "name": "watch_options",
+      "type": "TEXT",
+      "constraints": "NOT NULL",
+      "comment": "JSON-serialized string array of broadcast options"
+    },
+    {
+      "name": "source",
+      "type": "TEXT",
+      "constraints": "NOT NULL"
+    },
+    {
+      "name": "source_url",
+      "type": "TEXT",
+      "constraints": "NOT NULL"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/uvtt/0.3",
+  "title": "UVTT",
+  "description": "A UVTT export.",
+
+  "$defs": {
+    "point": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "hex-color": {
+      "description": "An ARGB color string in HEX format.",
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 8,
+      "pattern": "^[a-fA-F0-9]*$",
+      "example": [
+        "ff00ab34",
+        "ffff0000",
+        "ff00ff00",
+        "ff0000ff"
+      ]
+    }
+  },
+
+  "type": "object",
+  "required": ["format", "resolution", "environment", "image"],
+  "properties": {
+    "format": {
+      "description": "The version of the data format in the file.",
+      "type": "number",
+      "const": 0.2
+    },
+    "resolution": {
+      "description": "Specifies the size of the map and grid, and the position of the image.",
+      "type": "object",
+      "required": ["map_origin", "map_size", "pixels_per_grid"],
+      "properties": {
+        "map_origin": {
+          "description": "The position of the top-left of the image, measured in grid squares.",
+          "$ref": "#/$defs/point"
+        },
+        "map_size": {
+          "description": "Size of the map, measured in grid squares.",
+          "type": "object",
+          "required": ["x", "y"],
+          "properties": {
+            "x": {
+              "type": "number",
+              "minimum": 0
+            },
+            "y": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "pixels_per_grid": {
+          "description": "Number of pixels per grid square.",
+          "type": "integer",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "line_of_sight": {
+      "description": "Line strings that define the line-of-sight blocking for each wall.",
+      "type": "array",
+      "default": [],
+      "items": {
+        "description": "An array of points defining a connected string of line segments. Each segment blocks line-of-sight.",
+        "type": "array",
+        "minItems": 2,
+        "items": {
+          "$ref": "#/$defs/point"
+        }
+      }
+    },
+    "portals": {
+      "description": "An array of line-of-sight portals.",
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["position", "bounds", "rotation", "closed", "freestanding"],
+        "properties": {
+          "position": {
+            "description": "The canonical position of the portal.",
+            "$ref": "#/$defs/point"
+          },
+          "bounds": {
+            "description": "An array of points definine a connected string of line segments. Each segment may block line-of-sight depending on the value of \"closed\".",
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "$ref": "#/$defs/point"
+            }
+          },
+          "rotation": {
+            "description": "The amount the portal asset was rotated from the original. Measured in radians. Has no bearing on the interpretation of the bounds.",
+            "type": "number"
+          },
+          "closed": {
+            "description": "If true, the bounds of this portal blocks line-of-sight. If false, line-of-sight is not affected by the portal.",
+            "type": "boolean"
+          },
+          "freestanding": {
+            "description": "If true, the portal is not associated with a wall.",
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "environment": {
+      "description": "Describes global aspects of the scene.",
+      "type": "object",
+      "required": ["baked_lighting"],
+      "properties": {
+        "baked_lighting": {
+          "description": "If true, lights were rendered as part of the image. If false, lights are not part of the image.",
+          "type": "boolean"
+        },
+        "ambient_light": {
+          "description": "The colour of the ambient lighting applied to the entire scene. If not present, there is no ambient lighting.",
+          "$ref": "#/$defs/hex-color"
+        }
+      }
+    },
+    "lights": {
+      "description": "Describes all lights in the scene.",
+      "type": "array",
+      "default": [],
+      "items": {
+        "description": "Describes a single light in the scene.",
+        "type": "object",
+        "required": ["position", "range", "intensity", "color", "shadows"],
+        "properties": {
+          "position": {
+            "description": "The origin point of the light.",
+            "$ref": "#/$defs/point"
+          },
+          "range": {
+            "description": "The extent of the light, measured in grid squares.",
+            "type": "number",
+            "minimum": 0
+          },
+          "intensity": {
+            "description": "A parameter influencing the brightness of the light.",
+            "type": "number",
+            "minimum": 0
+          },
+          "color": {
+            "description": "The colour of the light.",
+            "$ref": "#/$defs/hex-color"
+          },
+          "shadows": {
+            "description": "If true, this light takes line-of-sight into account. If false, line-of-sight has no effect on the light.",
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "image": {
+      "description": "Base64-encoded PNG or WebP image",
+      "type": "string",
+      "contentEncoding": "base64",
+      "contentMediaType": "image/*"
+    }
+  }
+}

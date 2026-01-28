@@ -1,0 +1,168 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  
+  "parameters": {
+    "serviceHealthAlerts": {
+      "value": {
+        "alertRuleName": "Networking Alerts",
+        "receivers": {
+          "app": [
+            "networking@example.com"
+          ],
+          "sms": [
+            {
+              "countryCode": "1",
+              "phoneNumber": "6135555555"
+            }
+          ],
+          "email": [
+            "networking@example.com"
+          ],
+          "voice": [
+            {
+              "countryCode": "1",
+              "phoneNumber": "6135555555"
+            }
+          ]
+        },
+        "regions": [
+          "Global",
+          "Canada Central",
+          "Canada East"
+        ],
+        "resourceGroupName": "demo-service-health-alerts-rg",
+        "actionGroupName": "Demo Networking Alerts",
+        "actionGroupShortName": "network-ag",
+        "incidentTypes": [
+          "Incident",
+          "Security"
+        ],
+        "alertRuleDescription": "Networking Alerts for Incidents and Security"
+      }
+    },
+    "securityCenter": {
+      "value": {
+        "email": "security@example.com",
+        "phone": "6135555555"
+      }
+    },
+    "subscriptionRoleAssignments": {
+      "value": [
+        {
+          "comments": "Custom NetOps Role",
+          "securityGroupObjectIds": [
+            "def6c161-e15c-43e3-ae67-4e3f268592a8" 
+          ],
+          "roleDefinitionId": "c3eb0af1-ae5f-56b7-97cc-bc87fc7d842a"
+        }
+      ]
+    },
+    "subscriptionBudget": {
+      "value": {
+        "createBudget": false
+      }
+    },
+    "subscriptionTags": {
+      "value": {
+        
+      }
+    },
+    "resourceTags": {
+      "value": {
+        "Support" : "sronassi@microsoft.com",
+        "app-id" : "",
+        "CostCenter": "23445",
+        "env": "lab",
+        "HealthOrganization": "nha",
+        "Data Classification": "infa",
+        "DataSensitivity": "s1",
+        "ProjectName": "test",
+        "TechnicalContact": "me",
+        "ProjectContact": "me",
+        "ClientOrganization": "nha"
+      }
+    },
+    "privateDnsZones": {
+      "value": {
+        "enabled": true,
+        "resourceGroupName": "nha-private-dns-rg"
+      }
+    },
+    "ddosStandard": {
+      "value": {
+        "resourceGroupName": "nha-ddos-rg",
+        "enabled": false,
+        "planName": "nha-ddos-plan"
+      }
+    },
+    "privateDnsResolver": {
+      "value": {
+        "enabled": true,
+        "name": "dns-resolver",
+        "inboundEndpointName": "dns-resolver-Inbound",
+        "outboundEndpointName": "dns-resolver-Outbound",
+        "resourceGroupName": "nha-dns-resolverRG2"
+      }
+    },
+    "privateDnsResolverRuleset": {
+      "value": {
+        "enabled": false,
+        "name": "dns-resolver-ruleset",
+        "linkRuleSetToVnet": false,
+        "linkRuleSetToVnetName": "dns-resolver-vnet-link",
+        "forwardingRules": [
+          {
+            
+          }
+        ]
+      }
+    },
+    "hub": {
+      "value": {
+        "resourceGroupName": "nha-hub-networking",
+        "bastion": {
+          "enabled": true,
+          "name": "bastion",
+          "sku": "Standard",
+          "scaleUnits": 2
+        },
+        "network": {
+          "name": "hub-vnet",
+          "addressPrefixes": [
+            "10.18.0.0/22"           
+          ],
+          "addressPrefixBastion": "10.18.0.0/22",
+          "subnets": {
+            "gateway": {
+              "comments": "Gateway Subnet used for VPN and/or Express Route connectivity",
+              "name": "GatewaySubnet",
+              "addressPrefix": "10.18.1.0/27"
+            },
+            "bastion": {
+              "comments": "Azure Bastion",
+              "name": "AzureBastionSubnet",
+              "addressPrefix": "10.18.0.0/27"
+            },
+            "dnsResolverInbound": {
+              "comments": "Azure DNS Resolver Inbound Requests subnet",
+              "name": "AzureDNSResolver-Inbound",
+              "addressPrefix": "10.18.0.32/27"
+            },
+            "dnsResolverOutbound": {
+              "comments": "Azure DNS Resolver Outbound Requests subnet",
+              "name": "AzureDNSResolver-Outbound",
+              "addressPrefix": "10.18.0.64/27"
+            },
+            "optional": []
+          }
+        }
+        
+      }
+    },
+    "networkWatcher": {
+      "value": {
+        "resourceGroupName": "nha-NetworkWatcherRG"
+      }
+    }
+  }
+}

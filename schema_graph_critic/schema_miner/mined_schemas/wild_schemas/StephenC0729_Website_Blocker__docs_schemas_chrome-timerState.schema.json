@@ -1,0 +1,114 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "isRunning",
+      "currentSession",
+      "timeLeft",
+      "totalTime",
+      "sessionCount",
+      "pomodoroCount",
+      "sessions"
+    ],
+    "properties": {
+      "isRunning": {
+        "bsonType": "bool",
+        "description": "Whether timer is currently active"
+      },
+      "currentSession": {
+        "bsonType": "string",
+        "enum": ["pomodoro", "short-break", "long-break", "custom"],
+        "description": "Current session type"
+      },
+      "timeLeft": {
+        "bsonType": "int",
+        "minimum": 0,
+        "description": "Remaining time in seconds"
+      },
+      "totalTime": {
+        "bsonType": "int",
+        "minimum": 1,
+        "description": "Total session duration in seconds"
+      },
+      "startTimestamp": {
+        "bsonType": ["date", "null"],
+        "description": "Session start time (null when not running)"
+      },
+      "endTimestamp": {
+        "bsonType": ["date", "null"],
+        "description": "Calculated session end time"
+      },
+      "sessionCount": {
+        "bsonType": "int",
+        "minimum": 1,
+        "description": "Current session number in cycle"
+      },
+      "pomodoroCount": {
+        "bsonType": "int",
+        "minimum": 0,
+        "description": "Completed pomodoro sessions today"
+      },
+      "sessions": {
+        "bsonType": "object",
+        "required": ["pomodoro", "short-break", "long-break", "custom"],
+        "properties": {
+          "pomodoro": {
+            "bsonType": "object",
+            "required": ["duration", "label"],
+            "properties": {
+              "duration": {
+                "bsonType": "int",
+                "minimum": 1,
+                "description": "Session duration in seconds"
+              },
+              "label": {
+                "bsonType": "string",
+                "description": "Display label for session type"
+              }
+            }
+          },
+          "short-break": {
+            "bsonType": "object",
+            "required": ["duration", "label"],
+            "properties": {
+              "duration": {
+                "bsonType": "int",
+                "minimum": 1
+              },
+              "label": {
+                "bsonType": "string"
+              }
+            }
+          },
+          "long-break": {
+            "bsonType": "object",
+            "required": ["duration", "label"],
+            "properties": {
+              "duration": {
+                "bsonType": "int",
+                "minimum": 1
+              },
+              "label": {
+                "bsonType": "string"
+              }
+            }
+          },
+          "custom": {
+            "bsonType": "object",
+            "required": ["duration", "label"],
+            "properties": {
+              "duration": {
+                "bsonType": "int",
+                "minimum": 1
+              },
+              "label": {
+                "bsonType": "string"
+              }
+            }
+          }
+        },
+        "description": "Session type configurations"
+      }
+    }
+  }
+}

@@ -1,0 +1,366 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://www.lavishsoft.com/schema/agent.json",
+    "type": "object",
+    "title": "Inner Space Agent",
+    "description": "An Inner Space Agent provides event handlers for the Inner Space platform",
+    "definitions": {
+        "provider":{
+            "properties": {
+                "name":{
+                    "type":"string"
+                },
+                "description":{
+                    "type":"string"
+                },
+                "updated":{
+                    "type":"integer"
+                },
+                "url":{
+                    "type":"string"
+                },
+                "platform":{
+                    "enum": ["innerspace","joemultiboxer"]
+                },
+                "listings":{
+                    "type":"object",
+                    "additionalProperties": {
+                        "$ref":"#/definitions/listing"    
+                    }
+                }
+            }
+        },
+        "listing":{
+            "properties": {
+                "codeName":{
+                    "type":"string",
+                    "description": "A canonical name to differentiate between other listings with the same name (e.g. capable of providing 2 different builds of the same Agent)"
+                },
+                "name":{
+                    "type":"string",
+                    "description": "The full name of the Agent"
+                },
+                "description":{
+                    "type":"string"
+                },
+                "version":{
+                    "type":"string"
+                },
+                "updated":{
+                    "type":"integer"
+                },
+                "url":{
+                    "type":"string"
+                },
+                "localDevPath":{
+                    "type":"string",
+                    "description": "Intended for developers, this allows the installer to pull from a local development path instead of a URL"
+                },
+                "minimumBuild":{
+                    "type":"integer"
+                },
+                "collection":{
+                    "type":"array",
+                    "items": {
+                        "type":"object",
+                        "properties": {
+                            "name":{
+                                "type":"string"
+                            },
+                            "entry":{
+                                "type":"object",
+                                "properties": {
+                                    "filepath":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        },
+                        "required": ["name"]
+                    }
+                }
+            }
+        },
+        "eventHandler": {
+            "type":"object",
+            "properties":{
+                "code":{
+                    "$ref": "http://www.lavishsoft.com/schema/lgui2LS1Code.json"
+                }
+            },
+            "required":["code"]            
+        },
+        "eventHandlers": {
+            "type": "object",
+            "properties": {
+                "onAgentStartup": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/eventHandler"
+                        }
+                    ]
+                },
+                "onAgentShutdown": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/eventHandler"
+                        }
+                    ]
+                },
+                "onPlatformPreStartup": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/eventHandler"
+                        }
+                    ],
+                    "description": "Fires before Startup, with specific timing depending on the Inner Space platform. The Session platform (inner space session or joe multiboxer session) performs Pre-Startup before the host game/program is able to run code, useful for assigning Virtual Files, etc."
+                },
+                "onPlatformStartup": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/eventHandler"
+                        }
+                    ],
+                    "description": "Fires when the Inner Space platform is ready and active"
+                },
+                "onPulse": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/eventHandler"
+                        }
+                    ],
+                    "description": "Fires each frame before scripts, the OnFrame LavishScript event, etc."
+                }
+            },
+            "additionalProperties": {
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/eventHandler"
+                    }
+                ],
+                "description": "A custom Agent event handler that can be fired via agent:FireEvent[name]"
+            }
+        },
+        "feature":{
+            "type":"string",
+            "enum": [
+                "CPU",
+                "GPU",
+                "FPS",
+                "Window Layout",
+                "Window Switching",
+                "Agent Management",
+                "Characters",
+                "Teams",
+                "Hotkeys",
+                "Video FX",
+                "Audio",
+                "Highlights"
+            ]
+        }
+    },
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "A uniquely identifying name"
+        },
+        "description":{
+            "type":"string"
+        },
+        "version":{
+            "type":"string",
+            "description": "A string-comparable version number",
+            "examples": [
+                "0001",
+                "20201222.1",
+                "20201222.2 (Purple Nurple Edition)"
+            ]
+        },
+        "provides":{
+            "type":"array",
+            "items":{
+                "$ref": "#/definitions/feature"
+            }
+        },
+        "conflicts":{
+            "type":"array",
+            "items":{
+                "$ref": "#/definitions/feature"
+            }
+        },
+        "minimumBuild":{
+            "type":"integer",
+            "description": "Minimum supported Build number of Joe Multiboxer or Inner Space",
+            "examples": [
+                6752,
+                6760
+            ]
+        },
+        "dependencies":{
+            "type":"array",
+            "description": "A set of agents required by this one",
+            "items": {
+                "type":"object",
+                "properties":{
+                    "agent":{
+                        "type":"string",
+                        "description": "Name of the required agent"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "Minimum version number of the required agent"
+                    }                    
+                },
+                "required": ["agent"]
+            }
+        },
+        "lgui2MainElement":{
+            "type":"string",
+            "description": "A LavishGUI 2 element name, if any, indicating the main GUI for the agent (may be toggled via an agent list, etc)"
+        },
+        "metadata": {
+            "type": "object",
+            "description": "Metadata to always attach to the Agent, regardless of the Joe Multiboxer/Inner Space platform or the process"
+        },
+        "eventHandlers": {
+            "type": "object",
+            "description": "So-called 'global' Agent event handlers, which are activated regardless of the Inner Space platform or the process",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/eventHandlers"
+                }
+            ]
+        },
+        "platforms": {
+            "type": "object",
+            "description": "'platform' Agent event handlers, which are activated depending on the Inner Space platform",
+            "properties": {
+                "inner space session": {
+                    "type": "object",
+                    "description": "Agent properties specifically for Inner Space Sessions (a process, usually a game, that has been launched via Inner Space)",
+                    "properties": {
+                        "lgui2MainElement":{
+                            "type":"string",
+                            "description": "A LavishGUI 2 element name, if any, indicating the main GUI for the agent (may be toggled via an agent list, etc) specifically for Inner Space Sessions"
+                        },
+                        "metadata": {
+                            "type": "object",
+                            "description": "Metadata to attach to the Agent only in an Inner Space Session"
+                        },
+                        "eventHandlers": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/eventHandlers"
+                                }
+                            ],
+                            "description": "'platform' Agent event handlers which are activated only in an Inner Space Session"
+                        }
+                    }
+                },
+                "inner space uplink": {
+                    "type": "object",
+                    "description": "Agent properties specifically for the Inner Space Uplink (main program)",
+                    "properties": {
+                        "lgui2MainElement":{
+                            "type":"string",
+                            "description": "A LavishGUI 2 element name, if any, indicating the main GUI for the agent (may be toggled via an agent list, etc) specifically for the Inner Space Uplink"
+                        },
+                        "metadata": {
+                            "type": "object",
+                            "description": "Metadata to attach to the Agent only in the Inner Space Uplink"
+                        },
+                        "eventHandlers": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/eventHandlers"
+                                }
+                            ],
+                            "description": "'platform' Agent event handlers which are activated only in the Inner Space Uplink"
+                        }
+                    }
+                },
+                "joe multiboxer session": {
+                    "type": "object",
+                    "description": "Agent properties specifically for Joe Multiboxer Sessions (a process, usually a game, that has been launched via Joe Multiboxer)",
+                    "properties": {
+                        "lgui2MainElement":{
+                            "type":"string",
+                            "description": "A LavishGUI 2 element name, if any, indicating the main GUI for the agent (may be toggled via an agent list, etc) specifically for Joe Multiboxer Sessions"
+                        },
+                        "metadata": {
+                            "type": "object",
+                            "description": "Metadata to attach to the Agent only in a Joe Multiboxer Session"
+                        },
+                        "eventHandlers": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/eventHandlers"
+                                }
+                            ],
+                            "description": "'platform' Agent event handlers which are activated only in a Joe Multiboxer Session"
+                        }
+                    }
+                },
+                "joe multiboxer uplink": {
+                    "type": "object",
+                    "description": "Agent properties specifically for the Joe Multiboxer Uplink (main program)",
+                    "properties": {
+                        "lgui2MainElement":{
+                            "type":"string",
+                            "description": "A LavishGUI 2 element name, if any, indicating the main GUI for the agent (may be toggled via an agent list, etc) specifically for the Joe Multiboxer Uplink"
+                        },
+                        "metadata": {
+                            "type": "object",
+                            "description": "Metadata to attach to the Agent only in the Joe Multiboxer Uplink"
+                        },
+                        "eventHandlers": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/eventHandlers"
+                                }
+                            ],
+                            "description": "'platform' Agent event handlers which are activated only in the Joe Multiboxer Uplink"
+                        }
+                    }
+                }
+            },
+            "additionalProperties": {
+                "type": "object",
+                "description": "Agent properties specifically for a platform other than those named",
+                "properties": {
+                    "metadata": {
+                        "type": "object",
+                        "description": "Metadata to attach to the Agent only in the specified platform (specified by the property name given to this object)"
+                    },
+                    "eventHandlers": {
+                        "allOf": [
+                            {
+                                "$ref": "#/definitions/eventHandlers"
+                            }
+                        ],
+                        "description": "'platform' Agent event handlers which are activated only in the specified platform (specified by the property name given to this object)"
+                    }
+                }
+            }
+        },
+        "processes": {
+            "type": "object",
+            "description": "Agent properties specifically for the specified process executable name (lower case!) such as 'innerspace.exe' or 'notepad.exe'",
+            "additionalProperties": {
+                "metadata": {
+                    "type": "object",
+                    "description": "Metadata to attach to the Agent depending on the process executable name, such as 'innerspace.exe' or 'notepad.exe'"
+                },
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/eventHandlers"
+                    }
+                ],
+                "description": "'process' Agent event handlers, which are activated depending on the process executable name, such as 'innerspace.exe' or 'notepad.exe'"
+            }
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

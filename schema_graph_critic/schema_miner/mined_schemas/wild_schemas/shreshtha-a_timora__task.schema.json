@@ -1,0 +1,62 @@
+{
+  "name": "Task",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Task title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Additional details"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "todo",
+        "in_progress",
+        "completed"
+      ],
+      "default": "todo",
+      "description": "Task status"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "medium",
+      "description": "Task priority"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Due date"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "weekly",
+        "project",
+        "someday"
+      ],
+      "default": "daily",
+      "description": "Task category"
+    },
+    "time_estimate": {
+      "type": "number",
+      "description": "Estimated time in minutes"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When task was completed"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}

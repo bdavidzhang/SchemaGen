@@ -1,0 +1,252 @@
+{
+    "oneOf": [
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["AnalysisRun"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/analysisrun_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["AnalysisTemplate"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/analysistemplate_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["Application"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/application_v1alpha1.json" }
+            ]
+        },        
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["ApplicationSet"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/applicationset_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["AppProject"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/appproject_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["ClusterAnalysisTemplate"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/clusteranalysistemplate_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["ClusterWorkflowTemplate"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/clusterworkflowtemplate_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["ClusterWorkflow"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/cronworkflow_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["EventBus"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/eventbus_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["EventSource"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/eventsource_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["Experiment"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/experiment_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["Rollout"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/rollout_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["Sensor"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/sensor_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["Workflow"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/workflow_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["WorkflowArtifactGcTask"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/workflowartifactgctask_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["WorkflowEventBinding"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/workfloweventbinding_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["WorkflowTaskResult"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/workflowtaskresult_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["WorkflowTaskSet"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/workflowtaskset_v1alpha1.json" }
+            ]
+        },
+        {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "apiVersion": { "type": "string", "enum": ["argoproj.io/v1alpha1"] },
+                        "kind": { "type": "string", "enum": ["WorkflowTemplate"] }
+                    },
+                    "required": ["apiVersion", "kind"]
+                },
+                { "$ref": "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/workflowtemplate_v1alpha1.json" }
+            ]
+        }
+    ]
+}
+

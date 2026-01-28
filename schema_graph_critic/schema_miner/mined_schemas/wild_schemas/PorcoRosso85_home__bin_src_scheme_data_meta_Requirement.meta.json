@@ -1,0 +1,341 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Requirement",
+  "description": "統一された要件定義と実装情報のメタスキーマ",
+  "type": "object",
+  "required": ["id", "title", "description", "type", "implementationType"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "$metaSchema": {
+      "type": "string",
+      "const": "Requirement",
+      "description": "このスキーマが統一要件メタスキーマであることを示す識別子"
+    },
+    "id": {
+      "type": "string",
+      "description": "要件の一意識別子",
+      "pattern": "^[a-zA-Z0-9-_]+$"
+    },
+    "title": {
+      "type": "string",
+      "description": "要件のタイトル"
+    },
+    "description": {
+      "type": "string",
+      "description": "要件の詳細説明"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["requirement"],
+      "description": "このJSONのタイプ (要件のため 'requirement'固定)",
+      "default": "requirement"
+    },
+    "implementationType": {
+      "type": "string",
+      "enum": ["function", "struct", "string", "enum"],
+      "description": "実装される成果物の種類"
+    },
+    "outputPath": {
+      "type": "object",
+      "description": "生成されるファイルのパス情報",
+      "required": ["default"],
+      "properties": {
+        "default": {
+          "type": "string",
+          "description": "デフォルトのファイルパス"
+        },
+        "typescript": {
+          "type": "string",
+          "description": "TypeScript実装のファイルパス"
+        },
+        "javascript": {
+          "type": "string",
+          "description": "JavaScript実装のファイルパス"
+        },
+        "python": {
+          "type": "string",
+          "description": "Python実装のファイルパス"
+        },
+        "java": {
+          "type": "string",
+          "description": "Java実装のファイルパス"
+        },
+        "csharp": {
+          "type": "string",
+          "description": "C#実装のファイルパス"
+        },
+        "rust": {
+          "type": "string",
+          "description": "Rust実装のファイルパス"
+        },
+        "go": {
+          "type": "string",
+          "description": "Go実装のファイルパス"
+        }
+      },
+      "additionalProperties": {
+        "type": "string",
+        "description": "その他の言語実装のファイルパス"
+      }
+    },
+    
+    "implementation": {
+      "type": "object",
+      "description": "実装に関する詳細情報",
+      "properties": {
+        "function": {
+          "type": "object",
+          "description": "関数型の場合の実装情報",
+          "properties": {
+            "parameters": {
+              "type": "object",
+              "description": "関数の入力パラメータ",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["object"],
+                  "default": "object",
+                  "description": "パラメータの型 (オブジェクト形式)"
+                },
+                "properties": {
+                  "type": "object",
+                  "description": "パラメータのプロパティ定義"
+                },
+                "required": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "必須パラメータのリスト"
+                }
+              }
+            },
+            "returnType": {
+              "type": "object",
+              "description": "関数の戻り値の型",
+              "required": ["type"],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "戻り値の型"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "戻り値の説明"
+                },
+                "$ref": {
+                  "type": "string",
+                  "description": "別のスキーマへの参照"
+                }
+              }
+            },
+            "async": {
+              "type": "boolean",
+              "description": "非同期関数かどうか",
+              "default": false
+            },
+            "exceptions": {
+              "type": "array",
+              "description": "発生する可能性のある例外のリスト",
+              "items": {
+                "type": "object",
+                "required": ["name", "description"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "例外の名前"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "例外の説明"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "例外コード (存在する場合)"
+                  }
+                }
+              }
+            },
+            "sideEffects": {
+              "type": "boolean",
+              "description": "関数が副作用を持つかどうか",
+              "default": false
+            }
+          }
+        },
+        "struct": {
+          "type": "object",
+          "description": "構造体/クラス型の場合の実装情報",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "description": "構造体のプロパティ定義",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "プロパティの型"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "プロパティの説明"
+                  }
+                }
+              }
+            },
+            "required": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "必須プロパティのリスト"
+            },
+            "methods": {
+              "type": "object",
+              "description": "メソッド定義",
+              "additionalProperties": {
+                "type": "object",
+                "description": "メソッド情報",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "メソッドの説明"
+                  },
+                  "parameters": {
+                    "type": "object",
+                    "description": "メソッドのパラメータ情報"
+                  },
+                  "returnType": {
+                    "type": "object",
+                    "description": "メソッドの戻り値情報"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "string": {
+          "type": "object",
+          "description": "文字列型の場合の実装情報",
+          "properties": {
+            "validation": {
+              "type": "object",
+              "description": "文字列のバリデーション情報",
+              "properties": {
+                "minLength": {
+                  "type": "integer",
+                  "description": "最小文字数"
+                },
+                "maxLength": {
+                  "type": "integer",
+                  "description": "最大文字数"
+                },
+                "pattern": {
+                  "type": "string",
+                  "description": "正規表現パターン"
+                },
+                "format": {
+                  "type": "string",
+                  "description": "フォーマット (email, dateなど)"
+                }
+              }
+            }
+          }
+        },
+        "enum": {
+          "type": "object",
+          "description": "列挙型の場合の実装情報",
+          "properties": {
+            "values": {
+              "type": "array",
+              "description": "列挙型の値リスト",
+              "items": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "列挙値の名前"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "列挙値の説明"
+                  },
+                  "value": {
+                    "description": "列挙値 (指定する場合)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "examples": {
+      "type": "array",
+      "description": "使用例",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "例の説明"
+          },
+          "input": {
+            "description": "入力例"
+          },
+          "output": {
+            "description": "期待される出力"
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "この要件が依存する他の要件のID一覧",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "要件に関連するタグのリスト",
+      "items": {
+        "type": "string"
+      }
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "要件の優先度"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "pending", "approved", "implemented", "deprecated"],
+      "description": "要件の状態",
+      "default": "draft"
+    },
+    "deprecated": {
+      "type": "boolean",
+      "description": "要件が非推奨かどうか",
+      "default": false
+    },
+    "deprecationMessage": {
+      "type": "string",
+      "description": "非推奨の場合のメッセージ"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "要件の作成日時"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "要件の最終更新日時"
+    }
+  }
+}

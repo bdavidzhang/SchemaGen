@@ -1,0 +1,77 @@
+{
+  "schemaInfo": {
+    "schemaIdentity": {
+      "authority": "tenant1",
+      "source": "indexer",
+      "entityType": "test-data--Integration",
+      "schemaVersionMajor": 4,
+      "schemaVersionMinor": 0,
+      "schemaVersionPatch": 0
+    },
+    "status": "DEVELOPMENT"
+  },
+
+  "schema": {
+    "properties": {
+      "data": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "Field": {
+                "type": "string"
+              },
+              "Location": {
+                "$ref": "#/definitions/opendes:wks:core_dl_geopoint_drillable:4.0.0",
+                "description": "The wellbore's position with drillable attribute.",
+                "format": "core:dl:geopoint:4.0.0",
+                "title": "WGS 84 Position",
+                "type": "object"
+              },
+              "Basin": {
+                "type": "string"
+              },
+              "Score": {
+                "type": "integer"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "definitions": {
+      "opendes:wks:core_dl_geopoint_drillable:4.0.0": {
+        "description": "A 2D point location in latitude and longitude referenced to WGS 84 if not specified otherwise and drillable attribute.",
+        "properties": {
+          "latitude": {
+            "description": "The latitude value in degrees of arc (dega). Value range [-90, 90].",
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "longitude": {
+            "description": "The longitude value in degrees of arc (dega). Value range [-180, 180]",
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "drillable":
+          {
+            "description": "Is the location drillable",
+            "title": "Drillable",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude",
+          "drillable"
+        ],
+        "title": "2D Map Location with Drillable Attribute",
+        "type": "object"
+      }
+    }
+  }
+}

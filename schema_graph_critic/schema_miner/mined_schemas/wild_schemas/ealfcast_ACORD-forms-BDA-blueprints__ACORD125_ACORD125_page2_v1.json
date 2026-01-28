@@ -1,0 +1,232 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"description": "default",
+	"class": "default",
+	"type": "object",
+	"definitions": {
+		"PREMISES_INFORMATION_TABLE": {
+			"type": "object",
+			"properties": {
+				"LOCATION NUMBER": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "The location number of the premises"
+				},
+				"STREET": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "The street address of the premises"
+				},
+				"CITY LIMITS": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the premises is located inside or outside the city limits"
+				},
+				"CITY": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "The city where the premises is located"
+				},
+				"STATE": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "The state where the premises is located"
+				},
+				"ZIP CODE": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "The zip code of the premises"
+				},
+				"INTEREST": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "The interest in the premises (owner, tenant)"
+				},
+				"FULL TIME EMPLOYEES": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "The number of full-time employees at the premises"
+				},
+				"PART TIME EMPLOYEES": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "The number of part-time employees at the premises"
+				},
+				"ANNUAL REVENUES": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "The annual revenues of the business at the premises"
+				},
+				"OCCUPIED AREA": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "The occupied area of the premises in square feet"
+				},
+				"OPEN TO PUBLIC AREA": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "The area of the premises open to the public in square feet"
+				},
+				"TOTAL BUILDING AREA": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "The total building area of the premises in square feet"
+				},
+				"AREA LEASED TO OTHERS": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether any area of the premises is leased to others"
+				},
+				"DESCRIPTION OF OPERATIONS": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Description of the operations conducted at the premises"
+				}
+			}
+		},
+		"NATURE_OF_BUSINESS": {
+			"type": "object",
+			"properties": {
+				"APARTMENTS": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is in the apartments industry"
+				},
+				"CONDOMINIUMS": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is in the condominiums industry"
+				},
+				"CONTRACTOR": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is a contractor"
+				},
+				"INSTITUTIONAL": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is in the institutional industry"
+				},
+				"MANUFACTURING": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is in the manufacturing industry"
+				},
+				"OFFICE": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is in the office industry"
+				},
+				"RESTAURANT": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is a restaurant"
+				},
+				"RETAIL": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is in the retail industry"
+				},
+				"SERVICE": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is in the service industry"
+				},
+				"WHOLESALE": {
+					"type": "boolean",
+					"inferenceType": "explicit",
+					"instruction": "Whether the business is in the wholesale industry"
+				},
+				"BUSINESS START DATE": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "The date the business started operations"
+				}
+			}
+		}
+	},
+	"properties": {
+		"AGENCY CUSTOMER ID": {
+			"type": "string",
+			"inferenceType": "explicit",
+			"instruction": "The agency customer ID associated with the application"
+		},
+		"CONTACT TYPE": {
+			"type": "array",
+			"inferenceType": "explicit",
+			"instruction": "The types of contacts associated with the application",
+			"items": {
+				"type": "string"
+			}
+		},
+		"CONTACT NAME": {
+			"type": "array",
+			"inferenceType": "explicit",
+			"instruction": "The names of the contacts associated with the application",
+			"items": {
+				"type": "string"
+			}
+		},
+		"PRIMARY E-MAIL ADDRESS": {
+			"type": "string",
+			"inferenceType": "explicit",
+			"instruction": "The primary email address of the contact"
+		},
+		"SECONDARY E-MAIL ADDRESS": {
+			"type": "string",
+			"inferenceType": "explicit",
+			"instruction": "The secondary email address of the contact"
+		},
+		"PRIMARY PHONE": {
+			"type": "string",
+			"inferenceType": "explicit",
+			"instruction": "The primary phone number of the contact"
+		},
+		"PRIMARY PHONE TYPE": {
+			"type": "string",
+			"inferenceType": "explicit",
+			"instruction": "The type of the primary phone number (home, business, cell)"
+		},
+		"SECONDARY PHONE": {
+			"type": "string",
+			"inferenceType": "explicit",
+			"instruction": "The secondary phone number of the contact"
+		},
+		"SECONDARY PHONE TYPE": {
+			"type": "string",
+			"inferenceType": "explicit",
+			"instruction": "The type of the secondary phone number (home, business, cell)"
+		},
+		"PREMISES INFORMATION": {
+			"$ref": "#/definitions/PREMISES_INFORMATION_TABLE"
+		},
+		"NATURE OF BUSINESS": {
+			"$ref": "#/definitions/NATURE_OF_BUSINESS"
+		},
+		"DESCRIPTION OF PRIMARY OPERATIONS": {
+			"type": "string",
+			"inferenceType": "explicit",
+			"instruction": "Description of the primary operations of the business"
+		},
+		"INSTALLATION, SERVICE OR REPAIR WORK": {
+			"type": "boolean",
+			"inferenceType": "explicit",
+			"instruction": "Whether the business performs installation, service or repair work"
+		},
+		"OFF PREMISES INSTALLATION, SERVICE OR REPAIR WORK": {
+			"type": "boolean",
+			"inferenceType": "explicit",
+			"instruction": "Whether the business performs off-premises installation, service or repair work"
+		},
+		"RETAIL STORES OR SERVICE OPERATIONS % OF TOTAL SALES": {
+			"type": "number",
+			"inferenceType": "explicit",
+			"instruction": "Percentage of total sales from retail stores or service operations"
+		},
+		"DESCRIPTION OF OPERATIONS OF OTHER NAMED INSUREDS": {
+			"type": "string",
+			"inferenceType": "explicit",
+			"instruction": "Description of operations of other named insureds"
+		}
+	}
+}

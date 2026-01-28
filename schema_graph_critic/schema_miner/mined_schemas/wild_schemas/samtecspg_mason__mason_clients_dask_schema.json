@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "DaskConfiguration",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["dask"]
+    },
+    "runner": {
+      "type": "object",
+      "properties": {
+        "type": { 
+          "type":  "string",
+          "enum": [
+            "kubernetes_worker"
+          ]
+        }
+      },
+      "required": ["type"]
+    }
+  },
+  "required": [ "runner" ]
+}
+

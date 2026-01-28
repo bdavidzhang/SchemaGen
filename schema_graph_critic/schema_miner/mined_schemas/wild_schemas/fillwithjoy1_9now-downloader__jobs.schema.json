@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jobs schema",
+  "description": "A schema describing how jobs should be generated",
+  "type": "object",
+  "properties": {
+    "jobs": {
+      "description": "A collection of defined playlists inside an array",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of job"
+          },
+          "link": {
+            "type": "string",
+            "description": "URL to playlist"
+          },
+          "length": {
+            "type": "integer",
+            "description": "Length of playlist"
+          },
+          "folder_name": {
+            "type": "string",
+            "description": "Folder name to output download contents"
+          },
+          "skip": {
+            "type": "boolean",
+            "description": "A tag that skips the job"
+          },
+          "scan": {
+            "type": "boolean",
+            "description": "A tag that indicates the browser to scan the webpage. Length property is ignored"
+          }
+        },
+        "required": [
+          "name",
+          "link",
+          "folder_name",
+          "length"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["jobs"],
+  "additionalProperties": false
+}

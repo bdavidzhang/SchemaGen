@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Prompt Map Entry",
+  "type": "object",
+  "required": ["prompt_id", "context", "linked_reflections", "tags"],
+  "properties": {
+    "prompt_id": { "type": "string", "description": "Unique prompt identifier" },
+    "context": { "type": "string", "description": "Purpose or intended use" },
+    "linked_reflections": { "type": "array", "items": { "type": "string" }, "description": "Reflections influencing this prompt" },
+    "tags": { "type": "array", "items": { "type": "string" }, "description": "Classification for routing and reuse" },
+    "last_updated": { "type": "string", "format": "date-time", "description": "Timestamp of last revision" }
+  }
+}

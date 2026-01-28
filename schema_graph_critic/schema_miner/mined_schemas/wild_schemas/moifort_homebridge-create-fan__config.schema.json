@@ -1,0 +1,43 @@
+{
+  "pluginAlias": "HomebridgeCreateCeilingFan",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "required": true,
+        "default": "Create Ceiling Fan"
+      },
+      "devices": {
+        "type": "array",
+        "title": "Fans",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "title": "ID",
+              "description": "Tuya fan ID",
+              "required": true
+            },
+            "key": {
+              "type": "string",
+              "title": "Key",
+              "description": "Tuya fan key",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "title": "Fan Name",
+              "description": "Name of the fan",
+              "required": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

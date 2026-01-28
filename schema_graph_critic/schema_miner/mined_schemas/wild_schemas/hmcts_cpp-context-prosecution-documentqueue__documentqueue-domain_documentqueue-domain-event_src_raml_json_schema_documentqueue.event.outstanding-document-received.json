@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://moj.gov.uk/cpp/documentqueue/event/outstanding-document-received.json",
+  "type": "object",
+  "properties": {
+    "outstandingDocument": {
+      "$ref": "http://justice.gov.uk/prosecution/documentqueue/domain/document.json",
+      "description": "The core document in the context"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "outstandingDocument"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "covid_data_uploader-analysis_schema",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$async": true,
+  "title": "Submissions Schema for isolate genome assembly information.",
+  "description": "Validation schema for ENA isolate genome assembly information.",
+  "version": "1.0.0",
+  "author": "phoenix",
+  "type": "object",
+  "required": [
+    "assemblyname",
+    "assembly_type",
+    "coverage",
+    "program",
+    "platform",
+    "fasta_flatfile_name"
+  ],
+  "properties": {
+    "assemblyname": {
+      "description": "The name of this assembly.",
+      "type": "string"
+    },
+    "assembly_type": {
+      "type": "string",
+      "description": "The type of this assembly. Tha value of this field is always: COVID-19 outbreak",
+      "enum": [
+        "covid-19 outbreak"
+      ]
+    },
+    "coverage": {
+      "description": "The coverage of this assembly.",
+      "type": "string"
+    },
+    "program": {
+      "description": "The program of this assembly.",
+      "type": "string"
+    },
+    "platform": {
+      "description": "The platform of this assembly.",
+      "type": "string"
+    },
+    "mingaplength": {
+      "description": "The minimum gap length of this assembly.",
+      "type": "string"
+    },
+    "moleculetype": {
+      "description": "The molecule type of this assembly.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Describes the assembly in detail.",
+      "type": "string"
+    },
+    "run_ref": {
+      "description": "A label associating the run with run references in data files.",
+      "type": "string"
+    },
+    "fasta_flatfile_name": {
+      "description": "The name of the fasta/flatfile file.",
+      "type": "string"
+    }
+  }
+}

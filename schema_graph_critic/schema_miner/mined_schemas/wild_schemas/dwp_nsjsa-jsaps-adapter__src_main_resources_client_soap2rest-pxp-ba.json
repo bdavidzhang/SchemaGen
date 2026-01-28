@@ -1,0 +1,2458 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Provides a JSON wrapper to the XML based legacy PXP service 'PushBAJSAPSClaim'",
+    "version": "1.0.1",
+    "title": "soap2rest-pxp-ba"
+  },
+  "host": "0.0.0.0:8043",
+  "tags": [
+    {
+      "name": "pxp/ba"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/pxp/ba": {
+      "post": {
+        "tags": [
+          "pxp/ba"
+        ],
+        "summary": "Provides a JSON wrapper to the XML based legacy PXP service 'PushBAJSAPSClaim'",
+        "operationId": "route1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "$ref": "#/definitions/Response"
+            }
+          },
+          "500": {
+            "description": "Error Response",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "FutureactdetailsType": {
+      "type": "object",
+      "properties": {
+        "bankDetails": {
+          "xml": {
+            "name": "bank-details"
+          },
+          "$ref": "#/definitions/BankDetails"
+        },
+        "buildingSocietyDetails": {
+          "xml": {
+            "name": "building-society-details"
+          },
+          "$ref": "#/definitions/BuildingSocietyDetails"
+        }
+      }
+    },
+    "RequestParamsType": {
+      "type": "object",
+      "required": [
+        "param"
+      ],
+      "properties": {
+        "param": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Param"
+          }
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "required": [
+        "addressline"
+      ],
+      "properties": {
+        "addressline": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "postcode": {
+          "type": "string"
+        }
+      }
+    },
+    "PensionDetails": {
+      "type": "object",
+      "required": [
+        "frequency",
+        "grossAmount",
+        "pensionNettAmount",
+        "pensionStartDate",
+        "receivedFlag",
+        "verification"
+      ],
+      "properties": {
+        "pensionStartDate": {
+          "type": "string",
+          "xml": {
+            "name": "pension-start-date"
+          }
+        },
+        "grossAmount": {
+          "type": "string",
+          "xml": {
+            "name": "gross-amount"
+          }
+        },
+        "pensionNettAmount": {
+          "type": "string",
+          "xml": {
+            "name": "pension-nett-amount"
+          }
+        },
+        "frequency": {
+          "type": "string"
+        },
+        "verification": {
+          "type": "string"
+        },
+        "receivedFlag": {
+          "type": "string",
+          "xml": {
+            "name": "received-flag"
+          }
+        }
+      }
+    },
+    "OtherBenefit": {
+      "type": "object",
+      "required": [
+        "benefitType",
+        "office",
+        "otherBenefitReceived",
+        "otherBenefitStartDate",
+        "overpayment",
+        "person",
+        "verification"
+      ],
+      "properties": {
+        "benefitType": {
+          "type": "string",
+          "xml": {
+            "name": "benefit-type"
+          }
+        },
+        "benefitSubType": {
+          "type": "string",
+          "xml": {
+            "name": "benefit-sub-type"
+          }
+        },
+        "person": {
+          "$ref": "#/definitions/PersonNumberNameType"
+        },
+        "otherBenefitReceived": {
+          "type": "string",
+          "xml": {
+            "name": "other-benefit-received"
+          }
+        },
+        "totalReceived": {
+          "type": "string",
+          "xml": {
+            "name": "total-received"
+          }
+        },
+        "verification": {
+          "type": "string"
+        },
+        "accountAmount": {
+          "type": "string",
+          "xml": {
+            "name": "account-amount"
+          }
+        },
+        "overpayment": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "office": {
+          "type": "string"
+        },
+        "otherBenefitStartDate": {
+          "type": "string",
+          "xml": {
+            "name": "other-benefit-start-date"
+          }
+        },
+        "otherBenefitEndDate": {
+          "type": "string",
+          "xml": {
+            "name": "other-benefit-end-date"
+          }
+        }
+      }
+    },
+    "ClaimAdmin": {
+      "type": "object",
+      "required": [
+        "attendingCycle",
+        "benefitWeekEndingDay",
+        "claimFileType",
+        "claimType",
+        "cmIndicator",
+        "flags",
+        "jobseekerChildcareDetails",
+        "occupation",
+        "statisticalSymbol"
+      ],
+      "properties": {
+        "claimType": {
+          "type": "string",
+          "xml": {
+            "name": "claim-type"
+          }
+        },
+        "benefitWeekEndingDay": {
+          "type": "string",
+          "xml": {
+            "name": "benefit-week-ending-day"
+          }
+        },
+        "fortnightlyJobReviewDay": {
+          "type": "string",
+          "xml": {
+            "name": "fortnightly-job-review-day"
+          }
+        },
+        "claimFileType": {
+          "type": "string",
+          "xml": {
+            "name": "claim-file-type"
+          }
+        },
+        "attendingCycle": {
+          "type": "string",
+          "xml": {
+            "name": "attending-cycle"
+          }
+        },
+        "fortnightlyJobReviewCycle": {
+          "type": "string",
+          "xml": {
+            "name": "fortnightly-job-review-cycle"
+          }
+        },
+        "otherAttributes": {
+          "type": "string",
+          "xml": {
+            "name": "other-attributes"
+          }
+        },
+        "statisticalSymbol": {
+          "type": "string",
+          "xml": {
+            "name": "statistical-symbol"
+          }
+        },
+        "csaNewRules": {
+          "type": "string",
+          "xml": {
+            "name": "csa-new-rules"
+          }
+        },
+        "occupation": {
+          "$ref": "#/definitions/Occupation"
+        },
+        "jobseekerChildcareDetails": {
+          "xml": {
+            "name": "jobseeker-childcare-details"
+          },
+          "$ref": "#/definitions/ChildcareType"
+        },
+        "partnerChildcareDetails": {
+          "xml": {
+            "name": "partner-childcare-details"
+          },
+          "$ref": "#/definitions/ChildcareType"
+        },
+        "cmIndicator": {
+          "type": "string",
+          "xml": {
+            "name": "cm-indicator"
+          }
+        },
+        "flags": {
+          "$ref": "#/definitions/Flags"
+        }
+      }
+    },
+    "Tax": {
+      "type": "object",
+      "required": [
+        "p187Completed"
+      ],
+      "properties": {
+        "p187Completed": {
+          "type": "string",
+          "xml": {
+            "name": "p187-completed"
+          }
+        },
+        "p45": {
+          "$ref": "#/definitions/P45"
+        },
+        "continuingEmployment": {
+          "type": "string",
+          "xml": {
+            "name": "continuing-employment"
+          }
+        }
+      }
+    },
+    "Jobseeker": {
+      "type": "object",
+      "required": [
+        "claimAdmin",
+        "nino",
+        "tax"
+      ],
+      "properties": {
+        "nino": {
+          "type": "string"
+        },
+        "addressEffectiveDate": {
+          "type": "string",
+          "xml": {
+            "name": "address-effective-date"
+          }
+        },
+        "incomeBased": {
+          "xml": {
+            "name": "income-based"
+          },
+          "$ref": "#/definitions/IncomeBased"
+        },
+        "contributoryEffectiveDate": {
+          "type": "string",
+          "xml": {
+            "name": "contributory-effective-date"
+          }
+        },
+        "exclusionReason": {
+          "type": "string",
+          "xml": {
+            "name": "exclusion-reason"
+          }
+        },
+        "nhb6": {
+          "type": "string"
+        },
+        "otherIncome": {
+          "type": "array",
+          "xml": {
+            "name": "other-income"
+          },
+          "items": {
+            "xml": {
+              "name": "other-income"
+            },
+            "$ref": "#/definitions/OtherIncomeType"
+          }
+        },
+        "currentWork": {
+          "type": "array",
+          "xml": {
+            "name": "current-work"
+          },
+          "items": {
+            "xml": {
+              "name": "current-work"
+            },
+            "$ref": "#/definitions/CurrentWork"
+          }
+        },
+        "previousWork": {
+          "type": "array",
+          "xml": {
+            "name": "previous-work"
+          },
+          "items": {
+            "xml": {
+              "name": "previous-work"
+            },
+            "$ref": "#/definitions/PreviousWork"
+          }
+        },
+        "occupationalPension": {
+          "type": "array",
+          "xml": {
+            "name": "occupational-pension"
+          },
+          "items": {
+            "xml": {
+              "name": "occupational-pension"
+            },
+            "$ref": "#/definitions/OccupationalPension"
+          }
+        },
+        "otherBenefit": {
+          "type": "array",
+          "xml": {
+            "name": "other-benefit"
+          },
+          "items": {
+            "xml": {
+              "name": "other-benefit"
+            },
+            "$ref": "#/definitions/OtherBenefit"
+          }
+        },
+        "whereYouLive": {
+          "xml": {
+            "name": "where-you-live"
+          },
+          "$ref": "#/definitions/WhereYouLive"
+        },
+        "exceptionalCondition": {
+          "type": "array",
+          "xml": {
+            "name": "exceptional-condition"
+          },
+          "items": {
+            "xml": {
+              "name": "exceptional-condition"
+            },
+            "$ref": "#/definitions/ExceptionalConditionType"
+          }
+        },
+        "linkingDetails": {
+          "xml": {
+            "name": "linking-details"
+          },
+          "$ref": "#/definitions/LinkingDetails"
+        },
+        "claimAdmin": {
+          "xml": {
+            "name": "claim-admin"
+          },
+          "$ref": "#/definitions/ClaimAdmin"
+        },
+        "tax": {
+          "$ref": "#/definitions/Tax"
+        },
+        "mop": {
+          "$ref": "#/definitions/Mop"
+        },
+        "suspension": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SuspensionType"
+          }
+        }
+      }
+    },
+    "CorrespondenceAddress": {
+      "type": "object",
+      "required": [
+        "effectiveDate"
+      ],
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/MandatoryTwoLineAddressType"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "xml": {
+            "name": "effective-date"
+          }
+        }
+      }
+    },
+    "NonDependantType": {
+      "type": "object",
+      "required": [
+        "dateOfBirth",
+        "fesSequence",
+        "nonDependantSex",
+        "statusCode"
+      ],
+      "properties": {
+        "fesSequence": {
+          "type": "string",
+          "xml": {
+            "name": "fes-sequence"
+          }
+        },
+        "name": {
+          "$ref": "#/definitions/Name"
+        },
+        "dateOfBirth": {
+          "xml": {
+            "name": "date-of-birth"
+          },
+          "$ref": "#/definitions/DateOfBirth"
+        },
+        "nonDependantSex": {
+          "type": "string",
+          "xml": {
+            "name": "non-dependant-sex"
+          }
+        },
+        "statusCode": {
+          "type": "string",
+          "xml": {
+            "name": "status-code"
+          }
+        },
+        "grossIncome": {
+          "type": "string",
+          "xml": {
+            "name": "gross-income"
+          }
+        },
+        "partnerTo": {
+          "type": "string",
+          "xml": {
+            "name": "partner-to"
+          }
+        },
+        "dependantOf": {
+          "type": "string",
+          "xml": {
+            "name": "dependant-of"
+          }
+        }
+      }
+    },
+    "Lender": {
+      "type": "object",
+      "required": [
+        "address",
+        "lenderName"
+      ],
+      "properties": {
+        "lenderName": {
+          "type": "string",
+          "xml": {
+            "name": "lender-name"
+          }
+        },
+        "address": {
+          "$ref": "#/definitions/HomeLoanAddressType"
+        }
+      }
+    },
+    "Name": {
+      "type": "object",
+      "required": [
+        "nonDependantFirstName",
+        "nonDependantSurname"
+      ],
+      "properties": {
+        "nonDependantFirstName": {
+          "type": "string",
+          "xml": {
+            "name": "non-dependant-first-name"
+          }
+        },
+        "otherName": {
+          "type": "string",
+          "xml": {
+            "name": "other-name"
+          }
+        },
+        "nonDependantSurname": {
+          "type": "string",
+          "xml": {
+            "name": "non-dependant-surname"
+          }
+        }
+      }
+    },
+    "BuildingSocietyDetails": {
+      "type": "object",
+      "required": [
+        "accountName",
+        "accountNumber",
+        "buildingSocietyCode",
+        "effectiveDate"
+      ],
+      "properties": {
+        "effectiveDate": {
+          "type": "string",
+          "xml": {
+            "name": "effective-date"
+          }
+        },
+        "buildingSocietyCode": {
+          "type": "string",
+          "xml": {
+            "name": "building-society-code"
+          }
+        },
+        "accountNumber": {
+          "type": "string",
+          "xml": {
+            "name": "future-building-society-number"
+          }
+        },
+        "accountName": {
+          "type": "string",
+          "xml": {
+            "name": "future-building-society-account-name"
+          }
+        }
+      }
+    },
+    "HomeLoanAddressType": {
+      "type": "object",
+      "required": [
+        "addressline",
+        "postcode"
+      ],
+      "properties": {
+        "addressline": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "postcode": {
+          "type": "string"
+        }
+      }
+    },
+    "Meals": {
+      "type": "object",
+      "properties": {
+        "breakfasts": {
+          "type": "string"
+        },
+        "lunches": {
+          "type": "string"
+        },
+        "eveningMeals": {
+          "type": "string",
+          "xml": {
+            "name": "evening-meals"
+          }
+        }
+      }
+    },
+    "PersonNumberNameType": {
+      "type": "object",
+      "properties": {
+        "personNumber": {
+          "type": "string",
+          "xml": {
+            "name": "person-number"
+          }
+        },
+        "personName": {
+          "xml": {
+            "name": "person-name"
+          },
+          "$ref": "#/definitions/PersonName"
+        }
+      }
+    },
+    "DateOfBirth": {
+      "type": "object",
+      "required": [
+        "centryType",
+        "nonDependantDateOfBirth",
+        "verification"
+      ],
+      "properties": {
+        "nonDependantDateOfBirth": {
+          "type": "string",
+          "xml": {
+            "name": "non-dependant-date-of-birth"
+          }
+        },
+        "centryType": {
+          "type": "string",
+          "xml": {
+            "name": "centry-type"
+          }
+        },
+        "verification": {
+          "type": "string"
+        }
+      }
+    },
+    "BankDetails": {
+      "type": "object",
+      "required": [
+        "accountName",
+        "accountNumber",
+        "effectiveDate",
+        "sortCode"
+      ],
+      "properties": {
+        "effectiveDate": {
+          "type": "string",
+          "xml": {
+            "name": "effective-date"
+          }
+        },
+        "sortCode": {
+          "type": "string",
+          "xml": {
+            "name": "sort-code"
+          }
+        },
+        "accountNumber": {
+          "type": "string",
+          "xml": {
+            "name": "future-bank-account-number"
+          }
+        },
+        "accountName": {
+          "type": "string",
+          "xml": {
+            "name": "future-bank-account-name"
+          }
+        }
+      }
+    },
+    "Employer": {
+      "type": "object",
+      "required": [
+        "address",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "xml": {
+            "name": "previous-work-employer-name"
+          }
+        },
+        "address": {
+          "$ref": "#/definitions/MandatoryTwoLineAddressType"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "xml": {
+            "name": "phone-number"
+          }
+        }
+      }
+    },
+    "HomeLoanType": {
+      "type": "object",
+      "required": [
+        "dateOfLoan",
+        "lender",
+        "loanNumber",
+        "loanReference",
+        "loanType",
+        "osWithoutMiras"
+      ],
+      "properties": {
+        "loanNumber": {
+          "type": "string",
+          "xml": {
+            "name": "loan-number"
+          }
+        },
+        "loanOwnedBy": {
+          "type": "string",
+          "xml": {
+            "name": "loan-owned-by"
+          }
+        },
+        "lender": {
+          "$ref": "#/definitions/Lender"
+        },
+        "miWeeksPaid": {
+          "type": "string",
+          "xml": {
+            "name": "mi-weeks-paid"
+          }
+        },
+        "miExhstnDate": {
+          "type": "string",
+          "xml": {
+            "name": "mi-exhstn-date"
+          }
+        },
+        "loanReference": {
+          "type": "string",
+          "xml": {
+            "name": "loan-reference"
+          }
+        },
+        "osWithoutMiras": {
+          "type": "string",
+          "xml": {
+            "name": "os-without-miras"
+          }
+        },
+        "exemptLoanAmount": {
+          "type": "string",
+          "xml": {
+            "name": "exempt-loan-amount"
+          }
+        },
+        "weeklyInterestPaid": {
+          "type": "string",
+          "xml": {
+            "name": "weekly-interest-paid"
+          }
+        },
+        "sharedHousingLoanFraction": {
+          "xml": {
+            "name": "shared-housing-loan-fraction"
+          },
+          "$ref": "#/definitions/SharedHousingLoanFraction"
+        },
+        "fiftyPercentQualifyingDate": {
+          "type": "string",
+          "xml": {
+            "name": "fifty-percent-qualifying-date"
+          }
+        },
+        "hundredPercentQualifyingDate": {
+          "type": "string",
+          "xml": {
+            "name": "hundred-percent-qualifying-date"
+          }
+        },
+        "dateOfLoan": {
+          "type": "string",
+          "xml": {
+            "name": "date-of-loan"
+          }
+        },
+        "loanType": {
+          "type": "string",
+          "xml": {
+            "name": "loan-type"
+          }
+        },
+        "clericalAddback": {
+          "type": "string",
+          "xml": {
+            "name": "clerical-addback"
+          }
+        }
+      }
+    },
+    "LinkingDetails": {
+      "type": "object",
+      "required": [
+        "awardMixedCredit"
+      ],
+      "properties": {
+        "awardMixedCredit": {
+          "type": "string",
+          "xml": {
+            "name": "award-mixed-credit"
+          }
+        }
+      }
+    },
+    "MandatoryTwoLineAddressType": {
+      "type": "object",
+      "required": [
+        "addressline"
+      ],
+      "properties": {
+        "addressline": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "postcode": {
+          "type": "string"
+        }
+      }
+    },
+    "MoneyType": {
+      "type": "object",
+      "required": [
+        "expenseOfSale",
+        "moneyTotal",
+        "moneyType",
+        "person",
+        "verification"
+      ],
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/PersonNumberNameType"
+        },
+        "moneyType": {
+          "type": "string",
+          "xml": {
+            "name": "money-type"
+          }
+        },
+        "moneyTotal": {
+          "type": "string",
+          "xml": {
+            "name": "money-total"
+          }
+        },
+        "expenseOfSale": {
+          "type": "string",
+          "xml": {
+            "name": "expense-of-sale"
+          }
+        },
+        "available": {
+          "type": "string"
+        },
+        "verification": {
+          "type": "string"
+        }
+      }
+    },
+    "PaymentDetailsType": {
+      "type": "object",
+      "properties": {
+        "verification": {
+          "type": "string"
+        },
+        "totalAmountDue": {
+          "type": "string",
+          "xml": {
+            "name": "total-amount-due"
+          }
+        },
+        "dateDue": {
+          "type": "string",
+          "xml": {
+            "name": "date-due"
+          }
+        },
+        "dateReceived": {
+          "type": "string",
+          "xml": {
+            "name": "date-received"
+          }
+        },
+        "months": {
+          "type": "string"
+        },
+        "weeks": {
+          "type": "string"
+        },
+        "days": {
+          "type": "string"
+        }
+      }
+    },
+    "PeriodInDoubt": {
+      "type": "object",
+      "required": [
+        "periodInDoubtStartDate"
+      ],
+      "properties": {
+        "periodInDoubtStartDate": {
+          "type": "string",
+          "xml": {
+            "name": "period-in-doubt-start-date"
+          }
+        },
+        "periodInDoubtEndDate": {
+          "type": "string",
+          "xml": {
+            "name": "period-in-doubt-end-date"
+          }
+        }
+      }
+    },
+    "SharedHousingLoanFraction": {
+      "type": "object",
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "properties": {
+        "numerator": {
+          "type": "string"
+        },
+        "denominator": {
+          "type": "string"
+        }
+      }
+    },
+    "ActdetailsType": {
+      "type": "object",
+      "properties": {
+        "bankDetails": {
+          "xml": {
+            "name": "bank-details"
+          },
+          "$ref": "#/definitions/BankDetails"
+        },
+        "buildingSocietyDetails": {
+          "xml": {
+            "name": "building-society-details"
+          },
+          "$ref": "#/definitions/BuildingSocietyDetails"
+        }
+      }
+    },
+    "CurrentAddress": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "addressStatus": {
+          "type": "string",
+          "xml": {
+            "name": "address-status"
+          }
+        }
+      }
+    },
+    "OtherIncomeType": {
+      "type": "object",
+      "required": [
+        "otherIncomeReceived",
+        "otherIncomeStartDate",
+        "otherIncomeType",
+        "period",
+        "person",
+        "totalReceived",
+        "verification"
+      ],
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/PersonNumberNameType"
+        },
+        "otherIncomeType": {
+          "type": "string",
+          "xml": {
+            "name": "other-income-type"
+          }
+        },
+        "totalReceived": {
+          "type": "string",
+          "xml": {
+            "name": "total-received"
+          }
+        },
+        "verification": {
+          "type": "string"
+        },
+        "accountAmount": {
+          "type": "string",
+          "xml": {
+            "name": "account-amount"
+          }
+        },
+        "period": {
+          "type": "string"
+        },
+        "otherIncomeReceived": {
+          "type": "string",
+          "xml": {
+            "name": "other-income-received"
+          }
+        },
+        "otherIncomeStartDate": {
+          "type": "string",
+          "xml": {
+            "name": "other-income-start-date"
+          }
+        },
+        "otherIncomeEndDate": {
+          "type": "string",
+          "xml": {
+            "name": "other-income-end-date"
+          }
+        }
+      }
+    },
+    "JobseekerEmploymentDates": {
+      "type": "object",
+      "required": [
+        "jobseekerEmploymentEndDate",
+        "jobseekerEmploymentStartDate"
+      ],
+      "properties": {
+        "jobseekerEmploymentStartDate": {
+          "type": "string",
+          "xml": {
+            "name": "jobseeker-employment-start-date"
+          }
+        },
+        "jobseekerEmploymentEndDate": {
+          "type": "string",
+          "xml": {
+            "name": "jobseeker-employment-end-date"
+          }
+        }
+      }
+    },
+    "ChildDetails": {
+      "type": "object",
+      "required": [
+        "actionType",
+        "dateOfBirth",
+        "name",
+        "relationshipType"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/Name"
+        },
+        "dateOfBirth": {
+          "xml": {
+            "name": "date-of-birth"
+          },
+          "$ref": "#/definitions/DateOfBirth"
+        },
+        "relationshipType": {
+          "type": "string",
+          "xml": {
+            "name": "relationship-type"
+          }
+        },
+        "actionType": {
+          "type": "string",
+          "xml": {
+            "name": "action-type"
+          }
+        }
+      }
+    },
+    "OccupationalPension": {
+      "type": "object",
+      "required": [
+        "pensionDetails",
+        "pensionReference",
+        "person"
+      ],
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/OccPenPersonNumberNameType"
+        },
+        "pensionReference": {
+          "type": "string",
+          "xml": {
+            "name": "pension-reference"
+          }
+        },
+        "reviewDate": {
+          "type": "string",
+          "xml": {
+            "name": "review-date"
+          }
+        },
+        "pensionDetails": {
+          "type": "array",
+          "xml": {
+            "name": "pension-details"
+          },
+          "items": {
+            "xml": {
+              "name": "pension-details"
+            },
+            "$ref": "#/definitions/PensionDetails"
+          }
+        }
+      }
+    },
+    "CurrentWork": {
+      "type": "object",
+      "required": [
+        "contactEmployer",
+        "earnings",
+        "employedAs",
+        "employer",
+        "person",
+        "review",
+        "selfEmployed",
+        "tradeDisputeInvolvement",
+        "usualOccupationFlag"
+      ],
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/PersonNumberNameType"
+        },
+        "selfEmployed": {
+          "type": "string",
+          "xml": {
+            "name": "self-employed"
+          }
+        },
+        "tradeDisputeInvolvement": {
+          "type": "string",
+          "xml": {
+            "name": "trade-dispute-involvement"
+          }
+        },
+        "employmentStartDate": {
+          "type": "string",
+          "xml": {
+            "name": "employment-start-date"
+          }
+        },
+        "contactEmployer": {
+          "type": "string",
+          "xml": {
+            "name": "contact-employer"
+          }
+        },
+        "employer": {
+          "$ref": "#/definitions/Employer"
+        },
+        "employeeRefNo": {
+          "type": "string",
+          "xml": {
+            "name": "employee-ref-no"
+          }
+        },
+        "department": {
+          "type": "string"
+        },
+        "employedAs": {
+          "type": "string",
+          "xml": {
+            "name": "employed-as"
+          }
+        },
+        "occupationType": {
+          "type": "string",
+          "xml": {
+            "name": "occupation-type"
+          }
+        },
+        "usualOccupationFlag": {
+          "type": "string",
+          "xml": {
+            "name": "usual-occupation-flag"
+          }
+        },
+        "review": {
+          "$ref": "#/definitions/Review"
+        },
+        "earnings": {
+          "$ref": "#/definitions/Earnings"
+        }
+      }
+    },
+    "RequestHeaderType": {
+      "type": "object",
+      "required": [
+        "benefitNumber",
+        "homeOfficeId",
+        "operator",
+        "operatorGrade",
+        "targetOfficeId"
+      ],
+      "properties": {
+        "operator": {
+          "type": "string"
+        },
+        "homeOfficeId": {
+          "type": "string",
+          "xml": {
+            "name": "home-office-id"
+          }
+        },
+        "targetOfficeId": {
+          "type": "string",
+          "xml": {
+            "name": "target-office-id"
+          }
+        },
+        "benefitNumber": {
+          "type": "string",
+          "xml": {
+            "name": "benefit-number"
+          }
+        },
+        "operatorGrade": {
+          "type": "string",
+          "xml": {
+            "name": "operator-grade"
+          }
+        },
+        "blockA": {
+          "type": "string",
+          "xml": {
+            "name": "block-a"
+          }
+        },
+        "blockB": {
+          "type": "string",
+          "xml": {
+            "name": "block-b"
+          }
+        },
+        "requestParams": {
+          "xml": {
+            "name": "request-params"
+          },
+          "$ref": "#/definitions/RequestParamsType"
+        }
+      }
+    },
+    "Review": {
+      "type": "object",
+      "required": [
+        "currentWorkReviewDate",
+        "reviewType"
+      ],
+      "properties": {
+        "reviewType": {
+          "type": "string",
+          "xml": {
+            "name": "review-type"
+          }
+        },
+        "weeks": {
+          "type": "string"
+        },
+        "months": {
+          "type": "string"
+        },
+        "periodStartDate": {
+          "type": "string",
+          "xml": {
+            "name": "period-start-date"
+          }
+        },
+        "currentWorkReviewDate": {
+          "type": "string",
+          "xml": {
+            "name": "current-work-review-date"
+          }
+        },
+        "paymentDetails": {
+          "type": "string",
+          "xml": {
+            "name": "payment-details"
+          }
+        },
+        "periodEndDate": {
+          "type": "string",
+          "xml": {
+            "name": "period-end-date"
+          }
+        }
+      }
+    },
+    "P45": {
+      "type": "object",
+      "properties": {
+        "supplied": {
+          "type": "string"
+        },
+        "expected": {
+          "type": "string"
+        }
+      }
+    },
+    "EmployerEmploymentDates": {
+      "type": "object",
+      "required": [
+        "employerEmploymentEndDate",
+        "employerEmploymentStartDate"
+      ],
+      "properties": {
+        "employerEmploymentStartDate": {
+          "type": "string",
+          "xml": {
+            "name": "employer-employment-start-date"
+          }
+        },
+        "employerEmploymentEndDate": {
+          "type": "string",
+          "xml": {
+            "name": "employer-employment-end-date"
+          }
+        }
+      }
+    },
+    "OccPenPersonNumberNameType": {
+      "type": "object",
+      "properties": {
+        "personNumber": {
+          "type": "string",
+          "xml": {
+            "name": "person-number"
+          }
+        },
+        "personName": {
+          "xml": {
+            "name": "person-name"
+          },
+          "$ref": "#/definitions/PersonName"
+        }
+      }
+    },
+    "Children": {
+      "type": "object",
+      "properties": {
+        "jobseekerChildBenefitRefNo": {
+          "type": "string",
+          "xml": {
+            "name": "jobseeker-child-benefit-ref-no"
+          }
+        },
+        "partnerChildBenefitRefNo": {
+          "type": "string",
+          "xml": {
+            "name": "partner-child-benefit-ref-no"
+          }
+        },
+        "childDetails": {
+          "type": "array",
+          "xml": {
+            "name": "child-details"
+          },
+          "items": {
+            "xml": {
+              "name": "child-details"
+            },
+            "$ref": "#/definitions/ChildDetails"
+          }
+        }
+      }
+    },
+    "DateOfDeath": {
+      "type": "object",
+      "required": [
+        "centryType",
+        "partnerDateOfDeathDate",
+        "verification"
+      ],
+      "properties": {
+        "partnerDateOfDeathDate": {
+          "type": "string",
+          "xml": {
+            "name": "partner-date-of-death-date"
+          }
+        },
+        "centryType": {
+          "type": "string",
+          "xml": {
+            "name": "centry-type"
+          }
+        },
+        "verification": {
+          "type": "string"
+        }
+      }
+    },
+    "SharedHousingCostFraction": {
+      "type": "object",
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "properties": {
+        "numerator": {
+          "type": "string"
+        },
+        "denominator": {
+          "type": "string"
+        }
+      }
+    },
+    "Partner": {
+      "type": "object",
+      "required": [
+        "checkbrick",
+        "dateOfBirth",
+        "gender",
+        "name",
+        "newPartner",
+        "partnerIdConfirmed",
+        "partnerNino"
+      ],
+      "properties": {
+        "partnerNino": {
+          "type": "string",
+          "xml": {
+            "name": "partner-nino"
+          }
+        },
+        "checkbrick": {
+          "type": "string"
+        },
+        "newPartner": {
+          "type": "string",
+          "xml": {
+            "name": "new-partner"
+          }
+        },
+        "partnerIdConfirmed": {
+          "type": "string",
+          "xml": {
+            "name": "partner-id-confirmed"
+          }
+        },
+        "name": {
+          "$ref": "#/definitions/Name"
+        },
+        "requestedName": {
+          "type": "string",
+          "xml": {
+            "name": "requested-name"
+          }
+        },
+        "partnerAddress": {
+          "xml": {
+            "name": "partner-address"
+          },
+          "$ref": "#/definitions/PartnerAddress"
+        },
+        "correspondenceAddress": {
+          "xml": {
+            "name": "correspondence-address"
+          },
+          "$ref": "#/definitions/CorrespondenceAddress"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "xml": {
+            "name": "date-of-birth"
+          },
+          "$ref": "#/definitions/DateOfBirth"
+        },
+        "dateOfBirthVerificationRequest": {
+          "type": "string",
+          "xml": {
+            "name": "date-of-birth-verification-request"
+          }
+        },
+        "dateOfDeath": {
+          "xml": {
+            "name": "date-of-death"
+          },
+          "$ref": "#/definitions/DateOfDeath"
+        },
+        "telephone": {
+          "type": "string"
+        }
+      }
+    },
+    "RequestBody": {
+      "type": "object",
+      "required": [
+        "jobseeker"
+      ],
+      "properties": {
+        "jobseeker": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Jobseeker"
+          }
+        }
+      }
+    },
+    "PersonName": {
+      "type": "object",
+      "required": [
+        "firstForename"
+      ],
+      "properties": {
+        "firstForename": {
+          "type": "string",
+          "xml": {
+            "name": "first-forename"
+          }
+        }
+      }
+    },
+    "IncomeBased": {
+      "type": "object",
+      "properties": {
+        "receivedDate": {
+          "type": "string",
+          "xml": {
+            "name": "received-date"
+          }
+        },
+        "effectiveDate": {
+          "type": "string",
+          "xml": {
+            "name": "effective-date"
+          }
+        },
+        "partner": {
+          "$ref": "#/definitions/Partner"
+        },
+        "children": {
+          "$ref": "#/definitions/Children"
+        },
+        "nonDependant": {
+          "type": "array",
+          "xml": {
+            "name": "non-dependant"
+          },
+          "items": {
+            "xml": {
+              "name": "non-dependant"
+            },
+            "$ref": "#/definitions/NonDependantType"
+          }
+        },
+        "money": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MoneyType"
+          }
+        },
+        "nationalSaving": {
+          "type": "array",
+          "xml": {
+            "name": "national-saving"
+          },
+          "items": {
+            "xml": {
+              "name": "national-saving"
+            },
+            "$ref": "#/definitions/SavingsType"
+          }
+        },
+        "homeLoan": {
+          "type": "array",
+          "xml": {
+            "name": "home-loan"
+          },
+          "items": {
+            "xml": {
+              "name": "home-loan"
+            },
+            "$ref": "#/definitions/HomeLoanType"
+          }
+        }
+      }
+    },
+    "Request": {
+      "type": "object",
+      "required": [
+        "requestBody",
+        "requestHeader"
+      ],
+      "properties": {
+        "requestHeader": {
+          "xml": {
+            "name": "request-header"
+          },
+          "$ref": "#/definitions/RequestHeaderType"
+        },
+        "requestBody": {
+          "xml": {
+            "name": "request-body"
+          },
+          "$ref": "#/definitions/RequestBody"
+        }
+      },
+      "xml": {
+        "name": "request"
+      }
+    },
+    "Flags": {
+      "type": "object",
+      "required": [
+        "advanceAllowed",
+        "appealsInterest",
+        "asylumSeeker",
+        "compensationRecoveryGroup",
+        "directPaymentInterest",
+        "inhibitNextPayment",
+        "jsagSigned",
+        "lboClaim",
+        "legalAidInterest",
+        "overpaymentInterest",
+        "postalSigningApplicable",
+        "referToAnotherClaimDocs",
+        "referToClaimDocs",
+        "requestBarcodeLabel",
+        "socialFundInterest",
+        "splitPayee"
+      ],
+      "properties": {
+        "jsagSigned": {
+          "type": "string",
+          "xml": {
+            "name": "jsag-signed"
+          }
+        },
+        "appealsInterest": {
+          "type": "string",
+          "xml": {
+            "name": "appeals-interest"
+          }
+        },
+        "postalSigningApplicable": {
+          "type": "string",
+          "xml": {
+            "name": "postal-signing-applicable"
+          }
+        },
+        "splitPayee": {
+          "type": "string",
+          "xml": {
+            "name": "split-payee"
+          }
+        },
+        "advanceAllowed": {
+          "type": "string",
+          "xml": {
+            "name": "advance-allowed"
+          }
+        },
+        "compensationRecoveryGroup": {
+          "type": "string",
+          "xml": {
+            "name": "compensation-recovery-group"
+          }
+        },
+        "lboClaim": {
+          "type": "string",
+          "xml": {
+            "name": "lbo-claim"
+          }
+        },
+        "socialFundInterest": {
+          "type": "string",
+          "xml": {
+            "name": "social-fund-interest"
+          }
+        },
+        "legalAidInterest": {
+          "type": "string",
+          "xml": {
+            "name": "legal-aid-interest"
+          }
+        },
+        "overpaymentInterest": {
+          "type": "string",
+          "xml": {
+            "name": "overpayment-interest"
+          }
+        },
+        "referToClaimDocs": {
+          "type": "string",
+          "xml": {
+            "name": "refer-to-claim-docs"
+          }
+        },
+        "directPaymentInterest": {
+          "type": "string",
+          "xml": {
+            "name": "direct-payment-interest"
+          }
+        },
+        "asylumSeeker": {
+          "type": "string",
+          "xml": {
+            "name": "asylum-seeker"
+          }
+        },
+        "referToAnotherClaimDocs": {
+          "type": "string",
+          "xml": {
+            "name": "refer-to-another-claim-docs"
+          }
+        },
+        "inhibitNextPayment": {
+          "type": "string",
+          "xml": {
+            "name": "inhibit-next-payment"
+          }
+        },
+        "requestBarcodeLabel": {
+          "type": "string",
+          "xml": {
+            "name": "request-barcode-label"
+          }
+        }
+      }
+    },
+    "SuspensionType": {
+      "type": "object",
+      "required": [
+        "arCode",
+        "suspensionDecision"
+      ],
+      "properties": {
+        "suspensionDecision": {
+          "type": "string",
+          "xml": {
+            "name": "suspension-decision"
+          }
+        },
+        "arCode": {
+          "type": "string",
+          "xml": {
+            "name": "ar-code"
+          }
+        },
+        "periodInDoubt": {
+          "xml": {
+            "name": "period-in-doubt"
+          },
+          "$ref": "#/definitions/PeriodInDoubt"
+        },
+        "noticeDate": {
+          "type": "string",
+          "xml": {
+            "name": "notice-date"
+          }
+        },
+        "entitlement": {
+          "type": "string"
+        },
+        "daysWeeksMonths": {
+          "type": "string",
+          "xml": {
+            "name": "days-weeks-months"
+          }
+        },
+        "submit": {
+          "type": "string"
+        }
+      }
+    },
+    "ChildcareType": {
+      "type": "object",
+      "required": [
+        "lrInterest",
+        "nonResidentParent"
+      ],
+      "properties": {
+        "lrInterest": {
+          "type": "string",
+          "xml": {
+            "name": "lr-interest"
+          }
+        },
+        "nonResidentParent": {
+          "type": "string",
+          "xml": {
+            "name": "non-resident-parent"
+          }
+        }
+      }
+    },
+    "Mop": {
+      "type": "object",
+      "required": [
+        "personalIssueFlag"
+      ],
+      "properties": {
+        "personalIssueFlag": {
+          "type": "string",
+          "xml": {
+            "name": "personal-issue-flag"
+          }
+        },
+        "currentActDetails": {
+          "xml": {
+            "name": "current-act-details"
+          },
+          "$ref": "#/definitions/ActdetailsType"
+        },
+        "futureActDetails": {
+          "xml": {
+            "name": "future-act-details"
+          },
+          "$ref": "#/definitions/FutureactdetailsType"
+        }
+      }
+    },
+    "ExceptionalConditionType": {
+      "type": "object",
+      "required": [
+        "exceptionalConditionStartDate",
+        "reasonCode",
+        "verificationType"
+      ],
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/PersonNumberNameType"
+        },
+        "reasonCode": {
+          "type": "string",
+          "xml": {
+            "name": "reason-code"
+          }
+        },
+        "exceptionalConditionStartDate": {
+          "type": "string",
+          "xml": {
+            "name": "exceptional-condition-start-date"
+          }
+        },
+        "exceptionalConditionEndDate": {
+          "type": "string",
+          "xml": {
+            "name": "exceptional-condition-end-date"
+          }
+        },
+        "verificationType": {
+          "type": "string",
+          "xml": {
+            "name": "verification-type"
+          }
+        }
+      }
+    },
+    "Occupation": {
+      "type": "object",
+      "required": [
+        "sought",
+        "usual"
+      ],
+      "properties": {
+        "sought": {
+          "type": "string"
+        },
+        "usual": {
+          "type": "string"
+        }
+      }
+    },
+    "Param": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          }
+        }
+      }
+    },
+    "PartnerAddress": {
+      "type": "object",
+      "required": [
+        "currentAddress"
+      ],
+      "properties": {
+        "effectiveDate": {
+          "type": "string",
+          "xml": {
+            "name": "effective-date"
+          }
+        },
+        "currentAddress": {
+          "xml": {
+            "name": "current-address"
+          },
+          "$ref": "#/definitions/CurrentAddress"
+        }
+      }
+    },
+    "HousingCostType": {
+      "type": "object",
+      "required": [
+        "amount",
+        "housingCostType"
+      ],
+      "properties": {
+        "housingCostType": {
+          "type": "string",
+          "xml": {
+            "name": "housing-cost-type"
+          }
+        },
+        "amount": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        }
+      }
+    },
+    "PreviousWork": {
+      "type": "object",
+      "required": [
+        "employer",
+        "howMuchOwed",
+        "issueJs85",
+        "issueJs85Reminder",
+        "jobseekerEmploymentDates",
+        "js84Issued",
+        "leftDueToDismissal",
+        "leftVoluntarily",
+        "numberDaysWeeksWorked",
+        "person",
+        "selfEmployed"
+      ],
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/PersonNumberNameType"
+        },
+        "jobseekerEmploymentDates": {
+          "xml": {
+            "name": "jobseeker-employment-dates"
+          },
+          "$ref": "#/definitions/JobseekerEmploymentDates"
+        },
+        "employerEmploymentDates": {
+          "xml": {
+            "name": "employer-employment-dates"
+          },
+          "$ref": "#/definitions/EmployerEmploymentDates"
+        },
+        "selfEmployed": {
+          "type": "string",
+          "xml": {
+            "name": "self-employed"
+          }
+        },
+        "employer": {
+          "$ref": "#/definitions/Employer"
+        },
+        "leftDueToDismissal": {
+          "type": "string",
+          "xml": {
+            "name": "left-due-to-dismissal"
+          }
+        },
+        "leftVoluntarily": {
+          "type": "string",
+          "xml": {
+            "name": "left-voluntarily"
+          }
+        },
+        "js84Issued": {
+          "type": "string",
+          "xml": {
+            "name": "js84-issued"
+          }
+        },
+        "issueJs85": {
+          "type": "string",
+          "xml": {
+            "name": "issue-js85"
+          }
+        },
+        "issueJs85Reminder": {
+          "type": "string",
+          "xml": {
+            "name": "issue-js85-reminder"
+          }
+        },
+        "employeeRefNo": {
+          "type": "string",
+          "xml": {
+            "name": "employee-ref-no"
+          }
+        },
+        "employedAs": {
+          "type": "string",
+          "xml": {
+            "name": "employed-as"
+          }
+        },
+        "site": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "numberDaysWeeksWorked": {
+          "type": "string",
+          "xml": {
+            "name": "number-days-weeks-worked"
+          }
+        },
+        "howMuchOwed": {
+          "type": "string",
+          "xml": {
+            "name": "how-much-owed"
+          }
+        },
+        "paymentInLieu": {
+          "xml": {
+            "name": "payment-in-lieu"
+          },
+          "$ref": "#/definitions/PaymentDetailsType"
+        },
+        "compensation": {
+          "$ref": "#/definitions/PaymentDetailsType"
+        },
+        "holidayPay": {
+          "xml": {
+            "name": "holiday-pay"
+          },
+          "$ref": "#/definitions/PaymentDetailsType"
+        }
+      }
+    },
+    "Earnings": {
+      "type": "object",
+      "required": [
+        "expensesReimbursed",
+        "netPay",
+        "paidEmployment",
+        "paymentPeriod",
+        "personalOccupationPension",
+        "verified",
+        "weeklyHoursWorked"
+      ],
+      "properties": {
+        "lowestAmountEarned": {
+          "type": "string",
+          "xml": {
+            "name": "lowest-amount-earned"
+          }
+        },
+        "highestAmountEarned": {
+          "type": "string",
+          "xml": {
+            "name": "highest-amount-earned"
+          }
+        },
+        "netPay": {
+          "type": "string",
+          "xml": {
+            "name": "net-pay"
+          }
+        },
+        "paymentPeriod": {
+          "type": "string",
+          "xml": {
+            "name": "payment-period"
+          }
+        },
+        "weeklyHoursWorked": {
+          "type": "string",
+          "xml": {
+            "name": "weekly-hours-worked"
+          }
+        },
+        "paidEmployment": {
+          "type": "string",
+          "xml": {
+            "name": "paid-employment"
+          }
+        },
+        "verified": {
+          "type": "string"
+        },
+        "expensesReimbursed": {
+          "type": "string",
+          "xml": {
+            "name": "expenses-reimbursed"
+          }
+        },
+        "personalOccupationPension": {
+          "type": "string",
+          "xml": {
+            "name": "personal-occupation-pension"
+          }
+        }
+      }
+    },
+    "SavingsType": {
+      "type": "object",
+      "required": [
+        "issue",
+        "person",
+        "total",
+        "verification"
+      ],
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/PersonNumberNameType"
+        },
+        "issue": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "verification": {
+          "type": "string"
+        },
+        "total": {
+          "type": "string"
+        }
+      }
+    },
+    "WhereYouLive": {
+      "type": "object",
+      "required": [
+        "councilTaxCharge",
+        "housingBenefitStatusFlag",
+        "laCode"
+      ],
+      "properties": {
+        "sharedHousingCostFraction": {
+          "xml": {
+            "name": "shared-housing-cost-fraction"
+          },
+          "$ref": "#/definitions/SharedHousingCostFraction"
+        },
+        "laCode": {
+          "type": "string",
+          "xml": {
+            "name": "la-code"
+          }
+        },
+        "housingBenefitStatusFlag": {
+          "type": "string",
+          "xml": {
+            "name": "housing-benefit-status-flag"
+          }
+        },
+        "councilTaxCharge": {
+          "type": "string",
+          "xml": {
+            "name": "council-tax-charge"
+          }
+        },
+        "member": {
+          "type": "string"
+        },
+        "housingCost": {
+          "type": "array",
+          "xml": {
+            "name": "housing-cost"
+          },
+          "items": {
+            "xml": {
+              "name": "housing-cost"
+            },
+            "$ref": "#/definitions/HousingCostType"
+          }
+        },
+        "natLimitCode": {
+          "type": "string",
+          "xml": {
+            "name": "nat-limit-code"
+          }
+        },
+        "exemptionPeriodEndDate": {
+          "type": "string",
+          "xml": {
+            "name": "exemption-period-end-date"
+          }
+        },
+        "weeklyHousingBenefitAmount": {
+          "type": "string",
+          "xml": {
+            "name": "weekly-housing-benefit-amount"
+          }
+        },
+        "endDateOfHousingBenefitEntitlement": {
+          "type": "string",
+          "xml": {
+            "name": "end-date-of-housing-benefit-entitlement"
+          }
+        },
+        "meals": {
+          "$ref": "#/definitions/Meals"
+        }
+      }
+    },
+    "Response": {
+      "type": "object",
+      "required": [
+        "responseBody",
+        "responseHeader"
+      ],
+      "properties": {
+        "responseHeader": {
+          "xml": {
+            "name": "response-header"
+          },
+          "$ref": "#/definitions/ResponseHeaderType"
+        },
+        "responseBody": {
+          "type": "object",
+          "xml": {
+            "name": "response-body"
+          }
+        }
+      },
+      "xml": {
+        "name": "response"
+      }
+    },
+    "Messages": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Message"
+          }
+        }
+      }
+    },
+    "Message": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "screen": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          }
+        }
+      }
+    },
+    "ResponseHeaderType": {
+      "type": "object",
+      "required": [
+        "requestParams",
+        "result"
+      ],
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/Result"
+        },
+        "requestParams": {
+          "xml": {
+            "name": "request-params"
+          },
+          "$ref": "#/definitions/RequestParams"
+        }
+      }
+    },
+    "RequestParams": {
+      "type": "object",
+      "properties": {
+        "param": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Param"
+          }
+        }
+      }
+    },
+    "Result": {
+      "type": "object",
+      "required": [
+        "category",
+        "completionIndicator",
+        "systemErrors"
+      ],
+      "properties": {
+        "completionIndicator": {
+          "type": "string",
+          "xml": {
+            "name": "completion-indicator"
+          }
+        },
+        "category": {
+          "type": "string"
+        },
+        "systemErrors": {
+          "xml": {
+            "name": "system-errors"
+          },
+          "$ref": "#/definitions/SystemErrors"
+        },
+        "messages": {
+          "$ref": "#/definitions/Messages"
+        }
+      }
+    },
+    "SystemErrors": {
+      "type": "object",
+      "required": [
+        "systemError"
+      ],
+      "properties": {
+        "systemError": {
+          "type": "array",
+          "xml": {
+            "name": "system-error"
+          },
+          "items": {
+            "type": "string",
+            "xml": {
+              "name": "system-error"
+            }
+          }
+        }
+      }
+    },
+    "ErrorResponseHeaderType": {
+      "type": "object",
+      "required": [
+        "requestParams",
+        "result"
+      ],
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/Result"
+        },
+        "requestParams": {
+          "xml": {
+            "name": "request-params"
+          },
+          "$ref": "#/definitions/RequestParams"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "required": [
+        "responseBody",
+        "responseHeader"
+      ],
+      "properties": {
+        "responseHeader": {
+          "xml": {
+            "name": "response-header"
+          },
+          "$ref": "#/definitions/ErrorResponseHeaderType"
+        },
+        "responseBody": {
+          "type": "object",
+          "xml": {
+            "name": "response-body"
+          }
+        }
+      },
+      "xml": {
+        "name": "response"
+      }
+    }
+  }
+}

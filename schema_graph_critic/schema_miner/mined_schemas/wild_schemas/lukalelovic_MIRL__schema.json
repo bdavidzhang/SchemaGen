@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "systemName": {
+        "type": "string"
+      },
+      "systemVersion": {
+        "type": "string"
+      },
+      "nodes": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "nodeName": {
+                "type": "string"
+              },
+              "nodeType": {
+                "type": "string"
+              },
+              "dependencies": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "nodeName": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "nodeName"
+                    ]
+                }
+              },
+              "targets": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "nodeName": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "nodeName"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "nodeName",
+              "nodeType",
+              "dependencies",
+              "targets"
+            ]
+          }
+        ]}
+    }
+}

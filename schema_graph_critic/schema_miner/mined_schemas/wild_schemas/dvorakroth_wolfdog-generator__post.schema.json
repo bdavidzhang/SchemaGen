@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "Post",
+  "description": "Metadata attached to a post in Wolfdog Generator",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "pubDate"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "lol if i don't include this, vscode yells at me"
+    },
+    "title": {
+      "type": "string",
+      "description": "A mandatory title for the post"
+    },
+    "pubDate": {
+      "type": "string",
+      "description": "A mandatory publication date for the post. (For sorting and RSS and stuff)\n\nGiven in ISO format + timezone",
+      "examples": ["2025-08-06T04:20:00.690Z"]
+    },
+    "additionalValuesInTemplateScope": {
+      "description": "Optionally, values to be passed onto the Handlebars template, in a prop named `post.additionalValues`"
+    }
+  }
+}

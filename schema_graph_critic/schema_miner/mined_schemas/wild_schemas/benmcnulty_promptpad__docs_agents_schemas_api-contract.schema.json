@@ -1,0 +1,306 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Promptpad API Contract Schema",
+  "description": "JSON Schema for GET /api/models and POST /api/refine response shapes",
+  
+  "definitions": {
+    "ModelInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full model name as reported by Ollama"
+        },
+        "family": {
+          "type": "string", 
+          "description": "Model family (e.g., gpt-oss, llama, gemma)"
+        },
+        "parameters": {
+          "type": "string",
+          "description": "Parameter count (e.g., 20b, 8b, 70b)"
+        },
+        "default": {
+          "type": "boolean",
+          "description": "Whether this is the default model (gpt-oss:20b should be true)"
+        }
+      },
+      "required": ["name", "family", "parameters"],
+      "additionalProperties": false
+    },
+
+    "UsageInfo": {
+      "type": "object",
+      "properties": {
+        "input_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of tokens in the input"
+        },
+        "output_tokens": {
+          "type": "integer", 
+          "minimum": 0,
+          "description": "Number of tokens in the generated output"
+        }
+      },
+      "required": ["input_tokens", "output_tokens"],
+      "additionalProperties": false
+    },
+
+    "PatchOperation": {
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "enum": ["replace", "insert", "delete"],
+          "description": "Type of patch operation"
+        },
+        "from": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Start and end positions for replace/delete operations"
+        },
+        "at": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Position for insert operations"
+        },
+        "to": {
+          "type": "string",
+          "description": "Replacement or insertion text"
+        }
+      },
+      "required": ["op"],
+      "oneOf": [
+        {
+          "properties": {
+            "op": { "const": "replace" },
+            "from": true,
+            "to": true
+          },
+          "required": ["from", "to"],
+          "not": { "required": ["at"] }
+        },
+        {
+          "properties": {
+            "op": { "const": "insert" },
+            "at": true,
+            "to": true
+          },
+          "required": ["at", "to"], 
+          "not": { "required": ["from"] }
+        },
+        {
+          "properties": {
+            "op": { "const": "delete" },
+            "from": true
+          },
+          "required": ["from"],
+          "not": { "required": ["at", "to"] }
+        }
+      ],
+      "additionalProperties": false
+    },
+
+    "RefineRequest": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["refine", "reinforce"],
+          "description": "Operation mode"
+        },
+        "input": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10000,
+          "description": "Input text for refine mode"
+        },
+        "draft": {
+          "type": "string", 
+          "minLength": 1,
+          "maxLength": 50000,
+          "description": "Current draft text for reinforce mode"
+        },
+        "model": {
+          "type": "string",
+          "description": "Model name (should default to gpt-oss:20b)"
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.3,
+          "description": "Generation temperature (must be ≤ 0.3)"
+        }
+      },
+      "required": ["mode", "model", "temperature"],
+      "oneOf": [
+        {
+          "properties": {
+            "mode": { "const": "refine" }
+          },
+          "required": ["input"],
+          "not": { "required": ["draft"] }
+        },
+        {
+          "properties": {
+            "mode": { "const": "reinforce" }
+          },
+          "required": ["draft"], 
+          "not": { "required": ["input"] }
+        }
+      ],
+      "additionalProperties": false
+    },
+
+    "RefineResponse": {
+      "type": "object",
+      "properties": {
+        "output": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Generated or refined text"
+        },
+        "usage": {
+          "$ref": "#/definitions/UsageInfo"
+        },
+        "patch": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PatchOperation"
+          },
+          "description": "Patch operations for reinforce mode (optional)"
+        }
+      },
+      "required": ["output", "usage"],
+      "additionalProperties": false
+    }
+  },
+
+  "oneOf": [
+    {
+      "title": "GET /api/models Response",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ModelInfo"
+      },
+      "minItems": 1,
+      "description": "Array of available models with gpt-oss:20b as default"
+    },
+    {
+      "title": "POST /api/refine Request", 
+      "$ref": "#/definitions/RefineRequest"
+    },
+    {
+      "title": "POST /api/refine Response",
+      "$ref": "#/definitions/RefineResponse"
+    }
+  ],
+
+  "examples": [
+    {
+      "title": "Models Response Example",
+      "description": "GET /api/models",
+      "data": [
+        {
+          "name": "gpt-oss:20b",
+          "family": "gpt-oss", 
+          "parameters": "20b",
+          "default": true
+        },
+        {
+          "name": "llama3.2",
+          "family": "llama",
+          "parameters": "8b"
+        }
+      ]
+    },
+    {
+      "title": "Refine Request Example",
+      "description": "POST /api/refine (refine mode)",
+      "data": {
+        "mode": "refine",
+        "input": "summarize this article for policy analysts", 
+        "model": "gpt-oss:20b",
+        "temperature": 0.2
+      }
+    },
+    {
+      "title": "Refine Response Example", 
+      "description": "POST /api/refine response",
+      "data": {
+        "output": "Create a comprehensive policy briefing that summarizes the key findings...",
+        "usage": {
+          "input_tokens": 12,
+          "output_tokens": 156
+        }
+      }
+    },
+    {
+      "title": "Reinforce Request Example",
+      "description": "POST /api/refine (reinforce mode)",
+      "data": {
+        "mode": "reinforce",
+        "draft": "Write a good summary of the data. Make it professional.",
+        "model": "gpt-oss:20b", 
+        "temperature": 0.25
+      }
+    },
+    {
+      "title": "Reinforce Response with Patch Example",
+      "description": "POST /api/refine response with patch operations",
+      "data": {
+        "output": "Create a comprehensive executive summary of the analytical data. Ensure professional formatting and clear insights.",
+        "usage": {
+          "input_tokens": 15,
+          "output_tokens": 23
+        },
+        "patch": [
+          {
+            "op": "replace",
+            "from": [8, 12],
+            "to": "comprehensive executive"
+          },
+          {
+            "op": "replace", 
+            "from": [24, 28],
+            "to": "analytical data. Ensure professional formatting and clear insights"
+          }
+        ]
+      }
+    }
+  ]
+  ,
+  "invalidExamples": [
+    {
+      "title": "Invalid Refine Request (missing input)",
+      "description": "POST /api/refine with mode=refine but no input",
+      "data": {
+        "mode": "refine",
+        "model": "gpt-oss:20b",
+        "temperature": 0.2
+      }
+    },
+    {
+      "title": "Invalid Temperature (>0.3)",
+      "description": "Temperature exceeds contract maximum",
+      "data": {
+        "mode": "reinforce",
+        "draft": "text",
+        "model": "gpt-oss:20b",
+        "temperature": 0.5
+      }
+    },
+    {
+      "title": "Invalid Response (missing usage)",
+      "description": "Response must include usage",
+      "data": {
+        "output": "text only"
+      }
+    }
+  ]
+}

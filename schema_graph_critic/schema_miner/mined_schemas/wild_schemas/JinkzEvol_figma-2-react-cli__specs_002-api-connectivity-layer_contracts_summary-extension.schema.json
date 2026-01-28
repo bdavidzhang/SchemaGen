@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://figma-2-react.specs/002/summary-extension.schema.json",
+  "title": "Generator Summary Connectivity Extension",
+  "type": "object",
+  "required": [
+    "versionDir",
+    "mode",
+    "usedNetwork",
+    "fetch",
+    "warnings",
+    "timings"
+  ],
+  "properties": {
+    "versionDir": {
+      "type": "string",
+      "pattern": "^v[0-9]{8}-[0-9]{4}-[a-f0-9]{8}$"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["live", "replay", "static"]
+    },
+    "usedNetwork": {
+      "type": "boolean"
+    },
+    "fetch": {
+      "type": "object",
+      "required": [
+        "totalRequests",
+        "retryCount",
+        "fetchElapsedMs",
+        "retryBudgetMs",
+        "timeouts",
+        "rateLimitCount",
+        "authorizationFailures"
+      ],
+      "properties": {
+        "totalRequests": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retryCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fetchElapsedMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "retryBudgetMs": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 7500
+        },
+        "timeouts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rateLimitCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "authorizationFailures": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "overrideNotice": {
+          "type": ["string", "null"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "replay": {
+      "type": ["object", "null"],
+      "required": ["artifactPath", "manifestHash", "createdAt", "ageDays"],
+      "properties": {
+        "artifactPath": {
+          "type": "string"
+        },
+        "manifestHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{8}$"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ageDays": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "layerRef": {
+            "type": ["string", "null"]
+          },
+          "meta": {
+            "type": ["object", "null"],
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "timings": {
+      "type": "object",
+      "properties": {
+        "fetch": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "overrideNotice": {
+      "type": ["string", "null"]
+    },
+    "warningCap": {
+      "type": "object",
+      "properties": {
+        "threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+        "override": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

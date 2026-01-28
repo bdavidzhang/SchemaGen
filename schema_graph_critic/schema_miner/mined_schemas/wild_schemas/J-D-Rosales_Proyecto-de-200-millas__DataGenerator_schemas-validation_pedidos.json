@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pedidos",
+  "type": "object",
+  "x-dynamodb": {
+    "partition_key": "local_id",
+    "sort_key": "pedido_id",
+    "global_secondary_indexes": [
+      {
+        "name": "by_usuario_v2",
+        "partition_key": "correo",
+        "sort_key": "created_at"
+      }
+    ]
+  },
+  "properties": {
+    "pedido_id": {
+      "type": "string"
+    },
+    "local_id": {
+      "type": "string"
+    },
+    "correo": {
+      "type": "string"
+    },
+    "productos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "producto_id": {
+            "type": "string",
+            "minLength": 3
+          },
+          "cantidad": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "producto_id",
+          "cantidad"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "costo": {
+      "type": "number",
+      "minimum": 0
+    },
+    "direccion": {
+      "type": "string"
+    },
+    "estado": {
+      "type": "string",
+      "enum": [
+        "procesando",
+        "cocinando",
+        "empacando",
+        "enviando",
+        "recibido"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "pedido_id",
+    "local_id",
+    "correo",
+    "direccion",
+    "costo",
+    "estado",
+    "created_at",
+    "productos"
+  ],
+  "additionalProperties": false
+}

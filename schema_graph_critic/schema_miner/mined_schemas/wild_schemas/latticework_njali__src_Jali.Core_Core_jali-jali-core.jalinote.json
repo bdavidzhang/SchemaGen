@@ -1,0 +1,27 @@
+﻿{
+  "name": "JaliCoreMessages",
+  "description":  "Notification messages defined by the Jali Core package.",
+  "authority": "jali",
+  "domain": "jali",
+  "library": "core",
+  "messages": [
+    {
+      "name": "InternalError",
+      "severity": "critical",
+      "baseCode": "0001",
+      "description": "A critical internal application error has occurred and application should terminate.",
+      "template": "Internal error: ${args.message}",
+      "args": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The description of the internal error."
+          }
+        }
+      },
+      "identifyingArgs": [ ]
+    }
+  ]
+}

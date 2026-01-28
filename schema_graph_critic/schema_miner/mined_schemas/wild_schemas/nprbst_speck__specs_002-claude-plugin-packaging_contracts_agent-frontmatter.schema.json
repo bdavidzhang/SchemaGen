@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://code.claude.com/schemas/agent-frontmatter.json",
+  "title": "Claude Code Agent Frontmatter",
+  "description": "Schema for YAML frontmatter in subagent Markdown files",
+  "type": "object",
+  "required": [
+    "name",
+    "description"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique agent identifier using lowercase letters, numbers, and hyphens",
+      "pattern": "^[a-z0-9-]+$",
+      "minLength": 1,
+      "maxLength": 64,
+      "examples": [
+        "speck-transform-bash-to-bun",
+        "code-reviewer",
+        "test-generator"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Natural language description of agent's purpose and when to use it",
+      "minLength": 10,
+      "maxLength": 1024,
+      "examples": [
+        "Transform bash scripts to Bun TypeScript equivalents while preserving functionality",
+        "Review code changes for security vulnerabilities and best practices",
+        "Generate comprehensive test suites for TypeScript functions"
+      ]
+    },
+    "tools": {
+      "type": "string",
+      "description": "Comma-separated list of tool names the agent can use (inherits all if omitted)",
+      "pattern": "^[A-Za-z, ]+$",
+      "examples": [
+        "Read, Write, Grep, Glob",
+        "Read, Grep, Bash",
+        "WebSearch, WebFetch, Read"
+      ]
+    },
+    "model": {
+      "type": "string",
+      "description": "Preferred model for agent execution",
+      "enum": [
+        "sonnet",
+        "opus",
+        "haiku",
+        "inherit"
+      ],
+      "default": "inherit",
+      "examples": [
+        "sonnet",
+        "haiku"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "name": "speck-transform-bash-to-bun",
+      "description": "Transform bash scripts to Bun TypeScript equivalents while preserving functionality and error handling",
+      "tools": "Read, Write, Grep, Glob",
+      "model": "sonnet"
+    },
+    {
+      "name": "code-reviewer",
+      "description": "Review code changes for security vulnerabilities, performance issues, and adherence to best practices",
+      "tools": "Read, Grep, Glob",
+      "model": "opus"
+    },
+    {
+      "name": "quick-formatter",
+      "description": "Fast code formatting for small files",
+      "tools": "Read, Write",
+      "model": "haiku"
+    }
+  ]
+}

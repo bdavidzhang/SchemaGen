@@ -6,8 +6,8 @@
 # Large Data - DO NOT UPLOAD
 # =============================================================================
 # Mined schemas (400K+ files, several GB)
-schema_graph_critic/schema_miner/mined_schemas/
-schema_miner/mined_schemas/
+schema_graph_critic/schema_miner/mined_schemas/repositories/
+
 
 # Model checkpoints (can be large)
 checkpoints/

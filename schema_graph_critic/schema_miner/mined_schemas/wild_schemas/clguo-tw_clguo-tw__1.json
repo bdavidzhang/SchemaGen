@@ -1,0 +1,415 @@
+{
+  "x-generator": "NSwag v13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v13.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "My Title",
+    "version": "1.0.0"
+  },
+  "host": "localhost:7279",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json",
+    "text/json",
+    "application/*+json"
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "tags": [
+          "Shipment"
+        ],
+        "operationId": "Shipment_Post",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "shipmentRequest",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateShipmentCommandRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          },
+          "404": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Shipment"
+        ],
+        "operationId": "Shipment_Patch",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "shipmentRequest",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateShipmentCommandRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          },
+          "404": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Shipment"
+        ],
+        "operationId": "Shipment_Delete",
+        "parameters": [
+          {
+            "name": "shipmentRequest",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DeleteShipmentCommandRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ProblemDetails": {
+      "type": "object",
+      "additionalProperties": {},
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateShipmentCommandRequest": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ShipmentCommandRequest"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "deliveries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DeliveryRequest"
+              }
+            },
+            "plannedLoadingStartDateTime": {
+              "type": "string"
+            },
+            "plannedLoadingEndDateTime": {
+              "type": "string"
+            },
+            "plannedShipmentStartDateTime": {
+              "type": "string"
+            },
+            "plannedShipmentEndDateTime": {
+              "type": "string"
+            },
+            "actualLoadingStartDateTime": {
+              "type": "string"
+            },
+            "actualLoadingEndDateTime": {
+              "type": "string"
+            },
+            "actualShipmentStartDateTime": {
+              "type": "string"
+            },
+            "actualShipmentEndDateTime": {
+              "type": "string"
+            },
+            "bypassDeliveryCheck": {
+              "type": "boolean"
+            },
+            "partners": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ShipmentPartnerRequest"
+              }
+            },
+            "plannedCheckInDateTime": {
+              "type": "string"
+            },
+            "actualCheckInDateTime": {
+              "type": "string"
+            },
+            "planningDateTime": {
+              "type": "string"
+            },
+            "plannedShipmentCompletionDateTime": {
+              "type": "string"
+            },
+            "actualShipmentCompletionDateTime": {
+              "type": "string"
+            },
+            "containerId": {
+              "type": "string"
+            },
+            "externalId1": {
+              "type": "string"
+            },
+            "externalId2": {
+              "type": "string"
+            },
+            "supplementalField1": {
+              "type": "string"
+            },
+            "supplementalField2": {
+              "type": "string"
+            },
+            "supplementalField3": {
+              "type": "string"
+            },
+            "supplementalField4": {
+              "type": "string"
+            },
+            "additionalText1": {
+              "type": "string"
+            },
+            "additionalText2": {
+              "type": "string"
+            },
+            "additionalText3": {
+              "type": "string"
+            },
+            "additionalText4": {
+              "type": "string"
+            },
+            "texts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TextsRequest"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "DeliveryRequest": {
+      "type": "object",
+      "properties": {
+        "deliveryNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "ShipmentPartnerRequest": {
+      "type": "object",
+      "properties": {
+        "partnerFunction": {
+          "type": "string"
+        },
+        "partnerNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "TextsRequest": {
+      "type": "object",
+      "properties": {
+        "textId": {
+          "type": "string"
+        },
+        "textContent": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      }
+    },
+    "ShipmentCommandRequest": {
+      "type": "object",
+      "properties": {
+        "transactionType": {
+          "type": "string"
+        },
+        "partnerApplication": {
+          "type": "string"
+        },
+        "partnerApplicationId": {
+          "type": "string"
+        },
+        "externalReferenceNumber": {
+          "type": "string"
+        },
+        "shipmentNumber": {
+          "type": "string"
+        },
+        "transactionReferenceNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateShipmentCommandRequest": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ShipmentCommandRequest"
+        },
+        {
+          "type": "object",
+          "required": [
+            "bypassShipmentCheck"
+          ],
+          "properties": {
+            "bypassShipmentCheck": {
+              "type": "boolean"
+            },
+            "plannedLoadingStartDateTime": {
+              "type": "string"
+            },
+            "plannedLoadingEndDateTime": {
+              "type": "string"
+            },
+            "plannedShipmentStartDateTime": {
+              "type": "string"
+            },
+            "plannedShipmentEndDateTime": {
+              "type": "string"
+            },
+            "actualLoadingStartDateTime": {
+              "type": "string"
+            },
+            "actualLoadingEndDateTime": {
+              "type": "string"
+            },
+            "actualShipmentStartDateTime": {
+              "type": "string"
+            },
+            "actualShipmentEndDateTime": {
+              "type": "string"
+            },
+            "partners": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ShipmentPartnerRequest"
+              }
+            },
+            "plannedCheckInDateTime": {
+              "type": "string"
+            },
+            "actualCheckInDateTime": {
+              "type": "string"
+            },
+            "planningDateTime": {
+              "type": "string"
+            },
+            "plannedShipmentCompletionDateTime": {
+              "type": "string"
+            },
+            "actualShipmentCompletionDateTime": {
+              "type": "string"
+            },
+            "containerId": {
+              "type": "string"
+            },
+            "externalId1": {
+              "type": "string"
+            },
+            "externalId2": {
+              "type": "string"
+            },
+            "supplementalField1": {
+              "type": "string"
+            },
+            "supplementalField2": {
+              "type": "string"
+            },
+            "supplementalField3": {
+              "type": "string"
+            },
+            "supplementalField4": {
+              "type": "string"
+            },
+            "additionalText1": {
+              "type": "string"
+            },
+            "additionalText2": {
+              "type": "string"
+            },
+            "additionalText3": {
+              "type": "string"
+            },
+            "additionalText4": {
+              "type": "string"
+            },
+            "texts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TextsRequest"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "DeleteShipmentCommandRequest": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ShipmentCommandRequest"
+        },
+        {
+          "type": "object",
+          "required": [
+            "bypassShipmentCheck"
+          ],
+          "properties": {
+            "bypassShipmentCheck": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

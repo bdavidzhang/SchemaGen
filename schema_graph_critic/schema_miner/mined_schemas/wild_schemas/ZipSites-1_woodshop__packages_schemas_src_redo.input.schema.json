@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://woodshop.dev/schemas/redo.input.json",
+  "title": "RedoInput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "project_id": {
+      "$ref": "./common.schema.json#/$defs/projectId"
+    },
+    "current_revision_id": {
+      "$ref": "./common.schema.json#/$defs/revisionId",
+      "description": "Revision that is currently active (for conflict detection)."
+    },
+    "revision_id": {
+      "$ref": "./common.schema.json#/$defs/revisionId",
+      "description": "Revision to reapply on top of the current head."
+    },
+    "seed": {
+      "$ref": "./common.schema.json#/$defs/seedInput"
+    },
+    "idempotency_key": {
+      "$ref": "./common.schema.json#/$defs/idempotencyKey"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional operator note for provenance."
+    }
+  },
+  "required": ["project_id", "revision_id"]
+}

@@ -1,0 +1,81 @@
+{
+  "1.0.0": {
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "type": "object",
+    "properties": {
+      "version": {
+        "const": "1.0.0"
+      },
+      "name": {
+        "type": "string",
+        "maxLength": 256
+      },
+      "affiliation": {
+        "type": "string",
+        "maxLength": 256
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "finding": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 28000
+      },
+      "safety": {
+        "type": "string",
+        "maxLength": 28000
+      },
+      "attachments": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/digest"
+        },
+        "uniqueItems": true
+      },
+      "metadata": {
+        "type": "object",
+        "patternProperties": {
+          "^[a-z]+$": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "links": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/digest"
+        },
+        "uniqueItems": true
+      },
+      "legal": {
+        "type": "string",
+        "enum": [
+          "1.0.0"
+        ]
+      }
+    },
+    "required": [
+      "version",
+      "title",
+      "finding",
+      "legal"
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "digest": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    }
+  }
+}

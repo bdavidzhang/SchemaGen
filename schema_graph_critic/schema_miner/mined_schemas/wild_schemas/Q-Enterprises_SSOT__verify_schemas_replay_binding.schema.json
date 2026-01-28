@@ -1,0 +1,27 @@
+{
+  "$id": "schema.attest.binding.royal_flush.v1",
+  "type": "object",
+  "required": [
+    "binding_version",
+    "clock_source",
+    "timestamp",
+    "nonce",
+    "manifest_hash",
+    "attestation_hash",
+    "auth_scope",
+    "replay_window_s",
+    "status"
+  ],
+  "properties": {
+    "binding_version": { "const": "replay.guard.royal_flush.v1" },
+    "clock_source": { "enum": ["scrollstream"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "nonce": { "type": "string" },
+    "manifest_hash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "attestation_hash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "auth_scope": { "const": "cockpit.HUD.slot.royal_flush" },
+    "replay_window_s": { "type": "integer", "minimum": 1 },
+    "status": { "enum": ["READY"] }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,86 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "id": "/date",
+    "type": "object",
+    "title": "The Date Schema",
+    "allOf": [
+        {
+            "$ref": "controlBase.schema.json"
+        }
+    ],
+    "$defs": {
+        "value": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "startDate": {
+                            "type": [
+                                "string",
+                                "null"
+                            ]
+                        },
+                        "endDate": {
+                            "type": [
+                                "string",
+                                "null"
+                            ]
+                        }
+                    },
+                    "unevaluatedProperties": false
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        }
+    },
+    "properties": {
+        "defaultValue": {
+            "$ref": "#/$defs/value"
+        },
+        "value": {
+            "description": "This should not be set, only set default value",
+            "readOnly": true,
+            "$ref": "#/$defs/value"
+        },
+        "range": {
+            "type": "boolean"
+        },
+        "reversed": {
+            "type": "boolean"
+        },
+        "startText": {
+            "type": "string"
+        },
+        "endText": {
+            "type": "string"
+        },
+        "validation": {
+            "type": "object",
+            "properties": {
+                "required": {
+                    "type": "boolean"
+                },
+                "allowUnboundedRange": {
+                    "type": "boolean"
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "floatLabelType": {
+            "type": "string",
+            "enum": [
+                "Never",
+                "Always",
+                "Auto"
+            ]
+        },
+        "placeholder": {
+            "type": "string"
+        }
+    }
+}

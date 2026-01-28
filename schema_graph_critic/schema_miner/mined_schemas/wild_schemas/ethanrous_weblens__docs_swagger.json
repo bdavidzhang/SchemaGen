@@ -1,0 +1,3948 @@
+{
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Programmatic access to the Weblens server",
+        "title": "Weblens API",
+        "contact": {},
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/api/v1/",
+    "paths": {
+        "/config": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Config"
+                ],
+                "summary": "Get Config",
+                "operationId": "GetConfig",
+                "responses": {
+                    "200": {
+                        "description": "Config Info",
+                        "schema": {
+                            "$ref": "#/definitions/Config"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Config"
+                ],
+                "summary": "Set Config",
+                "operationId": "SetConfig",
+                "parameters": [
+                    {
+                        "description": "Set Config Params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/structs.SetConfigParam"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/files": {
+            "delete": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Delete Files \"permanently\"",
+                "operationId": "DeleteFiles",
+                "parameters": [
+                    {
+                        "description": "Delete files request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/FilesListParams"
+                        }
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Delete files even if they are not in the trash",
+                        "name": "ignoreTrash",
+                        "in": "query"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Preserve parent folder if it is empty after deletion",
+                        "name": "preserveFolder",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Move a list of files to a new parent folder",
+                "operationId": "MoveFiles",
+                "parameters": [
+                    {
+                        "description": "Move files request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/MoveFilesParams"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/files/autocomplete": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Get path completion suggestions",
+                "operationId": "AutocompletePath",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Search path",
+                        "name": "searchPath",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Path info",
+                        "schema": {
+                            "$ref": "#/definitions/FolderInfo"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/files/search": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Search for files by filename",
+                "operationId": "SearchByFilename",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filename to search for",
+                        "name": "search",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "The folder to search in, defaults to the user's home folder",
+                        "name": "baseFolderID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File Info",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/FileInfo"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/files/shared": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Get files shared with the logged in user",
+                "operationId": "GetSharedFiles",
+                "responses": {
+                    "200": {
+                        "description": "All the top-level files shared with the user",
+                        "schema": {
+                            "$ref": "#/definitions/FolderInfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/files/structsore": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "structsore files from some time in the past",
+                "operationId": "RestoreFiles",
+                "parameters": [
+                    {
+                        "description": "RestoreFiles files request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RestoreFilesBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "structsore files info",
+                        "schema": {
+                            "$ref": "#/definitions/RestoreFilesInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/files/untrash": {
+            "patch": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Move a list of files out of the trash, structsoring them to where they were before",
+                "operationId": "UnTrashFiles",
+                "parameters": [
+                    {
+                        "description": "Un-trash files request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/FilesListParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/files/{fileID}": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Get information about a file",
+                "operationId": "GetFile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "File ID",
+                        "name": "fileID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File Info",
+                        "schema": {
+                            "$ref": "#/definitions/FileInfo"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Update a File",
+                "operationId": "UpdateFile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "File ID",
+                        "name": "fileID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Update file request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateFileParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/files/{fileID}/download": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Download a file",
+                "operationId": "DownloadFile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "File ID",
+                        "name": "fileID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "File format conversion",
+                        "name": "format",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            true,
+                            false
+                        ],
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Is this a takeout file",
+                        "name": "isTakeout",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File content",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Error Info",
+                        "schema": {
+                            "$ref": "#/definitions/WeblensErrorInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/files/{fileID}/history": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Folder"
+                ],
+                "summary": "Get actions of a folder at a given time",
+                "operationId": "GetFolderHistory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "File ID",
+                        "name": "fileID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Past timestamp to view the folder at, in ms since epoch",
+                        "name": "timestamp",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File actions",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/FileActionInfo"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/files/{fileID}/stats": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Get the statistics of a file",
+                "operationId": "GetFileStats",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "File ID",
+                        "name": "fileID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "501": {
+                        "description": "Not Implemented"
+                    }
+                }
+            }
+        },
+        "/files/{fileID}/text": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Get the text of a text file",
+                "operationId": "GetFileText",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "File ID",
+                        "name": "fileID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File text",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/folder": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Folder"
+                ],
+                "summary": "Create a new folder",
+                "operationId": "CreateFolder",
+                "parameters": [
+                    {
+                        "description": "New folder body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateFolderBody"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File Info",
+                        "schema": {
+                            "$ref": "#/definitions/FileInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/folder/{folderID}": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Folder"
+                ],
+                "summary": "Get a folder",
+                "operationId": "GetFolder",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Folder ID",
+                        "name": "folderID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Past timestamp to view the folder at, in ms since epoch",
+                        "name": "timestamp",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Folder Info",
+                        "schema": {
+                            "$ref": "#/definitions/FolderInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/folder/{folderID}/cover": {
+            "patch": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Folder"
+                ],
+                "summary": "Set the cover image of a folder",
+                "operationId": "SetFolderCover",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Folder ID",
+                        "name": "folderID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Media ID",
+                        "name": "mediaID",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/folder/{folderID}/scan": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Folder"
+                ],
+                "summary": "Dispatch a folder scan",
+                "operationId": "ScanFolder",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Folder ID",
+                        "name": "folderID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task Info",
+                        "schema": {
+                            "$ref": "#/definitions/TaskInfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/info": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Get server info",
+                "operationId": "GetServerInfo",
+                "responses": {
+                    "200": {
+                        "description": "Server info",
+                        "schema": {
+                            "$ref": "#/definitions/TowerInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/keys": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APIKeys"
+                ],
+                "summary": "Get all api keys",
+                "operationId": "GetAPIKeys",
+                "responses": {
+                    "200": {
+                        "description": "Tokens",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TokenInfo"
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APIKeys"
+                ],
+                "summary": "Create a new api key",
+                "operationId": "CreateAPIKey",
+                "parameters": [
+                    {
+                        "description": "The new token params",
+                        "name": "params",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/APIKeyParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The new token",
+                        "schema": {
+                            "$ref": "#/definitions/TokenInfo"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/keys/{tokenID}": {
+            "delete": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APIKeys"
+                ],
+                "summary": "Delete an api key",
+                "operationId": "DeleteAPIKey",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "API key id",
+                        "name": "tokenID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Get paginated media",
+                "operationId": "GetMedia",
+                "parameters": [
+                    {
+                        "description": "Media Batch Params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/MediaBatchParams"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "File ShareID",
+                        "name": "shareID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Media Batch",
+                        "schema": {
+                            "$ref": "#/definitions/MediaBatchInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media/cleanup": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Make sure all media is correctly synced with the file system",
+                "operationId": "CleanupMedia",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media/drop": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "DANGEROUS. Drop all computed media and clear thumbnail in-memory and filesystem cache. Must be server owner.",
+                "operationId": "DropMedia",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media/drop/hdirs": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Drop all computed media HDIR data. Must be server owner.",
+                "operationId": "DropHDIRs",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media/random": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Get random media",
+                "operationId": "GetRandomMedia",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "Number of random medias to get",
+                        "name": "count",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Media Batch",
+                        "schema": {
+                            "$ref": "#/definitions/MediaBatchInfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media/types": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Get media type dictionary",
+                "operationId": "GetMediaTypes",
+                "responses": {
+                    "200": {
+                        "description": "Media types",
+                        "schema": {
+                            "$ref": "#/definitions/MediaTypesInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/visibility": {
+            "patch": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Set media visibility",
+                "operationId": "SetMediaVisibility",
+                "parameters": [
+                    {
+                        "enum": [
+                            true,
+                            false
+                        ],
+                        "type": "boolean",
+                        "description": "Set the media visibility",
+                        "name": "hidden",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "description": "MediaIDs to change visibility of",
+                        "name": "mediaIDs",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/MediaIDsParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media/{mediaID}.{extension}": {
+            "get": {
+                "produces": [
+                    "image/*"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Get a media image bytes",
+                "operationId": "GetMediaImage",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Media ID",
+                        "name": "mediaID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Extension",
+                        "name": "extension",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            "thumbnail",
+                            "fullres"
+                        ],
+                        "type": "string",
+                        "description": "Image Quality",
+                        "name": "quality",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "image bytes",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media/{mediaID}/file": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    },
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Get file of media by id",
+                "operationId": "GetMediaFile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of media",
+                        "name": "mediaID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File info of file media was created from",
+                        "schema": {
+                            "$ref": "#/definitions/FileInfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media/{mediaID}/info": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Get media info",
+                "operationId": "GetMediaInfo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Media ID",
+                        "name": "mediaID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Media Info",
+                        "schema": {
+                            "$ref": "#/definitions/MediaInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/{mediaID}/liked": {
+            "patch": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Like a media",
+                "operationId": "SetMediaLiked",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of media",
+                        "name": "mediaID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "ShareID",
+                        "name": "shareID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Liked status to set",
+                        "name": "liked",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/media/{mediaID}/video": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    },
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Stream a video",
+                "operationId": "StreamVideo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of media",
+                        "name": "mediaID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/share/file": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Share"
+                ],
+                "summary": "Share a file",
+                "operationId": "CreateFileShare",
+                "parameters": [
+                    {
+                        "description": "New File Share Params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/FileShareParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New File Share",
+                        "schema": {
+                            "$ref": "#/definitions/ShareInfo"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/share/{shareID}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Share"
+                ],
+                "summary": "Get a file share",
+                "operationId": "GetFileShare",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File Share",
+                        "schema": {
+                            "$ref": "#/definitions/ShareInfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Share"
+                ],
+                "summary": "Delete a file share",
+                "operationId": "DeleteFileShare",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/share/{shareID}/accessors": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Share"
+                ],
+                "summary": "Add a user to a file share",
+                "operationId": "AddUserToShare",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Share Accessors",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AddUserParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShareInfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/share/{shareID}/accessors/{username}": {
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Share"
+                ],
+                "summary": "Remove a user from a file share",
+                "operationId": "RemoveUserFromShare",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShareInfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "patch": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Share"
+                ],
+                "summary": "Update a share's user permissions",
+                "operationId": "UpdateShareAccessorPermissions",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Share Permissions Params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PermissionsParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShareInfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/share/{shareID}/public": {
+            "patch": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Share"
+                ],
+                "summary": "Update a share's \"public\" status",
+                "operationId": "SetSharePublic",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Share Public Status",
+                        "name": "public",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/takeout": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "description": "Dispatch a task to create a zip file of the given files, or get the id of a previously created zip file if it already exists",
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Create a zip file",
+                "operationId": "CreateTakeout",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    },
+                    {
+                        "description": "File Ids",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/FilesListParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Zip Takeout Info",
+                        "schema": {
+                            "$ref": "#/definitions/TakeoutInfo"
+                        }
+                    },
+                    "202": {
+                        "description": "Task Dispatch Info",
+                        "schema": {
+                            "$ref": "#/definitions/TakeoutInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/tower": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Get all remotes",
+                "operationId": "GetRemotes",
+                "responses": {
+                    "200": {
+                        "description": "Tower Info",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TowerInfo"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tower/backup": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Get information about a file",
+                "operationId": "GetBackupInfo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Timestamp in milliseconds since epoch",
+                        "name": "timestamp",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Backup Info",
+                        "schema": {
+                            "$ref": "#/definitions/BackupInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/tower/cache": {
+            "delete": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Flush Cache",
+                "operationId": "FlushCache",
+                "responses": {
+                    "200": {
+                        "description": "Cache flushed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/WLResponseInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/tower/history": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Get a page of file actions",
+                "operationId": "GetPagedHistoryActions",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Number of items per page",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File Actions",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/history.FileAction"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/tower/init": {
+            "post": {
+                "security": [],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Initialize the target server",
+                "operationId": "InitializeTower",
+                "parameters": [
+                    {
+                        "description": "Server initialization body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/structs.InitServerParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New server info",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TowerInfo"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/tower/remote": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Create a new remote",
+                "operationId": "CreateRemote",
+                "parameters": [
+                    {
+                        "description": "New Server Params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewServerParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "New Server Info",
+                        "schema": {
+                            "$ref": "#/definitions/TowerInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/tower/reset": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Reset tower",
+                "operationId": "ResetTower",
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/tower/tasks": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Get Running Tasks",
+                "operationId": "GetRunningTasks",
+                "responses": {
+                    "200": {
+                        "description": "Task Infos",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TaskInfo"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tower/{serverID}": {
+            "delete": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Delete a remote",
+                "operationId": "DeleteRemote",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Server ID to delete",
+                        "name": "serverID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/tower/{serverID}/backup": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "Towers"
+                ],
+                "summary": "Launch backup on a tower",
+                "operationId": "LaunchBackup",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Server ID",
+                        "name": "serverID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/upload": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Begin a new upload task",
+                "operationId": "StartUpload",
+                "parameters": [
+                    {
+                        "description": "New upload request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewUploadParams"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Upload Info",
+                        "schema": {
+                            "$ref": "#/definitions/NewUploadInfo"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/upload/{uploadID}": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Get the result of an upload task. This will block until the upload is complete",
+                "operationId": "GetUploadResult",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Upload ID",
+                        "name": "uploadID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Add a file to an upload task",
+                "operationId": "AddFilesToUpload",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Upload ID",
+                        "name": "uploadID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    },
+                    {
+                        "description": "New file params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewFilesParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "FileIds",
+                        "schema": {
+                            "$ref": "#/definitions/NewFilesInfo"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/upload/{uploadID}/file/{fileID}": {
+            "put": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Add a chunk to a file upload",
+                "operationId": "UploadFileChunk",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Upload ID",
+                        "name": "uploadID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "File ID",
+                        "name": "fileID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Share ID",
+                        "name": "shareID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "file",
+                        "description": "File chunk",
+                        "name": "chunk",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users, including (possibly) sensitive information like password hashes",
+                "operationId": "GetUsers",
+                "responses": {
+                    "200": {
+                        "description": "List of users",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserInfoArchive"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create a new user",
+                "operationId": "CreateUser",
+                "parameters": [
+                    {
+                        "description": "New user params",
+                        "name": "newUserParams",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewUserParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/users/auth": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Login User",
+                "operationId": "LoginUser",
+                "parameters": [
+                    {
+                        "description": "Login params",
+                        "name": "loginParams",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LoginBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logged-in users info",
+                        "schema": {
+                            "$ref": "#/definitions/UserInfo"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/users/logout": {
+            "post": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Logout User",
+                "operationId": "LogoutUser",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/users/me": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Gets the user based on the auth token",
+                "operationId": "GetUser",
+                "responses": {
+                    "200": {
+                        "description": "Logged-in users info",
+                        "schema": {
+                            "$ref": "#/definitions/UserInfo"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/users/search": {
+            "get": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Search for users by username",
+                "operationId": "SearchUsers",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Partial username to search for",
+                        "name": "search",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of users",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserInfo"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Username autocomplete must contain at least 2 characters",
+                        "schema": {
+                            "$ref": "#/definitions/WeblensErrorInfo"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/users/{username}": {
+            "delete": {
+                "security": [
+                    {
+                        "SessionAuth": [
+                            "Admin"
+                        ]
+                    },
+                    {
+                        "ApiKeyAuth": [
+                            "Admin"
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete a user",
+                "operationId": "DeleteUser",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username of user to delete",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "head": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Check if username is already taken",
+                "operationId": "CheckExists",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username of user to check",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/users/{username}/active": {
+            "patch": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    },
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update active status of user",
+                "operationId": "ActivateUser",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username of user to update",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Target activation status",
+                        "name": "setActive",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/WeblensErrorInfo"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/users/{username}/admin": {
+            "patch": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    },
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update admin status of user",
+                "operationId": "SetUserAdmin",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username of user to update",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Target admin status",
+                        "name": "setAdmin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/WeblensErrorInfo"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/users/{username}/fullName": {
+            "patch": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    },
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update display name of a user",
+                "operationId": "ChangeDisplayName",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username of user to update",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "New full name of user",
+                        "name": "newFullName",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/WeblensErrorInfo"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/WeblensErrorInfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/WeblensErrorInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{username}/password": {
+            "patch": {
+                "security": [
+                    {
+                        "SessionAuth": []
+                    },
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user password",
+                "operationId": "UpdateUserPassword",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username of user to update",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Password update params",
+                        "name": "passwordUpdateParams",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PasswordUpdateParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Both oldPassword and newPassword fields are required",
+                        "schema": {
+                            "$ref": "#/definitions/WeblensErrorInfo"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "APIKeyParams": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "AddUserParams": {
+            "type": "object",
+            "required": [
+                "username"
+            ],
+            "properties": {
+                "canDelete": {
+                    "type": "boolean"
+                },
+                "canDownload": {
+                    "type": "boolean"
+                },
+                "canEdit": {
+                    "type": "boolean"
+                },
+                "canView": {
+                    "type": "boolean"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "BackupInfo": {
+            "type": "object",
+            "properties": {
+                "fileHistory": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FileActionInfo"
+                    }
+                },
+                "instances": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TowerInfo"
+                    }
+                },
+                "lifetimesCount": {
+                    "type": "integer"
+                },
+                "tokens": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TokenInfo"
+                    }
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/UserInfoArchive"
+                    }
+                }
+            }
+        },
+        "Config": {
+            "type": "object",
+            "properties": {
+                "allowRegistrations": {
+                    "type": "boolean"
+                },
+                "enableHDIR": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "CreateFolderBody": {
+            "type": "object",
+            "required": [
+                "newFolderName",
+                "parentFolderID"
+            ],
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "newFolderName": {
+                    "type": "string"
+                },
+                "parentFolderID": {
+                    "type": "string"
+                }
+            }
+        },
+        "FileActionInfo": {
+            "type": "object",
+            "required": [
+                "actionType",
+                "eventID",
+                "fileID",
+                "parentID",
+                "size",
+                "timestamp",
+                "towerID"
+            ],
+            "properties": {
+                "actionType": {
+                    "type": "string"
+                },
+                "contentID": {
+                    "type": "string"
+                },
+                "destinationPath": {
+                    "type": "string"
+                },
+                "eventID": {
+                    "type": "string"
+                },
+                "fileID": {
+                    "type": "string"
+                },
+                "filepath": {
+                    "type": "string"
+                },
+                "originPath": {
+                    "type": "string"
+                },
+                "parentID": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "towerID": {
+                    "type": "string"
+                }
+            }
+        },
+        "FileInfo": {
+            "type": "object",
+            "properties": {
+                "childrenIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "contentID": {
+                    "type": "string"
+                },
+                "currentID": {
+                    "type": "string"
+                },
+                "hasRestoreMedia": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isDir": {
+                    "type": "boolean"
+                },
+                "modifiable": {
+                    "type": "boolean"
+                },
+                "modifyTimestamp": {
+                    "type": "integer"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "parentID": {
+                    "type": "string"
+                },
+                "pastFile": {
+                    "type": "boolean"
+                },
+                "portablePath": {
+                    "type": "string"
+                },
+                "shareID": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "integer"
+                }
+            }
+        },
+        "FileShareParams": {
+            "type": "object",
+            "properties": {
+                "fileID": {
+                    "type": "string"
+                },
+                "public": {
+                    "type": "boolean"
+                },
+                "timelineOnly": {
+                    "type": "boolean"
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "wormhole": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "FilesListParams": {
+            "type": "object",
+            "properties": {
+                "fileIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "FolderInfo": {
+            "type": "object",
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FileInfo"
+                    }
+                },
+                "medias": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MediaInfo"
+                    }
+                },
+                "parents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FileInfo"
+                    }
+                },
+                "self": {
+                    "$ref": "#/definitions/FileInfo"
+                }
+            }
+        },
+        "LoginBody": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "MediaBatchInfo": {
+            "type": "object",
+            "properties": {
+                "Media": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MediaInfo"
+                    }
+                },
+                "mediaCount": {
+                    "type": "integer"
+                },
+                "totalMediaCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "MediaBatchParams": {
+            "type": "object",
+            "properties": {
+                "folderIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "[fID1",
+                        "fID2]"
+                    ]
+                },
+                "hidden": {
+                    "type": "boolean",
+                    "enum": [
+                        true,
+                        false
+                    ],
+                    "example": false
+                },
+                "limit": {
+                    "type": "integer",
+                    "example": 20
+                },
+                "mediaIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "[mID1",
+                        "mID2]"
+                    ]
+                },
+                "page": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "raw": {
+                    "type": "boolean",
+                    "enum": [
+                        true,
+                        false
+                    ],
+                    "example": false
+                },
+                "search": {
+                    "type": "string",
+                    "example": ""
+                },
+                "sort": {
+                    "type": "string",
+                    "enum": [
+                        "createDate"
+                    ],
+                    "example": "createDate"
+                },
+                "sortDirection": {
+                    "type": "integer",
+                    "enum": [
+                        1,
+                        -1
+                    ],
+                    "example": 1
+                }
+            }
+        },
+        "MediaIDsParams": {
+            "type": "object",
+            "properties": {
+                "mediaIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "MediaInfo": {
+            "type": "object",
+            "properties": {
+                "contentID": {
+                    "description": "Hash of the file content, to ensure that the same files don't get duplicated",
+                    "type": "string"
+                },
+                "createDate": {
+                    "type": "integer"
+                },
+                "duration": {
+                    "description": "Total time, in milliseconds, of a video",
+                    "type": "integer"
+                },
+                "enabled": {
+                    "description": "If the media disabled. This can happen when the backing file(s) are deleted,\nbut the media stays behind because it can be re-used if needed.",
+                    "type": "boolean"
+                },
+                "fileIds": {
+                    "description": "Slices of files whos content hash to the contentId",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "height": {
+                    "type": "integer"
+                },
+                "hidden": {
+                    "description": "If the media is hidden from the timeline\nTODO - make this per user",
+                    "type": "boolean"
+                },
+                "imported": {
+                    "type": "boolean"
+                },
+                "likedBy": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "location": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "mimeType": {
+                    "description": "Mime-type key of the media",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "User who owns the file that resulted in this media being created",
+                    "type": "string"
+                },
+                "pageCount": {
+                    "description": "Number of pages (typically 1, 0 in not a valid page count)",
+                    "type": "integer"
+                },
+                "recognitionTags": {
+                    "description": "Tags from the ML image scan so searching for particular objects in the images can be done",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "width": {
+                    "description": "Full-res image dimensions",
+                    "type": "integer"
+                }
+            }
+        },
+        "MediaTypeInfo": {
+            "type": "object",
+            "properties": {
+                "FileExtension": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "FriendlyName": {
+                    "type": "string"
+                },
+                "IsDisplayable": {
+                    "type": "boolean"
+                },
+                "IsRaw": {
+                    "type": "boolean"
+                },
+                "IsVideo": {
+                    "type": "boolean"
+                },
+                "MultiPage": {
+                    "type": "boolean"
+                },
+                "RawThumbExifKey": {
+                    "type": "string"
+                },
+                "SupportsImgRecog": {
+                    "type": "boolean"
+                },
+                "mime": {
+                    "type": "string"
+                }
+            }
+        },
+        "MediaTypesInfo": {
+            "type": "object",
+            "properties": {
+                "extMap": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/MediaTypeInfo"
+                    }
+                },
+                "mimeMap": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/MediaTypeInfo"
+                    }
+                }
+            }
+        },
+        "MoveFilesParams": {
+            "type": "object",
+            "properties": {
+                "fileIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "newParentID": {
+                    "type": "string"
+                }
+            }
+        },
+        "NewFileParams": {
+            "type": "object",
+            "properties": {
+                "fileSize": {
+                    "type": "integer"
+                },
+                "isDir": {
+                    "type": "boolean"
+                },
+                "newFileName": {
+                    "type": "string"
+                },
+                "parentFolderID": {
+                    "type": "string"
+                }
+            }
+        },
+        "NewFilesInfo": {
+            "type": "object",
+            "properties": {
+                "fileIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "NewFilesParams": {
+            "type": "object",
+            "properties": {
+                "newFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/NewFileParams"
+                    }
+                }
+            }
+        },
+        "NewServerParams": {
+            "type": "object",
+            "properties": {
+                "coreAddress": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "serverID": {
+                    "type": "string"
+                },
+                "usingKey": {
+                    "type": "string"
+                }
+            }
+        },
+        "NewUploadInfo": {
+            "type": "object",
+            "properties": {
+                "uploadID": {
+                    "type": "string"
+                }
+            }
+        },
+        "NewUploadParams": {
+            "type": "object",
+            "properties": {
+                "chunkSize": {
+                    "type": "integer"
+                },
+                "rootFolderID": {
+                    "type": "string"
+                }
+            }
+        },
+        "NewUserParams": {
+            "type": "object",
+            "required": [
+                "fullName",
+                "password",
+                "username"
+            ],
+            "properties": {
+                "admin": {
+                    "type": "boolean"
+                },
+                "autoActivate": {
+                    "type": "boolean"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "PasswordUpdateParams": {
+            "type": "object",
+            "required": [
+                "newPassword"
+            ],
+            "properties": {
+                "newPassword": {
+                    "type": "string"
+                },
+                "oldPassword": {
+                    "type": "string"
+                }
+            }
+        },
+        "PermissionsInfo": {
+            "type": "object",
+            "properties": {
+                "canDelete": {
+                    "type": "boolean"
+                },
+                "canDownload": {
+                    "type": "boolean"
+                },
+                "canEdit": {
+                    "type": "boolean"
+                },
+                "canView": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "PermissionsParams": {
+            "type": "object",
+            "properties": {
+                "canDelete": {
+                    "type": "boolean"
+                },
+                "canDownload": {
+                    "type": "boolean"
+                },
+                "canEdit": {
+                    "type": "boolean"
+                },
+                "canView": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "RestoreFilesBody": {
+            "type": "object",
+            "properties": {
+                "fileIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "newParentID": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            }
+        },
+        "RestoreFilesInfo": {
+            "type": "object",
+            "properties": {
+                "newParentID": {
+                    "type": "string"
+                }
+            }
+        },
+        "ShareInfo": {
+            "type": "object",
+            "properties": {
+                "accessors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/UserInfo"
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "expires": {
+                    "type": "integer"
+                },
+                "fileID": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/PermissionsInfo"
+                    }
+                },
+                "public": {
+                    "type": "boolean"
+                },
+                "shareID": {
+                    "type": "string"
+                },
+                "shareName": {
+                    "type": "string"
+                },
+                "shareType": {
+                    "type": "string"
+                },
+                "timelineOnly": {
+                    "type": "boolean"
+                },
+                "updated": {
+                    "type": "integer"
+                },
+                "wormhole": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "TakeoutInfo": {
+            "type": "object",
+            "properties": {
+                "filename": {
+                    "type": "string"
+                },
+                "single": {
+                    "type": "boolean"
+                },
+                "takeoutID": {
+                    "type": "string"
+                },
+                "taskID": {
+                    "type": "string"
+                }
+            }
+        },
+        "TaskInfo": {
+            "type": "object",
+            "required": [
+                "Completed",
+                "jobName",
+                "progress",
+                "status",
+                "taskID",
+                "workerID"
+            ],
+            "properties": {
+                "Completed": {
+                    "type": "boolean"
+                },
+                "jobName": {
+                    "type": "string"
+                },
+                "progress": {
+                    "type": "integer"
+                },
+                "result": {},
+                "startTime": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "taskID": {
+                    "type": "string"
+                },
+                "workerID": {
+                    "type": "integer"
+                }
+            }
+        },
+        "TokenInfo": {
+            "type": "object",
+            "required": [
+                "createdBy",
+                "createdTime",
+                "id",
+                "lastUsed",
+                "nickname",
+                "owner",
+                "remoteUsing",
+                "token"
+            ],
+            "properties": {
+                "createdBy": {
+                    "type": "string"
+                },
+                "createdTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastUsed": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "remoteUsing": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "TowerInfo": {
+            "type": "object",
+            "required": [
+                "backupSize",
+                "coreAddress",
+                "id",
+                "lastBackup",
+                "name",
+                "online",
+                "reportedRole",
+                "role",
+                "started",
+                "userCount"
+            ],
+            "properties": {
+                "backupSize": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "coreAddress": {
+                    "description": "Address of the remote server, only if the instance is a core.\nNot set for any remotes/backups on core server, as it IS the core",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastBackup": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "online": {
+                    "type": "boolean"
+                },
+                "reportedRole": {
+                    "description": "Role the server is currently reporting. This is used to determine if the server is online (and functional) or not",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "Core or Backup",
+                    "type": "string"
+                },
+                "started": {
+                    "type": "boolean"
+                },
+                "userCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "UpdateFileParams": {
+            "type": "object",
+            "properties": {
+                "newName": {
+                    "type": "string"
+                },
+                "newParentID": {
+                    "type": "string"
+                }
+            }
+        },
+        "UserInfo": {
+            "type": "object",
+            "required": [
+                "activated",
+                "fullName",
+                "homeID",
+                "permissionLevel",
+                "trashID",
+                "username"
+            ],
+            "properties": {
+                "activated": {
+                    "type": "boolean"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "homeID": {
+                    "type": "string"
+                },
+                "isOnline": {
+                    "type": "boolean"
+                },
+                "permissionLevel": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "trashID": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "UserInfoArchive": {
+            "type": "object",
+            "required": [
+                "activated",
+                "fullName",
+                "homeID",
+                "permissionLevel",
+                "trashID",
+                "username"
+            ],
+            "properties": {
+                "activated": {
+                    "type": "boolean"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "homeID": {
+                    "type": "string"
+                },
+                "isOnline": {
+                    "type": "boolean"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "permissionLevel": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "trashID": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "WLResponseInfo": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "WeblensErrorInfo": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "fs.Filepath": {
+            "type": "object",
+            "properties": {
+                "relPath": {
+                    "type": "string"
+                },
+                "rootAlias": {
+                    "type": "string"
+                }
+            }
+        },
+        "history.FileAction": {
+            "type": "object",
+            "properties": {
+                "actionType": {
+                    "type": "string"
+                },
+                "contentID": {
+                    "type": "string"
+                },
+                "destinationPath": {
+                    "$ref": "#/definitions/fs.Filepath"
+                },
+                "doer": {
+                    "description": "The user or system that performed the action",
+                    "type": "string"
+                },
+                "eventID": {
+                    "type": "string"
+                },
+                "fileID": {
+                    "type": "string"
+                },
+                "filepath": {
+                    "$ref": "#/definitions/fs.Filepath"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "originPath": {
+                    "$ref": "#/definitions/fs.Filepath"
+                },
+                "size": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "towerID": {
+                    "type": "string"
+                }
+            }
+        },
+        "structs.InitServerParams": {
+            "type": "object",
+            "properties": {
+                "coreAddress": {
+                    "type": "string"
+                },
+                "coreKey": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "localID": {
+                    "description": "For restoring a server, remoind the core of its serverID and api key the remote last used",
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "remoteID": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "usingKeyInfo": {
+                    "type": "string"
+                }
+            }
+        },
+        "structs.SetConfigParam": {
+            "type": "object",
+            "properties": {
+                "configKey": {
+                    "type": "string"
+                },
+                "configValue": {}
+            }
+        }
+    },
+    "securityDefinitions": {
+        "APIKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "scopes": {
+                "admin": "Grants read and write access to privileged data"
+            }
+        },
+        "SessionAuth": {
+            "type": "apiKey",
+            "name": "weblens-session-token",
+            "in": "cookie"
+        }
+    }
+}

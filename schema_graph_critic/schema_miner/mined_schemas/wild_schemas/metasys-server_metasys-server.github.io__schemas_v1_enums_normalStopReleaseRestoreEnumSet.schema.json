@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/normalStopReleaseRestoreEnumSet.schema.json",
+  "title": "normalStopReleaseRestoreEnumSet",
+  "description": "Normal/Stop/Release/Restore",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "normalStopReleaseRestoreNormal"
+      ],
+      "description": "Normal"
+    },
+    {
+      "enum": [
+        1,
+        "normalStopReleaseRestoreStop"
+      ],
+      "description": "Stop"
+    },
+    {
+      "enum": [
+        2,
+        "normalStopReleaseRestoreRelease"
+      ],
+      "description": "Release"
+    },
+    {
+      "enum": [
+        3,
+        "normalStopReleaseRestoreRestore"
+      ],
+      "description": "Restore"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

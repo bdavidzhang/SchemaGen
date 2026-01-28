@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://weltgewebe.org/schemas/domain/role.schema.json",
+  "title": "Role",
+  "description": "A role controlling permissions for a user or system actor in the Weltgewebe.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Arbitrary permission flags and scopes for this role.",
+      "additionalProperties": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "user_id",
+    "permissions",
+    "created_at"
+  ]
+}

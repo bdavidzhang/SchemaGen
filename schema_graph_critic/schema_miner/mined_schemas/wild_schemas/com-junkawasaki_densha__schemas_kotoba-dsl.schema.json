@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://densha.dev/schemas/kotoba-dsl.schema.json",
+  "title": "Kotoba DSL Template Schema",
+  "description": "JSON Schema for Densha .kotoba files using DSL format",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "$ref": "#/$defs/MetadataBlock",
+      "description": "Page metadata configuration"
+    },
+
+    "template": {
+      "$ref": "#/$defs/Element",
+      "description": "Root template element"
+    },
+
+    "script": {
+      "type": "string",
+      "description": "Client-side JavaScript code"
+    }
+  },
+
+  "required": ["template"],
+
+  "$defs": {
+    "MetadataBlock": {
+      "type": "object",
+      "description": "Metadata configuration block",
+      "properties": {
+        "layout": {
+          "type": "string",
+          "description": "Layout template to use"
+        },
+        "title": {
+          "type": "string",
+          "description": "Page title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Page description"
+        }
+      },
+      "additionalProperties": true
+    },
+
+    "Element": {
+      "type": "object",
+      "description": "HTML element in DSL format",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "HTML element type (div, span, h1, section, etc.)"
+        },
+        "class": {
+          "type": "string",
+          "description": "CSS class names"
+        },
+        "id": {
+          "type": "string",
+          "description": "Element ID"
+        },
+        "href": {
+          "type": "string",
+          "description": "Link href attribute"
+        },
+        "src": {
+          "type": "string",
+          "description": "Image/script src attribute"
+        },
+        "rel": {
+          "type": "string",
+          "description": "Link rel attribute"
+        },
+        "name": {
+          "type": "string",
+          "description": "Meta/input name attribute"
+        },
+        "content": {
+          "type": "string",
+          "description": "Meta content attribute"
+        },
+        "charset": {
+          "type": "string",
+          "description": "Meta charset attribute"
+        },
+        "lang": {
+          "type": "string",
+          "description": "HTML lang attribute"
+        },
+        "children": {
+          "description": "Child elements or text content",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/$defs/Element"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "required": ["type"]
+    }
+  },
+
+  "additionalProperties": false
+}

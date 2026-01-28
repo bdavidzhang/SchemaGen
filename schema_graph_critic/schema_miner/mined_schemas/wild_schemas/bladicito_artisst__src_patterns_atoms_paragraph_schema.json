@@ -1,0 +1,9 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "paragraph",
+	"description": "A paragraph atom",
+	"type": "object",
+	"properties": {},
+	"required": ["text"],
+	"dependencies": {}
+}

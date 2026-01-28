@@ -1,0 +1,415 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The EBSCO LinkIQ service enables the configuration and management of full text linking based on open URL standards.",
+    "version": "1.0.0",
+    "title": "EBSCO LinkIQ",
+    "termsOfService": "",
+    "license": {
+      "name": "Copyright EBSCO",
+      "url": "https://www.ebsco.com/terms-of-use"
+    }
+  },
+  "host": "sandbox.ebsco.io",
+  "basePath": "/ftf/ftfaccount",
+  "tags": [
+    {
+      "name": "Full Text Finder Resource"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/{profile}/openurl": {
+      "get": {
+        "tags": [
+          "Full Text Finder Resource"
+        ],
+        "summary": "Get Full Text Finder Links",
+        "operationId": "getFTFLinks_1",
+        "produces": [
+          "application/json"
+        ],
+        "description": "This operation allows you to resolve full text links based on an open url. \n\n **Please Note:** Parameters provided below are a sampling of OpenURL 0.1 keys that can be used when trying this service.  When calling this service from your application, you can use any valid OpenURL 0.1 or OpenURL 1.0 key-encoded-value (KEV).  LinkIQ supports searching by Journal Identifiers, Book Identifiers, etc.  For more information on the metadata formats supported, please refer to the [OpenURL Registry](http://www.openurl.info/registry/).",
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "path",
+            "description": "A valid customer profile in the form of customerid.groupid.profileid.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "header",
+            "description": "Profile Password (optional).  If password is supplied, it must be a valid password assigned to the customer profile.  If omitted, the request will only be honored if the customer profile allows guest access.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "issn",
+            "in": "query",
+            "description": "The ISSN of the journal or journal article to look up.",
+            "required": false,
+            "type": "string",
+            "default": "1234"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "The identifier for the content item in the form of doi:{doi} or pmid:{PubMedID}.",
+            "required": false,
+            "type": "string",
+            "default": "doi:10.1093"
+          },
+          {
+            "name": "jtitle",
+            "in": "query",
+            "description": "The title of the journal to look up.",
+            "required": false,
+            "type": "string",
+            "default": "Nature"
+          },
+          {
+            "name": "volume",
+            "in": "query",
+            "description": "The volume number of the issue that the requested article appears in.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "issue",
+            "in": "query",
+            "description": "The issue number of the issue that the requested article appears in.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "startpage",
+            "in": "query",
+            "description": "The page the requested article appears on.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "atitle",
+            "in": "query",
+            "description": "The title of the article to look up.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.  Full Text Finder Links",
+            "schema": {
+              "$ref": "#/definitions/FTFLinksResponse"
+            }
+          },
+          "400": {
+            "description": "BAD_REQUEST"
+          },
+          "401": {
+            "description": "UNAUTHORIZED"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT_FOUND"
+          },
+          "500": {
+            "description": "INTERNAL SERVER ERROR"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ContextObject": {
+      "type": "object",
+      "properties": {
+        "contextObjectId": {
+          "type": "string",
+          "description": "When multiple context objects are supported on the request, this is the identifier from the request, otherwise it is 1.",
+          "example": "1"
+        },
+        "contextObject": {
+          "type": "string",
+          "description": "The context object submitted.",
+          "example": "doi=10.1038"
+        },
+        "contextObjectFacts": {
+          "type": "array",
+          "description": "List of facts generated by the FTF Resolver.",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        },
+        "targetLinks": {
+          "type": "array",
+          "description": "List of links and supporting information generated by the FTF Resolver.",
+          "items": {
+            "$ref": "#/definitions/TargetLink"
+          }
+        }
+      },
+      "title": "Context Object"
+    },
+    "Coverage": {
+      "type": "object",
+      "properties": {
+        "coverageDates": {
+          "type": "array",
+          "description": "List of Coverage Dates.",
+          "items": {
+            "$ref": "#/definitions/CoverageDate"
+          }
+        },
+        "coverageStatement": {
+          "type": "string",
+          "description": "Coverage Statement",
+          "example": "Issues on or after 6/1/1992"
+        },
+        "embargoUnitType": {
+          "type": "string",
+          "description": "Unit of Embargo",
+          "enum": [
+            "DAY",
+            "WEEK",
+            "MONTHANDYEAR"
+          ]
+        },
+        "embargoValue": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Embargo Value",
+          "example": "1"
+        }
+      },
+      "title": "Coverage"
+    },
+    "CoverageDate": {
+      "type": "object",
+      "properties": {
+        "coverageBegin": {
+          "type": "string",
+          "description": "Coverage Start Date",
+          "example": "2003-01-01"
+        },
+        "coverageEnd": {
+          "type": "string",
+          "description": "Coverage End Date",
+          "example": "2003-12-12"
+        }
+      },
+      "title": "Coverage Date"
+    },
+    "FTFLinksResponse": {
+      "type": "object",
+      "properties": {
+        "contextObjects": {
+          "type": "array",
+          "description": "Structure to support multiple context objects, even if there is only one.",
+          "items": {
+            "$ref": "#/definitions/ContextObject"
+          }
+        },
+        "statsInfo": {
+          "description": "Stats and other information about the link resolution.",
+          "$ref": "#/definitions/StatsOther"
+        },
+        "diagnosticMessages": {
+          "type": "array",
+          "description": "Diagnostic Messages",
+          "items": {
+            "$ref": "#/definitions/diagnosticMessageItem"
+          }
+        }
+      },
+      "title": "FTFLinksResponse",
+      "description": "Get FTF Links Response"
+    },
+    "Fact": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the Fact",
+          "example": "year"
+        },
+        "value": {
+          "type": "string",
+          "description": "Value of the Fact",
+          "example": "2011"
+        }
+      },
+      "title": "Fact"
+    },
+    "StatsOther": {
+      "type": "object",
+      "properties": {
+        "processingStartTime": {
+          "type": "string",
+          "description": "Time/Date stamp for start of processing",
+          "example": "2018-09-06T18:04:34.715Z"
+        },
+        "processingDurationMsec": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Overall processing time in milliseconds",
+          "example": "2394"
+        },
+        "transactionId": {
+          "type": "string",
+          "description": "TransactionID (GUID) as assigned by API",
+          "example": "f46b2ac4-dc1e-4184-9a59-2686b67d7526"
+        },
+        "sessionId": {
+          "type": "string",
+          "description": "SessionID (GUID) from the incoming request as a SessionID parameter or auto-generated",
+          "example": "a031f9da-fda7-4e4a-ba52-799efd702db0"
+        }
+      },
+      "title": "Stats and other about the link resolution"
+    },
+    "TargetLink": {
+      "type": "object",
+      "properties": {
+        "linkId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Unique identifier for the target link",
+          "example": 299596
+        },
+        "linkName": {
+          "type": "string",
+          "description": "Name of the target link",
+          "example": "Sample label name"
+        },
+        "linkText": {
+          "type": "string",
+          "description": "Text of link assigned to FTF link; text that is expected to show on the link menu",
+          "example": "Sample Link Text"
+        },
+        "rank": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Target link rank",
+          "example": 0
+        },
+        "category": {
+          "type": "string",
+          "description": "Type of link as determined by the resolver",
+          "enum": [
+            "FullText",
+            "LibraryCatalog",
+            "DocumentDelivery",
+            "AbstractIndexDatabases",
+            "ILL",
+            "SearchEngines",
+            "Other",
+            "NoveListBIR",
+            "SmartLinks",
+            "SectionLabel"
+          ]
+        },
+        "hoverText": {
+          "type": "string",
+          "description": "Hover text to show on mouse-over for the target link text",
+          "example": "Sample Hover Text"
+        },
+        "iconLibRef": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Location (sprite number) of icon to use; only populated when the customer has chosen a standard EBSCO icon; the \"icon\" is what appears next to the link to add context",
+          "example": 0
+        },
+        "iconText": {
+          "type": "string",
+          "description": "Hover text to show on mouse-over for the target link text",
+          "example": "Sample Icon Alt Text"
+        },
+        "iconUrl": {
+          "type": "string",
+          "description": "If customer uses own icon, this is its URL.  Null if no icon or using standard icon",
+          "example": "http://hostname.com/icon.png"
+        },
+        "targetUrl": {
+          "type": "string",
+          "description": "URL of the target link",
+          "example": "https://linkout.integration.ebsco.zone/ftf?ref=5468590f-78d3-49eb-43bc33611cf7&id=952249"
+        },
+        "notes": {
+          "type": "array",
+          "description": "Zero or more notes assigned to or inherited by the package-title that are set to show in FTF",
+          "items": {
+            "$ref": "#/definitions/Note"
+          }
+        }
+      },
+      "title": "TargetLink"
+    },
+    "Note": {
+      "type": "object",
+      "properties": {
+        "noteId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Unique identifier for the note",
+          "example": "42655"
+        },
+        "noteName": {
+          "type": "string",
+          "description": "Note name",
+          "example": "Sample Note"
+        },
+        "noteText": {
+          "type": "string",
+          "description": "Note text to be displayed on the menu",
+          "example": "This is a note."
+        },
+        "iconLibRef": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Location (sprite number) of icon to use; only populated when the customer has chosen a standard EBSCO icon for a note; the \"icon\" is what appears next to the note to add context",
+          "example": 0
+        },
+        "iconUrl": {
+          "type": "string",
+          "description": "If customer uses own icon for a note, this is its URL.  Null if no icon or using standard icon",
+          "example": "http://hostname.com/icon.png"
+        },
+        "iconText": {
+          "type": "string",
+          "description": "Text to show on mouse-over for the icon",
+          "example": "Sample Icon Alt Text"
+        },
+        "hoverText": {
+          "type": "string",
+          "description": "Hover text to show on mouse-over for the note",
+          "example": "Sample Icon Hover Text"
+        },
+        "linkUrl": {
+          "type": "string",
+          "description": "URL of the note link if any",
+          "example": "http://hostname.com"
+        }
+      },
+      "title": "Note"
+    },
+    "diagnosticMessageItem": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Diagnostic Message Item. Please disregard."
+        }
+      }
+    }
+  }
+}

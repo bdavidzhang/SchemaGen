@@ -1,0 +1,75 @@
+{
+  "$anchor": "hotgraphic-course",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "$patch": {
+    "source": {
+      "$ref": "course"
+    },
+    "with": {
+      "properties": {
+        "_globals": {
+          "type": "object",
+          "default": {},
+          "properties": {
+            "_components": {
+              "type": "object",
+              "default": {},
+              "properties": {
+                "_hotgraphic": {
+                  "type": "object",
+                  "title": "Hotgraphic",
+                  "default": {},
+                  "properties": {
+                    "ariaRegion": {
+                      "type": "string",
+                      "title": "ARIA region",
+                      "default": "Image with selectable areas. Select each button to show more information.",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "item": {
+                      "type": "string",
+                      "title": "Item count label",
+                      "description": "This is the aria label for each item. Use {{itemNumber}} and {{totalItems}} in your text to tell the user which item they are viewing and how many items there are in total",
+                      "default": "Item {{itemNumber}} of {{totalItems}}",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "previous": {
+                      "type": "string",
+                      "title": "Previous",
+                      "default": "{{#if title}}Back to {{{title}}} (item {{itemNumber}} of {{totalItems}}){{else}}{{_globals._accessibility._ariaLabels.previous}}{{/if}}",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "next": {
+                      "type": "string",
+                      "title": "Next",
+                      "default": "{{#if title}}Forward to {{{title}}} (item {{itemNumber}} of {{totalItems}}){{else}}{{_globals._accessibility._ariaLabels.next}}{{/if}}",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    },
+                    "popupPagination": {
+                      "type": "string",
+                      "title": "Popup pagination",
+                      "description": "This is the item count displayed in the popup. Use {{itemNumber}} and {{totalItems}} in your text to tell the user which item they are viewing and how many items there are in total",
+                      "default": "{{itemNumber}} / {{totalItems}}",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

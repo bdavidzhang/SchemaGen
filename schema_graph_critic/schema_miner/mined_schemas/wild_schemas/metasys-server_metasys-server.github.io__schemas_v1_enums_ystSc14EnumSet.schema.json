@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/ystSc14EnumSet.schema.json",
+  "title": "ystSc14EnumSet",
+  "description": "YST Internal Fault Code SC.14",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "ystSc140"
+      ],
+      "description": "NO INTERNAL FAULTS PRESENT"
+    },
+    {
+      "enum": [
+        1,
+        "ystSc141"
+      ],
+      "description": "INTERNAL ERROR - NO TIMER HANDLES AVAILABLE"
+    },
+    {
+      "enum": [
+        2,
+        "ystSc142"
+      ],
+      "description": "WATCHDOG - SOFTWARE REBOOT"
+    },
+    {
+      "enum": [
+        3,
+        "ystSc143"
+      ],
+      "description": "INTERNAL ERROR - CANNOT CREATE TASK"
+    },
+    {
+      "enum": [
+        4,
+        "ystSc144"
+      ],
+      "description": "RESERVED 4"
+    },
+    {
+      "enum": [
+        5,
+        "ystSc145"
+      ],
+      "description": "RESERVED 5"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

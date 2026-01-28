@@ -1,0 +1,146 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "A descriptive name of the template."
+		},
+		"description": {
+			"type": "string",
+			"description": "A concise description of the template, further detailing what type of project it can be used to bootstrap."
+		},
+		"variables": {
+			"type": "array",
+			"uniqueItems": true,
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "The name of the variable, this should be a readable and concise name."
+					},
+					"description": {
+						"type": "string",
+						"description": "The concise description of how the variable is used within the template."
+					},
+					"identifier": {
+						"type": "string",
+						"minLength": 1,
+						"pattern": "^[A-Za-z]+$",
+						"description": "The identifier that this variable will be referenced by in evaluated content."
+					},
+					"default": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number"
+							},
+							{
+								"type": "boolean"
+							}
+						],
+						"description": "The default value of this variable."
+					},
+					"required": {
+						"type": "boolean",
+						"description": "Whether the variable is required to be set."
+					},
+					"type": {
+						"oneOf": [
+							{
+								"type": "string",
+								"enum": ["string", "boolean", "double", "int", "any"]
+							},
+							{
+								"type": "object",
+								"additionalProperties": true,
+								"properties": {
+									"base": {
+										"type": "string",
+										"enum": ["string", "boolean", "double", "int"]
+									}
+								},
+								"description": "A refined base type that can add additional rules."
+							}
+						],
+						"description": "The type of the variable, can be a base type or a refined base type."
+					}
+				},
+				"required": ["name", "identifier", "type"]
+			},
+			"description": "The variables that this template defines to customize bootstrapping."
+		},
+		"commands": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"stage": {
+						"type": "string",
+						"enum": ["post-write", "pre-write"],
+						"description": "The stage at which this command will run.",
+						"enumDesc": "A command can run before the structure of the template is written, or after. Commands will always run after variables have been evaluated."
+					},
+					"condition": {
+						"type": "string",
+						"description": "The condition that determines whether this command will execute. This property is optional, but if defined, it should evaluate to a boolean value, any other value will mean the command will automatically be ignored."
+					},
+					"command": {
+						"type": "string",
+						"description": "The actual command that will be run."
+					}
+				},
+				"required": ["stage", "command"]
+			},
+			"description": "The commands executed in different stages of the building of this template."
+		},
+		"structure": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "The name of the structure item."
+					},
+					"content": {
+						"oneOf": [
+							{
+								"type": "string",
+								"description": "The content of this file structure item."
+							},
+							{
+								"type": "array",
+								"items": {
+									"$ref": "#/properties/structure/items",
+									"type": "string"
+								},
+								"description": "The children of this directory structure item."
+							}
+						],
+						"description": "Either string content (indicating that this item is a file), or an array of children items (indicating that this item is a directory)."
+					},
+					"condition": {
+						"type": "string",
+						"description": "The condition that determines whether this structure item will be written. This property is optional, but if defined, it should evaluate to a boolean value, any other value will mean the structure item will automatically be ignored."
+					}
+				},
+				"dependencies": {
+					"content": {
+						"not": {
+							"required": ["children"]
+						}
+					}
+				},
+				"required": ["name"]
+			},
+			"description": "The files and folders that make up this template."
+		}
+	},
+	"required": ["name", "structure"],
+	"title": "Neuw Template",
+	"description": "Details a template that can be used to bootstrap a project via Neuw."
+}

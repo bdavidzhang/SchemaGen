@@ -1,0 +1,115 @@
+{
+    "title": "VDX",
+    "description": "Voting Definition Specification.",
+    "type": "object",
+    "properties": {
+      "algorithm_name": {
+        "title": "Algorithm Name",
+        "description": "Name of the algorithm",
+        "type": "string"
+      },
+      "quorum": {
+        "description": "Quorum type",
+        "allOf": [
+          {
+            "$ref": "#/definitions/Quorum"
+          }
+        ]
+      },
+      "quorum_percentage": {
+        "title": "Quorum Percentage",
+        "description": "Quorum percentage",
+        "type": "number"
+      },
+      "bootstrapping": {
+        "title": "Bootstrapping",
+        "description": "Whether to use bootstrapping",
+        "type": "boolean"
+      },
+      "exclusion": {
+        "description": "Exclusion type",
+        "allOf": [
+          {
+            "$ref": "#/definitions/Exclusion"
+          }
+        ]
+      },
+      "exclusion_threshold": {
+        "title": "Exclusion Threshold",
+        "description": "Exclusion threshold",
+        "type": "number"
+      },
+      "history": {
+        "description": "History type",
+        "allOf": [
+          {
+            "$ref": "#/definitions/HistoryType"
+          }
+        ]
+      },
+      "params": {
+        "title": "Voting Params",
+        "description": "Voting parameters. These can vary by algorithm and as such are not part of the VDS.",
+        "type": "object"
+      },
+      "collation": {
+        "description": "Collation type",
+        "allOf": [
+          {
+            "$ref": "#/definitions/Collation"
+          }
+        ]
+      }
+    },
+    "required": [
+      "algorithm_name",
+      "quorum",
+      "quorum_percentage",
+      "bootstrapping",
+      "exclusion",
+      "exclusion_threshold",
+      "history",
+      "collation"
+    ],
+    "definitions": {
+      "Quorum": {
+        "title": "Quorum",
+        "description": "Quorum type.",
+        "enum": [
+          "UNTIL",
+          "ALL_BUT"
+        ],
+        "type": "string"
+      },
+      "Exclusion": {
+        "title": "Exclusion",
+        "description": "Exclusion type.",
+        "enum": [
+          "NONE",
+          "FURTHEST",
+          "OUTSIDE_SIGMA"
+        ],
+        "type": "string"
+      },
+      "HistoryType": {
+        "title": "HistoryType",
+        "description": "History type.",
+        "enum": [
+          "NONE",
+          "STANDARD",
+          "MODULE_ELIMINATION",
+          "HYBRID"
+        ],
+        "type": "string"
+      },
+      "Collation": {
+        "title": "Collation",
+        "description": "Collation type.",
+        "enum": [
+          "MEAN",
+          "MEAN_NEAREST_NEIGHBOR"
+        ],
+        "type": "string"
+      }
+    }
+  }

@@ -1,0 +1,16 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "AWS_IoT_TopicRule.PutItemInput.schema.json",
+  "title" : "TopicRulePutItemInput",
+  "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putiteminput.html",
+  "type" : "object",
+  "javaType" : "shiver.me.timbers.aws.iot.TopicRulePutItemInput",
+  "javaInterfaces" : [ "shiver.me.timbers.aws.Property<TopicRulePutItemInput>" ],
+  "properties" : {
+    "TableName" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putiteminput.html#cfn-iot-topicrule-putiteminput-tablename",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    }
+  }
+}

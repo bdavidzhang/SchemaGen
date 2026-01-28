@@ -1,0 +1,160 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/tehmaze/boarddb/board.schema.json",
+    "title": "BoardDB",
+    "description": "3D-printer control board definitions",
+    "type": "object",
+    "properties": {
+        "manufacturer": {
+            "description": "Name of the manufacturer",
+            "type": "string"
+        },
+        "product": {
+            "description": "Name of the product",
+            "type": "string"
+        },
+        "version": {
+            "description": "Version of the product",
+            "type": "string"
+        },
+        "url": {
+            "description": "URL of the product",
+            "type": "string"
+        },
+        "mcu": {
+            "description": "Type of micro controller",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "mcuFamily": {
+            "description": "Family of micro controller",
+            "type": "string"
+        },
+        "stepstick": {
+            "description": "Stepstick slot pin definitions",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "description": "Label of the stepstick slot",
+                        "type": "string"
+                    },
+                    "enable": {
+                        "description": "Enable pin",
+                        "type": "string"
+                    },
+                    "step": {
+                        "description": "Step pulse pin",
+                        "type": "string"
+                    },
+                    "dir": {
+                        "description": "Direction pin",
+                        "type": "string"
+                    },
+                    "diag": {
+                        "description": "DIAG pin (Trinamics specific)",
+                        "type": "string"
+                    },
+                    "cs": {
+                        "description": "SPI chip select pin",
+                        "type": "string"
+                    },
+                    "uart": {
+                        "description": "UART receive or bidirectional pin",
+                        "type": "string"
+                    },
+                    "uart_tx": {
+                        "description": "UART transmit pin",
+                        "type": "string"
+                    }
+                },
+                "required": [ "label", "enable", "step", "dir" ]
+            },
+            "uniqueItems": true
+        },
+        "endstop": {
+            "description": "Endstop pin definitions",
+            "type": "object",
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true
+        },
+        "heater": {
+            "description": "Heater pin definitions",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "description": "Label of the stepstick slot",
+                        "type": "string"
+                    },
+                    "pin": {
+                        "description": "Pin name",
+                        "type": "string"
+                    },
+                    "max_current": {
+                        "description": "Maximum heater current (in ampere)",
+                        "type": "number"
+                    }
+                },
+                "required": [ "label", "pin" ]
+            },
+            "uniqueItems": true
+        },
+        "sensor": {
+            "description": "Sensor pin definitions",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "description": "Label of the stepstick slot",
+                        "type": "string"
+                    },
+                    "pin": {
+                        "description": "Pin name",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Sensor type (for hardwired sensors)",
+                        "type": "string"
+                    },
+                    "pullup": {
+                        "descriptor": "Pull-up resistor value (in ohm)",
+                        "type": "number"
+                    }
+                },
+                "required": [ "label", "pin" ]
+            }
+        },
+        "fan": {
+            "description": "Fan pin definitions",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "description": "Label of the stepstick slot",
+                        "type": "string"
+                    },
+                    "pin": {
+                        "description": "Pin name",
+                        "type": "string"
+                    },
+                    "max_current": {
+                        "description": "Maximum fan current (in ampere)",
+                        "type": "number"
+                    }
+                },
+                "required": [ "label", "pin" ]
+            },
+            "uniqueItems": true
+        }
+    },
+    "required": [ "manufacturer", "product", "mcu", "mcuFamily", "stepstick", "endstop", "heater", "sensor", "fan" ]
+}    

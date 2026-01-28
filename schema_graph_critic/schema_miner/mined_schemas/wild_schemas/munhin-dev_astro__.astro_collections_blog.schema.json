@@ -1,0 +1,166 @@
+{
+  "$ref": "#/definitions/blog",
+  "definitions": {
+    "blog": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "draft": {
+          "type": "boolean"
+        },
+        "meta_title": {
+          "type": "string"
+        },
+        "meta_description": {
+          "type": "string"
+        },
+        "robots": {
+          "type": "string"
+        },
+        "exclude_from_sitemap": {
+          "type": "boolean"
+        },
+        "custom_slug": {
+          "type": "string"
+        },
+        "canonical": {
+          "type": "string"
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disable_tagline": {
+          "type": "boolean"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "others"
+          ]
+        },
+        "author": {
+          "type": "string"
+        },
+        "excerpt": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string",
+              "enum": [
+                "blog"
+              ]
+            },
+            "layout": {
+              "type": "string",
+              "enum": [
+                "grid"
+              ]
+            },
+            "columns": {
+              "type": "number",
+              "enum": [
+                1,
+                2,
+                3
+              ]
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "boolean",
+                  "const": false
+                }
+              ]
+            },
+            "gap": {
+              "type": "string",
+              "enum": [
+                "gap-6",
+                "gap-8"
+              ]
+            },
+            "card": {
+              "type": "object",
+              "properties": {
+                "layout": {
+                  "type": "string",
+                  "enum": [
+                    "classic",
+                    "overlay",
+                    "modern",
+                    "horizontal"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "card"
+          ],
+          "additionalProperties": false
+        },
+        "single": {
+          "type": "object",
+          "properties": {
+            "layout": {
+              "type": "string",
+              "enum": [
+                "minimal",
+                "modern"
+              ]
+            }
+          },
+          "required": [
+            "layout"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

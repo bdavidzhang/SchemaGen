@@ -1,0 +1,2532 @@
+{"$schema":"http://json-schema.org/draft-06/schema#","$id":"http://hl7.org/fhir/json-schema/5.0",
+  "description": "A structured set of questions intended to guide the collection of answers from end-users. Questionnaires provide detailed control over order, presentation, phraseology and grouping to allow coherent, consistent data collection.",
+  "properties": {
+    "id": {
+      "pattern": "^[ \\r\\n\\t\\S]+$",
+      "type": "string",
+      "description": "A sequence of Unicode characters"
+    },
+    "extension": {
+      "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+      "items": {
+        "description": "Optional Extension Element - found in all resources.",
+        "properties": {
+          "id": {
+            "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+            "pattern": "^[ \\r\\n\\t\\S]+$",
+            "type": "string"
+          },
+          "extension": {
+            "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+            "type": "array"
+          },
+          "url": {
+            "description": "Source of the definition for the extension code - a logical name or a URL.",
+            "pattern": "^\\S*$",
+            "type": "string"
+          },
+          "_url": {
+            "description": "Extensions for url",
+            "properties": {
+              "id": {
+                "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueBase64Binary": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^(\\s*([0-9a-zA-Z\\+/=]){4}\\s*)+$",
+            "type": "string"
+          },
+          "_valueBase64Binary": {
+            "description": "Extensions for valueBase64Binary",
+            "additionalProperties": false
+          },
+          "valueBoolean": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^true|false$",
+            "type": "boolean"
+          },
+          "_valueBoolean": {
+            "description": "Extensions for valueBoolean",
+            "additionalProperties": false
+          },
+          "valueCanonical": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^\\S*$",
+            "type": "string"
+          },
+          "_valueCanonical": {
+            "description": "Extensions for valueCanonical",
+            "additionalProperties": false
+          },
+          "valueCode": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+            "type": "string"
+          },
+          "_valueCode": {
+            "description": "Extensions for valueCode",
+            "additionalProperties": false
+          },
+          "valueDate": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+            "type": "string"
+          },
+          "_valueDate": {
+            "description": "Extensions for valueDate",
+            "additionalProperties": false
+          },
+          "valueDateTime": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+            "type": "string"
+          },
+          "_valueDateTime": {
+            "description": "Extensions for valueDateTime",
+            "additionalProperties": false
+          },
+          "valueDecimal": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+            "type": "number"
+          },
+          "_valueDecimal": {
+            "description": "Extensions for valueDecimal",
+            "additionalProperties": false
+          },
+          "valueId": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^[A-Za-z0-9\\-\\.]{1,64}$",
+            "type": "string"
+          },
+          "_valueId": {
+            "description": "Extensions for valueId",
+            "additionalProperties": false
+          },
+          "valueInstant": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$",
+            "type": "string"
+          },
+          "_valueInstant": {
+            "description": "Extensions for valueInstant",
+            "additionalProperties": false
+          },
+          "valueInteger": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^-?([0]|([1-9][0-9]*))$",
+            "type": "number"
+          },
+          "_valueInteger": {
+            "description": "Extensions for valueInteger",
+            "additionalProperties": false
+          },
+          "valueMarkdown": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^[ \\r\\n\\t\\S]+$",
+            "type": "string"
+          },
+          "_valueMarkdown": {
+            "description": "Extensions for valueMarkdown",
+            "additionalProperties": false
+          },
+          "valueOid": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^urn:oid:[0-2](\\.(0|[1-9][0-9]*))+$",
+            "type": "string"
+          },
+          "_valueOid": {
+            "description": "Extensions for valueOid",
+            "additionalProperties": false
+          },
+          "valuePositiveInt": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^[1-9][0-9]*$",
+            "type": "number"
+          },
+          "_valuePositiveInt": {
+            "description": "Extensions for valuePositiveInt",
+            "additionalProperties": false
+          },
+          "valueString": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^[ \\r\\n\\t\\S]+$",
+            "type": "string"
+          },
+          "_valueString": {
+            "description": "Extensions for valueString",
+            "additionalProperties": false
+          },
+          "valueTime": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?$",
+            "type": "string"
+          },
+          "_valueTime": {
+            "description": "Extensions for valueTime",
+            "additionalProperties": false
+          },
+          "valueUnsignedInt": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^[0]|([1-9][0-9]*)$",
+            "type": "number"
+          },
+          "_valueUnsignedInt": {
+            "description": "Extensions for valueUnsignedInt",
+            "additionalProperties": false
+          },
+          "valueUri": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^\\S*$",
+            "type": "string"
+          },
+          "_valueUri": {
+            "description": "Extensions for valueUri",
+            "additionalProperties": false
+          },
+          "valueUrl": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^\\S*$",
+            "type": "string"
+          },
+          "_valueUrl": {
+            "description": "Extensions for valueUrl",
+            "additionalProperties": false
+          },
+          "valueUuid": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "pattern": "^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "type": "string"
+          },
+          "_valueUuid": {
+            "description": "Extensions for valueUuid",
+            "additionalProperties": false
+          },
+          "valueAddress": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "use": {
+                "description": "The purpose of this address.",
+                "enum": [
+                  "home",
+                  "work",
+                  "temp",
+                  "old",
+                  "billing"
+                ]
+              },
+              "_use": {
+                "description": "Extensions for use",
+                "additionalProperties": false
+              },
+              "type": {
+                "description": "Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.",
+                "enum": [
+                  "postal",
+                  "physical",
+                  "both"
+                ]
+              },
+              "_type": {
+                "description": "Extensions for type",
+                "additionalProperties": false
+              },
+              "text": {
+                "description": "Specifies the entire address as it should be displayed e.g. on a postal label. This may be provided instead of or as well as the specific parts.",
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string"
+              },
+              "_text": {
+                "description": "Extensions for text",
+                "additionalProperties": false
+              },
+              "line": {
+                "description": "This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information.",
+                "items": {
+                  "pattern": "^[ \\r\\n\\t\\S]+$",
+                  "type": "string",
+                  "description": "A sequence of Unicode characters"
+                },
+                "type": "array"
+              },
+              "_line": {
+                "description": "Extensions for line",
+                "items": {
+                  "description": "Base definition for all elements in a resource.",
+                  "additionalProperties": false
+                },
+                "type": "array"
+              },
+              "city": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_city": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "district": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_district": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "state": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_state": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "postalCode": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_postalCode": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "country": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_country": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "period": {
+                "description": "Time period when address was/is in use.",
+                "properties": {
+                  "id": {
+                    "pattern": "^[ \\r\\n\\t\\S]+$",
+                    "type": "string",
+                    "description": "A sequence of Unicode characters"
+                  },
+                  "extension": {
+                    "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                    "type": "array"
+                  },
+                  "start": {
+                    "description": "The start of the period. The boundary is inclusive.",
+                    "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+                    "type": "string"
+                  },
+                  "_start": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "end": {
+                    "description": "The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.",
+                    "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+                    "type": "string"
+                  },
+                  "_end": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueAge": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "value": {
+                "description": "The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_value": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "comparator": {
+                "description": "How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.",
+                "enum": [
+                  "<",
+                  "<=",
+                  ">=",
+                  ">"
+                ]
+              },
+              "_comparator": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "unit": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_unit": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "system": {
+                "description": "The identification of the system that provides the coded form of the unit.",
+                "pattern": "^\\S*$",
+                "type": "string"
+              },
+              "_system": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "code": {
+                "description": "A computer processable form of the unit in some unit representation system.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_code": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueAnnotation": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "authorReference": {
+                "description": "The individual responsible for making the annotation.",
+                "properties": {
+                  "id": {
+                    "pattern": "^[ \\r\\n\\t\\S]+$",
+                    "type": "string",
+                    "description": "A sequence of Unicode characters"
+                  },
+                  "extension": {
+                    "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                    "type": "array"
+                  },
+                  "reference": {
+                    "pattern": "^[ \\r\\n\\t\\S]+$",
+                    "type": "string",
+                    "description": "A sequence of Unicode characters"
+                  },
+                  "_reference": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "type": {
+                    "description": "The expected type of the target of the reference. If both Reference.type and Reference.reference are populated and Reference.reference is a FHIR URL, both SHALL be consistent.\n\nThe type is the Canonical URL of Resource Definition that is the type this reference refers to. References are URLs that are relative to http://hl7.org/fhir/StructureDefinition/ e.g. \"Patient\" is a reference to http://hl7.org/fhir/StructureDefinition/Patient. Absolute URLs are only allowed for logical models (and can only be used in references in logical models, not resources).",
+                    "pattern": "^\\S*$",
+                    "type": "string"
+                  },
+                  "_type": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "identifier": {
+                    "description": "An identifier for the target resource. This is used when there is no way to reference the other resource directly, either because the entity it represents is not available through a FHIR server, or because there is no way for the author of the resource to convert a known identifier to an actual location. There is no requirement that a Reference.identifier point to something that is actually exposed as a FHIR instance, but it SHALL point to a business concept that would be expected to be exposed as a FHIR instance, and that instance would need to be of a FHIR resource type allowed by the reference.",
+                    "properties": {
+                      "id": {
+                        "pattern": "^[ \\r\\n\\t\\S]+$",
+                        "type": "string",
+                        "description": "A sequence of Unicode characters"
+                      },
+                      "extension": {
+                        "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                        "type": "array"
+                      },
+                      "use": {
+                        "description": "The purpose of this identifier.",
+                        "enum": [
+                          "usual",
+                          "official",
+                          "temp",
+                          "secondary",
+                          "old"
+                        ]
+                      },
+                      "_use": {
+                        "description": "Base definition for all elements in a resource.",
+                        "additionalProperties": false
+                      },
+                      "type": {
+                        "description": "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+                        "properties": {
+                          "id": {
+                            "pattern": "^[ \\r\\n\\t\\S]+$",
+                            "type": "string",
+                            "description": "A sequence of Unicode characters"
+                          },
+                          "extension": {
+                            "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                            "type": "array"
+                          },
+                          "coding": {
+                            "description": "A reference to a code defined by a terminology system.",
+                            "items": {
+                              "description": "A reference to a code defined by a terminology system.",
+                              "properties": {
+                                "id": {
+                                  "pattern": "^[ \\r\\n\\t\\S]+$",
+                                  "type": "string",
+                                  "description": "A sequence of Unicode characters"
+                                },
+                                "extension": {
+                                  "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                                  "type": "array"
+                                },
+                                "system": {
+                                  "description": "The identification of the code system that defines the meaning of the symbol in the code.",
+                                  "pattern": "^\\S*$",
+                                  "type": "string"
+                                },
+                                "_system": {
+                                  "description": "Base definition for all elements in a resource.",
+                                  "additionalProperties": false
+                                },
+                                "version": {
+                                  "pattern": "^[ \\r\\n\\t\\S]+$",
+                                  "type": "string",
+                                  "description": "A sequence of Unicode characters"
+                                },
+                                "_version": {
+                                  "description": "Base definition for all elements in a resource.",
+                                  "additionalProperties": false
+                                },
+                                "code": {
+                                  "description": "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+                                  "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                                  "type": "string"
+                                },
+                                "_code": {
+                                  "description": "Base definition for all elements in a resource.",
+                                  "additionalProperties": false
+                                },
+                                "display": {
+                                  "pattern": "^[ \\r\\n\\t\\S]+$",
+                                  "type": "string",
+                                  "description": "A sequence of Unicode characters"
+                                },
+                                "_display": {
+                                  "description": "Base definition for all elements in a resource.",
+                                  "additionalProperties": false
+                                },
+                                "userSelected": {
+                                  "description": "Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays).",
+                                  "pattern": "^true|false$",
+                                  "type": "boolean"
+                                },
+                                "_userSelected": {
+                                  "description": "Base definition for all elements in a resource.",
+                                  "additionalProperties": false
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            "type": "array"
+                          },
+                          "text": {
+                            "pattern": "^[ \\r\\n\\t\\S]+$",
+                            "type": "string",
+                            "description": "A sequence of Unicode characters"
+                          },
+                          "_text": {
+                            "description": "Base definition for all elements in a resource.",
+                            "additionalProperties": false
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "system": {
+                        "description": "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+                        "pattern": "^\\S*$",
+                        "type": "string"
+                      },
+                      "_system": {
+                        "description": "Base definition for all elements in a resource.",
+                        "additionalProperties": false
+                      },
+                      "value": {
+                        "pattern": "^[ \\r\\n\\t\\S]+$",
+                        "type": "string",
+                        "description": "A sequence of Unicode characters"
+                      },
+                      "_value": {
+                        "description": "Base definition for all elements in a resource.",
+                        "additionalProperties": false
+                      },
+                      "period": {
+                        "description": "Time period during which identifier is/was valid for use.",
+                        "additionalProperties": false
+                      },
+                      "assigner": {
+                        "description": "Organization that issued/manages the identifier.",
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "display": {
+                    "pattern": "^[ \\r\\n\\t\\S]+$",
+                    "type": "string",
+                    "description": "A sequence of Unicode characters"
+                  },
+                  "_display": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "authorString": {
+                "description": "The individual responsible for making the annotation.",
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string"
+              },
+              "_authorString": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "time": {
+                "description": "Indicates when this particular annotation was made.",
+                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+                "type": "string"
+              },
+              "_time": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "text": {
+                "description": "The text of the annotation in markdown format.",
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string"
+              },
+              "_text": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueAttachment": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "contentType": {
+                "description": "Identifies the type of the data in the attachment and allows a method to be chosen to interpret or render the data. Includes mime type parameters such as charset where appropriate.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_contentType": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "language": {
+                "description": "The human language of the content. The value can be any valid value according to BCP 47.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_language": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "data": {
+                "description": "The actual data of the attachment - a sequence of bytes, base64 encoded.",
+                "type": "string"
+              },
+              "_data": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "url": {
+                "description": "A location where the data can be accessed.",
+                "pattern": "^\\S*$",
+                "type": "string"
+              },
+              "_url": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "size": {
+                "description": "The number of bytes of data that make up this attachment (before base64 encoding, if that is done).",
+                "pattern": "^[0]|([1-9][0-9]*)$",
+                "type": "number"
+              },
+              "_size": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "hash": {
+                "description": "The calculated hash of the data using SHA-1. Represented using base64.",
+                "type": "string"
+              },
+              "_hash": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "title": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_title": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "creation": {
+                "description": "The date that the attachment was first created.",
+                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+                "type": "string"
+              },
+              "_creation": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueCodeableConcept": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "additionalProperties": false
+          },
+          "valueCoding": {
+            "description": "A reference to a code defined by a terminology system.",
+            "additionalProperties": false
+          },
+          "valueContactPoint": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "system": {
+                "description": "Telecommunications form for contact point - what communications system is required to make use of the contact.",
+                "enum": [
+                  "phone",
+                  "fax",
+                  "email",
+                  "pager",
+                  "url",
+                  "sms",
+                  "other"
+                ]
+              },
+              "_system": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "value": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_value": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "use": {
+                "description": "Identifies the purpose for the contact point.",
+                "enum": [
+                  "home",
+                  "work",
+                  "temp",
+                  "old",
+                  "mobile"
+                ]
+              },
+              "_use": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "rank": {
+                "description": "Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.",
+                "pattern": "^[1-9][0-9]*$",
+                "type": "number"
+              },
+              "_rank": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "period": {
+                "description": "Time period when the contact point was/is in use.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueCount": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "value": {
+                "description": "The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_value": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "comparator": {
+                "description": "How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.",
+                "enum": [
+                  "<",
+                  "<=",
+                  ">=",
+                  ">"
+                ]
+              },
+              "_comparator": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "unit": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_unit": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "system": {
+                "description": "The identification of the system that provides the coded form of the unit.",
+                "pattern": "^\\S*$",
+                "type": "string"
+              },
+              "_system": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "code": {
+                "description": "A computer processable form of the unit in some unit representation system.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_code": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueDistance": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "value": {
+                "description": "The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_value": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "comparator": {
+                "description": "How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.",
+                "enum": [
+                  "<",
+                  "<=",
+                  ">=",
+                  ">"
+                ]
+              },
+              "_comparator": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "unit": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_unit": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "system": {
+                "description": "The identification of the system that provides the coded form of the unit.",
+                "pattern": "^\\S*$",
+                "type": "string"
+              },
+              "_system": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "code": {
+                "description": "A computer processable form of the unit in some unit representation system.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_code": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueDuration": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "value": {
+                "description": "The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_value": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "comparator": {
+                "description": "How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.",
+                "enum": [
+                  "<",
+                  "<=",
+                  ">=",
+                  ">"
+                ]
+              },
+              "_comparator": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "unit": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_unit": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "system": {
+                "description": "The identification of the system that provides the coded form of the unit.",
+                "pattern": "^\\S*$",
+                "type": "string"
+              },
+              "_system": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "code": {
+                "description": "A computer processable form of the unit in some unit representation system.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_code": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueHumanName": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "use": {
+                "description": "Identifies the purpose for this name.",
+                "enum": [
+                  "usual",
+                  "official",
+                  "temp",
+                  "nickname",
+                  "anonymous",
+                  "old",
+                  "maiden"
+                ]
+              },
+              "_use": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "text": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_text": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "family": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_family": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "given": {
+                "description": "Given name.",
+                "type": "array"
+              },
+              "_given": {
+                "description": "Extensions for given",
+                "type": "array"
+              },
+              "prefix": {
+                "description": "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name.",
+                "type": "array"
+              },
+              "_prefix": {
+                "description": "Extensions for prefix",
+                "type": "array"
+              },
+              "suffix": {
+                "description": "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name.",
+                "type": "array"
+              },
+              "_suffix": {
+                "description": "Extensions for suffix",
+                "type": "array"
+              },
+              "period": {
+                "description": "Indicates the period of time when this name was valid for the named person.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueIdentifier": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "additionalProperties": false
+          },
+          "valueMoney": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "value": {
+                "description": "Numerical value (with implicit precision).",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_value": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "currency": {
+                "description": "ISO 4217 Currency Code.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_currency": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valuePeriod": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "additionalProperties": false
+          },
+          "valueQuantity": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "value": {
+                "description": "The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_value": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "comparator": {
+                "description": "How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.",
+                "enum": [
+                  "<",
+                  "<=",
+                  ">=",
+                  ">"
+                ]
+              },
+              "_comparator": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "unit": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_unit": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "system": {
+                "description": "The identification of the system that provides the coded form of the unit.",
+                "pattern": "^\\S*$",
+                "type": "string"
+              },
+              "_system": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "code": {
+                "description": "A computer processable form of the unit in some unit representation system.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_code": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueRange": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "low": {
+                "description": "The low limit. The boundary is inclusive.",
+                "additionalProperties": false
+              },
+              "high": {
+                "description": "The high limit. The boundary is inclusive.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueRatio": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "numerator": {
+                "description": "The value of the numerator.",
+                "additionalProperties": false
+              },
+              "denominator": {
+                "description": "The value of the denominator.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueReference": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "additionalProperties": false
+          },
+          "valueSampledData": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "origin": {
+                "description": "The base quantity that a measured value of zero represents. In addition, this provides the units of the entire measurement series.",
+                "additionalProperties": false
+              },
+              "period": {
+                "description": "The length of time between sampling times, measured in milliseconds.",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_period": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "factor": {
+                "description": "A correction factor that is applied to the sampled data points before they are added to the origin.",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_factor": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "lowerLimit": {
+                "description": "The lower limit of detection of the measured points. This is needed if any of the data points have the value \"L\" (lower than detection limit).",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_lowerLimit": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "upperLimit": {
+                "description": "The upper limit of detection of the measured points. This is needed if any of the data points have the value \"U\" (higher than detection limit).",
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "number"
+              },
+              "_upperLimit": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "dimensions": {
+                "description": "The number of sample points at each time point. If this value is greater than one, then the dimensions will be interlaced - all the sample points for a point in time will be recorded at once.",
+                "pattern": "^[1-9][0-9]*$",
+                "type": "number"
+              },
+              "_dimensions": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "data": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_data": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "origin"
+            ]
+          },
+          "valueSignature": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "type": {
+                "description": "An indication of the reason that the entity signed this document. This may be explicitly included as part of the signature information and can be used when determining accountability for various actions concerning the document.",
+                "type": "array"
+              },
+              "when": {
+                "description": "When the digital signature was signed.",
+                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$",
+                "type": "string"
+              },
+              "_when": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "who": {
+                "description": "A reference to an application-usable description of the identity that signed  (e.g. the signature used their private key).",
+                "additionalProperties": false
+              },
+              "onBehalfOf": {
+                "description": "A reference to an application-usable description of the identity that is represented by the signature.",
+                "additionalProperties": false
+              },
+              "targetFormat": {
+                "description": "A mime type that indicates the technical format of the target resources signed by the signature.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_targetFormat": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "sigFormat": {
+                "description": "A mime type that indicates the technical format of the signature. Important mime types are application/signature+xml for X ML DigSig, application/jose for JWS, and image/* for a graphical image of a signature, etc.",
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string"
+              },
+              "_sigFormat": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "data": {
+                "description": "The base64 encoding of the Signature content. When signature is not recorded electronically this element would be empty.",
+                "type": "string"
+              },
+              "_data": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "who"
+            ]
+          },
+          "valueTiming": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "modifierExtension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+                "type": "array"
+              },
+              "event": {
+                "description": "Identifies specific times when the event occurs.",
+                "items": {
+                  "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+                  "type": "string",
+                  "description": "A date, date-time or partial date (e.g. just year or year + month).  If hours and minutes are specified, a time zone SHALL be populated. The format is a union of the schema types gYear, gYearMonth, date and dateTime. Seconds must be provided due to schema type constraints but may be zero-filled and may be ignored.                 Dates SHALL be valid dates."
+                },
+                "type": "array"
+              },
+              "_event": {
+                "description": "Extensions for event",
+                "type": "array"
+              },
+              "repeat": {
+                "description": "A set of rules that describe when the event is scheduled.",
+                "properties": {
+                  "id": {
+                    "pattern": "^[ \\r\\n\\t\\S]+$",
+                    "type": "string",
+                    "description": "A sequence of Unicode characters"
+                  },
+                  "extension": {
+                    "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                    "type": "array"
+                  },
+                  "modifierExtension": {
+                    "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+                    "type": "array"
+                  },
+                  "boundsDuration": {
+                    "description": "Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule.",
+                    "additionalProperties": false
+                  },
+                  "boundsRange": {
+                    "description": "Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule.",
+                    "additionalProperties": false
+                  },
+                  "boundsPeriod": {
+                    "description": "Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule.",
+                    "additionalProperties": false
+                  },
+                  "count": {
+                    "description": "A total count of the desired number of repetitions across the duration of the entire timing specification. If countMax is present, this element indicates the lower bound of the allowed range of count values.",
+                    "pattern": "^[1-9][0-9]*$",
+                    "type": "number"
+                  },
+                  "_count": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "countMax": {
+                    "description": "If present, indicates that the count is a range - so to perform the action between [count] and [countMax] times.",
+                    "pattern": "^[1-9][0-9]*$",
+                    "type": "number"
+                  },
+                  "_countMax": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "duration": {
+                    "description": "How long this thing happens for when it happens. If durationMax is present, this element indicates the lower bound of the allowed range of the duration.",
+                    "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                    "type": "number"
+                  },
+                  "_duration": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "durationMax": {
+                    "description": "If present, indicates that the duration is a range - so to perform the action between [duration] and [durationMax] time length.",
+                    "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                    "type": "number"
+                  },
+                  "_durationMax": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "durationUnit": {
+                    "description": "The units of time for the duration, in UCUM units.",
+                    "enum": [
+                      "s",
+                      "min",
+                      "h",
+                      "d",
+                      "wk",
+                      "mo",
+                      "a"
+                    ]
+                  },
+                  "_durationUnit": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "frequency": {
+                    "description": "The number of times to repeat the action within the specified period. If frequencyMax is present, this element indicates the lower bound of the allowed range of the frequency.",
+                    "pattern": "^[1-9][0-9]*$",
+                    "type": "number"
+                  },
+                  "_frequency": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "frequencyMax": {
+                    "description": "If present, indicates that the frequency is a range - so to repeat between [frequency] and [frequencyMax] times within the period or period range.",
+                    "pattern": "^[1-9][0-9]*$",
+                    "type": "number"
+                  },
+                  "_frequencyMax": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "period": {
+                    "description": "Indicates the duration of time over which repetitions are to occur; e.g. to express \"3 times per day\", 3 would be the frequency and \"1 day\" would be the period. If periodMax is present, this element indicates the lower bound of the allowed range of the period length.",
+                    "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                    "type": "number"
+                  },
+                  "_period": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "periodMax": {
+                    "description": "If present, indicates that the period is a range from [period] to [periodMax], allowing expressing concepts such as \"do this once every 3-5 days.",
+                    "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                    "type": "number"
+                  },
+                  "_periodMax": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "periodUnit": {
+                    "description": "The units of time for the period in UCUM units.",
+                    "enum": [
+                      "s",
+                      "min",
+                      "h",
+                      "d",
+                      "wk",
+                      "mo",
+                      "a"
+                    ]
+                  },
+                  "_periodUnit": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  },
+                  "dayOfWeek": {
+                    "description": "If one or more days of week is provided, then the action happens only on the specified day(s).",
+                    "items": {
+                      "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                      "type": "string",
+                      "description": "A string which has at least one character and no leading or trailing whitespace and where there is no whitespace other than single spaces in the contents"
+                    },
+                    "type": "array"
+                  },
+                  "_dayOfWeek": {
+                    "description": "Extensions for dayOfWeek",
+                    "type": "array"
+                  },
+                  "timeOfDay": {
+                    "description": "Specified time of day for action to take place.",
+                    "items": {
+                      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?$",
+                      "type": "string",
+                      "description": "A time during the day, with no date specified"
+                    },
+                    "type": "array"
+                  },
+                  "_timeOfDay": {
+                    "description": "Extensions for timeOfDay",
+                    "type": "array"
+                  },
+                  "when": {
+                    "description": "An approximate time period during the day, potentially linked to an event of daily living that indicates when the action should occur.",
+                    "items": {
+                      "enum": [
+                        "MORN",
+                        "MORN.early",
+                        "MORN.late",
+                        "NOON",
+                        "AFT",
+                        "AFT.early",
+                        "AFT.late",
+                        "EVE",
+                        "EVE.early",
+                        "EVE.late",
+                        "NIGHT",
+                        "PHS",
+                        "HS",
+                        "WAKE",
+                        "C",
+                        "CM",
+                        "CD",
+                        "CV",
+                        "AC",
+                        "ACM",
+                        "ACD",
+                        "ACV",
+                        "PC",
+                        "PCM",
+                        "PCD",
+                        "PCV"
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "_when": {
+                    "description": "Extensions for when",
+                    "type": "array"
+                  },
+                  "offset": {
+                    "description": "The number of minutes from the event. If the event code does not indicate whether the minutes is before or after the event, then the offset is assumed to be after the event.",
+                    "pattern": "^[0]|([1-9][0-9]*)$",
+                    "type": "number"
+                  },
+                  "_offset": {
+                    "description": "Base definition for all elements in a resource.",
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "code": {
+                "description": "A code for the timing schedule (or just text in code.text). Some codes such as BID are ubiquitous, but many institutions define their own additional codes. If a code is provided, the code is understood to be a complete statement of whatever is specified in the structured timing data, and either the code or the data may be used to interpret the Timing, with the exception that .repeat.bounds still applies over the code (and is not contained in the code).",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueContactDetail": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "name": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_name": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "telecom": {
+                "description": "The contact details for the individual (if a name was provided) or the organization.",
+                "items": {
+                  "description": "Details for all kinds of technology mediated contact points for a person or organization, including telephone, email, etc.",
+                  "additionalProperties": false
+                },
+                "type": "array"
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueContributor": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "type": {
+                "description": "The type of contributor.",
+                "enum": [
+                  "author",
+                  "editor",
+                  "reviewer",
+                  "endorser"
+                ]
+              },
+              "_type": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "name": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_name": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "contact": {
+                "description": "Contact details to assist a user in finding and communicating with the contributor.",
+                "items": {
+                  "description": "Specifies contact information for a person or organization.",
+                  "additionalProperties": false
+                },
+                "type": "array"
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueDataRequirement": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "type": {
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string",
+                "description": "A string which has at least one character and no leading or trailing whitespace and where there is no whitespace other than single spaces in the contents"
+              },
+              "_type": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "profile": {
+                "description": "The profile of the required data, specified as the uri of the profile definition.",
+                "items": {
+                  "pattern": "^\\S*$",
+                  "type": "string",
+                  "description": "A URI that is a reference to a canonical URL on a FHIR resource"
+                },
+                "type": "array"
+              },
+              "subjectCodeableConcept": {
+                "description": "The intended subjects of the data requirement. If this element is not provided, a Patient subject is assumed.",
+                "additionalProperties": false
+              },
+              "subjectReference": {
+                "description": "The intended subjects of the data requirement. If this element is not provided, a Patient subject is assumed.",
+                "additionalProperties": false
+              },
+              "mustSupport": {
+                "description": "Indicates that specific elements of the type are referenced by the knowledge module and must be supported by the consumer in order to obtain an effective evaluation. This does not mean that a value is required for this element, only that the consuming system must understand the element and be able to provide values for it if they are available. \n\nThe value of mustSupport SHALL be a FHIRPath resolveable on the type of the DataRequirement. The path SHALL consist only of identifiers, constant indexers, and .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).",
+                "type": "array"
+              },
+              "_mustSupport": {
+                "description": "Extensions for mustSupport",
+                "type": "array"
+              },
+              "codeFilter": {
+                "description": "Code filters specify additional constraints on the data, specifying the value set of interest for a particular element of the data. Each code filter defines an additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.",
+                "items": {
+                  "description": "Describes a required data item for evaluation in terms of the type of data, and optional code or date-based filters of the data.",
+                  "properties": {
+                    "id": {
+                      "pattern": "^[ \\r\\n\\t\\S]+$",
+                      "type": "string",
+                      "description": "A sequence of Unicode characters"
+                    },
+                    "extension": {
+                      "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                      "type": "array"
+                    },
+                    "modifierExtension": {
+                      "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+                      "type": "array"
+                    },
+                    "path": {
+                      "pattern": "^[ \\r\\n\\t\\S]+$",
+                      "type": "string",
+                      "description": "A sequence of Unicode characters"
+                    },
+                    "_path": {
+                      "description": "Base definition for all elements in a resource.",
+                      "additionalProperties": false
+                    },
+                    "searchParam": {
+                      "pattern": "^[ \\r\\n\\t\\S]+$",
+                      "type": "string",
+                      "description": "A sequence of Unicode characters"
+                    },
+                    "_searchParam": {
+                      "description": "Base definition for all elements in a resource.",
+                      "additionalProperties": false
+                    },
+                    "valueSet": {
+                      "pattern": "^\\S*$",
+                      "type": "string",
+                      "description": "A URI that is a reference to a canonical URL on a FHIR resource"
+                    },
+                    "code": {
+                      "description": "The codes for the code filter. If values are given, the filter will return only those data items for which the code-valued attribute specified by the path has a value that is one of the specified codes. If codes are specified in addition to a value set, the filter returns items matching a code in the value set or one of the specified codes.",
+                      "type": "array"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "type": "array"
+              },
+              "dateFilter": {
+                "description": "Date filters specify additional constraints on the data in terms of the applicable date range for specific elements. Each date filter specifies an additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.",
+                "items": {
+                  "description": "Describes a required data item for evaluation in terms of the type of data, and optional code or date-based filters of the data.",
+                  "properties": {
+                    "id": {
+                      "pattern": "^[ \\r\\n\\t\\S]+$",
+                      "type": "string",
+                      "description": "A sequence of Unicode characters"
+                    },
+                    "extension": {
+                      "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                      "type": "array"
+                    },
+                    "modifierExtension": {
+                      "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+                      "type": "array"
+                    },
+                    "path": {
+                      "pattern": "^[ \\r\\n\\t\\S]+$",
+                      "type": "string",
+                      "description": "A sequence of Unicode characters"
+                    },
+                    "_path": {
+                      "description": "Base definition for all elements in a resource.",
+                      "additionalProperties": false
+                    },
+                    "searchParam": {
+                      "pattern": "^[ \\r\\n\\t\\S]+$",
+                      "type": "string",
+                      "description": "A sequence of Unicode characters"
+                    },
+                    "_searchParam": {
+                      "description": "Base definition for all elements in a resource.",
+                      "additionalProperties": false
+                    },
+                    "valueDateTime": {
+                      "description": "The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now.",
+                      "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+                      "type": "string"
+                    },
+                    "_valueDateTime": {
+                      "description": "Base definition for all elements in a resource.",
+                      "additionalProperties": false
+                    },
+                    "valuePeriod": {
+                      "description": "The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now.",
+                      "additionalProperties": false
+                    },
+                    "valueDuration": {
+                      "description": "The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now.",
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "type": "array"
+              },
+              "limit": {
+                "description": "Specifies a maximum number of results that are required (uses the _count search parameter).",
+                "pattern": "^[1-9][0-9]*$",
+                "type": "number"
+              },
+              "_limit": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "sort": {
+                "description": "Specifies the order of the results to be returned.",
+                "items": {
+                  "description": "Describes a required data item for evaluation in terms of the type of data, and optional code or date-based filters of the data.",
+                  "properties": {
+                    "id": {
+                      "pattern": "^[ \\r\\n\\t\\S]+$",
+                      "type": "string",
+                      "description": "A sequence of Unicode characters"
+                    },
+                    "extension": {
+                      "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                      "type": "array"
+                    },
+                    "modifierExtension": {
+                      "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+                      "type": "array"
+                    },
+                    "path": {
+                      "pattern": "^[ \\r\\n\\t\\S]+$",
+                      "type": "string",
+                      "description": "A sequence of Unicode characters"
+                    },
+                    "_path": {
+                      "description": "Base definition for all elements in a resource.",
+                      "additionalProperties": false
+                    },
+                    "direction": {
+                      "description": "The direction of the sort, ascending or descending.",
+                      "enum": [
+                        "ascending",
+                        "descending"
+                      ]
+                    },
+                    "_direction": {
+                      "description": "Base definition for all elements in a resource.",
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "type": "array"
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueExpression": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "description": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_description": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "name": {
+                "description": "A short name assigned to the expression to allow for multiple reuse of the expression in the context where it is defined.",
+                "pattern": "^[A-Za-z0-9\\-\\.]{1,64}$",
+                "type": "string"
+              },
+              "_name": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "language": {
+                "description": "The media type of the language for the expression.",
+                "enum": [
+                  "text/cql",
+                  "text/fhirpath",
+                  "application/x-fhir-query"
+                ]
+              },
+              "_language": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "expression": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_expression": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "reference": {
+                "description": "A URI that defines where the expression is found.",
+                "pattern": "^\\S*$",
+                "type": "string"
+              },
+              "_reference": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueParameterDefinition": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "name": {
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string",
+                "description": "A string which has at least one character and no leading or trailing whitespace and where there is no whitespace other than single spaces in the contents"
+              },
+              "_name": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "use": {
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string",
+                "description": "A string which has at least one character and no leading or trailing whitespace and where there is no whitespace other than single spaces in the contents"
+              },
+              "_use": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "min": {
+                "description": "The minimum number of times this parameter SHALL appear in the request or response.",
+                "pattern": "^-?([0]|([1-9][0-9]*))$",
+                "type": "number"
+              },
+              "_min": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "max": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_max": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "documentation": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_documentation": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "type": {
+                "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+                "type": "string",
+                "description": "A string which has at least one character and no leading or trailing whitespace and where there is no whitespace other than single spaces in the contents"
+              },
+              "_type": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "profile": {
+                "pattern": "^\\S*$",
+                "type": "string",
+                "description": "A URI that is a reference to a canonical URL on a FHIR resource"
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueRelatedArtifact": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "type": {
+                "description": "The type of relationship to the related artifact.",
+                "enum": [
+                  "documentation",
+                  "justification",
+                  "citation",
+                  "predecessor",
+                  "successor",
+                  "derived-from",
+                  "depends-on",
+                  "composed-of"
+                ]
+              },
+              "_type": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "label": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_label": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "display": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_display": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "citation": {
+                "description": "A bibliographic citation for the related artifact. This text SHOULD be formatted according to an accepted citation format.",
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string"
+              },
+              "_citation": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "url": {
+                "description": "A url for the artifact that can be followed to access the actual content.",
+                "pattern": "^\\S*$",
+                "type": "string"
+              },
+              "_url": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "document": {
+                "description": "The document being referenced, represented as an attachment. This is exclusive with the resource element.",
+                "additionalProperties": false
+              },
+              "resource": {
+                "pattern": "^\\S*$",
+                "type": "string",
+                "description": "A URI that is a reference to a canonical URL on a FHIR resource"
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueTriggerDefinition": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "type": {
+                "description": "The type of triggering event.",
+                "enum": [
+                  "named-event",
+                  "periodic",
+                  "data-changed",
+                  "data-added",
+                  "data-modified",
+                  "data-removed",
+                  "data-accessed",
+                  "data-access-ended"
+                ]
+              },
+              "_type": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "name": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_name": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "timingTiming": {
+                "description": "The timing of the event (if this is a periodic trigger).",
+                "additionalProperties": false
+              },
+              "timingReference": {
+                "description": "The timing of the event (if this is a periodic trigger).",
+                "additionalProperties": false
+              },
+              "timingDate": {
+                "description": "The timing of the event (if this is a periodic trigger).",
+                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+                "type": "string"
+              },
+              "_timingDate": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "timingDateTime": {
+                "description": "The timing of the event (if this is a periodic trigger).",
+                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+                "type": "string"
+              },
+              "_timingDateTime": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "data": {
+                "description": "The triggering data of the event (if this is a data trigger). If more than one data is requirement is specified, then all the data requirements must be true.",
+                "items": {
+                  "description": "Describes a required data item for evaluation in terms of the type of data, and optional code or date-based filters of the data.",
+                  "additionalProperties": false
+                },
+                "type": "array"
+              },
+              "condition": {
+                "description": "A boolean-valued expression that is evaluated in the context of the container of the trigger definition and returns whether or not the trigger fires.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueUsageContext": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "code": {
+                "description": "A reference to a code defined by a terminology system.",
+                "additionalProperties": false
+              },
+              "valueCodeableConcept": {
+                "description": "A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.",
+                "additionalProperties": false
+              },
+              "valueQuantity": {
+                "description": "A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.",
+                "additionalProperties": false
+              },
+              "valueRange": {
+                "description": "A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.",
+                "additionalProperties": false
+              },
+              "valueReference": {
+                "description": "A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "code"
+            ]
+          },
+          "valueDosage": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "modifierExtension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+                "type": "array"
+              },
+              "sequence": {
+                "description": "Indicates the order in which the dosage instructions should be applied or interpreted.",
+                "pattern": "^-?([0]|([1-9][0-9]*))$",
+                "type": "number"
+              },
+              "_sequence": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "text": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_text": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "additionalInstruction": {
+                "description": "Supplemental instructions to the patient on how to take the medication  (e.g. \"with meals\" or\"take half to one hour before food\") or warnings for the patient about the medication (e.g. \"may cause drowsiness\" or \"avoid exposure of skin to direct sunlight or sunlamps\").",
+                "items": {
+                  "description": "A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.",
+                  "additionalProperties": false
+                },
+                "type": "array"
+              },
+              "patientInstruction": {
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string",
+                "description": "A sequence of Unicode characters"
+              },
+              "_patientInstruction": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "timing": {
+                "description": "When medication should be administered.",
+                "additionalProperties": false
+              },
+              "asNeededBoolean": {
+                "description": "Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).",
+                "pattern": "^true|false$",
+                "type": "boolean"
+              },
+              "_asNeededBoolean": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "asNeededCodeableConcept": {
+                "description": "A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.",
+                "additionalProperties": false
+              },
+              "site": {
+                "description": "A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.",
+                "additionalProperties": false
+              },
+              "route": {
+                "description": "A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.",
+                "additionalProperties": false
+              },
+              "method": {
+                "description": "A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.",
+                "additionalProperties": false
+              },
+              "doseAndRate": {
+                "description": "The amount of medication administered.",
+                "items": {
+                  "description": "Indicates how the medication is/was taken or should be taken by the patient.",
+                  "properties": {
+                    "id": {
+                      "pattern": "^[ \\r\\n\\t\\S]+$",
+                      "type": "string",
+                      "description": "A sequence of Unicode characters"
+                    },
+                    "extension": {
+                      "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                      "type": "array"
+                    },
+                    "modifierExtension": {
+                      "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.",
+                      "additionalProperties": false
+                    },
+                    "doseRange": {
+                      "description": "Amount of medication per dose.",
+                      "additionalProperties": false
+                    },
+                    "doseQuantity": {
+                      "description": "Amount of medication per dose.",
+                      "additionalProperties": false
+                    },
+                    "rateRatio": {
+                      "description": "Amount of medication per unit of time.",
+                      "additionalProperties": false
+                    },
+                    "rateRange": {
+                      "description": "Amount of medication per unit of time.",
+                      "additionalProperties": false
+                    },
+                    "rateQuantity": {
+                      "description": "Amount of medication per unit of time.",
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "type": "array"
+              },
+              "maxDosePerPeriod": {
+                "description": "Upper limit on medication per unit of time.",
+                "additionalProperties": false
+              },
+              "maxDosePerAdministration": {
+                "description": "Upper limit on medication per administration.",
+                "additionalProperties": false
+              },
+              "maxDosePerLifetime": {
+                "description": "Upper limit on medication per lifetime of the patient.",
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "valueMeta": {
+            "description": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
+            "properties": {
+              "id": {
+                "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+                "pattern": "^[ \\r\\n\\t\\S]+$",
+                "type": "string"
+              },
+              "extension": {
+                "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+                "type": "array"
+              },
+              "versionId": {
+                "description": "The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
+                "pattern": "^[A-Za-z0-9\\-\\.]{1,64}$",
+                "type": "string"
+              },
+              "_versionId": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "lastUpdated": {
+                "description": "When the resource last changed - e.g. when the version changed.",
+                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$",
+                "type": "string"
+              },
+              "_lastUpdated": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "source": {
+                "description": "A uri that identifies the source system of the resource. This provides a minimal amount of [[[Provenance]]] information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
+                "pattern": "^\\S*$",
+                "type": "string"
+              },
+              "_source": {
+                "description": "Base definition for all elements in a resource.",
+                "additionalProperties": false
+              },
+              "profile": {
+                "description": "A list of profiles (references to [[[StructureDefinition]]] resources) that this resource claims to conform to. The URL is a reference to [[[StructureDefinition.url]]].",
+                "type": "array"
+              },
+              "security": {
+                "description": "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure.",
+                "type": "array"
+              },
+              "tag": {
+                "description": "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource.",
+                "type": "array"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "type": "array"
+    },
+    "modifierExtension": {
+      "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+      "type": "array"
+    },
+    "valueBoolean": {
+      "description": "The actual value to for an initial answer.",
+      "pattern": "^true|false$",
+      "type": "boolean"
+    },
+    "_valueBoolean": {
+      "description": "Base definition for all elements in a resource.",
+      "additionalProperties": false
+    },
+    "valueDecimal": {
+      "description": "The actual value to for an initial answer.",
+      "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+      "type": "number"
+    },
+    "_valueDecimal": {
+      "description": "Base definition for all elements in a resource.",
+      "additionalProperties": false
+    },
+    "valueInteger": {
+      "description": "The actual value to for an initial answer.",
+      "pattern": "^-?([0]|([1-9][0-9]*))$",
+      "type": "number"
+    },
+    "_valueInteger": {
+      "description": "Base definition for all elements in a resource.",
+      "additionalProperties": false
+    },
+    "valueDate": {
+      "description": "The actual value to for an initial answer.",
+      "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+      "type": "string"
+    },
+    "_valueDate": {
+      "description": "Base definition for all elements in a resource.",
+      "additionalProperties": false
+    },
+    "valueDateTime": {
+      "description": "The actual value to for an initial answer.",
+      "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+      "type": "string"
+    },
+    "_valueDateTime": {
+      "description": "Base definition for all elements in a resource.",
+      "additionalProperties": false
+    },
+    "valueTime": {
+      "description": "The actual value to for an initial answer.",
+      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?$",
+      "type": "string"
+    },
+    "_valueTime": {
+      "description": "Base definition for all elements in a resource.",
+      "additionalProperties": false
+    },
+    "valueString": {
+      "description": "The actual value to for an initial answer.",
+      "pattern": "^[ \\r\\n\\t\\S]+$",
+      "type": "string"
+    },
+    "_valueString": {
+      "description": "Base definition for all elements in a resource.",
+      "additionalProperties": false
+    },
+    "valueUri": {
+      "description": "The actual value to for an initial answer.",
+      "pattern": "^\\S*$",
+      "type": "string"
+    },
+    "_valueUri": {
+      "description": "Base definition for all elements in a resource.",
+      "additionalProperties": false
+    },
+    "valueAttachment": {
+      "description": "For referring to data content defined in other formats.",
+      "additionalProperties": false
+    },
+    "valueCoding": {
+      "description": "A reference to a code defined by a terminology system.",
+      "additionalProperties": false
+    },
+    "valueQuantity": {
+      "description": "A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that are not precisely quantified, including amounts involving arbitrary units and floating currencies.",
+      "additionalProperties": false
+    },
+    "valueReference": {
+      "description": "A reference from one resource to another.",
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

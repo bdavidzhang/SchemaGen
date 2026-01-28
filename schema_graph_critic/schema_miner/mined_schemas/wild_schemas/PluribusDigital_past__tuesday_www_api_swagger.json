@@ -1,0 +1,703 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.1.0",
+        "title": "Prior Art Search Tool (PAST)"
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Lists the top-level endpoints",
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/AtomEntryList"
+                    }
+                }
+            }
+        },
+        "/document": {
+            "get": {
+                "description": "Index of all available documents",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/filter"
+                    },
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/offset"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/AtomEntryList"
+                    }
+                }
+            },
+            "post": {
+                "description": "Add a new document",
+                "responses": {
+                    "405": {
+                        "$ref": "#/responses/NotImplemented"
+                    }
+                }
+            }
+        },
+        "/document/{doc_id}": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/doc_id"
+                }
+            ],
+            "get": {
+                "description": "Details of one document",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Document"
+                        }
+                    },
+                    "404": {
+                        "description": "Document not found"
+                    }
+                }
+            },
+            "put": {
+                "description": "Updates to limited document attributes",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "Title of the document"
+                                },
+                                "authors": {
+                                    "type": "string",
+                                    "description": "Authors of the document"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Update"
+                    },
+                    "400": {
+                        "description": "Document not in the correct format"
+                    },
+                    "404": {
+                        "description": "Document not found"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Removes the document and its data",
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Document not found"
+                    }
+                }
+            }
+        },
+        "/document/{doc_id}/corpus": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/doc_id"
+                }
+            ],
+            "get": {
+                "description": "Index of the corpora this document is associated with",
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/AtomEntryList"
+                    }
+                }
+            },
+            "post": {
+                "description": "Associates the document with a new corpus",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "The new or existing name"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Corpus not in the correct format"
+                    },
+                    "404": {
+                        "description": "Document not found"
+                    }
+                }
+            }
+        },
+        "/document/{doc_id}/corpus/{corpus_id}": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/doc_id"
+                },
+                {
+                    "$ref": "#/parameters/corpus_id"
+                }
+            ],
+            "get": {
+                "responses": {
+                    "303": {
+                        "description": "Redirects to the corpus detail"
+                    }
+                }
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Document or Corpus not found"
+                    }
+                },
+                "description": "Removes the document's association with this corpus"
+            }
+        },
+        "/document/{doc_id}/corpus/{corpus_id}/keywords": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/doc_id"
+                },
+                {
+                    "$ref": "#/parameters/corpus_id"
+                }
+            ],
+            "get": {
+                "description": "The top N keywords for the document within the corpus",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/kw_field"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_morph"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_pos"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_syntax"
+                    },
+                    {
+                        "$ref": "#/parameters/limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/Keywords"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Document or Corpus not found"
+                    }
+                }
+            }
+        },
+        "/document/{doc_id}/keywords": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/doc_id"
+                }
+            ],
+            "get": {
+                "description": "The top N keywords for the document",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/kw_field"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_morph"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_pos"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_syntax"
+                    },
+                    {
+                        "$ref": "#/parameters/limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/Keywords"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Document not found"
+                    }
+                }
+            }
+        },
+        "/corpus": {
+            "get": {
+                "description": "Index of all available corpora",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/offset"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/AtomEntryList"
+                    }
+                }
+            },
+            "post": {
+                "description": "Add a new corpus",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "The new name"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Corpus"
+                        }
+                    },
+                    "400": {
+                        "description": "Corpus not in the correct format"
+                    },
+                    "409": {
+                        "description": "Name already exists"
+                    }
+                }
+            }
+        },
+        "/corpus/{corpus_id}": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/corpus_id"
+                }
+            ],
+            "get": {
+                "description": "Details of one corpus",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Corpus"
+                        }
+                    },
+                    "404": {
+                        "description": "Corpus not found"
+                    }
+                }
+            },
+            "put": {
+                "description": "Update the name of the corpus",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "The new name"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Update"
+                    },
+                    "400": {
+                        "description": "Corpus not in the correct format"
+                    },
+                    "404": {
+                        "description": "Corpus not found"
+                    },
+                    "409": {
+                        "description": "Name already exists"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Removes the corpus",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Corpus not found"
+                    }
+                }
+            }
+        },
+        "/corpus/{corpus_id}/document": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/corpus_id"
+                }
+            ],
+            "get": {
+                "description": "Index of documents in this corpus",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/AtomEntryList"
+                    },
+                    "404": {
+                        "description": "Corpus not found"
+                    }
+                }
+            }
+        },
+        "/corpus/{corpus_id}/keywords": {
+            "parameters": [
+                {
+                    "$ref": "#/parameters/corpus_id"
+                }
+            ],
+            "get": {
+                "description": "The top N keywords for all documents in the corpus",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/kw_field"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_morph"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_pos"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_syntax"
+                    },
+                    {
+                        "$ref": "#/parameters/limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/Keywords"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Corpus not found"
+                    }
+                }
+            }
+        },
+        "/rank": {
+            "get": {
+                "description": "A useless endpoint that provides useful examples",
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/AtomEntryList"
+                    }
+                }
+            }
+        },
+        "/rank/{words}": {
+            "parameters": [
+                {
+                    "name": "words",
+                    "in": "path",
+                    "required": true,
+                    "description": "The words to search for",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "description": "Searches for the documents that best represent the words",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "name": "corpus",
+                        "in": "query",
+                        "required": false,
+                        "description": "only search within this corpus",
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/parameters/kw_field"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/Ranking"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "AtomEntry": {
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "The title of the entry"
+                },
+                "summary": {
+                    "type": "string",
+                    "description": "A brief description of the entry"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                }
+            }
+        },
+        "Corpus": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Uniquely identifies the corpus"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the corpus"
+                }
+            }
+        },
+        "Document": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Uniquely identifies the document"
+                },
+                "scanned": {
+                    "type": "string",
+                    "description": "Timestamp when the document was scanned. ISO-8601 format"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path to the document (URL or File)"
+                },
+                "dateCreated": {
+                    "type": "string",
+                    "description": "Date the document was created, according to the author. No specific format is returned."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Title of the document extracted from the metadata or content."
+                },
+                "authors": {
+                    "type": "string",
+                    "description": "Authors of the document extracted from the metadata or content"
+                }
+            }
+        },
+        "Keyword": {
+            "properties": {
+                "score": {
+                    "type": "number",
+                    "description": "The TF-IDF score for the keyword"
+                },
+                "keyword": {
+                    "type": "string",
+                    "description": "The keyword"
+                },
+                "morph": {
+                    "type": "string",
+                    "description": "If present, the morphological features of the keyword"
+                },
+                "partOfSpeech": {
+                    "type": "string",
+                    "description": "If present, the specific part of speech for the keyword"
+                },
+                "syntax": {
+                    "type": "string",
+                    "description": "If present, the syntactical and contextual features"
+                }
+            }
+        },
+        "Link": {
+            "properties": {
+                "href": {
+                    "type": "string",
+                    "description": "A URL"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Internet Media Type",
+                    "example": "application/atom+json, text/json"
+                },
+                "rel": {
+                    "type": "string",
+                    "description": "[An Atom link relation](http://www.iana.org/assignments/link-relations/link-relations.xhtml)",
+                    "example": "collection, item"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The name of the link"
+                }
+            }
+        },
+        "Rank": {
+            "properties": {
+                "score": {
+                    "type": "number",
+                    "description": "The TF-IDF score for the document"
+                },
+                "entry": {
+                    "$ref": "#/definitions/AtomEntry"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "corpus_id": {
+            "name": "corpus_id",
+            "in": "path",
+            "description": "Identifies the corpus",
+            "type": "integer",
+            "required": true
+        },
+        "doc_id": {
+            "name": "doc_id",
+            "in": "path",
+            "description": "Identifies the document",
+            "type": "integer",
+            "required": true
+        },
+        "filter": {
+            "name": "filter",
+            "in": "query",
+            "description": "Partial or whole text to search a data set with",
+            "type": "string",
+            "required": false
+        },
+        "kw_field": {
+            "name": "field",
+            "in": "query",
+            "description": "Identifies the field used to determine the keyword",
+            "type": "string",
+            "default": "lemma",
+            "enum": [
+                "lemma",
+                "token",
+                "stem"
+            ],
+            "required": false
+        },
+        "kw_morph": {
+            "name": "morph",
+            "in": "query",
+            "description": "Include morphology when analyzing",
+            "type": "boolean",
+            "required": false
+        },
+        "kw_pos": {
+            "name": "partOfSpeech",
+            "in": "query",
+            "description": "Include part of speech when analyzing",
+            "type": "boolean",
+            "required": false
+        },
+        "kw_syntax": {
+            "name": "syntax",
+            "in": "query",
+            "description": "Include syntax when analyzing",
+            "type": "boolean",
+            "required": false
+        },
+        "limit": {
+            "name": "limit",
+            "in": "query",
+            "description": "Limits the number of items to return",
+            "required": false,
+            "type": "integer"
+        },
+        "offset": {
+            "name": "offset",
+            "in": "query",
+            "description": "The starting item to return",
+            "required": false,
+            "type": "integer"
+        }
+    },
+    "responses": {
+        "Keywords": {
+            "description": "A list of keywords",
+            "schema": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/Keyword"
+                }
+            }
+        },
+        "AtomEntryList": {
+            "description": "A list of Atom-type entries",
+            "schema": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/AtomEntry"
+                }
+            }
+        },
+        "NotImplemented": {
+            "description": "Method not currently implemented"
+        },
+        "Ranking": {
+            "description": "A list of ranked documents",
+            "schema": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/Rank"
+                }
+            }
+        }
+    }
+}

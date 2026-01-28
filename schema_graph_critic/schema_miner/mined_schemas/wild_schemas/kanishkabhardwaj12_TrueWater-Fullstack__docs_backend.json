@@ -1,0 +1,123 @@
+{
+  "entities": {
+    "WaterSample": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "WaterSample",
+      "type": "object",
+      "description": "Represents a water sample and its analysis data.",
+      "properties": {
+        "testId": {
+          "type": "string",
+          "description": "Unique identifier for the water sample test."
+        },
+        "dateOfTest": {
+          "type": "string",
+          "description": "The date and time when the water sample was tested.",
+          "format": "date-time"
+        },
+        "sourceWaterLocationLatitude": {
+          "type": "number",
+          "description": "Latitude of the water source location for mapping."
+        },
+        "sourceWaterLocationLongitude": {
+          "type": "number",
+          "description": "Longitude of the water source location for mapping."
+        },
+        "sampleImageUrl": {
+          "type": "string",
+          "description": "URL of the uploaded water sample image.",
+          "format": "uri"
+        },
+        "testNumber": {
+          "type": "number",
+          "description": "Test number for multiple tests of the same sample (to track history)."
+        }
+      },
+      "required": [
+        "testId",
+        "dateOfTest",
+        "sourceWaterLocationLatitude",
+        "sourceWaterLocationLongitude",
+        "sampleImageUrl",
+        "testNumber"
+      ]
+    },
+    "AlgaeClassification": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AlgaeClassification",
+      "type": "object",
+      "description": "Represents a specific algae classification found in a water sample.",
+      "properties": {
+        "classificationId": {
+          "type": "string",
+          "description": "Unique identifier for the algae classification."
+        },
+        "waterSampleId": {
+          "type": "string",
+          "description": "Reference to WaterSample. (Relationship: WaterSample 1:N AlgaeClassification)"
+        },
+        "algaeName": {
+          "type": "string",
+          "description": "The name of the algae species."
+        },
+        "count": {
+          "type": "number",
+          "description": "The number of times this algae species was found in the sample."
+        }
+      },
+      "required": [
+        "classificationId",
+        "waterSampleId",
+        "algaeName",
+        "count"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/waterSamples/{waterSampleId}",
+        "definition": {
+          "entityName": "WaterSample",
+          "schema": {
+            "$ref": "#/backend/entities/WaterSample"
+          },
+          "description": "Stores water sample data, including test ID, date, location, image URL, and test number.",
+          "params": [
+            {
+              "name": "waterSampleId",
+              "description": "Unique identifier for the water sample document."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/waterSamples/{waterSampleId}/algaeClassifications/{classificationId}",
+        "definition": {
+          "entityName": "AlgaeClassification",
+          "schema": {
+            "$ref": "#/backend/entities/AlgaeClassification"
+          },
+          "description": "Stores the algae classification data for each water sample. Contains the classification ID, algae name, and count.",
+          "params": [
+            {
+              "name": "waterSampleId",
+              "description": "The waterSampleId that the algaeClassification belongs to."
+            },
+            {
+              "name": "classificationId",
+              "description": "Unique identifier for the algae classification document."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to support the TrueWater Algae Insights application's requirements for storing water sample data, algae classification results, and historical data, while ensuring security and scalability. We prioritize authorization independence and QAPs. The structure facilitates features like image comparison, algae content detection, historical data tracking, sample history visualization, and live map integration, and is optimized for Delhi NCR. The root collection `waterSamples` stores information about each sample, and the subcollection `algaeClassifications` stores the detailed algae analysis results for each water sample.\n\n**Authorization Independence and Security:**\nAuthorization is simplified by the path-based structure. All `WaterSample` and associated `AlgaeClassification` documents are accessible to any user for read, however only the service can create or edit documents in the database. This is achieved through service account usage and proper IAM configuration. The path `/waterSamples/{waterSampleId}/algaeClassifications/{classificationId}` inherently links an algae classification to its parent water sample. There is no need to store the `userId` in `WaterSample` or `AlgaeClassification` because authorization is handled by the service. Furthermore, because we do not need additional `get()` calls, we maintain atomic operations without compromising security.\n\n**QAPs (Rules are not Filters):**\nThe segregation of data into collections and subcollections based on their entity type (`WaterSample`, `AlgaeClassification`) ensures that rules can be written that are not filters.  Specifically, `list` operations on `/waterSamples` or `/waterSamples/{waterSampleId}/algaeClassifications` are secure because the rules can validate the existence of the document based on the service role.\n\n**Data Clarity and Predictability:**\nThe schema uses explicit naming conventions for fields (e.g., `dateOfTest`, `sampleImageUrl`)."
+  }
+}

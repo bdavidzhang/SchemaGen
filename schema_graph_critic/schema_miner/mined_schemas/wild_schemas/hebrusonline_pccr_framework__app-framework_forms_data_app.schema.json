@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "object",
+  "name": "app",
+  "properties": {
+    "user" : {
+      "type" : "string",
+      "name" : "user"
+    },
+    "appmeta" : {
+      "type" : "string",
+      "name" : "appmeta"
+    },
+    "basic" : {
+      "type" : "object",
+      "name" : "basic",
+      "properties": {
+        "admission" : {
+          "type" : "string",
+          "name" : "hours"
+        },
+        "hours" : {
+          "type" : "string",
+          "name" : "appmeta"
+        },
+        "info" : {
+          "type" : "string",
+          "name" : "appmeta"
+        },
+        "additionalProperties": false
+      }
+    },
+    "pages" : {
+      "type" : "object",
+      "name" : "pages"
+    },
+  "layout": {
+    "type": "string",
+    "enum": ["basic"]
+  }
+},
+  "additionalProperties": false,
+  "required": ["user", "appmeta", "basic", "layout"]
+}

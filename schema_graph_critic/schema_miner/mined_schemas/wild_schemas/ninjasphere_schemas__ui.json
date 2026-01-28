@@ -1,0 +1,406 @@
+{
+  "id": "http://schema.ninjablocks.com/ui",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "The descriptor for the Ninja Sphere UI",
+
+  "definitions": {
+
+    "replyTo": {
+      "description": "The mqtt topic and method required to reply to a configuration request on notification",
+      "properties": {
+        "topic": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        }
+      }
+    },
+
+    "section": {
+      "description": "These sections should be rendered as field groups",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "contents": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/definitions/content" },
+              { "$ref": "#/definitions/input" }
+            ]
+          }
+        },
+        "well": {
+          "description": "Indicates this section should have have a background colour, and be inset.",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": ["contents"]
+    },
+
+    "content": {
+      "oneOf": [
+        { "$ref": "#/definitions/image" },
+        { "$ref": "#/definitions/text" },
+        { "$ref": "#/definitions/alert" },
+        { "$ref": "#/definitions/separator" }
+      ]
+    },
+
+    "input": {
+      "oneOf": [
+        { "$ref": "#/definitions/inputText" },
+        { "$ref": "#/definitions/inputTime" },
+        { "$ref": "#/definitions/radioGroup" },
+        { "$ref": "#/definitions/optionGroup" },
+        { "$ref": "#/definitions/inputTimeRange" }
+      ]
+    },
+
+    "submitData": {
+      "description": "This is data that may be sent back in the reply",
+      "type": "object",
+      "additionalProperties": true
+    },
+
+    "displayClass": {
+      "description": "This is used differently depending on display method and platform.",
+      "type": "string",
+      "enum": ["default", "primary", "success", "info", "warning", "danger"],
+      "default": "normal"
+    },
+
+    "displayIcon": {
+      "description": "The name of the icon to display. TODO: Set list?",
+      "type": "string"
+    },
+
+    "action": {
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "displayClass": { "$ref": "#/definitions/displayClass"},
+        "displayIcon": { "$ref": "#/definitions/displayIcon"}
+      },
+      "required": ["type", "label"],
+      "oneOf": [
+        { "$ref": "#/definitions/replyAction" },
+        { "$ref": "#/definitions/linkAction" },
+        { "$ref": "#/definitions/configurationAction" },
+        { "$ref": "#/definitions/closeAction" }
+      ]
+    },
+
+    "replyAction": {
+      "properties": {
+        "type": { "enum": ["reply"] },
+        "name": { "$ref": "#/definitions/fieldName" }
+      },
+      "required": ["name"]
+    },
+
+    "linkAction": {
+      "properties": {
+        "type": { "enum": ["link"] },
+        "uri": {
+          "description": "Should handle tel:, http: etc. uris",
+          "type": "string"
+        }
+      },
+      "required": ["uri"]
+    },
+
+    "configurationAction": {
+      "description": "Displays a configuration screen to the user.",
+      "properties": {
+        "type": { "enum": ["configuration"] },
+        "screen": { "$ref": "/state/configuration-screen#" },
+        "label": {}
+      },
+      "required": ["screen"]
+    },
+
+    "closeAction": {
+      "description": "Closes the configuration window.",
+      "properties": {
+        "type": { "enum": ["close"] }
+      }
+    },
+
+    "image": {
+      "properties": {
+        "type": { "enum": ["image"] },
+        "src": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        }
+      },
+      "required": ["type", "src"]
+    },
+
+    "text": {
+      "properties": {
+        "type": { "enum": ["text"] },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": ["type", "text"]
+    },
+
+    "alert": {
+      "properties": {
+        "type": { "enum": ["alert"] },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "displayClass": { "$ref": "#/definitions/displayClass"},
+        "displayIcon": { "$ref": "#/definitions/displayIcon"}
+      },
+      "required": ["type", "title"]
+    },
+
+    "separator": {
+      "properties": {
+        "type": { "enum": ["separator"] }
+      },
+      "required": ["type"]
+    },
+
+    "fieldName": {
+      "description": "TODO: Add js variable name safe pattern ([a-zA-Z][a-zA-Z-_]+)",
+      "type": "string"
+    },
+
+    "inputText": {
+      "oneOf": [
+        {
+          "description": "Normal field",
+          "properties": {
+            "password": {
+              "enum": [false]
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "not": {
+            "required": ["passwordLength"]
+          }
+        },
+        {
+          "description": "Password field",
+          "properties": {
+            "password": {
+              "enum": [true]
+            }
+          },
+          "required": ["password"]
+        },
+        {
+          "description": "Number field",
+          "properties": {
+            "inputType": {
+              "enum": ["number"]
+            },
+            "minimum": {
+              "type": "number"
+            },
+            "maximum": {
+              "type": "number"
+            },
+            "value": {
+              "type": "number"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "type": { "enum": ["inputText"] },
+        "name": { "$ref": "#/definitions/fieldName" },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "lines": {
+          "type": "number",
+          "minimum": 1,
+          "default": 1
+        },
+        "password": {
+          "type": "boolean",
+          "default": false
+        },
+        "passwordLength": {
+          "description": "> 0 Indicates there is a password given.",
+          "type": "number",
+          "default": 0
+        }
+      },
+      "required": ["type", "name"]
+    },
+
+    "inputTime": {
+      "properties": {
+        "type": { "enum": ["inputTime"] },
+        "name": { "$ref": "#/definitions/fieldName" },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": ["type", "name"]
+    },
+
+    "inputTimeRange": {
+      "properties": {
+        "type": { "enum": ["inputTimeRange"] },
+        "name": { "$ref": "#/definitions/fieldName" },
+        "value": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string"
+            },
+            "to": {
+              "type": "string"
+            }
+          }
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        }
+      },
+      "required": ["type", "name", "title"]
+    },
+
+    "inputHidden": {
+      "properties": {
+        "type": { "enum": ["inputHidden"] },
+        "name": { "$ref": "#/definitions/fieldName" },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "value"]
+    },
+
+    "radioGroup": {
+      "properties": {
+        "type": { "enum": ["radioGroup"] },
+        "name": { "$ref": "#/definitions/fieldName" },
+        "value": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "displayIcon": {
+                "type": "string"
+              },
+              "value": {}
+            },
+            "required": ["title", "value"]
+          }
+        }
+      },
+      "required": ["type", "name", "title"]
+    },
+
+    "optionGroup": {
+      "properties": {
+        "type": { "enum": ["optionGroup"] },
+        "name": { "$ref": "#/definitions/fieldName" },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "minimumChoices": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+        },
+        "maximumChoices": {
+          "type": "number",
+          "minimum": 1,
+          "default": 1
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "subtitle": {
+                "type": "string"
+              },
+              "value": {},
+              "selected": {
+                "type": "boolean"
+              }
+            },
+            "required": ["title", "value"]
+          }
+        }
+      },
+      "required": ["type", "name", "title"]
+    }
+
+  }
+}

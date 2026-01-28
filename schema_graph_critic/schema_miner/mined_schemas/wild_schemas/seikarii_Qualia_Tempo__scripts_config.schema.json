@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QUALIA.CODE Configuration Schema",
+  "description": "Master schema for validating all YAML configuration files",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "server": {
+      "type": "object",
+      "properties": {
+        "host": { "type": "string", "format": "hostname" },
+        "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+        "reload": { "type": "boolean" },
+        "log_level": { "enum": ["critical", "error", "warning", "info", "debug", "trace"] },
+        "workers": { "type": "integer", "minimum": 1 },
+        "development": { "$ref": "#/definitions/serverEnv" },
+        "production": { "$ref": "#/definitions/serverEnv" }
+      }
+    },
+    "cors": {
+      "type": "object",
+      "properties": {
+        "allow_origins": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" }
+        },
+        "allow_methods": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"] }
+        },
+        "allow_headers": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "api": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "docs_url": { "type": "string" },
+        "redoc_url": { "type": "string" }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "level": { "enum": ["critical", "error", "warning", "info", "debug", "trace"] },
+        "format": { "type": "string" }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "max_request_size": { "type": "integer", "minimum": 0 },
+        "timeout": { "type": "integer", "minimum": 0 },
+        "keepalive": { "type": "integer", "minimum": 0 },
+        "enableCompression": { "type": "boolean" },
+        "maxPayloadSize": { "type": "integer", "minimum": 0 },
+        "enableBuffering": { "type": "boolean" },
+        "bufferFlushInterval": { "type": "integer", "minimum": 0 },
+        "maxBatchSizeBytes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "api": {
+      "type": "object",
+      "properties": {
+        "baseUrl": { "type": "string", "format": "uri" },
+        "qualiaEndpoint": { "type": "string" },
+        "healthEndpoint": { "type": "string" },
+        "timeout": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "streaming": {
+      "type": "object",
+      "properties": {
+        "websocket": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "maxReconnectAttempts": { "type": "integer", "minimum": 0 },
+            "reconnectDelay": { "type": "integer", "minimum": 0 },
+            "pingInterval": { "type": "integer", "minimum": 0 },
+            "pingTimeout": { "type": "integer", "minimum": 0 },
+            "connectionTimeout": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "sync": {
+      "type": "object",
+      "properties": {
+        "throttleDelay": { "type": "integer", "minimum": 0 },
+        "batchSize": { "type": "integer", "minimum": 1 },
+        "maxRetries": { "type": "integer", "minimum": 0 },
+        "retryDelay": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "connection": {
+      "type": "object",
+      "properties": {
+        "healthCheckInterval": { "type": "integer", "minimum": 0 },
+        "connectionTimeout": { "type": "integer", "minimum": 0 },
+        "maxFailedAttempts": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "enableSchemaValidation": { "type": "boolean" },
+        "strictMode": { "type": "boolean" },
+        "logValidationErrors": { "type": "boolean" }
+      }
+    },
+    "errorHandling": {
+      "type": "object",
+      "properties": {
+        "enableCircuitBreaker": { "type": "boolean" },
+        "circuitBreakerThreshold": { "type": "integer", "minimum": 0 },
+        "circuitBreakerTimeout": { "type": "integer", "minimum": 0 },
+        "enableFallbackMode": { "type": "boolean" }
+      }
+    },
+    "messages": {
+      "type": "object",
+      "patternProperties": {
+        ".*": { "type": "string" }
+      }
+    },
+    "baseQualiaState": {
+      "type": "object",
+      "properties": {
+        "intensity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "precision": { "type": "number", "minimum": 0, "maximum": 1 },
+        "aggression": { "type": "number", "minimum": 0, "maximum": 1 },
+        "flow": { "type": "number", "minimum": 0, "maximum": 1 },
+        "chaos": { "type": "number", "minimum": 0, "maximum": 1 },
+        "recovery": { "type": "number", "minimum": 0, "maximum": 1 },
+        "transcendence": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "performanceMultipliers": {
+      "type": "object",
+      "properties": {
+        "perfectHit": { "type": "number", "minimum": 0 },
+        "goodHit": { "type": "number", "minimum": 0 },
+        "missHit": { "type": "number", "minimum": 0 },
+        "comboBonus": { "type": "number", "minimum": 0 }
+      }
+    },
+    "decayRates": {
+      "type": "object",
+      "patternProperties": {
+        ".*": { "type": "number", "minimum": 0 }
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "patternProperties": {
+        ".*": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "comboSystem": {
+      "type": "object",
+      "properties": {
+        "maxComboMultiplier": { "type": "number", "minimum": 1 },
+        "comboDecayTime": { "type": "number", "minimum": 0 },
+        "perfectComboBonus": { "type": "number", "minimum": 0 }
+      }
+    },
+    "recoveryMechanics": {
+      "type": "object",
+      "properties": {
+        "recoveryRate": { "type": "number", "minimum": 0 },
+        "maxRecovery": { "type": "number", "minimum": 0 },
+        "recoveryCooldown": { "type": "number", "minimum": 0 }
+      }
+    },
+    "updateIntervalMs": { "type": "integer", "minimum": 1 },
+    "historySize": { "type": "integer", "minimum": 1 },
+    "rateLimitWindow": { "type": "integer", "minimum": 0 },
+    "maxErrorsPerWindow": { "type": "integer", "minimum": 0 },
+    "batchSize": { "type": "integer", "minimum": 1 },
+    "batchTimeout": { "type": "integer", "minimum": 0 },
+    "maxRetentionTime": { "type": "integer", "minimum": 0 },
+    "externalServiceUrl": { "type": "string", "format": "uri" },
+    "retryAttempts": { "type": "integer", "minimum": 0 },
+    "enableCompression": { "type": "boolean" },
+    "maxBatchSizeBytes": { "type": "integer", "minimum": 0 },
+    "enableErrorFiltering": { "type": "boolean" },
+    "filterSensitiveData": { "type": "boolean" },
+    "allowedDomains": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "definitions": {
+    "serverEnv": {
+      "type": "object",
+      "properties": {
+        "reload": { "type": "boolean" },
+        "log_level": { "enum": ["critical", "error", "warning", "info", "debug", "trace"] },
+        "workers": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

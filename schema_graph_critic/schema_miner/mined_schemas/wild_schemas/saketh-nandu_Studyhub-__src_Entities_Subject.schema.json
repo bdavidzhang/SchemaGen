@@ -1,0 +1,33 @@
+{
+  "name": "Subject",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Subject name"
+    },
+    "color": {
+      "type": "string",
+      "description": "Subject color for organization",
+      "default": "#3b82f6"
+    },
+    "description": {
+      "type": "string",
+      "description": "Subject description"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the subject is currently active"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "x-accessControl": {
+    "permissions": {
+      "read": "creator",
+      "write": "creator"
+    }
+  }
+}

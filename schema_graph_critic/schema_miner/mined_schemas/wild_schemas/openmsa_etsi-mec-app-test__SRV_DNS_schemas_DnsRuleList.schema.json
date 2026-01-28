@@ -1,0 +1,55 @@
+{
+  "type": "array",
+  "objects": {
+    "description": "This type represents the general information of a DNS rule.",
+    "type": "object",
+    "required": [
+      "dnsRuleId",
+      "domainName",
+      "ipAddressType",
+      "ipAddress",
+      "state"
+    ],
+    "properties": {
+      "dnsRuleId": {
+        "description": "Identifies the DNS Rule",
+        "type": "string",
+        "example": "dnsRule1"
+      },
+      "domainName": {
+        "description": "FQDN resolved by the DNS rule",
+        "type": "string",
+        "example": "www.example.com"
+      },
+      "ipAddressType": {
+        "description": "IP address type",
+        "type": "string",
+        "enum": [
+          "IP_V6",
+          "IP_V4"
+        ],
+        "example": "IP_V6"
+      },
+      "ipAddress": {
+        "description": "IP address associated with the FQDN resolved by the DNS rule",
+        "type": "string",
+        "example": "192.0.2.0"
+      },
+      "ttl": {
+        "description": "Time to live value",
+        "type": "integer",
+        "format": "uint32",
+        "example": "?"
+      },
+      "state": {
+        "description": "DNS rule state. This attribute may be updated using HTTP PUT method",
+        "type": "string",
+        "enum": [
+          "ACTIVE",
+          "INACTIVE"
+        ],
+        "example": "ACTIVE"
+      }
+    }
+  }
+}

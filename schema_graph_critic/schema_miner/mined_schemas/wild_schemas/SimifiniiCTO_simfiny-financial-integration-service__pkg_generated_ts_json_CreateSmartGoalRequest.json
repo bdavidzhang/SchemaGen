@@ -1,0 +1,226 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/CreateSmartGoalRequest",
+    "definitions": {
+        "CreateSmartGoalRequest": {
+            "properties": {
+                "pocket_id": {
+                    "type": "string",
+                    "description": "The pocket account id Validations: - pocket_account_id must be greater than 0"
+                },
+                "smart_goal": {
+                    "$ref": "#/definitions/financial_integration_service_api.v1.SmartGoal",
+                    "additionalProperties": true,
+                    "description": "The smart goal to create Validations: - cannot be nil hence required"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Create Smart Goal Request"
+        },
+        "financial_integration_service_api.v1.Budget": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the budget"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string",
+                    "description": "the time the goal was created"
+                },
+                "end_date": {
+                    "type": "string",
+                    "description": "the time the goal was updated"
+                },
+                "category": {
+                    "$ref": "#/definitions/financial_integration_service_api.v1.Category",
+                    "additionalProperties": true,
+                    "description": "category associated with the goal"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Budget",
+            "description": "The Budgets table stores information about each budget created by the user, including the name of the budget, the start and end dates, and the user ID."
+        },
+        "financial_integration_service_api.v1.Category": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the category"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the category"
+                },
+                "subcategories": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array",
+                    "description": "the sub categories of the category"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Category",
+            "description": "The Categories table stores information about the different categories of expenses or income, such as \"Housing\", \"Food\", \"Transportation\", and \"Entertainment\". Each category has one or more subcategories, which are stored in the Subcategories table. For example, the \"Housing\" category might have subcategories for \"Rent\", \"Utilities\", and \"Home Maintenance\"."
+        },
+        "financial_integration_service_api.v1.Forecast": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "id"
+                },
+                "forecasted_amount": {
+                    "type": "string",
+                    "description": "the forecasted amount of the goal"
+                },
+                "forecasted_completion_date": {
+                    "type": "string",
+                    "description": "the forecasted completion date of the goal"
+                },
+                "variance_amount": {
+                    "type": "string",
+                    "description": "the forecasted variance of the goal between the forecasted and target amounts"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Forecast",
+            "description": "The Forecast table stores information about each forecast generated for a particular goal, including the forecast date, the forecasted amount of money saved or invested for the goal by the target date, and the variance between the forecasted and target amounts. This allows the user to track how well they are progressing towards their goal and make adjustments as needed."
+        },
+        "financial_integration_service_api.v1.Milestone": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the milestone Validations: - must be at least 3 characters long"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the miletone Validations: - must be at least 3 characters long"
+                },
+                "target_date": {
+                    "minLength": 10,
+                    "type": "string",
+                    "description": "the target date of the milestone Validations: - must be at least 3 characters long"
+                },
+                "target_amount": {
+                    "type": "string",
+                    "description": "the target amount of the milestone"
+                },
+                "is_completed": {
+                    "type": "boolean",
+                    "description": "wethe milestone is completed or not"
+                },
+                "budget": {
+                    "$ref": "#/definitions/financial_integration_service_api.v1.Budget",
+                    "additionalProperties": true,
+                    "description": "the budget associated with the milestone"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Milestone",
+            "description": "Milestone: represents a milestone in the context of simfinni. A financial milestone that is both smart and achievable. A milestone is a sub goal of a goal and is tied to a goal by the goal id"
+        },
+        "financial_integration_service_api.v1.SmartGoal": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "id"
+                },
+                "user_id": {
+                    "type": "string",
+                    "description": "the user id to which this goal is tied to"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the goal Validations: - must be at least 3 characters long"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the goal Validations: - must be at least 3 characters long"
+                },
+                "is_completed": {
+                    "type": "boolean",
+                    "description": "wether the goal has been achieved or not"
+                },
+                "goal_type": {
+                    "enum": [
+                        "GOAL_TYPE_UNSPECIFIED",
+                        0,
+                        "GOAL_TYPE_SAVINGS",
+                        1,
+                        "GOAL_TYPE_INVESTMENT",
+                        2,
+                        "GOAL_TYPE_DEBT",
+                        3,
+                        "GOAL_TYPE_EXPENSE",
+                        4
+                    ],
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ],
+                    "title": "Goal Type"
+                },
+                "duration": {
+                    "type": "string",
+                    "description": "The duration of the goal"
+                },
+                "start_date": {
+                    "type": "string",
+                    "description": "the start date of the goal"
+                },
+                "end_date": {
+                    "type": "string",
+                    "description": "the end date of the goal"
+                },
+                "target_amount": {
+                    "type": "string",
+                    "description": "the target amount of the goal amount of money the user wants to save or invest"
+                },
+                "current_amount": {
+                    "type": "string",
+                    "description": "the current amount of the goal current amount of money saved or invested towards the goal"
+                },
+                "milestones": {
+                    "items": {
+                        "$ref": "#/definitions/financial_integration_service_api.v1.Milestone"
+                    },
+                    "type": "array",
+                    "description": "Milestones associated with the goal"
+                },
+                "forecasts": {
+                    "$ref": "#/definitions/financial_integration_service_api.v1.Forecast",
+                    "additionalProperties": true,
+                    "description": "Forecasts associated with the goal"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Smart Goal",
+            "description": "SmartGoal: The Goals table stores information about each financial goal, including the name of the goal, its description, the target amount of money the user wants to save or invest, and the expected date of completion. The Goals table also includes columns for the start date of the goal, the current amount of money saved or invested towards the goal, and a boolean flag indicating whether the goal has been achieved. These additional columns allow the user to track their progress towards the goal and see how much more they need to save or invest to reach their target amount."
+        }
+    }
+}

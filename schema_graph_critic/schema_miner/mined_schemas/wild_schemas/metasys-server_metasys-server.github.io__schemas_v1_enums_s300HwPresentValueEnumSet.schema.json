@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/s300HwPresentValueEnumSet.schema.json",
+  "title": "s300HwPresentValueEnumSet",
+  "description": "S300 HW Present Value",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "s300HwNotInitialized"
+      ],
+      "description": "Not Initialized"
+    },
+    {
+      "enum": [
+        1,
+        "s300HwOperational"
+      ],
+      "description": "Operational"
+    },
+    {
+      "enum": [
+        2,
+        "s300HwOffline"
+      ],
+      "description": "Offline"
+    },
+    {
+      "enum": [
+        3,
+        "s300HwFault"
+      ],
+      "description": "Fault"
+    },
+    {
+      "enum": [
+        4,
+        "s300HwUpgrading"
+      ],
+      "description": "Upgrading"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

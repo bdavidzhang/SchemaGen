@@ -1,0 +1,28 @@
+{
+  "anyOf": [
+    {
+      "$ref": "#/definitions/Globals"
+    },
+    {
+      "type": "string",
+      "const": "fill"
+    },
+    {
+      "type": "string",
+      "const": "markers"
+    },
+    {
+      "type": "string",
+      "const": "normal"
+    },
+    {
+      "type": "string",
+      "const": "stroke"
+    },
+    {
+      "type": "string"
+    }
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./Property.PaintOrder.json"
+}

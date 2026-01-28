@@ -1,0 +1,21 @@
+{ "$schema":"http://json-schema.org/draft-07/schema#", "title":"EMS Record v0.1", "type":"object",
+    "required":["v","kind","frame","ref_id","decision","prev","hash"], "properties":{
+        "v":{"const":"ems/0.1"},
+        "kind":{"type":"string"},
+        "frame":{"type":"integer"},
+        "ref_id":{"type":"string"},
+        "decision":{"type":"string"},
+        "reasons":{"type":"array","items":{"type":"string"}},
+        "ts":{"type":"string"},
+        "chronos":{
+            "type":"object",
+            "required":["tick_ms","rng_seed","rng_counter"],
+            "properties":{
+                "tick_ms":{"type":"integer"},
+                "rng_seed":{"type":"string"},
+                "rng_counter":{"type":"integer"}
+            }
+        },
+        "prev":{"type":"string"},
+        "hash":{"type":"string"}
+}}

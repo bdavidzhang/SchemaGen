@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/seRtuFanStatusEnumSet.schema.json",
+  "title": "seRtuFanStatusEnumSet",
+  "description": "SE RTU Fan Status",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "seRtuFanStatusOffIdle"
+      ],
+      "description": "Off-Idle"
+    },
+    {
+      "enum": [
+        1,
+        "seRtuFanStatusOnPurge"
+      ],
+      "description": "On-Purge"
+    },
+    {
+      "enum": [
+        2,
+        "seRtuFanStatusOnGasValve"
+      ],
+      "description": "On-Gas Valve or Limit Fault"
+    },
+    {
+      "enum": [
+        3,
+        "seRtuFanStatusOnDefrost"
+      ],
+      "description": "On-Defrost"
+    },
+    {
+      "enum": [
+        4,
+        "seRtuFanStatusOnThermostatReqst"
+      ],
+      "description": "On-Thermostat Request"
+    },
+    {
+      "enum": [
+        5,
+        "seRtuFanStatusOnFanOffDelayCool"
+      ],
+      "description": "On-Fan Off Delay For Cool"
+    },
+    {
+      "enum": [
+        6,
+        "seRtuFanStatusOnFanOffDelayHeat"
+      ],
+      "description": "On-Fan Off Delay For Heat"
+    },
+    {
+      "enum": [
+        7,
+        "seRtuFanStatusOnContinuousFanOccOp"
+      ],
+      "description": "On-Continuous Fan Occupied Operation"
+    },
+    {
+      "enum": [
+        8,
+        "seRtuFanStatusOnNormalCommand"
+      ],
+      "description": "On-Normal Command"
+    },
+    {
+      "enum": [
+        9,
+        "seRtuFanStatusOffExceedingDuctPressure"
+      ],
+      "description": "Off-Exceeding Duct Pressure Shutdown SP"
+    },
+    {
+      "enum": [
+        10,
+        "seRtuFanStatusOffLowVoltage"
+      ],
+      "description": "Off-Low Voltage"
+    },
+    {
+      "enum": [
+        11,
+        "seRtuFanStatusOffFanOverloadLockout"
+      ],
+      "description": "Off-Fan Overload Lockout"
+    },
+    {
+      "enum": [
+        12,
+        "seRtuFanStatusOffFanVfdFault"
+      ],
+      "description": "Off-Fan VFD Fault"
+    },
+    {
+      "enum": [
+        13,
+        "seRtuFanStatusOffHotWaterFreezeStat"
+      ],
+      "description": "Off-Hot Water Freeze Stat"
+    },
+    {
+      "enum": [
+        14,
+        "seRtuFanStatusOffAirProvingSwitch"
+      ],
+      "description": "Off-Air Proving Switch"
+    },
+    {
+      "enum": [
+        15,
+        "seRtuFanStatusOffMinOffDelay"
+      ],
+      "description": "Off-Minimum Off Delay"
+    },
+    {
+      "enum": [
+        16,
+        "seRtuFanStatusOffFanOnDelayHeat"
+      ],
+      "description": "Off-Fan On Delay For Heat"
+    },
+    {
+      "enum": [
+        17,
+        "seRtuFanStatusOffFanOnDelayCool"
+      ],
+      "description": "Off-Fan Off Delay For Cool"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

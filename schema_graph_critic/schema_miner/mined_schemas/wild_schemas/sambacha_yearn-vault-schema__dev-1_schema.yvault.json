@@ -1,0 +1,259 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/YPool",
+  "definitions": {
+    "YPool": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "yVault": {
+          "$ref": "#/definitions/YVault"
+        }
+      },
+      "required": ["yVault"],
+      "title": "YPool"
+    },
+    "YVault": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "balanceOf": {
+          "$ref": "#/definitions/BalanceOf"
+        },
+        "_totalSupply": {
+          "$ref": "#/definitions/TotalSupply"
+        },
+        "_balanceToken": {
+          "$ref": "#/definitions/BalanceToken"
+        },
+        "_balanceVault": {
+          "$ref": "#/definitions/BalanceVault"
+        },
+        "_balanceProfits": {
+          "$ref": "#/definitions/BalanceProfits"
+        },
+        "_deposit": {
+          "$ref": "#/definitions/Deposit"
+        },
+        "_withdraw": {
+          "$ref": "#/definitions/Withdraw"
+        }
+      },
+      "required": [
+        "_balanceProfits",
+        "_balanceToken",
+        "_balanceVault",
+        "_deposit",
+        "_totalSupply",
+        "_withdraw",
+        "balanceOf"
+      ],
+      "title": "YVault"
+    },
+    "BalanceProfits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "constant": {
+          "type": "boolean"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {}
+        },
+        "name": {
+          "type": "string"
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Put"
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["constant", "inputs", "name", "outputs", "type"],
+      "title": "BalanceProfits"
+    },
+    "Put": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "type"],
+      "title": "Put"
+    },
+    "BalanceToken": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "constant": {
+          "type": "boolean"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {}
+        },
+        "name": {
+          "type": "string"
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Put"
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["constant", "inputs", "name", "outputs", "type"],
+      "title": "BalanceToken"
+    },
+    "BalanceVault": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "constant": {
+          "type": "boolean"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {}
+        },
+        "name": {
+          "type": "string"
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Put"
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["constant", "inputs", "name", "outputs", "type"],
+      "title": "BalanceVault"
+    },
+    "Deposit": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "constant": {
+          "type": "boolean"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Put"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "outputs": {
+          "type": "array",
+          "items": {}
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["constant", "inputs", "name", "outputs", "type"],
+      "title": "Deposit"
+    },
+    "TotalSupply": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "constant": {
+          "type": "boolean"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {}
+        },
+        "name": {
+          "type": "string"
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Put"
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["constant", "inputs", "name", "outputs", "type"],
+      "title": "TotalSupply"
+    },
+    "Withdraw": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "constant": {
+          "type": "boolean"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Put"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "outputs": {
+          "type": "array",
+          "items": {}
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["constant", "inputs", "name", "outputs", "type"],
+      "title": "Withdraw"
+    },
+    "BalanceOf": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "constant": {
+          "type": "boolean"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Put"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Put"
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["constant", "inputs", "name", "outputs", "type"],
+      "title": "BalanceOf"
+    }
+  }
+}

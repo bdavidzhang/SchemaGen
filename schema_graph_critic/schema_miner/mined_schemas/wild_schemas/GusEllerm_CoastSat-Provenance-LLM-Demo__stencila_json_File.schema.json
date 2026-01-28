@@ -1,0 +1,89 @@
+{
+  "$schema": "https://stencila.org/meta.schema.json",
+  "$id": "https://stencila.org/File.schema.json",
+  "@id": "stencila:File",
+  "title": "File",
+  "extends": [
+    "Entity"
+  ],
+  "category": "works",
+  "description": "A file on the file system.",
+  "$comment": "Previously this type extended `CreativeWork`.\nHowever, to avoid consuming more memory than necessary when creating directory listings\nwith many files, it now extends `Entity`.\n",
+  "required": [
+    "type",
+    "name",
+    "path"
+  ],
+  "core": [
+    "id",
+    "mediaType",
+    "size",
+    "content"
+  ],
+  "properties": {
+    "type": {
+      "@id": "schema:type",
+      "description": "The type of this item.",
+      "$comment": "This is a special property analogous to JSON-LD's `@type` keyword.\n",
+      "type": "string"
+    },
+    "id": {
+      "@id": "schema:id",
+      "description": "The identifier for this item.",
+      "$comment": "This is a special property analogous to JSON-LD's `@id` keyword.\n",
+      "strip": [
+        "metadata"
+      ],
+      "html": {
+        "attr": "id"
+      },
+      "type": "string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "description": "The name of the file.",
+      "type": "string"
+    },
+    "path": {
+      "@id": "stencila:path",
+      "description": "The path (absolute or relative) of the file on the file system",
+      "type": "string"
+    },
+    "mediaType": {
+      "@id": "schema:encodingFormat",
+      "description": "IANA media type (MIME type).",
+      "$comment": "This property is more restrictive than https://schema.org/encodingFormat which\nexpects either Text or URL for this property. This schema expects a media type e.g. `text/html`\nas listed at http://www.iana.org/assignments/media-types/media-types.xhtml.\n",
+      "aliases": [
+        "encodingFormat",
+        "media-type",
+        "media_type"
+      ],
+      "type": "string",
+      "pattern": "^\\w+/[-+.\\w]+$"
+    },
+    "transferEncoding": {
+      "@id": "stencila:transferEncoding",
+      "description": "The encoding used for the context (e.g. base64, gz)",
+      "$comment": "Similar to the HTTP Transfer-Encoding header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Transfer-Encoding).\nMostly used to indicates whether the content of the file is Base64 encoded.\n",
+      "aliases": [
+        "transfer-encoding",
+        "transfer_encoding"
+      ],
+      "type": "string"
+    },
+    "size": {
+      "@id": "schema:size",
+      "description": "The size of the content in bytes",
+      "$ref": "UnsignedInteger.schema.json"
+    },
+    "content": {
+      "@id": "schema:content",
+      "description": "The content of the file.",
+      "$comment": "For binary formats, such as images, the content should be Base64 encoded.\n",
+      "dom": {
+        "skip": true
+      },
+      "type": "string"
+    }
+  }
+}

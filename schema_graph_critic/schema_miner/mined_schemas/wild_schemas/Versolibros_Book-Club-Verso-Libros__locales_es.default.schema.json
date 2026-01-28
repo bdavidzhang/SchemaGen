@@ -1,0 +1,668 @@
+{
+  "settings_schema": {
+    "social-media": {
+      "name": "Redes sociales",
+      "settings": {
+        "header": {
+          "content": "Redes sociales"
+        },
+        "social_facebook_link": {
+          "label": "Facebook",
+          "info": "https://facebook.com/shopify"
+        },
+        "social_twitter_link": {
+          "label": "Twitter",
+          "info": "https://twitter.com/shopify"
+        },
+        "social_instagram_link": {
+          "label": "Instagram",
+          "info": "http://instagram.com/shopify"
+        }
+      }
+    },
+    "favicon": {
+      "name": "Favicon",
+      "settings": {
+        "favicon": {
+          "label": "Favicon imagen",
+          "info": "Se reducirá a 32x32px"
+        }
+      }
+    },
+    "logo": {
+      "name": "Logo",
+      "settings": {
+        "logo": {
+          "label": "Imagen del logo"
+        }
+      }
+    },
+    "currency_format": {
+      "name": "Formato de la moneda",
+      "settings": {
+        "content": "Código de divisas",
+        "paragraph": "Los precios del carrito y de la caja siempre muestran los códigos de moneda. Ejemplo: 1.00 .",
+        "currency_code_enabled": {
+          "label": "Mostrar códigos de divisas"
+        }
+      }
+    },
+    "book_club_tiers": {
+      "name": "Niveles del club de lectura",
+      "settings": {
+        "content__1": "Lector",
+        "content__2": "Partisano",
+        "content__3": "Camarada",
+        "title": {
+          "label": "Título"
+        },
+        "description": {
+          "label": "Descripción"
+        },
+        "annual_product": {
+          "label": "Suscripción anual"
+        },
+        "monthly_product": {
+          "label": "Suscripción mensual"
+        },
+        "current_collection": {
+          "label": "Productos editoriales actuales"
+        },
+        "next_collection": {
+          "label": "Productos del próximo libro"
+        }
+      }
+    },
+    "book_club_page": {
+      "name": "Contenido de la página del Club de Lectura",
+      "settings": {
+        "intro_paragraph": "Contenidos mostrados en la página del Club de Lectura y en las páginas de detalles de la suscripción.",
+        "content__1": "Encabezado",
+        "header_product": {
+          "label": "Producto destacado",
+          "info": "Aparecerá una imagen del producto junto al título de la página."
+        },
+        "header_text": {
+          "label": "Texto introductorio"
+        },
+        "content__2": "Instrucciones",
+        "instruction_1_heading": {
+          "label": "Instrucción nº 1 encabezamiento"
+        },
+        "instruction_1_text": {
+          "label": "Instrucción nº 1 cuerpo"
+        },
+        "instruction_2_heading": {
+          "label": "Instrucción nº 2 encabezamiento"
+        },
+        "instruction_2_text": {
+          "label": "Instruction #2 body"
+        },
+        "instruction_3_heading": {
+          "label": "Instrucción nº 3 encabezamiento"
+        },
+        "instruction_3_text": {
+          "label": "Instrucción nº 3 cuerpo"
+        },
+        "content__3": "Pie de página",
+        "footer_heading": {
+          "label": "Encabezamiento"
+        },
+        "footer_text": {
+          "label": "Cuerpo"
+        },
+        "content__4": "Productos recomendados",
+        "paragraph__4": "Se muestra (si está completo) en el portal de clientes de Recarga.",
+        "suggested_products_heading": {
+          "label": "Encabezamiento"
+        },
+        "suggested_products_description": {
+          "label": "Descripción"
+        },
+        "suggested_products_list": {
+          "label": "Productos recomendados",
+          "info": "Select up to 6 products."
+        }
+      }
+    },
+    "support_contact": {
+      "name": "Información de contacto para soporte",
+      "settings": {
+        "orders": {
+          "label_na": "Dirección de correo electrónico de soporte de pedidos de América del Norte",
+          "label_eu": "Dirección de correo electrónico de soporte de pedidos de la UE (EE. UU. y Canadá no incluidos)"
+        }
+      }
+    }
+  },
+  "sections": {
+    "all": {
+      "heading_tag": {
+        "label": "etiqueta de encabezado",
+        "options__1": {
+          "label": "h1"
+        },
+        "options__2": {
+          "label": "h2"
+        },
+        "options__3": {
+          "label": "h3"
+        }
+      },
+      "heading_style": {
+        "label": "Estilo de encabezado",
+        "options__1": {
+          "label": "h1"
+        },
+        "options__2": {
+          "label": "h2"
+        },
+        "options__3": {
+          "label": "h3"
+        },
+        "options__4": {
+          "label": "Visualmente oculta",
+          "info": "El encabezado solo será visible para los lectores de pantalla."
+        }
+      },
+      "text_style": {
+        "label": "Estilo de texto",
+        "options__1": {
+          "label": "Delantera"
+        },
+        "options__2": {
+          "label": "por defecto"
+        },
+        "options__3": {
+          "label": "pequeño"
+        }
+      }
+    },
+    "announcement-bar": {
+      "name": "barra de anuncios",
+      "settings": {
+        "show_announcement": {
+          "label": "Mostrar anuncio"
+        },
+        "text": {
+          "label": "Texto"
+        },
+        "color_scheme": {
+          "scheme_1": {
+            "label": "Rojo"
+          },
+          "scheme_2": {
+            "label": "Amarillo"
+          },
+          "label": "Esquema de colores"
+        }
+      }
+    },
+    "author-article": {
+      "name": "Detalles del autor"
+    },
+    "block-columns": {
+      "name": "Columnas",
+      "settings": {
+        "column_ratio": {
+          "name": "Ratio de columnas"
+        }
+      },
+      "blocks": {
+        "book_club_callout": {
+          "name": "Convocatoria del Club de Lectura",
+          "settings": {
+            "image": {
+              "label": "Imagen"
+            },
+            "heading": {
+              "label": "Encabezado"
+            },
+            "text": {
+              "label": "Descripción"
+            },
+            "button_link_url": {
+              "label": "URL del enlace"
+            },
+            "button_link_text": {
+              "label": "Texto del enlace"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Columnas"
+      }
+    },
+    "block-featured-article": {
+      "name": "Artículo destacado",
+      "settings": {
+        "article": {
+          "label": "Artículo"
+        }
+      },
+      "presets": {
+        "name": "Artículo destacado"
+      }
+    },
+    "block-featured-articles-grid": {
+      "name": "Cuadrícula de artículos destacados",
+      "settings": {
+        "header__1": {
+          "content": "Selecciona un menú..."
+        },
+        "menu": {
+          "label": "Menú de artículos destacados"
+        },
+        "header__2": {
+          "content": "â¦or select articles individuallyâ¦"
+        },
+        "paragraph__2": {
+          "content": "Select up to three articles. Menu takes priority; if one is specified, selected articles will not appear."
+        },
+        "article__1": {
+          "label": "Article #1"
+        },
+        "article__2": {
+          "label": "Article #2"
+        },
+        "article__3": {
+          "label": "Article #3"
+        },
+        "header__3": {
+          "content": "...o mostrar los artículos más recientes."
+        },
+        "paragraph__3": {
+          "content": "Si no se especifica ningún menú o artículo individual, se mostrarán los tres artículos más recientes."
+        }
+      },
+      "presets": {
+        "name": "Artículos destacados"
+      }
+    },
+    "block-featured-articles-list": {
+      "name": "Lista de artículos destacados",
+      "settings": {
+        "header__1": {
+          "content": "Encabezado"
+        },
+        "heading": {
+          "label": "Encabezamiento"
+        },
+        "pre_heading": {
+          "label": "Pre-encabezamiento"
+        },
+        "header__2": {
+          "content": "Elige un menú..."
+        },
+        "menu": {
+          "label": "Menú de artículos destacados"
+        },
+        "header__3": {
+          "content": "â¦or select articles individually."
+        },
+        "paragraph__2": {
+          "content": "Select up to five articles. Menu takes priority; if one is specified, selected articles will not appear."
+        },
+        "article__1": {
+          "label": "Artículo nº 1"
+        },
+        "article__2": {
+          "label": "Artículo nº 2"
+        },
+        "article__3": {
+          "label": "Artículo nº 3"
+        },
+        "article__4": {
+          "label": "Artículo nº 4"
+        },
+        "article__5": {
+          "label": "Artículo nº 5"
+        }
+      },
+      "presets": {
+        "name": "Featured articles"
+      }
+    },
+    "block-featured-authors": {
+      "name": "Featured authors",
+      "settings": {
+        "header__1": {
+          "content": "Header"
+        },
+        "heading": {
+          "label": "Optional header"
+        },
+        "header__2": {
+          "content": "Selecciona un menú..."
+        },
+        "menu": {
+          "label": "Menú de autores destacados"
+        },
+        "header__3": {
+          "content": "...o seleccionar autores individualmente"
+        },
+        "paragraph": {
+          "content": "Seleccione hasta cuatro autores. El menú tiene prioridad; si se especifica uno, los autores seleccionados no aparecerán."
+        },
+        "author__1": {
+          "label": "Autor nº 1"
+        },
+        "author__2": {
+          "label": "Autor nº 2"
+        },
+        "author__3": {
+          "label": "Autor nº 3"
+        },
+        "author__4": {
+          "label": "Autor nº 4"
+        }
+      },
+      "presets": {
+        "name": "Autores destacados"
+      }
+    },
+    "block-featured-collections": {
+      "name": "Colecciones destacadas",
+      "settings": {
+        "text": {
+          "label": "Encabezamiento"
+        },
+        "header__1": {
+          "content": "Escoja un menú..."
+        },
+        "menu": {
+          "label": "Menú de colecciones destacadas"
+        },
+        "header__2": {
+          "content": "...o seleccionar colecciones individualmente"
+        },
+        "paragraph__2": {
+          "content": "Seleccione hasta seis colecciones. El menú tiene prioridad; si se especifica una, las colecciones seleccionadas no aparecerán."
+        },
+        "collection_list": {
+          "label": "Colecciones destacadas"
+        }
+      },
+      "presets": {
+        "name": "Colecciones destacadas"
+      }
+    },
+    "block-featured-products": {
+      "name": "Productos destacados",
+      "settings": {
+        "header__1": {
+          "content": "Elija un menú..."
+        },
+        "menu": {
+          "label": "Menú de productos destacados"
+        },
+        "header__2": {
+          "content": "... o seleccione los productos individualmente"
+        },
+        "paragraph__2": {
+          "content": "Seleccione hasta seis productos. El menú tiene prioridad; si se especifica uno, los productos seleccionados no aparecerán."
+        },
+        "product_list": {
+          "label": "Productos destacados"
+        }
+      },
+      "presets": {
+        "name": "Productos destacados"
+      }
+    },
+    "block-image": {
+      "name": "Imagen",
+      "settings": {
+        "image": {
+          "label": "Imagen"
+        },
+        "link_url": {
+          "label": "Enlace URL",
+          "info": "Si lo desea, puede vincular la imagen a una URL."
+        },
+        "link_text": {
+          "label": "Texto del enlace",
+          "info": "Por razones de accesibilidad, los enlaces deben tener texto. El valor de este campo sólo será visible para los lectores de pantalla."
+        }
+      },
+      "presets": {
+        "name": "Imagen"
+      }
+    },
+    "block-rich-text": {
+      "name": "Texto enriquecido",
+      "blocks": {
+        "heading": {
+          "name": "Encabezamiento",
+          "settings": {
+            "heading": {
+              "label": "Encabezamiento"
+            }
+          }
+        },
+        "text": {
+          "name": "Texto",
+          "settings": {
+            "text": {
+              "label": "Descripción"
+            }
+          }
+        },
+        "buttons": {
+          "name": "Teclas",
+          "settings": {
+            "button_label_1": {
+              "label": "Primera etiqueta de botón",
+              "info": "Deje la etiqueta en blanco para ocultar el botón."
+            },
+            "button_link_1": {
+              "label": "Enlace al primer botón"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Texto enriquecido"
+      }
+    },
+    "book-club-current-selections": {
+      "name": "Instrucciones y lote actual",
+      "settings": {
+        "header__1": {
+          "content": "CTA"
+        },
+        "show_bundle_options": {
+          "label": "Mostrar las opciones actuales del lote"
+        },
+        "paragraph__1": {
+          "content": "Otros campos de sección se definen en la Configuración del tema para su uso entre plantillas."
+        }
+      }
+    },
+    "book-club-footer": {
+      "name": "Pie de página",
+      "settings": {
+        "paragraph__1": {
+          "content": "Los campos de pie de página se definen en la configuración del tema para su uso entre plantillas."
+        }
+      }
+    },
+    "book-club-header": {
+      "name": "Encabezado de página",
+      "settings": {
+        "page_title": {
+          "label": "Título de la página",
+          "info": "Visualmente oculto pero utilizado para la accesibilidad."
+        },
+        "paragraph__1": {
+          "content": "Otros campos de cabecera se definen en la Configuración del tema para su uso entre plantillas."
+        },
+        "cta_text": {
+          "label": "CTA text"
+        }
+      }
+    },
+    "book-club-products": {
+      "name": "Libros actuales y futuros",
+      "settings": {
+        "paragraph__1": {
+          "content": "Las colecciones de libros actuales y futuros se definen en la configuración del tema para su uso entre plantillas.."
+        }
+      }
+    },
+    "book-club-subscriptions": {
+      "name": "Niveles de suscripción",
+      "settings": {
+        "paragraph__1": {
+          "content": "Los datos del nivel de suscripción se definen en la Configuración del tema para su uso entre plantillas."
+        }
+      }
+    },
+    "collection-header": {
+      "name": "Encabezado de la colección",
+      "settings": {
+        "paragraph__1": {
+          "content": "Muestra el título, la descripción y la imagen destacada de la colección."
+        }
+      }
+    },
+    "footer": {
+      "name": "Pie de página",
+      "settings": {
+        "header__1": {
+          "content": "Iconos de redes sociales",
+          "info": "Para mostrar tus cuentas de redes sociales, enlázalas en la configuración de tu tema."
+        },
+        "show_social": {
+          "label": "Mostrar iconos de redes sociales"
+        },
+        "header__2": {
+          "content": "Newsletter call-to-action"
+        },
+        "show_signup_cta": {
+          "label": "Show call-to-action"
+        },
+        "signup_cta_text": {
+          "label": "Call-to-action text"
+        }
+      }
+    },
+    "header": {
+      "name": "Encabezado",
+      "settings": {
+        "logo": {
+          "label": "Imagen del logo",
+          "paragraph": "Uploading a new logo image will override the default logo and remove animations."
+        },
+        "menu": {
+          "label": "Menú"
+        }
+      }
+    },
+    "main-article": {
+      "name": "Artículo único",
+      "settings": {
+        "label": {
+          "label": "Etiqueta del artículo"
+        }
+      }
+    },
+    "main-article-list": {
+      "name": "Lista de artículos",
+      "settings": {
+        "articles_per_page": {
+          "label": "Artículos por página"
+        }
+      }
+    },
+    "main-author-list": {
+      "name": "Lista de autores",
+      "settings": {
+        "menu": {
+          "label": "Menú de autores destacados"
+        }
+      }
+    },
+    "main-cart": {
+      "name": "Página de la cesta"
+    },
+    "main-list-collections": {
+      "name": "Rejilla de colecciones",
+      "settings": {
+        "collections_per_page": {
+          "label": "Colecciones por página"
+        }
+      }
+    },
+    "main-page": {
+      "name": "Página"
+    },
+    "main-page-with-sidebar-nav": {
+      "name": "Página (con menú lateral)",
+      "settings": {
+        "menu": {
+          "label": "Menú lateral"
+        }
+      }
+    },
+    "main-password": {
+      "name": "Contraseña"
+    },
+    "main-product": {
+      "name": "Información sobre el producto",
+      "settings": {
+        "physical_variant_subtitle": {
+          "label": "Variante física subtítulo",
+          "info": "Texto opcional para las variantes en rústica y tapa dura."
+        },
+        "ebook_variant_description": {
+          "label": "Descripción de la variante del ebook",
+          "info": "Texto opcional para las variantes de libros electrónicos. Si se deja en blanco, se mostrarán los metadatos de la variante."
+        }
+      }
+    },
+    "collection-product-grid": {
+      "name": "Rejilla de productos",
+      "settings": {
+        "products_per_page": {
+          "label": "Productos por página"
+        },
+        "menu": {
+          "label": "Catálogo de filtros"
+        },
+        "region_menu": {
+          "label": "Filtros por regiones"
+        },
+        "show_menu": {
+          "label": "Mostrar el título de la colección y los filtros"
+        }
+      }
+    },
+    "product-recommendations": {
+      "name": "Recomendaciones de productos",
+      "settings": {
+        "heading": {
+          "label": "Encabezamiento"
+        }
+      }
+    },
+    "sr-only-page-title": {
+      "name": "Título de la página (para lectores de pantalla))",
+      "settings": {
+        "title": {
+          "label": "Título",
+          "info": "El título de la página es obligatorio para la accesibilidad, aunque no sea visible."
+        }
+      }
+    },
+    "main-search": {
+      "name": "Buscar en",
+      "settings": {
+        "image": {
+          "label": "Imagen del resultado de la página"
+        }
+      }
+    }
+  }
+}

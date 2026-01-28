@@ -1,0 +1,386 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://schemas.agentwp.com/action.schema.json",
+    "version": "0.1.0",
+    "title": "Action",
+    "description": "An action is an object that can be executed in WordPress to perform a particular task according to its abilities. It is coupling of an ability with a data structure.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "#/definitions/baseAction"
+        }
+    ],
+    "oneOf": [
+        {
+            "$ref": "#/definitions/navigateAction"
+        },
+        {
+            "$ref": "#/definitions/runAction"
+        },
+        {
+            "$ref": "#/definitions/codeAction"
+        },
+        {
+            "$ref": "#/definitions/queryAction"
+        },
+        {
+            "$ref": "#/definitions/messageAction"
+        },
+        {
+            "$ref": "#/definitions/writeToEditorAction"
+        }
+    ],
+    "definitions": {
+        "abilities": {
+            "title": "Abilities",
+            "description": "Enumeration of available abilities for a AgentWP.",
+            "type": "string",
+            "enum": [
+                "run",
+                "message",
+                "navigate",
+                "query",
+                "code",
+                "write_to_input",
+                "write_to_editor"
+            ]
+        },
+        "visualization": {
+            "title": "Visualization",
+            "description": "Types of visualizations for presenting data.",
+            "type": "string",
+            "enum": [
+                "conversational",
+                "bar-chart",
+                "line-chart",
+                "table",
+                "big-number-card",
+                "donut-chart"
+            ]
+        },
+        "baseAction": {
+            "type": "object",
+            "properties": {
+                "ability": {
+                    "$ref": "#/definitions/abilities",
+                    "description": "The ability of the Action defines what it's able to do when executed by the WordPress client."
+                }
+            },
+            "required": [
+                "ability"
+            ]
+        },
+        "navigateAction": {
+            "allOf": [
+                {
+                    "properties": {
+                        "ability": {
+                            "const": "navigate",
+                            "title": "Performs a standard page navigation within WordPress using `window.location`."
+                        },
+                        "url": {
+                            "type": "string",
+                            "description": "The URL to navigate to."
+                        }
+                    },
+                    "required": [
+                        "url",
+                        "ability"
+                    ]
+                }
+            ]
+        },
+        "queryAction": {
+            "allOf": [
+                {
+                    "properties": {
+                        "ability": {
+                            "const": "query",
+                            "title": "Queries the WordPress database using $wpdb global and a prepared statement."
+                        },
+                        "sql": {
+                            "type": "string",
+                            "description": "The SQL query to run with placeholders that will be replaced by the prepared arguments."
+                        },
+                        "args": {
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "number"
+                                    }
+                                ]
+                            },
+                            "description": "Arguments for the query, to be ran through `wpdb::prepare`."
+                        },
+                        "visualization": {
+                            "$ref": "#/definitions/visualization"
+                        }
+                    },
+                    "required": [
+                        "ability",
+                        "visualization",
+                        "sql"
+                    ]
+                }
+            ]
+        },
+        "runAction": {
+            "allOf": [
+                {
+                    "properties": {
+                        "ability": {
+                            "const": "run",
+                            "title": "Runs a WP CLI command in the WordPress installation."
+                        },
+                        "command": {
+                            "type": "string",
+                            "description": "The WP CLI command to run."
+                        },
+                        "args": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "Arguments for the command."
+                        }
+                    },
+                    "required": [
+                        "command",
+                        "ability"
+                    ]
+                }
+            ]
+        },
+        "codeAction": {
+            "allOf": [
+                {
+                    "properties": {
+                        "ability": {
+                            "const": "code",
+                            "title": "Code to be executed in the WordPress environment."
+                        },
+                        "file": {
+                            "type": "string",
+                            "description": "The absolute file path to the code."
+                        }
+                    },
+                    "required": [
+                        "file",
+                        "ability"
+                    ]
+                }
+            ]
+        },
+        "messageAction": {
+            "type": "object",
+            "properties": {
+                "ability": {
+                    "const": "message",
+                    "title": "Sends a message to the Agent WP dialog interface for the user to respond to."
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The text of the message in markdown."
+                },
+                "buttons": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "label": {
+                                "type": "string"
+                            },
+                            "url": {
+                                "type": "string"
+                            },
+                            "level": {
+                                "type": "string",
+                                "enum": [
+                                    "primary",
+                                    "secondary",
+                                    "danger",
+                                    "success"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "label",
+                            "url"
+                        ]
+                    }
+                },
+                "graph": {
+                    "$ref": "#/definitions/graph"
+                },
+                "escalation": {
+                    "$ref": "#/definitions/messageActionEscalation"
+                }
+            },
+            "required": [
+                "text",
+                "ability"
+            ]
+        },
+        "graph": {
+            "type": "object",
+            "properties": {
+                "visualization": {
+                    "$ref": "#/definitions/visualization"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {},
+                        "patternProperties": {
+                            "^[a-zA-Z0-9]+$": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "number"
+                                    }
+                                ]
+                            }
+                        },
+                        "minProperties": 2,
+                        "additionalProperties": false
+                    },
+                    "minItems": 1
+                },
+                "chart": {
+                    "type": "object",
+                    "properties": {
+                        "xAxisKey": {
+                            "type": "string"
+                        },
+                        "dataKeys": {
+                            "type": "array",
+                            "description": "An array of objects used to render the data rechart components",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "key": {
+                                        "type": "string"
+                                    },
+                                    "label": {
+                                        "type": "string"
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "enum": [
+                                            "#4991F7",
+                                            "#FF70A6",
+                                            "#1E1E1E"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "key",
+                                    "label",
+                                    "color"
+                                ]
+                            },
+                            "minItems": 1
+                        },
+                        "xAxisTickAbbr": {
+                            "type": "integer",
+                            "minimum": 2,
+                            "description": "Used to abbreviate the tick label to a certain character length"
+                        }
+                    },
+                    "required": [
+                        "xAxisKey",
+                        "dataKeys"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "visualization",
+                "data"
+            ]
+        },
+        "messageActionEscalation": {
+            "type": "object",
+            "properties": {
+                "service": {
+                    "type": "string",
+                    "enum": [
+                        "codeable"
+                    ],
+                    "description": "The name of the escalation service to use."
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the escalation."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the service. Usually contains an identifier."
+                },
+                "headline": {
+                    "type": "string",
+                    "description": "The headline of the escalation."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the escalation."
+                },
+                "link": {
+                    "type": "string",
+                    "description": "The link to the escalation."
+                }
+            },
+            "required": [
+                "service",
+                "id",
+                "name",
+                "headline",
+                "description"
+            ]
+        },
+        "writeToEditorAction": {
+            "type": "object",
+            "properties": {
+                "ability": {
+                    "const": "write_to_editor",
+                    "title": "Writes text to the WordPress editor."
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The text to write to the editor using Gutenberg blocks."
+                }
+            },
+            "required": [
+                "text",
+                "ability"
+            ]
+        },
+        "writeToInputFieldAction": {
+            "type": "object",
+            "properties": {
+                "ability": {
+                    "const": "write_to_input",
+                    "title": "Writes text to an input field or textarea."
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The text to write to the input field."
+                }
+            },
+            "required": [
+                "text",
+                "ability"
+            ]
+        }
+    }
+}

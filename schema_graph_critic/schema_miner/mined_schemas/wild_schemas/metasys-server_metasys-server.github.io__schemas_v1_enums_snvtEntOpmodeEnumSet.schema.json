@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/snvtEntOpmodeEnumSet.schema.json",
+  "title": "snvtEntOpmodeEnumSet",
+  "description": "SNVT Entry Operation Mode",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "emUndefined"
+      ],
+      "description": "Undefined"
+    },
+    {
+      "enum": [
+        1,
+        "emAuto"
+      ],
+      "description": "AUTOMATIC"
+    },
+    {
+      "enum": [
+        2,
+        "emAutoRed"
+      ],
+      "description": "AUTOMATIC reduced"
+    },
+    {
+      "enum": [
+        3,
+        "emCloseLock"
+      ],
+      "description": "CLOSE AND LOCK"
+    },
+    {
+      "enum": [
+        4,
+        "emCloseUnlock"
+      ],
+      "description": "CLOSE AND UNLOCK"
+    },
+    {
+      "enum": [
+        5,
+        "emExitOnly"
+      ],
+      "description": "EXIT ONLY"
+    },
+    {
+      "enum": [
+        6,
+        "emOpen"
+      ],
+      "description": "OPEN"
+    },
+    {
+      "enum": [
+        7,
+        "emOpenOnce"
+      ],
+      "description": "OPEN AND CLOSE ONCE"
+    },
+    {
+      "enum": [
+        8,
+        "emManual"
+      ],
+      "description": "MANUAL"
+    },
+    {
+      "enum": [
+        9,
+        "emFire"
+      ],
+      "description": "FIRE"
+    },
+    {
+      "enum": [
+        10,
+        "emEvac"
+      ],
+      "description": "EVACUATION"
+    },
+    {
+      "enum": [
+        11,
+        "emWeather"
+      ],
+      "description": "WEATHER MODE"
+    },
+    {
+      "enum": [
+        12,
+        "emDayLocking"
+      ],
+      "description": "DAY_LOCKING"
+    },
+    {
+      "enum": [
+        13,
+        "emNightLocking"
+      ],
+      "description": "NIGHT_LOCKING"
+    },
+    {
+      "enum": [
+        14,
+        "emBlocked"
+      ],
+      "description": "BLOCKED"
+    },
+    {
+      "enum": [
+        15,
+        "emService"
+      ],
+      "description": "SERVICE"
+    },
+    {
+      "enum": [
+        16,
+        "emEntryOnly"
+      ],
+      "description": "ENTRY_ONLY"
+    },
+    {
+      "enum": [
+        255,
+        "emNul"
+      ],
+      "description": "Null"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

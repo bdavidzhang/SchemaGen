@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Secreon Share File Schemas",
+  "description": "Schemas for combined and single-share JSON formats used by Secreon.",
+  "definitions": {
+    "combined": {
+      "type": "object",
+      "required": ["meta", "shares"],
+      "properties": {
+        "meta": {
+          "type": "object",
+          "properties": {
+            "minimum": {"type": "integer"},
+            "shares": {"type": "integer"},
+            "prime": {"type": "integer"},
+            "secret_byte_length": {"type": "integer"}
+          },
+          "additionalProperties": true
+        },
+        "shares": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["x", "y"],
+            "properties": {"x": {"type": "integer"}, "y": {"type": "integer"}}
+          }
+        }
+      }
+    },
+    "individual": {
+      "type": "object",
+      "required": ["meta", "share"],
+      "properties": {
+        "meta": {
+          "type": "object",
+          "properties": {
+            "minimum": {"type": "integer"},
+            "shares": {"type": "integer"},
+            "share_index": {"type": "integer"},
+            "prime": {"type": "integer"},
+            "secret_byte_length": {"type": "integer"}
+          },
+          "additionalProperties": true
+        },
+        "share": {
+          "type": "object",
+          "required": ["x", "y"],
+          "properties": {"x": {"type": "integer"}, "y": {"type": "integer"}}
+        }
+      }
+    }
+  }
+}

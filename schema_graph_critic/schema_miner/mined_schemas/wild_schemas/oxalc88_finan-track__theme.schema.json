@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Invoice App Theme Configuration",
+  "description": "Theme configuration for customizing colors and styles",
+  "type": "object",
+  "properties": {
+    "colors": {
+      "type": "object",
+      "description": "Color palette definitions",
+      "properties": {
+        "primary": { "$ref": "#/definitions/colorScale" },
+        "secondary": { "$ref": "#/definitions/colorScale" },
+        "accent": { "$ref": "#/definitions/colorScale" },
+        "success": { "$ref": "#/definitions/colorScale" },
+        "warning": { "$ref": "#/definitions/colorScale" },
+        "error": { "$ref": "#/definitions/colorScale" },
+        "neutral": { "$ref": "#/definitions/colorScale" }
+      },
+      "required": ["primary", "secondary", "neutral"]
+    },
+    "typography": {
+      "type": "object",
+      "properties": {
+        "fontFamily": {
+          "type": "object",
+          "properties": {
+            "sans": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "mono": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "properties": {
+        "containerMaxWidth": { "type": "string" }
+      }
+    },
+    "borderRadius": {
+      "type": "object",
+      "properties": {
+        "sm": { "type": "string" },
+        "md": { "type": "string" },
+        "lg": { "type": "string" },
+        "xl": { "type": "string" }
+      }
+    }
+  },
+  "required": ["colors"],
+  "definitions": {
+    "colorScale": {
+      "type": "object",
+      "description": "A color scale from 50 (lightest) to 950 (darkest)",
+      "properties": {
+        "50": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "100": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "200": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "300": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "400": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "500": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "600": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "700": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "800": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "900": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "950": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+      },
+      "required": ["500"]
+    }
+  }
+}

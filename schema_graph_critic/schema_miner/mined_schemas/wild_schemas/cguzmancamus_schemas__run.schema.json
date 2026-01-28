@@ -1,0 +1,13 @@
+{
+	"id": "http://caem.modernizacion.gob.cl/run.schema.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "Comment describing your JSON Schema",
+	"type": "object",
+	"properties": {
+		"run": {
+			"$ref": "runType.schema.json#/definitions/runType"
+		}
+	},
+	"additionalProperties": false,
+	"required": ["run"]
+}

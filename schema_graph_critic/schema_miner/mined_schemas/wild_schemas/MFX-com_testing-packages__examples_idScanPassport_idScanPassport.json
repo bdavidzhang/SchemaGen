@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$metadata": {
+    "uris": {
+      "jsonLdContext": "https://raw.githubusercontent.com/NexeraProtocol/vc-schemas/main/examples/idScanPassport/idScanPassport.jsonld",
+      "jsonSchema": "https://raw.githubusercontent.com/NexeraProtocol/vc-schemas/main/examples/idScanPassport/idScanPassport.json"
+    },
+    "type": "IDScanPassport",
+    "version": "1.0"
+  },
+  "required": [
+    "@context",
+    "id",
+    "type",
+    "issuanceDate",
+    "credentialSubject",
+    "credentialSchema",
+    "credentialStatus",
+    "issuer"
+  ],
+  "properties": {
+    "@context": {
+      "type": ["string", "array", "object"]
+    },
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": ["string", "array"],
+      "items": {
+        "type": "string"
+      }
+    },
+    "issuer": {
+      "type": ["string", "object"],
+      "format": "uri",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "issuanceDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "credentialSchema": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "subjectPosition": {
+      "type": "string",
+      "enum": ["none", "index", "value"]
+    },
+    "merklizationRootPosition": {
+      "type": "string",
+      "enum": ["none", "index", "value"]
+    },
+    "revNonce": {
+      "type": "integer"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "updatable": {
+      "type": "boolean"
+    },
+    "credentialSubject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "journeyId": {
+          "title": "Journey ID",
+          "description": "The ID of the journey that this credential is associated with",
+          "type": "string"
+        },
+        "base64": {
+          "title": "Base64",
+          "description": "Base64 encoded image of the passport image",
+          "type": "string",
+          "format": "base64"
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the docuemnt (e.g. passport.jpg)",
+          "type": "string"
+        },
+        "documentType": {
+          "title": "Type",
+          "description": "Type of the document (e.g. image/jpeg, image/png)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "journeyId",
+        "base64",
+        "name",
+        "documentType"
+      ]
+    }
+  }
+}

@@ -1,0 +1,6873 @@
+{
+  "GasMaterials": [
+    {
+      "$id": "1",
+      "Category": "Gases",
+      "Type": "AIR",
+      "Conductivity": 0.0,
+      "Cost": 0.0,
+      "Density": 0.0,
+      "EmbodiedCarbon": 0.0,
+      "EmbodiedEnergy": 0.0,
+      "SubstitutionRatePattern": [],
+      "SubstitutionTimestep": 0.0,
+      "TransportCarbon": 0.0,
+      "TransportDistance": 0.0,
+      "TransportEnergy": 0.0,
+      "Comments": null,
+      "DataSource": null,
+      "Name": "AIR"
+    },
+    {
+      "$id": "2",
+      "Category": "Gases",
+      "Type": "ARGON",
+      "Conductivity": 0.016,
+      "Cost": 0.0,
+      "Density": 0.0,
+      "EmbodiedCarbon": 0.0,
+      "EmbodiedEnergy": 0.0,
+      "SubstitutionRatePattern": [],
+      "SubstitutionTimestep": 0.0,
+      "TransportCarbon": 0.0,
+      "TransportDistance": 0.0,
+      "TransportEnergy": 0.0,
+      "Comments": null,
+      "DataSource": null,
+      "Name": "ARGON"
+    },
+    {
+      "$id": "3",
+      "Category": "Gases",
+      "Type": "KRYPTON",
+      "Conductivity": 0.0,
+      "Cost": 0.0,
+      "Density": 0.0,
+      "EmbodiedCarbon": 0.0,
+      "EmbodiedEnergy": 0.0,
+      "SubstitutionRatePattern": [],
+      "SubstitutionTimestep": 0.0,
+      "TransportCarbon": 0.0,
+      "TransportDistance": 0.0,
+      "TransportEnergy": 0.0,
+      "Comments": null,
+      "DataSource": null,
+      "Name": "KRYPTON"
+    },
+    {
+      "$id": "4",
+      "Category": "Gases",
+      "Type": "XENON",
+      "Conductivity": 0.0,
+      "Cost": 0.0,
+      "Density": 0.0,
+      "EmbodiedCarbon": 0.0,
+      "EmbodiedEnergy": 0.0,
+      "SubstitutionRatePattern": [],
+      "SubstitutionTimestep": 0.0,
+      "TransportCarbon": 0.0,
+      "TransportDistance": 0.0,
+      "TransportEnergy": 0.0,
+      "Comments": null,
+      "DataSource": null,
+      "Name": "XENON"
+    },
+    {
+      "$id": "5",
+      "Category": "Gases",
+      "Type": "SF6",
+      "Conductivity": 0.0,
+      "Cost": 0.0,
+      "Density": 0.0,
+      "EmbodiedCarbon": 0.0,
+      "EmbodiedEnergy": 0.0,
+      "SubstitutionRatePattern": [],
+      "SubstitutionTimestep": 0.0,
+      "TransportCarbon": 0.0,
+      "TransportDistance": 0.0,
+      "TransportEnergy": 0.0,
+      "Comments": null,
+      "DataSource": null,
+      "Name": "SF6"
+    }
+  ],
+  "GlazingMaterials": [
+    {
+      "$id": "6",
+      "DirtFactor": 1.0,
+      "IREmissivityBack": 0.84,
+      "IREmissivityFront": 0.84,
+      "IRTransmittance": 0.01,
+      "SolarReflectanceBack": 0.07,
+      "SolarReflectanceFront": 0.07,
+      "SolarTransmittance": 0.83,
+      "VisibleReflectanceBack": 0.08,
+      "VisibleReflectanceFront": 0.08,
+      "VisibleTransmittance": 0.89,
+      "Conductivity": 0.9,
+      "Cost": 0.0,
+      "Density": 2500.0,
+      "EmbodiedCarbon": 10.1,
+      "EmbodiedEnergy": 191.8,
+      "SubstitutionRatePattern": [
+        0.2
+      ],
+      "SubstitutionTimestep": 50.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Glass_Clear_4"
+    },
+    {
+      "$id": "7",
+      "DirtFactor": 1.0,
+      "IREmissivityBack": 0.84,
+      "IREmissivityFront": 0.84,
+      "IRTransmittance": 0.01,
+      "SolarReflectanceBack": 0.07,
+      "SolarReflectanceFront": 0.07,
+      "SolarTransmittance": 0.83,
+      "VisibleReflectanceBack": 0.08,
+      "VisibleReflectanceFront": 0.08,
+      "VisibleTransmittance": 0.89,
+      "Conductivity": 0.9,
+      "Cost": 0.0,
+      "Density": 2500.0,
+      "EmbodiedCarbon": 5.06,
+      "EmbodiedEnergy": 96.1,
+      "SubstitutionRatePattern": [
+        0.2
+      ],
+      "SubstitutionTimestep": 50.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Glass_Clear_3"
+    },
+    {
+      "$id": "8",
+      "DirtFactor": 1.0,
+      "IREmissivityBack": 0.84,
+      "IREmissivityFront": 0.84,
+      "IRTransmittance": 0.01,
+      "SolarReflectanceBack": 0.43,
+      "SolarReflectanceFront": 0.27,
+      "SolarTransmittance": 0.11,
+      "VisibleReflectanceBack": 0.35,
+      "VisibleReflectanceFront": 0.31,
+      "VisibleTransmittance": 0.14,
+      "Conductivity": 0.9,
+      "Cost": 0.0,
+      "Density": 2500.0,
+      "EmbodiedCarbon": 5.06,
+      "EmbodiedEnergy": 96.1,
+      "SubstitutionRatePattern": [
+        0.2
+      ],
+      "SubstitutionTimestep": 50.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Glass_Clear_3_Ref_H"
+    },
+    {
+      "$id": "9",
+      "DirtFactor": 1.0,
+      "IREmissivityBack": 0.84,
+      "IREmissivityFront": 0.84,
+      "IRTransmittance": 0.01,
+      "SolarReflectanceBack": 0.22,
+      "SolarReflectanceFront": 0.19,
+      "SolarTransmittance": 0.63,
+      "VisibleReflectanceBack": 0.08,
+      "VisibleReflectanceFront": 0.06,
+      "VisibleTransmittance": 0.85,
+      "Conductivity": 0.9,
+      "Cost": 0.0,
+      "Density": 2500.0,
+      "EmbodiedCarbon": 5.06,
+      "EmbodiedEnergy": 96.1,
+      "SubstitutionRatePattern": [
+        0.2
+      ],
+      "SubstitutionTimestep": 50.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Glass_Clear_3_LoE_1"
+    }
+  ],
+  "OpaqueMaterials": [
+    {
+      "$id": "10",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.6,
+      "SpecificHeat": 1200.0,
+      "ThermalEmittance": 0.85,
+      "VisibleAbsorptance": 0.6,
+      "Conductivity": 0.14,
+      "Cost": 0.0,
+      "Density": 650.0,
+      "EmbodiedCarbon": 0.45,
+      "EmbodiedEnergy": 7.4,
+      "SubstitutionRatePattern": [
+        0.5,
+        1.0
+      ],
+      "SubstitutionTimestep": 20.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Wood_Floor"
+    },
+    {
+      "$id": "11",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 840.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 1.25,
+      "Cost": 0.0,
+      "Density": 880.0,
+      "EmbodiedCarbon": 0.08,
+      "EmbodiedEnergy": 0.71,
+      "SubstitutionRatePattern": [
+        0.2
+      ],
+      "SubstitutionTimestep": 50.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Concrete_Block_H"
+    },
+    {
+      "$id": "12",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 1000.0,
+      "ThermalEmittance": 0.01,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 0.1,
+      "Cost": 0.0,
+      "Density": 1.2,
+      "EmbodiedCarbon": 0.0,
+      "EmbodiedEnergy": 0.0,
+      "SubstitutionRatePattern": [
+        1.0
+      ],
+      "SubstitutionTimestep": 100.0,
+      "TransportCarbon": 0.0,
+      "TransportDistance": 0.0,
+      "TransportEnergy": 0.0,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Air_Wall_3cm"
+    },
+    {
+      "$id": "13",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 840.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 1.75,
+      "Cost": 0.0,
+      "Density": 2400.0,
+      "EmbodiedCarbon": 0.24,
+      "EmbodiedEnergy": 2.12,
+      "SubstitutionRatePattern": [
+        1.0
+      ],
+      "SubstitutionTimestep": 100.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Concrete_RC_Dense"
+    },
+    {
+      "$id": "14",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 1040.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 1.65,
+      "Cost": 0.0,
+      "Density": 2100.0,
+      "EmbodiedCarbon": 0.24,
+      "EmbodiedEnergy": 2.12,
+      "SubstitutionRatePattern": [
+        1.0
+      ],
+      "SubstitutionTimestep": 100.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Concrete_MC_Light"
+    },
+    {
+      "$id": "15",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 840.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 1.77,
+      "Cost": 0.0,
+      "Density": 1900.0,
+      "EmbodiedCarbon": 0.08,
+      "EmbodiedEnergy": 0.71,
+      "SubstitutionRatePattern": [
+        0.2
+      ],
+      "SubstitutionTimestep": 50.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Concrete_Block_S"
+    },
+    {
+      "$id": "16",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.6,
+      "SpecificHeat": 840.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.6,
+      "Conductivity": 0.16,
+      "Cost": 0.0,
+      "Density": 950.0,
+      "EmbodiedCarbon": 0.38,
+      "EmbodiedEnergy": 6.75,
+      "SubstitutionRatePattern": [
+        0.02,
+        0.1,
+        1.0
+      ],
+      "SubstitutionTimestep": 20.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Gypsum_Board"
+    },
+    {
+      "$id": "17",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.5,
+      "SpecificHeat": 920.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.5,
+      "Conductivity": 0.41,
+      "Cost": 0.0,
+      "Density": 1000.0,
+      "EmbodiedCarbon": 0.22,
+      "EmbodiedEnergy": 3.0,
+      "SubstitutionRatePattern": [
+        0.2
+      ],
+      "SubstitutionTimestep": 50.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Clay_Brick_H"
+    },
+    {
+      "$id": "18",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 1000.0,
+      "ThermalEmittance": 0.01,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 0.7,
+      "Cost": 0.0,
+      "Density": 1.2,
+      "EmbodiedCarbon": 0.0,
+      "EmbodiedEnergy": 0.0,
+      "SubstitutionRatePattern": [
+        1.0
+      ],
+      "SubstitutionTimestep": 100.0,
+      "TransportCarbon": 0.0,
+      "TransportDistance": 0.0,
+      "TransportEnergy": 0.0,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Air_Floor_15cm"
+    },
+    {
+      "$id": "19",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.4,
+      "SpecificHeat": 840.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.4,
+      "Conductivity": 0.8,
+      "Cost": 0.0,
+      "Density": 2243.0,
+      "EmbodiedCarbon": 0.59,
+      "EmbodiedEnergy": 9.0,
+      "SubstitutionRatePattern": [
+        0.5,
+        1.0
+      ],
+      "SubstitutionTimestep": 20.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Ceramic_Tile"
+    },
+    {
+      "$id": "20",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.6,
+      "SpecificHeat": 1200.0,
+      "ThermalEmittance": 0.6,
+      "VisibleAbsorptance": 0.6,
+      "Conductivity": 0.037,
+      "Cost": 0.0,
+      "Density": 40.0,
+      "EmbodiedCarbon": 2.7,
+      "EmbodiedEnergy": 86.4,
+      "SubstitutionRatePattern": [
+        0.02,
+        0.1,
+        1.0
+      ],
+      "SubstitutionTimestep": 20.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_XPS_Board"
+    },
+    {
+      "$id": "21",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 840.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 0.42,
+      "Cost": 0.0,
+      "Density": 900.0,
+      "EmbodiedCarbon": 0.24,
+      "EmbodiedEnergy": 3.2,
+      "SubstitutionRatePattern": [
+        0.02,
+        0.1,
+        1.0
+      ],
+      "SubstitutionTimestep": 20.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Gypsum_Plaster"
+    },
+    {
+      "$id": "22",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.8,
+      "SpecificHeat": 840.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.8,
+      "Conductivity": 0.8,
+      "Cost": 0.0,
+      "Density": 1900.0,
+      "EmbodiedCarbon": 0.18,
+      "EmbodiedEnergy": 1.34,
+      "SubstitutionRatePattern": [
+        0.02,
+        0.1,
+        1.0
+      ],
+      "SubstitutionTimestep": 20.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Cement_Mortar"
+    },
+    {
+      "$id": "23",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 1880.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 0.11,
+      "Cost": 0.0,
+      "Density": 540.0,
+      "EmbodiedCarbon": 0.81,
+      "EmbodiedEnergy": 15.0,
+      "SubstitutionRatePattern": [
+        0.2
+      ],
+      "SubstitutionTimestep": 30.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Plywood_Board"
+    },
+    {
+      "$id": "24",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.6,
+      "SpecificHeat": 840.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.6,
+      "Conductivity": 0.043,
+      "Cost": 0.0,
+      "Density": 12.0,
+      "EmbodiedCarbon": 1.35,
+      "EmbodiedEnergy": 28.0,
+      "SubstitutionRatePattern": [
+        0.5
+      ],
+      "SubstitutionTimestep": 30.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 1000.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Fiberglass_Batts"
+    },
+    {
+      "$id": "25",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 840.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 0.045,
+      "Cost": 0.0,
+      "Density": 110.0,
+      "EmbodiedCarbon": 3.89,
+      "EmbodiedEnergy": 74.4,
+      "SubstitutionRatePattern": [
+        1.0
+      ],
+      "SubstitutionTimestep": 5.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 1000.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Urethane_Carpet"
+    },
+    {
+      "$id": "26",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.6,
+      "SpecificHeat": 1630.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.6,
+      "Conductivity": 0.16,
+      "Cost": 0.0,
+      "Density": 680.0,
+      "EmbodiedCarbon": 0.45,
+      "EmbodiedEnergy": 7.5,
+      "SubstitutionRatePattern": [
+        0.1,
+        0.1,
+        1.0
+      ],
+      "SubstitutionTimestep": 20.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Hardwood_General"
+    },
+    {
+      "$id": "27",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.6,
+      "SpecificHeat": 1630.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.6,
+      "Conductivity": 0.13,
+      "Cost": 0.0,
+      "Density": 496.0,
+      "EmbodiedCarbon": 0.45,
+      "EmbodiedEnergy": 7.5,
+      "SubstitutionRatePattern": [
+        0.1,
+        0.1,
+        1.0
+      ],
+      "SubstitutionTimestep": 20.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Softwood_General"
+    },
+    {
+      "$id": "28",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.6,
+      "SpecificHeat": 1260.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.6,
+      "Conductivity": 1.59,
+      "Cost": 0.0,
+      "Density": 1920.0,
+      "EmbodiedCarbon": 0.032,
+      "EmbodiedEnergy": 0.55,
+      "SubstitutionRatePattern": [
+        1.0
+      ],
+      "SubstitutionTimestep": 30.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Slate_Tile"
+    },
+    {
+      "$id": "29",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.6,
+      "SpecificHeat": 1300.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.6,
+      "Conductivity": 0.04,
+      "Cost": 0.0,
+      "Density": 592.0,
+      "EmbodiedCarbon": 0.47,
+      "EmbodiedEnergy": 7.8,
+      "SubstitutionRatePattern": [
+        1.0
+      ],
+      "SubstitutionTimestep": 30.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Wood_Shingle"
+    },
+    {
+      "$id": "30",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.7,
+      "SpecificHeat": 1000.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.7,
+      "Conductivity": 0.16,
+      "Cost": 0.0,
+      "Density": 1380.0,
+      "EmbodiedCarbon": 2.41,
+      "EmbodiedEnergy": 77.2,
+      "SubstitutionRatePattern": [
+        1.0
+      ],
+      "SubstitutionTimestep": 20.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Vinyl_Cladding"
+    },
+    {
+      "$id": "31",
+      "DesignStrength": null,
+      "ModulusOfElasticity": null,
+      "MoistureDiffusionResistance": 50.0,
+      "Roughness": "Rough",
+      "SolarAbsorptance": 0.4,
+      "SpecificHeat": 500.0,
+      "ThermalEmittance": 0.9,
+      "VisibleAbsorptance": 0.4,
+      "Conductivity": 45.3,
+      "Cost": 0.0,
+      "Density": 7830.0,
+      "EmbodiedCarbon": 1.37,
+      "EmbodiedEnergy": 20.1,
+      "SubstitutionRatePattern": [
+        1.0
+      ],
+      "SubstitutionTimestep": 100.0,
+      "TransportCarbon": 0.067,
+      "TransportDistance": 500.0,
+      "TransportEnergy": 0.94,
+      "Category": "Uncategorized",
+      "Comments": null,
+      "DataSource": "default",
+      "Name": "Boston_Steel_General"
+    }
+  ],
+  "OpaqueConstructions": [
+    {
+      "$id": "32",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.2
+        },
+        {
+          "Material": {
+            "$ref": "23"
+          },
+          "Thickness": 0.015
+        },
+        {
+          "Material": {
+            "$ref": "24"
+          },
+          "Thickness": 0.07
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.015
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Facade",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Bas_0"
+    },
+    {
+      "$id": "33",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "30"
+          },
+          "Thickness": 0.003
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.01
+        },
+        {
+          "Material": {
+            "$ref": "23"
+          },
+          "Thickness": 0.015
+        },
+        {
+          "Material": {
+            "$ref": "24"
+          },
+          "Thickness": 0.1
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.015
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Facade",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Fac_0_WF"
+    },
+    {
+      "$id": "34",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.2
+        },
+        {
+          "Material": {
+            "$ref": "23"
+          },
+          "Thickness": 0.015
+        },
+        {
+          "Material": {
+            "$ref": "24"
+          },
+          "Thickness": 0.07
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.015
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Facade",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Bas_0"
+    },
+    {
+      "$id": "35",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "17"
+          },
+          "Thickness": 0.06
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.1679990812867279
+        },
+        {
+          "Material": {
+            "$ref": "11"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.015
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Facade",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Fac_0"
+    },
+    {
+      "$id": "36",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "17"
+          },
+          "Thickness": 0.06
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.0605147404763576
+        },
+        {
+          "Material": {
+            "$ref": "11"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.015
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Facade",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Fac_0"
+    },
+    {
+      "$id": "37",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.2
+        },
+        {
+          "Material": {
+            "$ref": "23"
+          },
+          "Thickness": 0.015
+        },
+        {
+          "Material": {
+            "$ref": "24"
+          },
+          "Thickness": 0.07
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.015
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Facade",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Bas_0"
+    },
+    {
+      "$id": "38",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "14"
+          },
+          "Thickness": 0.1
+        },
+        {
+          "Material": {
+            "$ref": "23"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.1523880296607559
+        },
+        {
+          "Material": {
+            "$ref": "18"
+          },
+          "Thickness": 0.1
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Roof",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Rof_0"
+    },
+    {
+      "$id": "39",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.1467823465976317
+        },
+        {
+          "Material": {
+            "$ref": "14"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.2
+        },
+        {
+          "Material": {
+            "$ref": "18"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Roof",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Rof_0"
+    },
+    {
+      "$id": "40",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.131708007562749
+        },
+        {
+          "Material": {
+            "$ref": "14"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.2
+        },
+        {
+          "Material": {
+            "$ref": "18"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Roof",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Rof_0"
+    },
+    {
+      "$id": "41",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.1022700222198911
+        },
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "14"
+          },
+          "Thickness": 0.04
+        },
+        {
+          "Material": {
+            "$ref": "22"
+          },
+          "Thickness": 0.03
+        },
+        {
+          "Material": {
+            "$ref": "19"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Ground Floor",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Gro_0"
+    },
+    {
+      "$id": "42",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.0380121279754781
+        },
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "14"
+          },
+          "Thickness": 0.04
+        },
+        {
+          "Material": {
+            "$ref": "22"
+          },
+          "Thickness": 0.03
+        },
+        {
+          "Material": {
+            "$ref": "19"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Ground Floor",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Gro_0"
+    },
+    {
+      "$id": "43",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.1892784965469663
+        },
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "14"
+          },
+          "Thickness": 0.04
+        },
+        {
+          "Material": {
+            "$ref": "22"
+          },
+          "Thickness": 0.03
+        },
+        {
+          "Material": {
+            "$ref": "19"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Ground Floor",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Gro_0"
+    },
+    {
+      "$id": "44",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "10"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.01
+        },
+        {
+          "Material": {
+            "$ref": "23"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "18"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Interior Floor",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Inf_0"
+    },
+    {
+      "$id": "45",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "25"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "22"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "18"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Interior Floor",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Inf_0"
+    },
+    {
+      "$id": "46",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "25"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "22"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "18"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Interior Floor",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Inf_0"
+    },
+    {
+      "$id": "47",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "26"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.04
+        },
+        {
+          "Material": {
+            "$ref": "23"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "10"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Exterior Floor",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Exf_0"
+    },
+    {
+      "$id": "48",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "27"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Partition",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Par_0"
+    },
+    {
+      "$id": "49",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "27"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Partition",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Par_0"
+    },
+    {
+      "$id": "50",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "27"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Partition",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Par_0"
+    },
+    {
+      "$id": "51",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.04
+        },
+        {
+          "Material": {
+            "$ref": "22"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "25"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Exterior Floor",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Exf_0"
+    },
+    {
+      "$id": "52",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "13"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.04
+        },
+        {
+          "Material": {
+            "$ref": "22"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "25"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Exterior Floor",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Exf_0"
+    },
+    {
+      "$id": "53",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "27"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "ThermalMass",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Thm_0"
+    },
+    {
+      "$id": "54",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "27"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "ThermalMass",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Thm_0"
+    },
+    {
+      "$id": "55",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "27"
+          },
+          "Thickness": 0.02
+        },
+        {
+          "Material": {
+            "$ref": "21"
+          },
+          "Thickness": 0.02
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "ThermalMass",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Thm_0"
+    },
+    {
+      "$id": "56",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "17"
+          },
+          "Thickness": 0.06
+        },
+        {
+          "Material": {
+            "$ref": "20"
+          },
+          "Thickness": 0.1435607751270443
+        },
+        {
+          "Material": {
+            "$ref": "11"
+          },
+          "Thickness": 0.15
+        },
+        {
+          "Material": {
+            "$ref": "16"
+          },
+          "Thickness": 0.015
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Facade",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Fac_0_MS"
+    }
+  ],
+  "WindowConstructions": [
+    {
+      "$id": "57",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "7"
+          },
+          "Thickness": 0.003
+        },
+        {
+          "Material": {
+            "$ref": "1"
+          },
+          "Thickness": 0.006
+        },
+        {
+          "Material": {
+            "$ref": "7"
+          },
+          "Thickness": 0.003
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Double",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Dbl_Air_Cl"
+    },
+    {
+      "$id": "58",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "9"
+          },
+          "Thickness": 0.003
+        },
+        {
+          "Material": {
+            "$ref": "1"
+          },
+          "Thickness": 0.006
+        },
+        {
+          "Material": {
+            "$ref": "7"
+          },
+          "Thickness": 0.003
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Double",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Dbl_Air_Le"
+    },
+    {
+      "$id": "59",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "7"
+          },
+          "Thickness": 0.003
+        },
+        {
+          "Material": {
+            "$ref": "2"
+          },
+          "Thickness": 0.006
+        },
+        {
+          "Material": {
+            "$ref": "7"
+          },
+          "Thickness": 0.003
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Double",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Dbl_Arg_Cl"
+    },
+    {
+      "$id": "60",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "9"
+          },
+          "Thickness": 0.003
+        },
+        {
+          "Material": {
+            "$ref": "2"
+          },
+          "Thickness": 0.0214913984121275
+        },
+        {
+          "Material": {
+            "$ref": "7"
+          },
+          "Thickness": 0.003
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Double",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Dbl_Arg_Le"
+    },
+    {
+      "$id": "61",
+      "Layers": [
+        {
+          "Material": {
+            "$ref": "6"
+          },
+          "Thickness": 0.004
+        }
+      ],
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Single",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Sng_Cl"
+    }
+  ],
+  "StructureDefinitions": [
+    {
+      "$id": "62",
+      "AdvancedModel": {
+        "ColumnWallSpacing": {
+          "PrimarySpan": 8.0,
+          "SecondarySpan": 8.0
+        },
+        "ConstructionSystems": {
+          "Beams": {
+            "$id": "63",
+            "Material": null,
+            "ConstructionSystemType": "RectangularSolid"
+          },
+          "Columns": {
+            "$id": "64",
+            "Material": null,
+            "ConstructionSystemType": "SquareSolid"
+          },
+          "Floors": {
+            "$id": "65",
+            "Material": null,
+            "ConstructionSystemType": "OneWayFlatSlab"
+          },
+          "Foundations": {
+            "$id": "66",
+            "Material": null,
+            "ConstructionSystemType": "SpreadFootings"
+          },
+          "LateralSystem": {
+            "$id": "67",
+            "Material": null,
+            "ConstructionSystemType": "CrossBracing"
+          }
+        },
+        "LoadingSettings": {
+          "LiveLoadingPreset": "Offices",
+          "LiveLoadingValue": 2.4
+        }
+      },
+      "MassRatios": [
+        {
+          "HighLoadRatio": 305.0,
+          "Material": {
+            "$ref": "31"
+          },
+          "NormalRatio": 305.0
+        }
+      ],
+      "UseAdvancedModel": false,
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Steel",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Str_0"
+    },
+    {
+      "$id": "68",
+      "AdvancedModel": {
+        "ColumnWallSpacing": {
+          "PrimarySpan": 8.0,
+          "SecondarySpan": 8.0
+        },
+        "ConstructionSystems": {
+          "Beams": {
+            "$id": "69",
+            "Material": null,
+            "ConstructionSystemType": "RectangularSolid"
+          },
+          "Columns": {
+            "$id": "70",
+            "Material": null,
+            "ConstructionSystemType": "SquareSolid"
+          },
+          "Floors": {
+            "$id": "71",
+            "Material": null,
+            "ConstructionSystemType": "OneWayFlatSlab"
+          },
+          "Foundations": {
+            "$id": "72",
+            "Material": null,
+            "ConstructionSystemType": "SpreadFootings"
+          },
+          "LateralSystem": {
+            "$id": "73",
+            "Material": null,
+            "ConstructionSystemType": "CrossBracing"
+          }
+        },
+        "LoadingSettings": {
+          "LiveLoadingPreset": "Offices",
+          "LiveLoadingValue": 2.4
+        }
+      },
+      "MassRatios": [
+        {
+          "HighLoadRatio": 305.0,
+          "Material": {
+            "$ref": "31"
+          },
+          "NormalRatio": 305.0
+        }
+      ],
+      "UseAdvancedModel": false,
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Steel",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Str_0"
+    },
+    {
+      "$id": "74",
+      "AdvancedModel": {
+        "ColumnWallSpacing": {
+          "PrimarySpan": 8.0,
+          "SecondarySpan": 8.0
+        },
+        "ConstructionSystems": {
+          "Beams": {
+            "$id": "75",
+            "Material": null,
+            "ConstructionSystemType": "RectangularSolid"
+          },
+          "Columns": {
+            "$id": "76",
+            "Material": null,
+            "ConstructionSystemType": "SquareSolid"
+          },
+          "Floors": {
+            "$id": "77",
+            "Material": null,
+            "ConstructionSystemType": "OneWayFlatSlab"
+          },
+          "Foundations": {
+            "$id": "78",
+            "Material": null,
+            "ConstructionSystemType": "SpreadFootings"
+          },
+          "LateralSystem": {
+            "$id": "79",
+            "Material": null,
+            "ConstructionSystemType": "CrossBracing"
+          }
+        },
+        "LoadingSettings": {
+          "LiveLoadingPreset": "Offices",
+          "LiveLoadingValue": 2.4
+        }
+      },
+      "MassRatios": [
+        {
+          "HighLoadRatio": 5.0,
+          "Material": {
+            "$ref": "27"
+          },
+          "NormalRatio": 5.0
+        }
+      ],
+      "UseAdvancedModel": false,
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Timber",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Str_W_0"
+    },
+    {
+      "$id": "80",
+      "AdvancedModel": {
+        "ColumnWallSpacing": {
+          "PrimarySpan": 8.0,
+          "SecondarySpan": 8.0
+        },
+        "ConstructionSystems": {
+          "Beams": {
+            "$id": "81",
+            "Material": null,
+            "ConstructionSystemType": "RectangularSolid"
+          },
+          "Columns": {
+            "$id": "82",
+            "Material": null,
+            "ConstructionSystemType": "SquareSolid"
+          },
+          "Floors": {
+            "$id": "83",
+            "Material": null,
+            "ConstructionSystemType": "OneWayFlatSlab"
+          },
+          "Foundations": {
+            "$id": "84",
+            "Material": null,
+            "ConstructionSystemType": "SpreadFootings"
+          },
+          "LateralSystem": {
+            "$id": "85",
+            "Material": null,
+            "ConstructionSystemType": "CrossBracing"
+          }
+        },
+        "LoadingSettings": {
+          "LiveLoadingPreset": "Offices",
+          "LiveLoadingValue": 2.4
+        }
+      },
+      "MassRatios": [
+        {
+          "HighLoadRatio": 305.0,
+          "Material": {
+            "$ref": "31"
+          },
+          "NormalRatio": 305.0
+        }
+      ],
+      "UseAdvancedModel": false,
+      "AssemblyCarbon": 0.0,
+      "AssemblyCost": 0.0,
+      "AssemblyEnergy": 0.0,
+      "DisassemblyCarbon": 0.0,
+      "DisassemblyEnergy": 0.0,
+      "Category": "Steel",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Str_S_0"
+    }
+  ],
+  "DaySchedules": [
+    {
+      "$id": "86",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "hourlyAllOn"
+    },
+    {
+      "$id": "87",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.7,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.7,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Occ_WD"
+    },
+    {
+      "$id": "88",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.7,
+        0.7,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Occ_WE"
+    },
+    {
+      "$id": "89",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.2,
+        0.5,
+        0.5,
+        0.2,
+        0.2,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5,
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.2
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Lgt_WD"
+    },
+    {
+      "$id": "90",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.2,
+        0.5,
+        0.2,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5,
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.2
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Lgt_WE"
+    },
+    {
+      "$id": "91",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.6,
+        0.6,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.6,
+        1.0,
+        1.0,
+        0.8,
+        0.8,
+        0.6,
+        0.6
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Plg_WD"
+    },
+    {
+      "$id": "92",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        1.0,
+        1.0,
+        0.8,
+        0.8,
+        0.6
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Plg_WE"
+    },
+    {
+      "$id": "93",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Dhw_WD"
+    },
+    {
+      "$id": "94",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Dhw_WE"
+    },
+    {
+      "$id": "95",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Het_WD"
+    },
+    {
+      "$id": "96",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Het_WE"
+    },
+    {
+      "$id": "97",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Col_WD"
+    },
+    {
+      "$id": "98",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Col_WE"
+    },
+    {
+      "$id": "99",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Nat_WD"
+    },
+    {
+      "$id": "100",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Nat_WE"
+    },
+    {
+      "$id": "101",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_D_Off"
+    },
+    {
+      "$id": "102",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.2,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.3,
+        0.2,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Occ_WD"
+    },
+    {
+      "$id": "103",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Occ_WE"
+    },
+    {
+      "$id": "104",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.3,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.8,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        0.3,
+        0.3,
+        0.2,
+        0.2,
+        0.1,
+        0.1
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Lgt_WD"
+    },
+    {
+      "$id": "105",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Lgt_WE"
+    },
+    {
+      "$id": "106",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.3,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.8,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.3,
+        0.3,
+        0.2,
+        0.2,
+        0.1,
+        0.1
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Plg_WD"
+    },
+    {
+      "$id": "107",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Plg_WE"
+    },
+    {
+      "$id": "108",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.2,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.6,
+        0.6,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.2,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Dhw_WD"
+    },
+    {
+      "$id": "109",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Dhw_WE"
+    },
+    {
+      "$id": "110",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Het_WD"
+    },
+    {
+      "$id": "111",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Het_WE"
+    },
+    {
+      "$id": "112",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Col_WD"
+    },
+    {
+      "$id": "113",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Col_WE"
+    },
+    {
+      "$id": "114",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Nat_WD"
+    },
+    {
+      "$id": "115",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Nat_WE"
+    },
+    {
+      "$id": "116",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_D_Off"
+    },
+    {
+      "$id": "117",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.6,
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.6,
+        0.6,
+        0.4,
+        0.4,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Occ_WD"
+    },
+    {
+      "$id": "118",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.2,
+        0.2,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.2,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Occ_WE"
+    },
+    {
+      "$id": "119",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.2,
+        0.6,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.6,
+        0.6,
+        0.4,
+        0.2,
+        0.1,
+        0.1
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Lgt_WD"
+    },
+    {
+      "$id": "120",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.2,
+        0.2,
+        0.4,
+        0.4,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.4,
+        0.2,
+        0.1,
+        0.1
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Lgt_WE"
+    },
+    {
+      "$id": "121",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.2,
+        0.6,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.6,
+        0.6,
+        0.4,
+        0.2,
+        0.1,
+        0.1
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Plg_WD"
+    },
+    {
+      "$id": "122",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.2,
+        0.2,
+        0.4,
+        0.4,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.4,
+        0.2,
+        0.1,
+        0.1
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Plg_WE"
+    },
+    {
+      "$id": "123",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.2,
+        0.2,
+        0.3,
+        0.4,
+        0.6,
+        0.6,
+        0.6,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.3,
+        0.3,
+        0.2,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Dhw_WD"
+    },
+    {
+      "$id": "124",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.3,
+        0.3,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.3,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Dhw_WE"
+    },
+    {
+      "$id": "125",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Het_WD"
+    },
+    {
+      "$id": "126",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Het_WE"
+    },
+    {
+      "$id": "127",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Col_WD"
+    },
+    {
+      "$id": "128",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Col_WE"
+    },
+    {
+      "$id": "129",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Nat_WD"
+    },
+    {
+      "$id": "130",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Nat_WE"
+    },
+    {
+      "$id": "131",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_D_Off"
+    },
+    {
+      "$id": "132",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5,
+        0.5,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_D_Occ"
+    },
+    {
+      "$id": "133",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_D_Photoperiod_12"
+    },
+    {
+      "$id": "134",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_D_Dhw"
+    },
+    {
+      "$id": "135",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_D_Photoperiod_14"
+    },
+    {
+      "$id": "136",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_D_Photoperiod_16"
+    },
+    {
+      "$id": "137",
+      "Category": "Day",
+      "Type": "Fraction",
+      "Values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_D_Photoperiod_15"
+    }
+  ],
+  "WeekSchedules": [
+    {
+      "$id": "138",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "86"
+        },
+        {
+          "$ref": "86"
+        },
+        {
+          "$ref": "86"
+        },
+        {
+          "$ref": "86"
+        },
+        {
+          "$ref": "86"
+        },
+        {
+          "$ref": "86"
+        },
+        {
+          "$ref": "86"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "weekAllOn"
+    },
+    {
+      "$id": "139",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "87"
+        },
+        {
+          "$ref": "87"
+        },
+        {
+          "$ref": "87"
+        },
+        {
+          "$ref": "87"
+        },
+        {
+          "$ref": "87"
+        },
+        {
+          "$ref": "88"
+        },
+        {
+          "$ref": "88"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_W_Occ"
+    },
+    {
+      "$id": "140",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "89"
+        },
+        {
+          "$ref": "89"
+        },
+        {
+          "$ref": "89"
+        },
+        {
+          "$ref": "89"
+        },
+        {
+          "$ref": "89"
+        },
+        {
+          "$ref": "90"
+        },
+        {
+          "$ref": "90"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_W_Lgt"
+    },
+    {
+      "$id": "141",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "91"
+        },
+        {
+          "$ref": "91"
+        },
+        {
+          "$ref": "91"
+        },
+        {
+          "$ref": "91"
+        },
+        {
+          "$ref": "91"
+        },
+        {
+          "$ref": "92"
+        },
+        {
+          "$ref": "92"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_W_Plg"
+    },
+    {
+      "$id": "142",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "93"
+        },
+        {
+          "$ref": "93"
+        },
+        {
+          "$ref": "93"
+        },
+        {
+          "$ref": "93"
+        },
+        {
+          "$ref": "93"
+        },
+        {
+          "$ref": "94"
+        },
+        {
+          "$ref": "94"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_W_Dhw"
+    },
+    {
+      "$id": "143",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "95"
+        },
+        {
+          "$ref": "95"
+        },
+        {
+          "$ref": "95"
+        },
+        {
+          "$ref": "95"
+        },
+        {
+          "$ref": "95"
+        },
+        {
+          "$ref": "96"
+        },
+        {
+          "$ref": "96"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_W_Het"
+    },
+    {
+      "$id": "144",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "97"
+        },
+        {
+          "$ref": "97"
+        },
+        {
+          "$ref": "97"
+        },
+        {
+          "$ref": "97"
+        },
+        {
+          "$ref": "97"
+        },
+        {
+          "$ref": "98"
+        },
+        {
+          "$ref": "98"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_W_Col"
+    },
+    {
+      "$id": "145",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "99"
+        },
+        {
+          "$ref": "99"
+        },
+        {
+          "$ref": "99"
+        },
+        {
+          "$ref": "99"
+        },
+        {
+          "$ref": "99"
+        },
+        {
+          "$ref": "100"
+        },
+        {
+          "$ref": "100"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_W_Nat"
+    },
+    {
+      "$id": "146",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "101"
+        },
+        {
+          "$ref": "101"
+        },
+        {
+          "$ref": "101"
+        },
+        {
+          "$ref": "101"
+        },
+        {
+          "$ref": "101"
+        },
+        {
+          "$ref": "101"
+        },
+        {
+          "$ref": "101"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_W_Off"
+    },
+    {
+      "$id": "147",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "102"
+        },
+        {
+          "$ref": "102"
+        },
+        {
+          "$ref": "102"
+        },
+        {
+          "$ref": "102"
+        },
+        {
+          "$ref": "102"
+        },
+        {
+          "$ref": "103"
+        },
+        {
+          "$ref": "103"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_W_Occ"
+    },
+    {
+      "$id": "148",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "104"
+        },
+        {
+          "$ref": "104"
+        },
+        {
+          "$ref": "104"
+        },
+        {
+          "$ref": "104"
+        },
+        {
+          "$ref": "104"
+        },
+        {
+          "$ref": "105"
+        },
+        {
+          "$ref": "105"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_W_Lgt"
+    },
+    {
+      "$id": "149",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "106"
+        },
+        {
+          "$ref": "106"
+        },
+        {
+          "$ref": "106"
+        },
+        {
+          "$ref": "106"
+        },
+        {
+          "$ref": "106"
+        },
+        {
+          "$ref": "107"
+        },
+        {
+          "$ref": "107"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_W_Plg"
+    },
+    {
+      "$id": "150",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "108"
+        },
+        {
+          "$ref": "108"
+        },
+        {
+          "$ref": "108"
+        },
+        {
+          "$ref": "108"
+        },
+        {
+          "$ref": "108"
+        },
+        {
+          "$ref": "109"
+        },
+        {
+          "$ref": "109"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_W_Dhw"
+    },
+    {
+      "$id": "151",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "110"
+        },
+        {
+          "$ref": "110"
+        },
+        {
+          "$ref": "110"
+        },
+        {
+          "$ref": "110"
+        },
+        {
+          "$ref": "110"
+        },
+        {
+          "$ref": "111"
+        },
+        {
+          "$ref": "111"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_W_Het"
+    },
+    {
+      "$id": "152",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "112"
+        },
+        {
+          "$ref": "112"
+        },
+        {
+          "$ref": "112"
+        },
+        {
+          "$ref": "112"
+        },
+        {
+          "$ref": "112"
+        },
+        {
+          "$ref": "113"
+        },
+        {
+          "$ref": "113"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_W_Col"
+    },
+    {
+      "$id": "153",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "114"
+        },
+        {
+          "$ref": "114"
+        },
+        {
+          "$ref": "114"
+        },
+        {
+          "$ref": "114"
+        },
+        {
+          "$ref": "114"
+        },
+        {
+          "$ref": "115"
+        },
+        {
+          "$ref": "115"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_W_Nat"
+    },
+    {
+      "$id": "154",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "116"
+        },
+        {
+          "$ref": "116"
+        },
+        {
+          "$ref": "116"
+        },
+        {
+          "$ref": "116"
+        },
+        {
+          "$ref": "116"
+        },
+        {
+          "$ref": "116"
+        },
+        {
+          "$ref": "116"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_W_Off"
+    },
+    {
+      "$id": "155",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "117"
+        },
+        {
+          "$ref": "117"
+        },
+        {
+          "$ref": "117"
+        },
+        {
+          "$ref": "117"
+        },
+        {
+          "$ref": "117"
+        },
+        {
+          "$ref": "117"
+        },
+        {
+          "$ref": "118"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_W_Occ"
+    },
+    {
+      "$id": "156",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "119"
+        },
+        {
+          "$ref": "119"
+        },
+        {
+          "$ref": "119"
+        },
+        {
+          "$ref": "119"
+        },
+        {
+          "$ref": "119"
+        },
+        {
+          "$ref": "119"
+        },
+        {
+          "$ref": "120"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_W_Lgt"
+    },
+    {
+      "$id": "157",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "121"
+        },
+        {
+          "$ref": "121"
+        },
+        {
+          "$ref": "121"
+        },
+        {
+          "$ref": "121"
+        },
+        {
+          "$ref": "121"
+        },
+        {
+          "$ref": "121"
+        },
+        {
+          "$ref": "122"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_W_Plg"
+    },
+    {
+      "$id": "158",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "123"
+        },
+        {
+          "$ref": "123"
+        },
+        {
+          "$ref": "123"
+        },
+        {
+          "$ref": "123"
+        },
+        {
+          "$ref": "123"
+        },
+        {
+          "$ref": "123"
+        },
+        {
+          "$ref": "124"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_W_Dhw"
+    },
+    {
+      "$id": "159",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "125"
+        },
+        {
+          "$ref": "125"
+        },
+        {
+          "$ref": "125"
+        },
+        {
+          "$ref": "125"
+        },
+        {
+          "$ref": "125"
+        },
+        {
+          "$ref": "125"
+        },
+        {
+          "$ref": "126"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_W_Het"
+    },
+    {
+      "$id": "160",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "127"
+        },
+        {
+          "$ref": "127"
+        },
+        {
+          "$ref": "127"
+        },
+        {
+          "$ref": "127"
+        },
+        {
+          "$ref": "127"
+        },
+        {
+          "$ref": "127"
+        },
+        {
+          "$ref": "128"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_W_Col"
+    },
+    {
+      "$id": "161",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "129"
+        },
+        {
+          "$ref": "129"
+        },
+        {
+          "$ref": "129"
+        },
+        {
+          "$ref": "129"
+        },
+        {
+          "$ref": "129"
+        },
+        {
+          "$ref": "129"
+        },
+        {
+          "$ref": "130"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_W_Nat"
+    },
+    {
+      "$id": "162",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "131"
+        },
+        {
+          "$ref": "131"
+        },
+        {
+          "$ref": "131"
+        },
+        {
+          "$ref": "131"
+        },
+        {
+          "$ref": "131"
+        },
+        {
+          "$ref": "131"
+        },
+        {
+          "$ref": "131"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_W_Off"
+    },
+    {
+      "$id": "163",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "132"
+        },
+        {
+          "$ref": "132"
+        },
+        {
+          "$ref": "132"
+        },
+        {
+          "$ref": "132"
+        },
+        {
+          "$ref": "132"
+        },
+        {
+          "$ref": "132"
+        },
+        {
+          "$ref": "132"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_W_Occ"
+    },
+    {
+      "$id": "164",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "133"
+        },
+        {
+          "$ref": "133"
+        },
+        {
+          "$ref": "133"
+        },
+        {
+          "$ref": "133"
+        },
+        {
+          "$ref": "133"
+        },
+        {
+          "$ref": "133"
+        },
+        {
+          "$ref": "133"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_W_Photoperiod_12"
+    },
+    {
+      "$id": "165",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "134"
+        },
+        {
+          "$ref": "134"
+        },
+        {
+          "$ref": "134"
+        },
+        {
+          "$ref": "134"
+        },
+        {
+          "$ref": "134"
+        },
+        {
+          "$ref": "134"
+        },
+        {
+          "$ref": "134"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_W_Dhw"
+    },
+    {
+      "$id": "166",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "135"
+        },
+        {
+          "$ref": "135"
+        },
+        {
+          "$ref": "135"
+        },
+        {
+          "$ref": "135"
+        },
+        {
+          "$ref": "135"
+        },
+        {
+          "$ref": "135"
+        },
+        {
+          "$ref": "135"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_W_Photoperiod_14"
+    },
+    {
+      "$id": "167",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "136"
+        },
+        {
+          "$ref": "136"
+        },
+        {
+          "$ref": "136"
+        },
+        {
+          "$ref": "136"
+        },
+        {
+          "$ref": "136"
+        },
+        {
+          "$ref": "136"
+        },
+        {
+          "$ref": "136"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_W_Photoperiod_16"
+    },
+    {
+      "$id": "168",
+      "Category": "Week",
+      "Days": [
+        {
+          "$ref": "137"
+        },
+        {
+          "$ref": "137"
+        },
+        {
+          "$ref": "137"
+        },
+        {
+          "$ref": "137"
+        },
+        {
+          "$ref": "137"
+        },
+        {
+          "$ref": "137"
+        },
+        {
+          "$ref": "137"
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_W_Photoperiod_15"
+    }
+  ],
+  "YearSchedules": [
+    {
+      "$id": "169",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "138"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "AllOn"
+    },
+    {
+      "$id": "170",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "139"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Y_Occ"
+    },
+    {
+      "$id": "171",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "140"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Y_Lgt"
+    },
+    {
+      "$id": "172",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "141"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Y_Plg"
+    },
+    {
+      "$id": "173",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "142"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Y_Dhw"
+    },
+    {
+      "$id": "174",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 30,
+          "ToMonth": 4,
+          "Schedule": {
+            "$ref": "143"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 5,
+          "ToDay": 30,
+          "ToMonth": 9,
+          "Schedule": {
+            "$ref": "146"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 10,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "143"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Y_Het"
+    },
+    {
+      "$id": "175",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 30,
+          "ToMonth": 6,
+          "Schedule": {
+            "$ref": "146"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 7,
+          "ToDay": 30,
+          "ToMonth": 9,
+          "Schedule": {
+            "$ref": "144"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 10,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "146"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Y_Col"
+    },
+    {
+      "$id": "176",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 30,
+          "ToMonth": 4,
+          "Schedule": {
+            "$ref": "146"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 5,
+          "ToDay": 31,
+          "ToMonth": 10,
+          "Schedule": {
+            "$ref": "145"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 11,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "146"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Res_Y_Nat"
+    },
+    {
+      "$id": "177",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "147"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Y_Occ"
+    },
+    {
+      "$id": "178",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "148"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Y_Lgt"
+    },
+    {
+      "$id": "179",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "149"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Y_Plg"
+    },
+    {
+      "$id": "180",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "150"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Y_Dhw"
+    },
+    {
+      "$id": "181",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 30,
+          "ToMonth": 4,
+          "Schedule": {
+            "$ref": "151"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 5,
+          "ToDay": 30,
+          "ToMonth": 9,
+          "Schedule": {
+            "$ref": "154"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 10,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "151"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Y_Het"
+    },
+    {
+      "$id": "182",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 3,
+          "Schedule": {
+            "$ref": "154"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 4,
+          "ToDay": 30,
+          "ToMonth": 9,
+          "Schedule": {
+            "$ref": "152"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 10,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "154"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Y_Col"
+    },
+    {
+      "$id": "183",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 3,
+          "Schedule": {
+            "$ref": "154"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 4,
+          "ToDay": 31,
+          "ToMonth": 10,
+          "Schedule": {
+            "$ref": "153"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 11,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "154"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Off_Y_Nat"
+    },
+    {
+      "$id": "184",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "155"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Y_Occ"
+    },
+    {
+      "$id": "185",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "156"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Y_Lgt"
+    },
+    {
+      "$id": "186",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "157"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Y_Plg"
+    },
+    {
+      "$id": "187",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "158"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Y_Dhw"
+    },
+    {
+      "$id": "188",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 30,
+          "ToMonth": 4,
+          "Schedule": {
+            "$ref": "159"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 5,
+          "ToDay": 30,
+          "ToMonth": 9,
+          "Schedule": {
+            "$ref": "162"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 10,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "159"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Y_Het"
+    },
+    {
+      "$id": "189",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 30,
+          "ToMonth": 4,
+          "Schedule": {
+            "$ref": "162"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 5,
+          "ToDay": 30,
+          "ToMonth": 9,
+          "Schedule": {
+            "$ref": "160"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 10,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "162"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Y_Col"
+    },
+    {
+      "$id": "190",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 30,
+          "ToMonth": 6,
+          "Schedule": {
+            "$ref": "162"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 7,
+          "ToDay": 30,
+          "ToMonth": 9,
+          "Schedule": {
+            "$ref": "161"
+          }
+        },
+        {
+          "FromDay": 1,
+          "FromMonth": 10,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "162"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": "default",
+      "DataSource": "default",
+      "Name": "Boston_Ret_Y_Nat"
+    },
+    {
+      "$id": "191",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "163"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_Y_Occ"
+    },
+    {
+      "$id": "192",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "164"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_Y_Photoperiod_12"
+    },
+    {
+      "$id": "193",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "165"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_Y_Dhw"
+    },
+    {
+      "$id": "194",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "166"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_Y_Photoperiod_14"
+    },
+    {
+      "$id": "195",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "167"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_Y_Photoperiod_16"
+    },
+    {
+      "$id": "196",
+      "Category": "Year",
+      "Parts": [
+        {
+          "FromDay": 1,
+          "FromMonth": 1,
+          "ToDay": 31,
+          "ToMonth": 12,
+          "Schedule": {
+            "$ref": "168"
+          }
+        }
+      ],
+      "Type": "Fraction",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_Y_Photoperiod_15"
+    }
+  ],
+  "DomesticHotWaterSettings": [
+    {
+      "$id": "197",
+      "FlowRatePerFloorArea": 0.00021,
+      "IsOn": true,
+      "WaterSchedule": {
+        "$ref": "180"
+      },
+      "WaterSupplyTemperature": 55.0,
+      "WaterTemperatureInlet": 16.0,
+      "Category": "Office Spaces",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Off_0 hot water"
+    },
+    {
+      "$id": "198",
+      "FlowRatePerFloorArea": 6e-05,
+      "IsOn": true,
+      "WaterSchedule": {
+        "$ref": "187"
+      },
+      "WaterSupplyTemperature": 55.0,
+      "WaterTemperatureInlet": 16.0,
+      "Category": "Retail",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Ret_0 hot water"
+    },
+    {
+      "$id": "199",
+      "FlowRatePerFloorArea": 0.00049,
+      "IsOn": true,
+      "WaterSchedule": {
+        "$ref": "173"
+      },
+      "WaterSupplyTemperature": 55.0,
+      "WaterTemperatureInlet": 16.0,
+      "Category": "Residential and Lodging",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0 hot water"
+    },
+    {
+      "$id": "200",
+      "FlowRatePerFloorArea": 0.03,
+      "IsOn": true,
+      "WaterSchedule": {
+        "$ref": "193"
+      },
+      "WaterSupplyTemperature": 55.0,
+      "WaterTemperatureInlet": 16.0,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_Hotwater"
+    }
+  ],
+  "VentilationSettings": [
+    {
+      "$id": "201",
+      "Afn": false,
+      "IsBuoyancyOn": true,
+      "Infiltration": 0.2308177578566088,
+      "IsInfiltrationOn": true,
+      "IsNatVentOn": false,
+      "IsScheduledVentilationOn": false,
+      "NatVentMaxRelHumidity": 80.0,
+      "NatVentMaxOutdoorAirTemp": 26.0,
+      "NatVentMinOutdoorAirTemp": 20.0,
+      "NatVentSchedule": {
+        "$ref": "183"
+      },
+      "NatVentZoneTempSetpoint": 22.0,
+      "ScheduledVentilationAch": 0.6,
+      "ScheduledVentilationSchedule": {
+        "$ref": "183"
+      },
+      "ScheduledVentilationSetpoint": 22.0,
+      "IsWindOn": false,
+      "Category": "Office Spaces",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Off_0 ventilation"
+    },
+    {
+      "$id": "202",
+      "Afn": false,
+      "IsBuoyancyOn": true,
+      "Infiltration": 0.1847933345858821,
+      "IsInfiltrationOn": true,
+      "IsNatVentOn": false,
+      "IsScheduledVentilationOn": false,
+      "NatVentMaxRelHumidity": 80.0,
+      "NatVentMaxOutdoorAirTemp": 26.0,
+      "NatVentMinOutdoorAirTemp": 20.0,
+      "NatVentSchedule": {
+        "$ref": "190"
+      },
+      "NatVentZoneTempSetpoint": 22.0,
+      "ScheduledVentilationAch": 0.6,
+      "ScheduledVentilationSchedule": {
+        "$ref": "190"
+      },
+      "ScheduledVentilationSetpoint": 22.0,
+      "IsWindOn": false,
+      "Category": "Retail",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Ret_0 ventilation"
+    },
+    {
+      "$id": "203",
+      "Afn": false,
+      "IsBuoyancyOn": true,
+      "Infiltration": 0.3265757633758067,
+      "IsInfiltrationOn": true,
+      "IsNatVentOn": false,
+      "IsScheduledVentilationOn": false,
+      "NatVentMaxRelHumidity": 80.0,
+      "NatVentMaxOutdoorAirTemp": 26.0,
+      "NatVentMinOutdoorAirTemp": 18.0,
+      "NatVentSchedule": {
+        "$ref": "176"
+      },
+      "NatVentZoneTempSetpoint": 22.0,
+      "ScheduledVentilationAch": 0.6,
+      "ScheduledVentilationSchedule": {
+        "$ref": "176"
+      },
+      "ScheduledVentilationSetpoint": 22.0,
+      "IsWindOn": false,
+      "Category": "Residential and Lodging",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0 ventilation"
+    },
+    {
+      "$id": "204",
+      "Afn": false,
+      "IsBuoyancyOn": true,
+      "Infiltration": 0.35,
+      "IsInfiltrationOn": true,
+      "IsNatVentOn": false,
+      "IsScheduledVentilationOn": false,
+      "NatVentMaxRelHumidity": 90.0,
+      "NatVentMaxOutdoorAirTemp": 30.0,
+      "NatVentMinOutdoorAirTemp": 0.0,
+      "NatVentSchedule": {
+        "$ref": "169"
+      },
+      "NatVentZoneTempSetpoint": 18.0,
+      "ScheduledVentilationAch": 0.6,
+      "ScheduledVentilationSchedule": {
+        "$ref": "169"
+      },
+      "ScheduledVentilationSetpoint": 18.0,
+      "IsWindOn": false,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_Ventilation"
+    }
+  ],
+  "ZoneConditionings": [
+    {
+      "$id": "205",
+      "CoolingSchedule": {
+        "$ref": "182"
+      },
+      "CoolingCoeffOfPerf": 3.0,
+      "CoolingSetpoint": 24.080835911518108,
+      "CoolingLimitType": 0,
+      "CoolingFuelType": 1,
+      "EconomizerType": 0,
+      "HeatingCoeffOfPerf": 0.9,
+      "HeatingLimitType": 0,
+      "HeatingFuelType": 2,
+      "HeatingSchedule": {
+        "$ref": "181"
+      },
+      "HeatingSetpoint": 22.65126422990669,
+      "HeatRecoveryEfficiencyLatent": 0.65,
+      "HeatRecoveryEfficiencySensible": 0.7,
+      "HeatRecoveryType": 0,
+      "IsCoolingOn": true,
+      "IsHeatingOn": true,
+      "IsMechVentOn": true,
+      "MaxCoolFlow": 100.0,
+      "MaxCoolingCapacity": 100.0,
+      "MaxHeatFlow": 100.0,
+      "MaxHeatingCapacity": 100.0,
+      "MechVentSchedule": {
+        "$ref": "177"
+      },
+      "MinFreshAirPerArea": 0.0003,
+      "MinFreshAirPerPerson": 0.0025,
+      "Category": "Office Spaces",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Off_0 conditioning"
+    },
+    {
+      "$id": "206",
+      "CoolingSchedule": {
+        "$ref": "189"
+      },
+      "CoolingCoeffOfPerf": 3.0,
+      "CoolingSetpoint": 25.350576859578872,
+      "CoolingLimitType": 0,
+      "CoolingFuelType": 1,
+      "EconomizerType": 0,
+      "HeatingCoeffOfPerf": 0.9,
+      "HeatingLimitType": 0,
+      "HeatingFuelType": 2,
+      "HeatingSchedule": {
+        "$ref": "188"
+      },
+      "HeatingSetpoint": 22.671703305001387,
+      "HeatRecoveryEfficiencyLatent": 0.65,
+      "HeatRecoveryEfficiencySensible": 0.7,
+      "HeatRecoveryType": 0,
+      "IsCoolingOn": true,
+      "IsHeatingOn": true,
+      "IsMechVentOn": true,
+      "MaxCoolFlow": 100.0,
+      "MaxCoolingCapacity": 100.0,
+      "MaxHeatFlow": 100.0,
+      "MaxHeatingCapacity": 100.0,
+      "MechVentSchedule": {
+        "$ref": "184"
+      },
+      "MinFreshAirPerArea": 0.0006,
+      "MinFreshAirPerPerson": 0.0,
+      "Category": "Retail",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Ret_0 conditioning"
+    },
+    {
+      "$id": "207",
+      "CoolingSchedule": {
+        "$ref": "175"
+      },
+      "CoolingCoeffOfPerf": 3.0,
+      "CoolingSetpoint": 23.37434802750788,
+      "CoolingLimitType": 0,
+      "CoolingFuelType": 1,
+      "EconomizerType": 0,
+      "HeatingCoeffOfPerf": 0.9,
+      "HeatingLimitType": 0,
+      "HeatingFuelType": 2,
+      "HeatingSchedule": {
+        "$ref": "174"
+      },
+      "HeatingSetpoint": 20.0894510465925,
+      "HeatRecoveryEfficiencyLatent": 0.65,
+      "HeatRecoveryEfficiencySensible": 0.7,
+      "HeatRecoveryType": 0,
+      "IsCoolingOn": true,
+      "IsHeatingOn": true,
+      "IsMechVentOn": false,
+      "MaxCoolFlow": 100.0,
+      "MaxCoolingCapacity": 100.0,
+      "MaxHeatFlow": 100.0,
+      "MaxHeatingCapacity": 100.0,
+      "MechVentSchedule": {
+        "$ref": "170"
+      },
+      "MinFreshAirPerArea": 0.0,
+      "MinFreshAirPerPerson": 0.0,
+      "Category": "Residential and Lodging",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0 conditioning"
+    },
+    {
+      "$id": "208",
+      "CoolingSchedule": {
+        "$ref": "169"
+      },
+      "CoolingCoeffOfPerf": 3.0,
+      "CoolingSetpoint": 30.0,
+      "CoolingLimitType": 0,
+      "CoolingFuelType": 1,
+      "EconomizerType": 0,
+      "HeatingCoeffOfPerf": 0.9,
+      "HeatingLimitType": 0,
+      "HeatingFuelType": 2,
+      "HeatingSchedule": {
+        "$ref": "169"
+      },
+      "HeatingSetpoint": 21.0,
+      "HeatRecoveryEfficiencyLatent": 0.65,
+      "HeatRecoveryEfficiencySensible": 0.7,
+      "HeatRecoveryType": 0,
+      "IsCoolingOn": true,
+      "IsHeatingOn": true,
+      "IsMechVentOn": true,
+      "MaxCoolFlow": 100.0,
+      "MaxCoolingCapacity": 100.0,
+      "MaxHeatFlow": 100.0,
+      "MaxHeatingCapacity": 100.0,
+      "MechVentSchedule": {
+        "$ref": "169"
+      },
+      "MinFreshAirPerArea": 0.06,
+      "MinFreshAirPerPerson": 0.0,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_R_Conditioning"
+    },
+    {
+      "$id": "209",
+      "CoolingSchedule": {
+        "$ref": "169"
+      },
+      "CoolingCoeffOfPerf": 3.0,
+      "CoolingSetpoint": 30.0,
+      "CoolingLimitType": 0,
+      "CoolingFuelType": 1,
+      "EconomizerType": 0,
+      "HeatingCoeffOfPerf": 0.9,
+      "HeatingLimitType": 0,
+      "HeatingFuelType": 2,
+      "HeatingSchedule": {
+        "$ref": "169"
+      },
+      "HeatingSetpoint": 18.0,
+      "HeatRecoveryEfficiencyLatent": 0.65,
+      "HeatRecoveryEfficiencySensible": 0.7,
+      "HeatRecoveryType": 0,
+      "IsCoolingOn": true,
+      "IsHeatingOn": true,
+      "IsMechVentOn": true,
+      "MaxCoolFlow": 100.0,
+      "MaxCoolingCapacity": 100.0,
+      "MaxHeatFlow": 100.0,
+      "MaxHeatingCapacity": 100.0,
+      "MechVentSchedule": {
+        "$ref": "169"
+      },
+      "MinFreshAirPerArea": 0.06,
+      "MinFreshAirPerPerson": 0.0,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_O_Conditioning"
+    },
+    {
+      "$id": "210",
+      "CoolingSchedule": {
+        "$ref": "169"
+      },
+      "CoolingCoeffOfPerf": 3.0,
+      "CoolingSetpoint": 24.0,
+      "CoolingLimitType": 0,
+      "CoolingFuelType": 1,
+      "EconomizerType": 0,
+      "HeatingCoeffOfPerf": 0.9,
+      "HeatingLimitType": 0,
+      "HeatingFuelType": 2,
+      "HeatingSchedule": {
+        "$ref": "169"
+      },
+      "HeatingSetpoint": 13.0,
+      "HeatRecoveryEfficiencyLatent": 0.65,
+      "HeatRecoveryEfficiencySensible": 0.7,
+      "HeatRecoveryType": 0,
+      "IsCoolingOn": true,
+      "IsHeatingOn": true,
+      "IsMechVentOn": true,
+      "MaxCoolFlow": 100.0,
+      "MaxCoolingCapacity": 100.0,
+      "MaxHeatFlow": 100.0,
+      "MaxHeatingCapacity": 100.0,
+      "MechVentSchedule": {
+        "$ref": "169"
+      },
+      "MinFreshAirPerArea": 0.06,
+      "MinFreshAirPerPerson": 0.0,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_LG_Conditioning"
+    },
+    {
+      "$id": "211",
+      "CoolingSchedule": {
+        "$ref": "169"
+      },
+      "CoolingCoeffOfPerf": 3.0,
+      "CoolingSetpoint": 18.0,
+      "CoolingLimitType": 0,
+      "CoolingFuelType": 1,
+      "EconomizerType": 0,
+      "HeatingCoeffOfPerf": 0.9,
+      "HeatingLimitType": 0,
+      "HeatingFuelType": 2,
+      "HeatingSchedule": {
+        "$ref": "169"
+      },
+      "HeatingSetpoint": 15.0,
+      "HeatRecoveryEfficiencyLatent": 0.65,
+      "HeatRecoveryEfficiencySensible": 0.7,
+      "HeatRecoveryType": 0,
+      "IsCoolingOn": true,
+      "IsHeatingOn": true,
+      "IsMechVentOn": true,
+      "MaxCoolFlow": 100.0,
+      "MaxCoolingCapacity": 100.0,
+      "MaxHeatFlow": 100.0,
+      "MaxHeatingCapacity": 100.0,
+      "MechVentSchedule": {
+        "$ref": "169"
+      },
+      "MinFreshAirPerArea": 0.06,
+      "MinFreshAirPerPerson": 0.0,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_DG_Conditioning"
+    }
+  ],
+  "ZoneConstructionSets": [
+    {
+      "$id": "212",
+      "Facade": {
+        "$ref": "35"
+      },
+      "Ground": {
+        "$ref": "42"
+      },
+      "Partition": {
+        "$ref": "48"
+      },
+      "Roof": {
+        "$ref": "39"
+      },
+      "Slab": {
+        "$ref": "45"
+      },
+      "IsFacadeAdiabatic": false,
+      "IsGroundAdiabatic": false,
+      "IsPartitionAdiabatic": false,
+      "IsRoofAdiabatic": false,
+      "IsSlabAdiabatic": false,
+      "Category": "Office Spaces",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Off_0 constructions"
+    },
+    {
+      "$id": "213",
+      "Facade": {
+        "$ref": "36"
+      },
+      "Ground": {
+        "$ref": "43"
+      },
+      "Partition": {
+        "$ref": "49"
+      },
+      "Roof": {
+        "$ref": "40"
+      },
+      "Slab": {
+        "$ref": "46"
+      },
+      "IsFacadeAdiabatic": false,
+      "IsGroundAdiabatic": false,
+      "IsPartitionAdiabatic": false,
+      "IsRoofAdiabatic": false,
+      "IsSlabAdiabatic": false,
+      "Category": "Retail",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Ret_0 constructions"
+    },
+    {
+      "$id": "214",
+      "Facade": {
+        "$ref": "56"
+      },
+      "Ground": {
+        "$ref": "41"
+      },
+      "Partition": {
+        "$ref": "50"
+      },
+      "Roof": {
+        "$ref": "38"
+      },
+      "Slab": {
+        "$ref": "44"
+      },
+      "IsFacadeAdiabatic": false,
+      "IsGroundAdiabatic": false,
+      "IsPartitionAdiabatic": false,
+      "IsRoofAdiabatic": false,
+      "IsSlabAdiabatic": false,
+      "Category": "Residential and Lodging",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0_MS constructions"
+    },
+    {
+      "$id": "215",
+      "Facade": {
+        "$ref": "33"
+      },
+      "Ground": {
+        "$ref": "41"
+      },
+      "Partition": {
+        "$ref": "50"
+      },
+      "Roof": {
+        "$ref": "38"
+      },
+      "Slab": {
+        "$ref": "44"
+      },
+      "IsFacadeAdiabatic": false,
+      "IsGroundAdiabatic": false,
+      "IsPartitionAdiabatic": false,
+      "IsRoofAdiabatic": false,
+      "IsSlabAdiabatic": false,
+      "Category": "Residential and Lodging",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0_WF constructions"
+    }
+  ],
+  "ZoneLoads": [
+    {
+      "$id": "216",
+      "DimmingType": 1,
+      "EquipmentAvailabilitySchedule": {
+        "$ref": "179"
+      },
+      "EquipmentPowerDensity": 10.099899532589838,
+      "IlluminanceTarget": 500.0,
+      "LightingPowerDensity": 21.15800866895972,
+      "LightsAvailabilitySchedule": {
+        "$ref": "178"
+      },
+      "OccupancySchedule": {
+        "$ref": "177"
+      },
+      "IsEquipmentOn": true,
+      "IsLightingOn": true,
+      "IsPeopleOn": true,
+      "PeopleDensity": 21.94405283239597,
+      "Category": "Office Spaces",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Off_0 loads"
+    },
+    {
+      "$id": "217",
+      "DimmingType": 1,
+      "EquipmentAvailabilitySchedule": {
+        "$ref": "186"
+      },
+      "EquipmentPowerDensity": 6.277598587899681,
+      "IlluminanceTarget": 300.0,
+      "LightingPowerDensity": 23.118727757705777,
+      "LightsAvailabilitySchedule": {
+        "$ref": "186"
+      },
+      "OccupancySchedule": {
+        "$ref": "184"
+      },
+      "IsEquipmentOn": true,
+      "IsLightingOn": true,
+      "IsPeopleOn": true,
+      "PeopleDensity": 18.75173971737573,
+      "Category": "Retail",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Ret_0 loads"
+    },
+    {
+      "$id": "218",
+      "DimmingType": 1,
+      "EquipmentAvailabilitySchedule": {
+        "$ref": "172"
+      },
+      "EquipmentPowerDensity": 11.366106498362967,
+      "IlluminanceTarget": 200.0,
+      "LightingPowerDensity": 18.876941359092577,
+      "LightsAvailabilitySchedule": {
+        "$ref": "171"
+      },
+      "OccupancySchedule": {
+        "$ref": "170"
+      },
+      "IsEquipmentOn": true,
+      "IsLightingOn": true,
+      "IsPeopleOn": true,
+      "PeopleDensity": 18.700781457097325,
+      "Category": "Residential and Lodging",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0 loads"
+    },
+    {
+      "$id": "219",
+      "DimmingType": 1,
+      "EquipmentAvailabilitySchedule": {
+        "$ref": "169"
+      },
+      "EquipmentPowerDensity": 6.0,
+      "IlluminanceTarget": 2818.0,
+      "LightingPowerDensity": 42.0,
+      "LightsAvailabilitySchedule": {
+        "$ref": "192"
+      },
+      "OccupancySchedule": {
+        "$ref": "191"
+      },
+      "IsEquipmentOn": true,
+      "IsLightingOn": true,
+      "IsPeopleOn": true,
+      "PeopleDensity": 0.01,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_R_Loads"
+    },
+    {
+      "$id": "220",
+      "DimmingType": 1,
+      "EquipmentAvailabilitySchedule": {
+        "$ref": "169"
+      },
+      "EquipmentPowerDensity": 6.0,
+      "IlluminanceTarget": 3010.0,
+      "LightingPowerDensity": 42.0,
+      "LightsAvailabilitySchedule": {
+        "$ref": "194"
+      },
+      "OccupancySchedule": {
+        "$ref": "191"
+      },
+      "IsEquipmentOn": true,
+      "IsLightingOn": true,
+      "IsPeopleOn": true,
+      "PeopleDensity": 0.01,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_O_Loads"
+    },
+    {
+      "$id": "221",
+      "DimmingType": 1,
+      "EquipmentAvailabilitySchedule": {
+        "$ref": "169"
+      },
+      "EquipmentPowerDensity": 6.0,
+      "IlluminanceTarget": 3325.0,
+      "LightingPowerDensity": 84.0,
+      "LightsAvailabilitySchedule": {
+        "$ref": "195"
+      },
+      "OccupancySchedule": {
+        "$ref": "191"
+      },
+      "IsEquipmentOn": true,
+      "IsLightingOn": true,
+      "IsPeopleOn": true,
+      "PeopleDensity": 0.01,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_LG_Loads"
+    },
+    {
+      "$id": "222",
+      "DimmingType": 1,
+      "EquipmentAvailabilitySchedule": {
+        "$ref": "169"
+      },
+      "EquipmentPowerDensity": 6.0,
+      "IlluminanceTarget": 3072.0,
+      "LightingPowerDensity": 57.0,
+      "LightsAvailabilitySchedule": {
+        "$ref": "196"
+      },
+      "OccupancySchedule": {
+        "$ref": "191"
+      },
+      "IsEquipmentOn": true,
+      "IsLightingOn": true,
+      "IsPeopleOn": true,
+      "PeopleDensity": 0.01,
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_DG_Loads"
+    }
+  ],
+  "Zones": [
+    {
+      "$id": "223",
+      "Conditioning": {
+        "$ref": "205"
+      },
+      "Constructions": {
+        "$ref": "212"
+      },
+      "DaylightMeshResolution": 1.0,
+      "DaylightWorkplaneHeight": 0.8,
+      "DomesticHotWater": {
+        "$ref": "197"
+      },
+      "InternalMassConstruction": {
+        "$ref": "54"
+      },
+      "InternalMassExposedPerFloorArea": 1.05,
+      "Loads": {
+        "$ref": "216"
+      },
+      "Ventilation": {
+        "$ref": "201"
+      },
+      "Category": "Office Spaces",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Off_0"
+    },
+    {
+      "$id": "224",
+      "Conditioning": {
+        "$ref": "206"
+      },
+      "Constructions": {
+        "$ref": "213"
+      },
+      "DaylightMeshResolution": 1.0,
+      "DaylightWorkplaneHeight": 0.8,
+      "DomesticHotWater": {
+        "$ref": "198"
+      },
+      "InternalMassConstruction": {
+        "$ref": "55"
+      },
+      "InternalMassExposedPerFloorArea": 0.45,
+      "Loads": {
+        "$ref": "217"
+      },
+      "Ventilation": {
+        "$ref": "202"
+      },
+      "Category": "Retail",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Ret_0"
+    },
+    {
+      "$id": "225",
+      "Conditioning": {
+        "$ref": "207"
+      },
+      "Constructions": {
+        "$ref": "214"
+      },
+      "DaylightMeshResolution": 1.0,
+      "DaylightWorkplaneHeight": 0.8,
+      "DomesticHotWater": {
+        "$ref": "199"
+      },
+      "InternalMassConstruction": {
+        "$ref": "53"
+      },
+      "InternalMassExposedPerFloorArea": 0.9,
+      "Loads": {
+        "$ref": "218"
+      },
+      "Ventilation": {
+        "$ref": "203"
+      },
+      "Category": "Residential and Lodging",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0_MS"
+    },
+    {
+      "$id": "226",
+      "Conditioning": {
+        "$ref": "207"
+      },
+      "Constructions": {
+        "$ref": "215"
+      },
+      "DaylightMeshResolution": 1.0,
+      "DaylightWorkplaneHeight": 0.8,
+      "DomesticHotWater": {
+        "$ref": "199"
+      },
+      "InternalMassConstruction": {
+        "$ref": "53"
+      },
+      "InternalMassExposedPerFloorArea": 0.9,
+      "Loads": {
+        "$ref": "218"
+      },
+      "Ventilation": {
+        "$ref": "203"
+      },
+      "Category": "Residential and Lodging",
+      "Comments": null,
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0_WF"
+    },
+    {
+      "$id": "227",
+      "Conditioning": {
+        "$ref": "208"
+      },
+      "Constructions": {
+        "$ref": "212"
+      },
+      "DaylightMeshResolution": 1.0,
+      "DaylightWorkplaneHeight": 0.8,
+      "DomesticHotWater": {
+        "$ref": "200"
+      },
+      "InternalMassConstruction": {
+        "$ref": "54"
+      },
+      "InternalMassExposedPerFloorArea": 0.0,
+      "Loads": {
+        "$ref": "219"
+      },
+      "Ventilation": {
+        "$ref": "204"
+      },
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_R"
+    },
+    {
+      "$id": "228",
+      "Conditioning": {
+        "$ref": "209"
+      },
+      "Constructions": {
+        "$ref": "212"
+      },
+      "DaylightMeshResolution": 1.0,
+      "DaylightWorkplaneHeight": 0.8,
+      "DomesticHotWater": {
+        "$ref": "200"
+      },
+      "InternalMassConstruction": {
+        "$ref": "54"
+      },
+      "InternalMassExposedPerFloorArea": 0.0,
+      "Loads": {
+        "$ref": "220"
+      },
+      "Ventilation": {
+        "$ref": "204"
+      },
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_O"
+    },
+    {
+      "$id": "229",
+      "Conditioning": {
+        "$ref": "210"
+      },
+      "Constructions": {
+        "$ref": "212"
+      },
+      "DaylightMeshResolution": 1.0,
+      "DaylightWorkplaneHeight": 0.8,
+      "DomesticHotWater": {
+        "$ref": "200"
+      },
+      "InternalMassConstruction": {
+        "$ref": "54"
+      },
+      "InternalMassExposedPerFloorArea": 0.0,
+      "Loads": {
+        "$ref": "221"
+      },
+      "Ventilation": {
+        "$ref": "204"
+      },
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_LG"
+    },
+    {
+      "$id": "230",
+      "Conditioning": {
+        "$ref": "211"
+      },
+      "Constructions": {
+        "$ref": "212"
+      },
+      "DaylightMeshResolution": 1.0,
+      "DaylightWorkplaneHeight": 0.8,
+      "DomesticHotWater": {
+        "$ref": "200"
+      },
+      "InternalMassConstruction": {
+        "$ref": "54"
+      },
+      "InternalMassExposedPerFloorArea": 0.0,
+      "Loads": {
+        "$ref": "222"
+      },
+      "Ventilation": {
+        "$ref": "204"
+      },
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_DG"
+    }
+  ],
+  "BuildingTemplates": [
+    {
+      "Core": {
+        "$ref": "223"
+      },
+      "Lifespan": 60,
+      "PartitionRatio": 0.35,
+      "Perimeter": {
+        "$ref": "223"
+      },
+      "Structure": {
+        "$ref": "62"
+      },
+      "Windows": {
+        "$id": "231",
+        "AfnDischargeC": 0.65,
+        "AfnTempSetpoint": 20.0,
+        "AfnWindowAvailability": {
+          "$ref": "177"
+        },
+        "Construction": {
+          "$ref": "60"
+        },
+        "IsShadingSystemOn": false,
+        "IsVirtualPartition": false,
+        "IsZoneMixingOn": false,
+        "OperableArea": 0.8,
+        "ShadingSystemAvailabilitySchedule": {
+          "$ref": "177"
+        },
+        "ShadingSystemSetpoint": 350.0,
+        "ShadingSystemTransmittance": 0.5,
+        "ShadingSystemType": 0,
+        "Type": 0,
+        "ZoneMixingAvailabilitySchedule": {
+          "$ref": "177"
+        },
+        "ZoneMixingDeltaTemperature": 2.0,
+        "ZoneMixingFlowRate": 0.001,
+        "Category": "Office Spaces",
+        "Comments": "Base building definition for MIT 4433",
+        "DataSource": "MIT_SDL",
+        "Name": "Boston_Off_0 windows"
+      },
+      "DefaultWindowToWallRatio": 0.9872051868371926,
+      "YearFrom": 0,
+      "YearTo": 0,
+      "Country": [],
+      "ClimateZone": [],
+      "Authors": [],
+      "AuthorEmails": [],
+      "Version": "v1.0",
+      "Category": "Office Spaces",
+      "Comments": "Base building definition for MIT 4433",
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Off_0"
+    },
+    {
+      "Core": {
+        "$ref": "224"
+      },
+      "Lifespan": 60,
+      "PartitionRatio": 0.15,
+      "Perimeter": {
+        "$ref": "224"
+      },
+      "Structure": {
+        "$ref": "68"
+      },
+      "Windows": {
+        "$id": "232",
+        "AfnDischargeC": 0.65,
+        "AfnTempSetpoint": 20.0,
+        "AfnWindowAvailability": {
+          "$ref": "184"
+        },
+        "Construction": {
+          "$ref": "60"
+        },
+        "IsShadingSystemOn": false,
+        "IsVirtualPartition": false,
+        "IsZoneMixingOn": false,
+        "OperableArea": 0.8,
+        "ShadingSystemAvailabilitySchedule": {
+          "$ref": "184"
+        },
+        "ShadingSystemSetpoint": 0.5,
+        "ShadingSystemTransmittance": 0.5,
+        "ShadingSystemType": 0,
+        "Type": 0,
+        "ZoneMixingAvailabilitySchedule": {
+          "$ref": "184"
+        },
+        "ZoneMixingDeltaTemperature": 2.0,
+        "ZoneMixingFlowRate": 0.001,
+        "Category": "Retail",
+        "Comments": "Base building definition for MIT 4433",
+        "DataSource": "MIT_SDL",
+        "Name": "Boston_Ret_0 windows"
+      },
+      "DefaultWindowToWallRatio": 0.9011738751998836,
+      "YearFrom": 0,
+      "YearTo": 0,
+      "Country": [],
+      "ClimateZone": [],
+      "Authors": [],
+      "AuthorEmails": [],
+      "Version": "v1.0",
+      "Category": "Retail",
+      "Comments": "Base building definition for MIT 4433",
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Ret_0"
+    },
+    {
+      "Core": {
+        "$ref": "225"
+      },
+      "Lifespan": 60,
+      "PartitionRatio": 0.3,
+      "Perimeter": {
+        "$ref": "225"
+      },
+      "Structure": {
+        "$ref": "80"
+      },
+      "Windows": {
+        "$id": "233",
+        "AfnDischargeC": 0.65,
+        "AfnTempSetpoint": 20.0,
+        "AfnWindowAvailability": {
+          "$ref": "170"
+        },
+        "Construction": {
+          "$ref": "60"
+        },
+        "IsShadingSystemOn": false,
+        "IsVirtualPartition": false,
+        "IsZoneMixingOn": false,
+        "OperableArea": 0.8,
+        "ShadingSystemAvailabilitySchedule": {
+          "$ref": "170"
+        },
+        "ShadingSystemSetpoint": 0.5,
+        "ShadingSystemTransmittance": 0.5,
+        "ShadingSystemType": 0,
+        "Type": 0,
+        "ZoneMixingAvailabilitySchedule": {
+          "$ref": "170"
+        },
+        "ZoneMixingDeltaTemperature": 2.0,
+        "ZoneMixingFlowRate": 0.001,
+        "Category": "Residential and Lodging",
+        "Comments": "Base building definition for MIT 4433",
+        "DataSource": "MIT_SDL",
+        "Name": "Boston_Res_0 windows"
+      },
+      "DefaultWindowToWallRatio": 0.908404399441151,
+      "YearFrom": 0,
+      "YearTo": 0,
+      "Country": [],
+      "ClimateZone": [],
+      "Authors": [],
+      "AuthorEmails": [],
+      "Version": "v1.0",
+      "Category": "Residential and Lodging",
+      "Comments": "Base building definition for MIT 4433",
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0_Masonry"
+    },
+    {
+      "Core": {
+        "$ref": "226"
+      },
+      "Lifespan": 60,
+      "PartitionRatio": 0.3,
+      "Perimeter": {
+        "$ref": "226"
+      },
+      "Structure": {
+        "$ref": "74"
+      },
+      "Windows": {
+        "$ref": "233"
+      },
+      "DefaultWindowToWallRatio": 0.4,
+      "YearFrom": 0,
+      "YearTo": 0,
+      "Country": [],
+      "ClimateZone": [],
+      "Authors": [],
+      "AuthorEmails": [],
+      "Version": "v1.0",
+      "Category": "Residential and Lodging",
+      "Comments": "Base building definition for MIT 4433",
+      "DataSource": "MIT_SDL",
+      "Name": "Boston_Res_0_WoodFrame"
+    },
+    {
+      "Core": {
+        "$ref": "227"
+      },
+      "Lifespan": 60,
+      "PartitionRatio": 0.35,
+      "Perimeter": {
+        "$ref": "227"
+      },
+      "Structure": {
+        "$ref": "62"
+      },
+      "Windows": {
+        "$ref": "231"
+      },
+      "DefaultWindowToWallRatio": 0.4,
+      "YearFrom": 0,
+      "YearTo": 0,
+      "Country": [],
+      "ClimateZone": [],
+      "Authors": [],
+      "AuthorEmails": [],
+      "Version": "v1.0",
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_R_RedCrops"
+    },
+    {
+      "Core": {
+        "$ref": "228"
+      },
+      "Lifespan": 60,
+      "PartitionRatio": 0.35,
+      "Perimeter": {
+        "$ref": "228"
+      },
+      "Structure": {
+        "$ref": "62"
+      },
+      "Windows": {
+        "$ref": "231"
+      },
+      "DefaultWindowToWallRatio": 0.4,
+      "YearFrom": 0,
+      "YearTo": 0,
+      "Country": [],
+      "ClimateZone": [],
+      "Authors": [],
+      "AuthorEmails": [],
+      "Version": "v1.0",
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_O_OrangeCrops"
+    },
+    {
+      "Core": {
+        "$ref": "229"
+      },
+      "Lifespan": 60,
+      "PartitionRatio": 0.35,
+      "Perimeter": {
+        "$ref": "229"
+      },
+      "Structure": {
+        "$ref": "62"
+      },
+      "Windows": {
+        "$ref": "231"
+      },
+      "DefaultWindowToWallRatio": 0.4,
+      "YearFrom": 0,
+      "YearTo": 0,
+      "Country": [],
+      "ClimateZone": [],
+      "Authors": [],
+      "AuthorEmails": [],
+      "Version": "v1.0",
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_LG_LightGreenCrops"
+    },
+    {
+      "Core": {
+        "$ref": "230"
+      },
+      "Lifespan": 60,
+      "PartitionRatio": 0.35,
+      "Perimeter": {
+        "$ref": "230"
+      },
+      "Structure": {
+        "$ref": "62"
+      },
+      "Windows": {
+        "$ref": "231"
+      },
+      "DefaultWindowToWallRatio": 0.4,
+      "YearFrom": 0,
+      "YearTo": 0,
+      "Country": [],
+      "ClimateZone": [],
+      "Authors": [],
+      "AuthorEmails": [],
+      "Version": "v1.0",
+      "Category": "CEA_Farms",
+      "Comments": null,
+      "DataSource": null,
+      "Name": "CEA_DG_DarkGreenCrops"
+    }
+  ],
+  "WindowSettings": [
+    {
+      "$ref": "231"
+    },
+    {
+      "$ref": "232"
+    },
+    {
+      "$ref": "233"
+    }
+  ]
+}

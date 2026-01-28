@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PSM Entity Schema",
+  "type": "object",
+  "required": ["id", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique entity identifier"
+    },
+    "type": {
+      "type": "string",
+      "description": "Entity type (e.g., 'user', 'document', 'concept')"
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Entity attributes",
+      "additionalProperties": true
+    },
+    "embedding": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "Vector embedding"
+    },
+    "created_at": {
+      "type": "number",
+      "description": "Creation timestamp"
+    },
+    "updated_at": {
+      "type": "number",
+      "description": "Last update timestamp"
+    }
+  }
+}

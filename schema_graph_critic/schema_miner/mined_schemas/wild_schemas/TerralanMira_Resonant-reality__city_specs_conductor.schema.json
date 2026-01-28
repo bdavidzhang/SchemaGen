@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Conductor",
+  "type": "object",
+  "required": ["name", "pulses"],
+  "properties": {
+    "name": { "type": "string" },
+    "pulses": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "tone_hz", "duration_min", "prompt"],
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "tone_hz": { "type": "number", "enum": [432, 528, 639, 741, 963] },
+          "duration_min": { "type": "number", "minimum": 1 },
+          "prompt": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

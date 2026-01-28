@@ -1,0 +1,240 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/hex.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Hex"
+    },
+    {
+      "name": "Admin"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "endlessAddTile": {
+      "type": "object",
+      "properties": {
+        "tile": {
+          "$ref": "#/definitions/endlessTile"
+        }
+      }
+    },
+    "endlessAdminResponse": {
+      "type": "object",
+      "properties": {
+        "serverId": {
+          "type": "string"
+        },
+        "log": {
+          "$ref": "#/definitions/endlessLog"
+        },
+        "result": {
+          "$ref": "#/definitions/endlessResult"
+        }
+      }
+    },
+    "endlessCoordinate": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "y": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "Coordinate is the x,y location in the world for a tile."
+    },
+    "endlessGameResponse": {
+      "type": "object",
+      "properties": {
+        "serverId": {
+          "type": "string"
+        },
+        "heartbeat": {
+          "$ref": "#/definitions/endlessHeartbeat"
+        },
+        "log": {
+          "$ref": "#/definitions/endlessLog"
+        },
+        "info": {
+          "$ref": "#/definitions/endlessInfoResponse"
+        },
+        "level": {
+          "$ref": "#/definitions/endlessLevel"
+        }
+      }
+    },
+    "endlessGetLevel": {
+      "type": "object"
+    },
+    "endlessHeartbeat": {
+      "type": "object",
+      "properties": {
+        "beat": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "endlessInfoRequest": {
+      "type": "object"
+    },
+    "endlessInfoResponse": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "buildDate": {
+          "type": "string"
+        }
+      }
+    },
+    "endlessLevel": {
+      "type": "object",
+      "properties": {
+        "tiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/endlessTile"
+          },
+          "description": "Tiles is an array of all the tiles laid out on a level."
+        },
+        "tileset": {
+          "$ref": "#/definitions/endlessTileset",
+          "description": "Tileset tells Godot what tileset to use."
+        }
+      },
+      "description": "Level is a single layer of tiles laid out to create a level."
+    },
+    "endlessLog": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "level": {
+          "$ref": "#/definitions/endlessLogLevel"
+        },
+        "source": {
+          "$ref": "#/definitions/endlessLogSource"
+        }
+      }
+    },
+    "endlessLogLevel": {
+      "type": "string",
+      "enum": [
+        "Info",
+        "Debug",
+        "Warn",
+        "Error",
+        "Fatal"
+      ],
+      "default": "Info"
+    },
+    "endlessLogSource": {
+      "type": "string",
+      "enum": [
+        "Server",
+        "Player",
+        "Game"
+      ],
+      "default": "Server"
+    },
+    "endlessRemoveTile": {
+      "type": "object",
+      "properties": {
+        "coords": {
+          "$ref": "#/definitions/endlessCoordinate"
+        }
+      }
+    },
+    "endlessResult": {
+      "type": "string",
+      "enum": [
+        "Unknown",
+        "Failure",
+        "Success"
+      ],
+      "default": "Unknown"
+    },
+    "endlessTile": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/endlessType",
+          "description": "Type defines whether the tile is empty, a floor, or a wall."
+        },
+        "coords": {
+          "$ref": "#/definitions/endlessCoordinate",
+          "description": "Coords defines the position of the tile within the world."
+        }
+      },
+      "description": "Tile is a single tile within the world."
+    },
+    "endlessTileset": {
+      "type": "string",
+      "enum": [
+        "Dungeon",
+        "Woods"
+      ],
+      "default": "Dungeon",
+      "description": "Tileset defines what tileset to use in Godot."
+    },
+    "endlessType": {
+      "type": "string",
+      "enum": [
+        "Empty",
+        "Floor",
+        "Wall"
+      ],
+      "default": "Empty",
+      "description": "Type defines whether the tile is empty, a floor tile, or a wall tile.\n\n - Empty: Empty is a tile without anything in it.\n - Floor: Floor is a tile that can be walked on.\n - Wall: Wall is a tile that blocks movement and line-of-sight."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

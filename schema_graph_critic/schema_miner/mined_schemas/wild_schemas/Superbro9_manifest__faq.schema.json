@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://manifest.watchtube.app/faq.schema.json",
+  "title": "FAQ",
+  "description": "In-app FAQ menu",
+  "type": "array",
+  "items": {
+    "required": [
+      "title",
+      "contents"
+    ],
+    "properties": {
+      "contents": {
+        "type": "array",
+        "items": {
+          "required": [
+            "type",
+            "content"
+          ],
+          "properties": {
+            "type": {
+              "pattern": "^(text|image|divider)$"
+            }
+          }
+        }
+      }
+    }
+  }
+}

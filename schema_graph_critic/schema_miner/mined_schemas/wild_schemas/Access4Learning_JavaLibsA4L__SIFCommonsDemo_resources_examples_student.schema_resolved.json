@@ -1,0 +1,187 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "title" : "Student",
+  "description" : "Schema for Student objects in SIF data model",
+  "type" : "object",
+  "required" : [ "refId", "name", "demographics" ],
+  "properties" : {
+    "refId" : {
+      "type" : "string",
+      "description" : "The unique identifier for the student",
+      "pattern" : "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+      "examples" : [ "11086b1c-0145-1000-0008-14109fdcaf83" ]
+    },
+    "localId" : {
+      "type" : "string",
+      "description" : "The locally-assigned identifier for this student",
+      "maxLength" : 40
+    },
+    "stateProvinceId" : {
+      "type" : "string",
+      "description" : "The state-assigned identifier for this student",
+      "maxLength" : 50
+    },
+    "name" : {
+      "type" : "object",
+      "description" : "The name of the student",
+      "required" : [ "lastName", "firstName" ],
+      "properties" : {
+        "title" : {
+          "type" : "string",
+          "description" : "The title of the student",
+          "enum" : [ "Mr.", "Ms.", "Miss", "Mrs.", "Dr." ]
+        },
+        "firstName" : {
+          "type" : "string",
+          "description" : "The first name of the student",
+          "minLength" : 1,
+          "maxLength" : 40
+        },
+        "middleName" : {
+          "type" : "string",
+          "description" : "The middle name of the student",
+          "maxLength" : 40
+        },
+        "lastName" : {
+          "type" : "string",
+          "description" : "The last name of the student",
+          "minLength" : 1,
+          "maxLength" : 40
+        },
+        "suffix" : {
+          "type" : "string",
+          "description" : "The suffix of the student's name",
+          "enum" : [ "Jr.", "Sr.", "II", "III", "IV" ]
+        },
+        "preferredName" : {
+          "type" : "string",
+          "description" : "The preferred name of the student",
+          "maxLength" : 40
+        }
+      }
+    },
+    "demographics" : {
+      "type" : "object",
+      "description" : "Demographic information about the student",
+      "properties" : {
+        "gender" : {
+          "type" : "string",
+          "description" : "The gender of the student",
+          "enum" : [ "M", "F", "X", "U" ]
+        },
+        "birthDate" : {
+          "type" : "string",
+          "description" : "The date of birth of the student",
+          "format" : "date"
+        },
+        "races" : {
+          "type" : "array",
+          "description" : "The racial identifications of the student",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "race" : {
+                "type" : "string",
+                "description" : "The race code",
+                "enum" : [ "AI", "AS", "BL", "PI", "WH" ]
+              },
+              "primary" : {
+                "type" : "boolean",
+                "description" : "Indicates if this is the primary racial identification"
+              }
+            },
+            "required" : [ "race" ]
+          }
+        }
+      },
+      "required" : [ "birthDate" ]
+    },
+    "enrollment" : {
+      "type" : "object",
+      "description" : "Enrollment information for the student",
+      "properties" : {
+        "schoolRefId" : {
+          "type" : "string",
+          "description" : "Reference to the school",
+          "pattern" : "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "grade" : {
+          "type" : "string",
+          "description" : "The grade level of the student",
+          "enum" : [ "PK", "K", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" ]
+        },
+        "homeroom" : {
+          "type" : "string",
+          "description" : "The homeroom identifier",
+          "maxLength" : 30
+        },
+        "entryDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "The date the student entered the school"
+        }
+      },
+      "required" : [ "grade", "entryDate" ]
+    },
+    "contacts" : {
+      "type" : "array",
+      "description" : "Contact information for the student",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "$ref" : "#/properties/name"
+          },
+          "relationship" : {
+            "type" : "string",
+            "description" : "The relationship to the student",
+            "enum" : [ "Parent", "Guardian", "Relative", "Neighbor", "Self", "Other" ]
+          },
+          "phones" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "number" : {
+                  "type" : "string",
+                  "description" : "The phone number",
+                  "pattern" : "^[\\d\\(\\)\\-\\+\\s]+$"
+                },
+                "type" : {
+                  "type" : "string",
+                  "description" : "The type of phone number",
+                  "enum" : [ "Home", "Work", "Mobile", "Emergency", "Other" ]
+                },
+                "primary" : {
+                  "type" : "boolean",
+                  "description" : "Indicates if this is the primary phone number"
+                }
+              },
+              "required" : [ "number", "type" ]
+            }
+          },
+          "emails" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "address" : {
+                  "type" : "string",
+                  "description" : "The email address",
+                  "format" : "email"
+                },
+                "type" : {
+                  "type" : "string",
+                  "description" : "The type of email address",
+                  "enum" : [ "Primary", "Secondary", "Work", "Other" ]
+                }
+              },
+              "required" : [ "address" ]
+            }
+          }
+        },
+        "required" : [ "name", "relationship" ]
+      }
+    }
+  }
+}

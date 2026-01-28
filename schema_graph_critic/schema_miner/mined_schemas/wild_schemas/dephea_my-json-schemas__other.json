@@ -1,0 +1,166 @@
+{
+  "$id": "schemas",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "stateInstanceChanged": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "typeWebhook": {
+          "type": "string"
+        },
+        "instanceData": {
+          "$ref": "https://raw.githubusercontent.com/dephea/my-json-schemas/main/commonSchemaComponents.json#/properties/commonSchemaComponents/properties/instanceData"
+        },
+        "timestamp": {
+          "type": "integer"
+        },
+        "stateInstance": {
+          "type": "string"
+        }
+      },
+      "required": ["typeWebhook", "instanceData", "timestamp", "stateInstance"],
+      "additionalProperties": false
+    },
+
+    "deviceInfo": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "typeWebhook": {
+          "type": "string"
+        },
+        "instanceData": {
+          "$ref": "https://raw.githubusercontent.com/dephea/my-json-schemas/main/commonSchemaComponents.json#/properties/commonSchemaComponents/properties/instanceData"
+        },
+        "timestamp": {
+          "type": "integer"
+        },
+        "avatarInfo": {
+          "type": "object",
+          "properties": {
+            "chatId": {
+              "type": "string"
+            },
+            "urlAvatar": {
+              "type": "string"
+            }
+          },
+          "required": ["chatId", "urlAvatar"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["typeWebhook", "instanceData", "timestamp", "avatarInfo"],
+      "additionalProperties": false
+    },
+
+    "incomingCall": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "typeWebhook": {
+          "type": "string"
+        },
+        "instanceData": {
+          "$ref": "https://raw.githubusercontent.com/dephea/my-json-schemas/main/commonSchemaComponents.json#/properties/commonSchemaComponents/properties/instanceData"
+        },
+        "status": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "integer"
+        },
+        "idMessage": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "typeWebhook",
+        "instanceData",
+        "status",
+        "timestamp",
+        "idMessage",
+        "from"
+      ],
+      "additionalProperties": false
+    },
+
+    "statusInstanceChanged": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "typeWebhook": {
+          "type": "string"
+        },
+        "instanceData": {
+          "$ref": "https://raw.githubusercontent.com/dephea/my-json-schemas/main/commonSchemaComponents.json#/properties/commonSchemaComponents/properties/instanceData"
+        },
+        "timestamp": {
+          "type": "integer"
+        },
+        "statusInstance": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "typeWebhook",
+        "instanceData",
+        "timestamp",
+        "statusInstance"
+      ],
+      "additionalProperties": false
+    },
+
+    "incomingBlock": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "typeWebhook": {
+          "type": "string"
+        },
+        "instanceData": {
+          "$ref": "https://raw.githubusercontent.com/dephea/my-json-schemas/main/commonSchemaComponents.json#/properties/commonSchemaComponents/properties/instanceData"
+        },
+        "timestamp": {
+          "type": "integer"
+        },
+        "chatId": {
+          "type": "string"
+        },
+        "chatState": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "typeWebhook",
+        "instanceData",
+        "timestamp",
+        "chatId",
+        "chatState"
+      ],
+      "additionalProperties": false
+    },
+
+    "quotaExceeded": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "typeWebhook": {
+          "type": "string"
+        },
+        "instanceData": {
+          "$ref": "https://raw.githubusercontent.com/dephea/my-json-schemas/main/commonSchemaComponents.json#/properties/commonSchemaComponents/properties/instanceData"
+        },
+        "quotaData": {
+          "$ref": "https://raw.githubusercontent.com/dephea/my-json-schemas/main/commonSchemaComponents.json#/properties/commonSchemaComponents/properties/quotaData"
+        }
+      },
+      "required": ["typeWebhook", "instanceData", "quotaData"],
+      "additionalProperties": false
+    }
+  }
+}

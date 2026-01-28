@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Repdev Template",
+  "type": "object",
+  "required": ["version", "services"],
+  "properties": {
+    "version": { "type": "string" },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "author": { "type": "string" },
+        "created_at": { "type": "string" }
+      }
+    },
+    "hooks": {
+      "type": "object",
+      "properties": {
+        "preUp": { "type": "array", "items": { "type": "string" } },
+        "postUp": { "type": "array", "items": { "type": "string" } },
+        "preDown": { "type": "array", "items": { "type": "string" } },
+        "postDown": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "networks": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "null" },
+          {
+            "type": "object",
+            "properties": {
+              "driver": { "type": "string", "enum": ["bridge", "overlay", "host", "macvlan", "none"] },
+              "driver_opts": { "type": "object", "additionalProperties": { "type": "string" } },
+              "ipam": {
+                "type": "object",
+                "properties": {
+                  "driver": { "type": "string" },
+                  "config": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "subnet": { "type": "string" },
+                        "gateway": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              },
+              "external": { "type": "boolean" },
+              "name": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "services": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["image"],
+        "properties": {
+          "image": { "type": "string" },
+          "container_name": { "type": "string" },
+          "working_dir": { "type": "string" },
+          "volumes": { "type": "array", "items": { "type": "string" } },
+          "ports": { "type": "array", "items": { "type": "string" } },
+          "environment": { "type": "object", "additionalProperties": { "type": ["string","number","boolean"] } },
+          "env_file": { "oneOf": [ { "type": "string" }, { "type": "array", "items": { "type": "string" } } ] },
+          "command": { "oneOf": [ { "type": "string" }, { "type": "array", "items": { "type": "string" } } ] },
+          "depends_on": { "type": "array", "items": { "type": "string" } },
+          "network_mode": { "type": "string" },
+          "networks": { 
+            "oneOf": [
+              { "type": "array", "items": { "type": "string" } },
+              {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "aliases": { "type": "array", "items": { "type": "string" } },
+                    "ipv4_address": { "type": "string" },
+                    "ipv6_address": { "type": "string" }
+                  }
+                }
+              }
+            ]
+          },
+          "hooks": {
+            "type": "object",
+            "properties": {
+              "beforeStart": { "type": "array", "items": { "type": "string" } },
+              "afterStart": { "type": "array", "items": { "type": "string" } }
+            },
+            "additionalProperties": false
+          },
+          "wait_for": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["http", "tcp", "container_healthy"] },
+              "url": { "type": "string" },
+              "host": { "type": "string" },
+              "port": { "type": "integer" },
+              "timeout": { "type": "integer", "minimum": 0 },
+              "retries": { "type": "integer", "minimum": 0 },
+              "interval": { "type": "integer", "minimum": 100 }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  }
+}

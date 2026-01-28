@@ -1,0 +1,16 @@
+{
+	"lastUpdated": "2025-05-01T21:29:47.737977+02:00",
+	"fields": {
+		"DUMP_DIR": {
+			"required": true,
+			"public": true,
+			"key": "DUMP_DIR",
+			"value": ".dump"
+		},
+		"PORT": {
+			"required": true,
+			"format": ":{number}",
+			"key": "PORT"
+		}
+	}
+}

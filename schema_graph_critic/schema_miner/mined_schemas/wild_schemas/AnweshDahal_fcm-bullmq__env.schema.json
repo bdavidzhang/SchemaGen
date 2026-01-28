@@ -1,0 +1,44 @@
+{
+  "keys": [
+    {
+      "key": "NODE_ENV",
+      "remark": "Specifies the environment in which the app is running (development, production, etc.)",
+      "example": "development"
+    },
+    {
+      "key": "PORT",
+      "remark": "Port on which the service runs",
+      "example": "5005"
+    },
+    {
+      "key": "HOST",
+      "remark": "The Host on which the service runs",
+      "example": "localhost"
+    },
+    {
+      "key": "VALKEY_HOST",
+      "remark": "Valkey server hostname or IP address",
+      "example": "localhost"
+    },
+    {
+      "key": "VALKEY_PORT",
+      "remark": "Port number for the Valkey server",
+      "example": "6379"
+    },
+    {
+      "key": "USE_RATE_LIMIT",
+      "remark": "Enable or diable rate limit, 0 for false, 1 for true",
+      "example": "0"
+    },
+    {
+      "key": "RATE_LIMITER_WINDOW_SIZE",
+      "remark": "Window size, i.e. what interval to monitor calls for in minutes ",
+      "example": "15"
+    },
+    {
+      "key": "RATE_LIMITER_COUNT",
+      "remark": "Number of requests per window ",
+      "example": "100"
+    }
+  ]
+}

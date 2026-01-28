@@ -1,0 +1,178 @@
+{
+  "$defs": {
+    "InsightContent": {
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        }
+      },
+      "required": [
+        "summary",
+        "domain"
+      ],
+      "title": "InsightContent",
+      "type": "object"
+    },
+    "InsightProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "source_episodic_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Episodic Ids",
+          "type": "array"
+        },
+        "method": {
+          "title": "Method",
+          "type": "string"
+        }
+      },
+      "required": [
+        "method"
+      ],
+      "title": "InsightProvenance",
+      "type": "object"
+    },
+    "ObjectStatus": {
+      "description": "Lifecycle status for OntologyObjects.",
+      "enum": [
+        "active",
+        "archived",
+        "deleted"
+      ],
+      "title": "ObjectStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "An atomic unit of declarative knowledge.\nReplaces legacy JSON schema.",
+  "properties": {
+    "id": {
+      "description": "Primary Key (UUIDv4 string)",
+      "immutable": true,
+      "title": "Id",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "Creation timestamp (UTC)",
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "updated_at": {
+      "description": "Last update timestamp (UTC)",
+      "format": "date-time",
+      "title": "Updated At",
+      "type": "string"
+    },
+    "created_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ID of the user/agent who created this object",
+      "title": "Created By"
+    },
+    "updated_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ID of the user/agent who last updated this object",
+      "title": "Updated By"
+    },
+    "status": {
+      "$ref": "#/$defs/ObjectStatus",
+      "default": "active",
+      "description": "Object lifecycle status"
+    },
+    "version": {
+      "default": 1,
+      "description": "Version number for optimistic locking",
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "confidence_score": {
+      "default": 1.0,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence Score",
+      "type": "number"
+    },
+    "decay_factor": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Decay Factor"
+    },
+    "provenance": {
+      "$ref": "#/$defs/InsightProvenance"
+    },
+    "content": {
+      "$ref": "#/$defs/InsightContent"
+    },
+    "supports": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Supports",
+      "type": "array"
+    },
+    "contradicts": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Contradicts",
+      "type": "array"
+    },
+    "related_to": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Related To",
+      "type": "array"
+    }
+  },
+  "required": [
+    "provenance",
+    "content"
+  ],
+  "title": "OrionInsight",
+  "type": "object",
+  "x-palantir-indexing": [
+    "id",
+    "created_at",
+    "updated_at"
+  ]
+}

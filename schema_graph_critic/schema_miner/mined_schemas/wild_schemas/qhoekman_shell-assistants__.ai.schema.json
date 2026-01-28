@@ -1,0 +1,104 @@
+{
+  "$ref": "#/definitions/Root",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Root": {
+      "properties": {
+        "ignorePatterns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "models": {
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "commit": {
+              "type": "string"
+            },
+            "staged": {
+              "type": "string"
+            }
+          },
+          "required": ["commit", "staged", "code"],
+          "type": "object"
+        },
+        "output": {
+          "properties": {
+            "commit": {
+              "type": "string"
+            },
+            "prompt": {
+              "type": "string"
+            },
+            "review": {
+              "type": "string"
+            },
+            "staged": {
+              "type": "string"
+            }
+          },
+          "required": ["staged", "commit", "prompt", "review"],
+          "type": "object"
+        },
+        "prompts": {
+          "properties": {
+            "bestPractices": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "codeStandards": {
+              "type": "string"
+            },
+            "commitMessage": {
+              "type": "string"
+            },
+            "namingConventions": {
+              "type": "string"
+            },
+            "project": {
+              "type": "string"
+            },
+            "review": {
+              "type": "string"
+            },
+            "staged": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "project",
+            "codeStandards",
+            "namingConventions",
+            "commitMessage",
+            "staged",
+            "review",
+            "bestPractices"
+          ],
+          "type": "object"
+        },
+        "ticket": {
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "id": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "required": ["id", "title", "description"],
+          "type": "object"
+        }
+      },
+      "required": ["ticket", "models", "ignorePatterns", "prompts", "output"],
+      "type": "object"
+    }
+  }
+}

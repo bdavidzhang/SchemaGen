@@ -1,0 +1,383 @@
+{
+  "name": "tablet-dashboard-ui",
+  "description": "Schema for the large-format tablet/laptop renderer. Supports explicit layout hints so the KB can describe a multi-column dashboard.",
+  "components": {
+    "text": {
+      "props": {
+        "text": "string",
+        "variant": "string",
+        "size": "string",
+        "layout": "layoutInstruction"
+      }
+    },
+    "button": {
+      "props": {
+        "label": "string",
+        "style": "string",
+        "size": "string",
+        "layout": "layoutInstruction",
+        "action": "object"
+      }
+    },
+    "toggle": {
+      "props": {
+        "label": "string",
+        "checked": "boolean",
+        "size": "string",
+        "layout": "layoutInstruction",
+        "action": "object"
+      }
+    },
+    "slider": {
+      "props": {
+        "label": "string",
+        "min": "number",
+        "max": "number",
+        "step": "number",
+        "value": "number",
+        "unit": "string",
+        "size": "string",
+        "layout": "layoutInstruction",
+        "action": "object"
+      }
+    },
+    "dropdown": {
+      "props": {
+        "label": "string",
+        "placeholder": "string",
+        "options": "array",
+        "value": "string",
+        "size": "string",
+        "layout": "layoutInstruction",
+        "action": "object"
+      }
+    },
+    "statusCard": {
+      "props": {
+        "title": "string",
+        "value": "string",
+        "icon": "string",
+        "tone": "string",
+        "items": "array",
+        "layout": "layoutInstruction"
+      }
+    },
+    "container": {
+      "props": {
+        "children": "array",
+        "layout": "string",
+        "placement": "layoutInstruction"
+      }
+    }
+  },
+  "theming": {
+    "description": "Supports `theme.primaryColor` and `theme.surfaceTint` for accent styling across cards and controls.",
+    "supportsPrimaryColor": true,
+    "defaultPrimaryColor": "#2563eb"
+  },
+  "context": {
+    "modalityPreference": "visual-large-format",
+    "defaultErgonomicsProfile": "cozy-desktop",
+    "supportedErgonomicsProfiles": [
+      {
+        "id": "cozy-desktop",
+        "label": "Cozy desktop",
+        "description": "Comfortable spacing for seated interaction on tablets or laptops."
+      },
+      {
+        "id": "information-dense",
+        "label": "Information dense",
+        "description": "Tighter spacing for dashboards that prioritize data density."
+      }
+    ]
+  },
+  "responseSchema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Tablet/Laptop UI Schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "deviceId": {
+        "type": "string",
+        "description": "Identifier of the target tablet device that should render this UI definition."
+      },
+      "generatedAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp indicating when the UI was generated."
+      },
+      "context": {
+        "type": "object",
+        "description": "Arbitrary context metadata (thing references, device info, etc.).",
+        "additionalProperties": true
+      },
+      "theme": {
+        "type": "object",
+        "properties": {
+          "primaryColor": {
+            "type": "string",
+            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$",
+            "description": "Hexadecimal color value representing the preferred primary accent color."
+          },
+          "surfaceTint": {
+            "type": "string",
+            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$",
+            "description": "Optional translucent wash to apply to containers."
+          }
+        },
+        "additionalProperties": false
+      },
+      "components": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "$ref": "#/definitions/component" }
+      }
+    },
+    "required": ["components"],
+    "definitions": {
+      "layoutInstruction": {
+        "type": "object",
+        "description": "Optional placement hint for the 12-column responsive grid rendered by the tablet device.",
+        "additionalProperties": false,
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Named region hint such as 'hero', 'sidebar', 'controls', or 'telemetry'."
+          },
+          "column": { "type": "integer", "minimum": 1, "maximum": 12 },
+          "col": { "type": "integer", "minimum": 1, "maximum": 12 },
+          "colSpan": { "type": "integer", "minimum": 1, "maximum": 12 },
+          "span": { "type": "integer", "minimum": 1, "maximum": 12 },
+          "row": { "type": "integer", "minimum": 1 },
+          "rowSpan": { "type": "integer", "minimum": 1 },
+          "x": { "type": "integer", "minimum": 1, "maximum": 12, "description": "Alias for `column`." },
+          "y": { "type": "integer", "minimum": 1, "description": "Alias for `row`." },
+          "width": { "type": "integer", "minimum": 1, "maximum": 12, "description": "Alias for `colSpan`." },
+          "height": { "type": "integer", "minimum": 1, "description": "Alias for `rowSpan`." },
+          "order": { "type": "integer", "description": "Optional ordering hint when auto-flow is used." },
+          "align": {
+            "type": "string",
+            "enum": ["start", "center", "end", "stretch"],
+            "description": "Justify-self alignment inside the grid cell."
+          },
+          "justify": {
+            "type": "string",
+            "enum": ["start", "center", "end", "stretch"],
+            "description": "Align-self hint inside the grid cell."
+          },
+          "minHeight": { "type": "string", "description": "CSS size for minimum height (e.g., '180px')." },
+          "maxHeight": { "type": "string", "description": "CSS size for maximum height." },
+          "layer": {
+            "type": "string",
+            "enum": ["base", "overlay"],
+            "description": "Whether the element should float as an overlay card."
+          }
+        }
+      },
+      "component": {
+        "oneOf": [
+          { "$ref": "#/definitions/containerComponent" },
+          { "$ref": "#/definitions/textComponent" },
+          { "$ref": "#/definitions/buttonComponent" },
+          { "$ref": "#/definitions/toggleComponent" },
+          { "$ref": "#/definitions/sliderComponent" },
+          { "$ref": "#/definitions/dropdownComponent" },
+          { "$ref": "#/definitions/statusCardComponent" },
+          { "$ref": "#/definitions/toolCall" }
+        ]
+      },
+      "containerComponent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "const": "container" },
+          "title": { "type": "string" },
+          "layout": {
+            "description": "Layout strategy for child composition (grid, row, column).",
+            "oneOf": [
+              { "type": "string" },
+              { "$ref": "#/definitions/layoutInstruction" }
+            ]
+          },
+          "placement": { "$ref": "#/definitions/layoutInstruction" },
+          "thingId": {
+            "type": "string",
+            "description": "Optional thing identifier that all nested children primarily control."
+          },
+          "children": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/definitions/component" }
+          }
+        },
+        "required": ["type", "children"]
+      },
+      "textComponent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "const": "text" },
+          "text": { "type": "string" },
+          "variant": { "type": "string" },
+          "size": { "type": "string" },
+          "tone": { "type": "string" },
+          "layout": { "$ref": "#/definitions/layoutInstruction" },
+          "thingId": {
+            "type": "string",
+            "description": "Optional thing identifier this text references when showing state or instructions."
+          }
+        },
+        "required": ["type", "text"]
+      },
+      "buttonComponent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "const": "button" },
+          "label": { "type": "string" },
+          "icon": { "type": "string" },
+          "style": { "type": "string" },
+          "size": { "type": "string" },
+          "layout": { "$ref": "#/definitions/layoutInstruction" },
+          "thingId": {
+            "type": "string",
+            "description": "Thing identifier to target when executing the bound action."
+          },
+          "action": {
+            "description": "Action payload or identifier to execute when the button is pressed.",
+            "oneOf": [
+              { "type": "string" },
+              { "type": "object", "additionalProperties": true }
+            ]
+          }
+        },
+        "required": ["type", "label"]
+      },
+      "toggleComponent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "const": "toggle" },
+          "label": { "type": "string" },
+          "checked": { "type": "boolean" },
+          "size": { "type": "string" },
+          "layout": { "$ref": "#/definitions/layoutInstruction" },
+          "thingId": {
+            "type": "string",
+            "description": "Thing identifier to target when toggling."
+          },
+          "action": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "object", "additionalProperties": true }
+            ]
+          }
+        },
+        "required": ["type", "label"]
+      },
+      "sliderComponent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "const": "slider" },
+          "label": { "type": "string" },
+          "min": { "type": "number", "default": 0 },
+          "max": { "type": "number", "default": 100 },
+          "step": { "type": "number", "default": 1 },
+          "value": { "type": "number" },
+          "unit": { "type": "string" },
+          "size": { "type": "string" },
+          "layout": { "$ref": "#/definitions/layoutInstruction" },
+          "thingId": {
+            "type": "string",
+            "description": "Thing identifier to target when sending slider updates."
+          },
+          "action": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "object", "additionalProperties": true }
+            ]
+          }
+        },
+        "required": ["type", "label"]
+      },
+      "dropdownComponent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "const": "dropdown" },
+          "label": { "type": "string" },
+          "placeholder": { "type": "string" },
+          "value": { "type": "string" },
+          "size": { "type": "string" },
+          "layout": { "$ref": "#/definitions/layoutInstruction" },
+          "thingId": {
+            "type": "string", "description": "Thing identifier to target when selection changes." },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "value": { "type": "string" }
+              },
+              "required": ["label", "value"],
+              "additionalProperties": false
+            }
+          },
+          "action": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "object", "additionalProperties": true }
+            ]
+          }
+        },
+        "required": ["type", "label", "options"]
+      },
+      "statusCardComponent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "const": "statusCard" },
+          "title": { "type": "string" },
+          "value": { "type": "string" },
+          "icon": { "type": "string" },
+          "tone": { "type": "string" },
+          "layout": { "$ref": "#/definitions/layoutInstruction" },
+          "thingId": {
+            "type": "string",
+            "description": "Thing identifier whose state this card summarizes."
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "value": { "type": "string" }
+              },
+              "required": ["label", "value"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["type", "title"]
+      },
+      "toolCall": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "const": "toolCall" },
+          "tool": { "type": "string" },
+          "parameters": { "type": "object", "additionalProperties": true },
+          "layout": { "$ref": "#/definitions/layoutInstruction" },
+          "thingId": {
+            "type": "string",
+            "description": "Thing identifier providing context for the tool output."
+          }
+        },
+        "required": ["type", "tool"]
+      }
+    }
+  }
+}

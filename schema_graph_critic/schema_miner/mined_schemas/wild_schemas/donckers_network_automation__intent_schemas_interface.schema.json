@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "interface.schema.json",
+  "title": "Interface",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": {"type": "string"},
+    "type": {"type": "string"},
+    "enabled": {"type": "boolean"},
+    "description": {"type": "string"},
+    "mtu": {"type": "integer"},
+    "segment_ref": {"type": "string"},
+    "vrf_ref": {"type": "string"},
+    "subinterfaces": {"type": "array"}
+  }
+}

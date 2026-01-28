@@ -1,0 +1,68 @@
+{
+  "$id": "trivia_v1.dataset.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["schema", "players", "qb_seasons", "rb_seasons", "wr_seasons", "te_seasons", "eligibility", "daily_picks", "generated_at"],
+  "properties": {
+    "schema": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "const": "trivia_v1"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "players": {
+      "type": "array",
+      "items": {
+        "$ref": "trivia_v1.player.schema.json"
+      }
+    },
+    "qb_seasons": {
+      "type": "array",
+      "items": {
+        "$ref": "trivia_v1.qb_season.schema.json"
+      }
+    },
+    "rb_seasons": {
+      "type": "array",
+      "items": {
+        "$ref": "trivia_v1.rb_season.schema.json"
+      }
+    },
+    "wr_seasons": {
+      "type": "array",
+      "items": {
+        "$ref": "trivia_v1.wr_season.schema.json"
+      }
+    },
+    "te_seasons": {
+      "type": "array",
+      "items": {
+        "$ref": "trivia_v1.te_season.schema.json"
+      }
+    },
+    "eligibility": {
+      "type": "array",
+      "items": {
+        "$ref": "trivia_v1.eligibility.schema.json"
+      }
+    },
+    "daily_picks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

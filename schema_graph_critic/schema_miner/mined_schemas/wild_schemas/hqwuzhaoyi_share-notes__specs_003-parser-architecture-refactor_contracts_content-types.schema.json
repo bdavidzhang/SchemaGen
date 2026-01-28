@@ -1,0 +1,247 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ios-content-parser.local/schemas/content-types.json",
+  "title": "Content Type Schemas",
+  "description": "JSON Schema definitions for all content types in the parser system",
+  "definitions": {
+    "ContentType": {
+      "type": "string",
+      "enum": ["article", "video", "image-gallery", "book", "tweet"],
+      "description": "Discriminator for content type"
+    },
+    "PlatformType": {
+      "type": "string",
+      "enum": ["xiaohongshu", "bilibili", "wechat", "wechat-read", "youtube", "twitter", "unknown"],
+      "description": "Source platform identifier"
+    },
+    "BaseContent": {
+      "type": "object",
+      "required": ["type", "title", "platform", "originalUrl"],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ContentType"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Content title"
+        },
+        "platform": {
+          "$ref": "#/definitions/PlatformType"
+        },
+        "originalUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Source URL"
+        },
+        "author": {
+          "type": "string",
+          "description": "Content author/creator"
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Publication timestamp"
+        }
+      }
+    },
+    "ArticleContent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseContent"
+        },
+        {
+          "type": "object",
+          "required": ["content", "images"],
+          "properties": {
+            "type": {
+              "const": "article"
+            },
+            "content": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Article text content"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "maxItems": 50,
+              "description": "Array of image URLs"
+            }
+          }
+        }
+      ]
+    },
+    "VideoContent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseContent"
+        },
+        {
+          "type": "object",
+          "required": ["videoUrl", "description"],
+          "properties": {
+            "type": {
+              "const": "video"
+            },
+            "videoUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "Video URL or platform page"
+            },
+            "cover": {
+              "type": "string",
+              "format": "uri",
+              "description": "Video cover/thumbnail"
+            },
+            "duration": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Video duration in seconds"
+            },
+            "description": {
+              "type": "string",
+              "description": "Video description/summary"
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Platform-specific metadata",
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "ImageGalleryContent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseContent"
+        },
+        {
+          "type": "object",
+          "required": ["images", "description"],
+          "properties": {
+            "type": {
+              "const": "image-gallery"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "minItems": 1,
+              "maxItems": 50,
+              "description": "Array of image URLs"
+            },
+            "description": {
+              "type": "string",
+              "description": "Gallery description/caption"
+            }
+          }
+        }
+      ]
+    },
+    "BookContent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseContent"
+        },
+        {
+          "type": "object",
+          "required": ["bookId", "content"],
+          "properties": {
+            "type": {
+              "const": "book"
+            },
+            "bookId": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Platform book identifier"
+            },
+            "chapterTitle": {
+              "type": "string",
+              "description": "Chapter/section title"
+            },
+            "content": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Excerpt or reading note"
+            },
+            "cover": {
+              "type": "string",
+              "format": "uri",
+              "description": "Book cover image"
+            }
+          }
+        }
+      ]
+    },
+    "TweetContent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseContent"
+        },
+        {
+          "type": "object",
+          "required": ["content", "images", "isThread"],
+          "properties": {
+            "type": {
+              "const": "tweet"
+            },
+            "content": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Tweet text content"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "description": "Attached images"
+            },
+            "isThread": {
+              "type": "boolean",
+              "description": "Whether this is part of a thread"
+            },
+            "threadTweets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TweetContent"
+              },
+              "maxItems": 50,
+              "description": "Additional tweets if thread"
+            }
+          }
+        }
+      ]
+    },
+    "ParsedContent": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ArticleContent"
+        },
+        {
+          "$ref": "#/definitions/VideoContent"
+        },
+        {
+          "$ref": "#/definitions/ImageGalleryContent"
+        },
+        {
+          "$ref": "#/definitions/BookContent"
+        },
+        {
+          "$ref": "#/definitions/TweetContent"
+        }
+      ],
+      "discriminator": {
+        "propertyName": "type"
+      }
+    }
+  }
+}

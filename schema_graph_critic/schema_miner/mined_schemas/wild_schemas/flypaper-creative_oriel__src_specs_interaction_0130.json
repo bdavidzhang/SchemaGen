@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InteractionSchema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "source_module": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "group": {
+      "type": "string",
+      "enum": [
+        "interaction"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "name",
+    "group"
+  ],
+  "id": "schema-0130",
+  "example": {
+    "id": "interaction-0130",
+    "type": "interaction",
+    "name": "interaction_spec_130",
+    "description": "auto-generated interaction schema #130",
+    "created_at": "2025-10-17T00:00:00Z",
+    "source_module": "builder",
+    "confidence": 1.0,
+    "links": []
+  }
+}

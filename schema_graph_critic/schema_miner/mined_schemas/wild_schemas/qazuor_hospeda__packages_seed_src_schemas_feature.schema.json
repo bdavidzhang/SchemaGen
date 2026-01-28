@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "feature.schema.json",
+    "title": "Feature Seed Schema",
+    "description": "JSON schema for Feature entity seeds",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "id": {
+            "type": "string",
+            "description": "Feature ID (UUID)"
+        },
+        "name": {
+            "type": "string",
+            "description": "Feature name"
+        },
+        "slug": {
+            "type": "string",
+            "description": "Feature slug"
+        },
+        "description": {
+            "type": "string",
+            "description": "Feature description"
+        },
+        "icon": {
+            "type": "string",
+            "description": "Feature icon identifier"
+        },
+        "isBuiltin": {
+            "type": "boolean",
+            "description": "Whether this feature is built-in (system default)"
+        },
+        "isFeatured": {
+            "type": "boolean",
+            "description": "Whether this feature is highlighted (featured) in the UI"
+        },
+        "lifecycleState": {
+            "type": "string",
+            "enum": ["DRAFT", "ACTIVE", "ARCHIVED"],
+            "description": "Lifecycle state of the feature"
+        }
+    },
+    "required": ["id", "name", "slug", "isBuiltin", "isFeatured", "lifecycleState"],
+    "additionalProperties": false
+}

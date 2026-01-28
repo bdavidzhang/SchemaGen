@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ghostflow.dev/schemas/ghostflow-config.json",
+  "title": "GhostflowConfig",
+  "description": "Complete Ghostflow configuration file format",
+  "$defs": {
+    "GhostflowConfig": {
+      "type": "object",
+      "required": [
+        "version",
+        "configVersion",
+        "flows",
+        "daemon"
+      ],
+      "properties": {
+        "version": {
+          "type": "number",
+          "enum": [
+            1
+          ]
+        },
+        "configVersion": {
+          "$ref": "#/$defs/ConfigVersion"
+        },
+        "previousHash": {
+          "$ref": "#/$defs/ConfigHash"
+        },
+        "flows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FlowConfig"
+          }
+        },
+        "daemon": {
+          "$ref": "#/$defs/DaemonConfig"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Root configuration for Ghostflow daemon with optimistic concurrency"
+    },
+    "ConfigVersion": {
+      "type": "integer",
+      "description": "Monotonic config version number for concurrency control",
+      "title": "nonNegative",
+      "minimum": 0
+    },
+    "ConfigHash": {
+      "type": "string",
+      "description": "SHA-256 hash of canonicalized config JSON",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "FlowConfig": {
+      "type": "object",
+      "required": [
+        "id",
+        "path",
+        "remote",
+        "enabled"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/FlowId"
+        },
+        "path": {
+          "$ref": "#/$defs/AbsolutePath"
+        },
+        "remote": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Configuration for a single synced repository"
+    },
+    "FlowId": {
+      "type": "string",
+      "description": "UUID identifier for a flow, stable across path changes",
+      "format": "uuid",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "AbsolutePath": {
+      "type": "string"
+    },
+    "DaemonConfig": {
+      "type": "object",
+      "required": [
+        "pullIntervalSeconds",
+        "debounceIntervalSeconds"
+      ],
+      "properties": {
+        "pullIntervalSeconds": {
+          "type": "integer",
+          "description": "a number between 10 and 3600",
+          "title": "between(10, 3600)",
+          "minimum": 10,
+          "maximum": 3600
+        },
+        "debounceIntervalSeconds": {
+          "type": "number",
+          "description": "a number between 0.1 and 60",
+          "title": "between(0.1, 60)",
+          "minimum": 0.1,
+          "maximum": 60
+        }
+      },
+      "additionalProperties": false,
+      "description": "Daemon timing configuration for sync intervals"
+    }
+  },
+  "$ref": "#/$defs/GhostflowConfig"
+}

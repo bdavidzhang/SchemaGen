@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "pullPolicy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "repository"
+      ]
+    },
+    "cronJob": {
+      "type": "object",
+      "properties": {
+        "schedule": {
+          "type": "string"
+        },
+        "concurrencyPolicy": {
+          "type": "string"
+        },
+        "successfulJobsHistoryLimit": {
+          "type": "integer"
+        },
+        "failedJobsHistoryLimit": {
+          "type": "integer"
+        },
+        "startingDeadlineSeconds": {
+          "type": "integer"
+        },
+        "backoffLimit": {
+          "type": "integer"
+        },
+        "ttlSecondsAfterFinished": {
+          "type": "integer"
+        },
+        "restartPolicy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schedule"
+      ]
+    },
+    "serviceAccount": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "rbac": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean"
+        }
+      }
+    },
+    "mountPaths": {
+      "type": "object",
+      "properties": {
+        "sshKeys": {
+          "type": "string"
+        },
+        "directoriesFile": {
+          "type": "string"
+        }
+      }
+    },
+    "directoriesFileContent": {
+      "type": "string"
+    },
+    "env": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "secretEnv": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "secretName": {
+          "type": "string"
+        },
+        "vars": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "sshKeys": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean"
+        },
+        "secretName": {
+          "type": "string"
+        },
+        "toolsKeyName": {
+          "type": "string"
+        },
+        "toolsKey": {
+          "type": "string"
+        },
+        "wdfKeyName": {
+          "type": "string"
+        },
+        "wdfKey": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

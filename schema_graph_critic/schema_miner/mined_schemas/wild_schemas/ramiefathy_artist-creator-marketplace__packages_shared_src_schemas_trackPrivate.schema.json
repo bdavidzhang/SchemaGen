@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcmp.local/schemas/trackPrivate.schema.json",
+  "title": "trackPrivate/{trackId}",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "trackId","ownerUid","previewAudioPath","rightsDocumentsPaths",
+    "rightsAttestationNotes","rightsReviewNotes","createdAt","updatedAt"
+  ],
+  "properties": {
+    "trackId": { "type": "string", "minLength": 1 },
+    "ownerUid": { "type": "string", "minLength": 1 },
+    "previewAudioPath": { "type": "string", "pattern": "^tracks\\/[^\\/]+\\/[^\\/]+\\/preview\\.mp3$" },
+    "rightsDocumentsPaths": {
+      "type": "array",
+      "maxItems": 5,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "rightsAttestationNotes": { "type": ["string","null"], "maxLength": 1000 },
+    "rightsReviewNotes": { "type": ["string","null"], "maxLength": 1000 },
+    "createdAt": { "$ref": "timestamp.schema.json" },
+    "updatedAt": { "$ref": "timestamp.schema.json" }
+  }
+}

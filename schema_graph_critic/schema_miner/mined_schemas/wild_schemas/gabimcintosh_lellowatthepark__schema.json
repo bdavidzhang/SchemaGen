@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/ProgramT"
+  },
+  "definitions": {
+    "ProgramT": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "pw": { "type": "string" },
+        "riddle": { "type": "string" },
+        "description": { "type": "string" },
+        "unlocked": { "type": "boolean" }
+      },
+      "required": ["id", "pw", "riddle", "description", "unlocked"]
+    }
+  }
+}

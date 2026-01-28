@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "separationValidFrom",
+  "type": "string",
+  "format": "date",
+  "description": "Trennungsbeginn (xs:date)."
+}

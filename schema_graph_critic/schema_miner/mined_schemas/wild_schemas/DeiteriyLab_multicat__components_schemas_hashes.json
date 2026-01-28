@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "AttackMode": {
+      "type": "string",
+      "enum": [
+        "DICTIONARY",
+        "COMBINATOR",
+        "MASK",
+        "HYBRID_DICT_MASK",
+        "HYBRID_MASK_DICT"
+      ],
+      "description": "Defines the mode of attack in Hashcat."
+    },
+    "HashType": {
+      "type": "object",
+      "properties": {
+        "hashcat_type": {
+          "type": "integer"
+        },
+        "human_readable": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "hashcat_type",
+        "human_readable"
+      ]
+    },
+    "HashCrackedValueMapping": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string",
+          "description": "The cryptographic hash that needs cracking."
+        },
+        "cracked_value": {
+          "type": "string",
+          "description": "The value resulting from cracking the hash."
+        }
+      },
+      "required": [
+        "hash",
+        "cracked_value"
+      ]
+    },
+    "HashIdMapping": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The unique identifier for the hash record."
+        },
+        "hash": {
+          "type": "string",
+          "description": "The cryptographic hash associated with the id."
+        }
+      },
+      "required": [
+        "id",
+        "hash"
+      ]
+    }
+  }
+}

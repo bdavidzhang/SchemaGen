@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/HetznerVPSDeploymentConfiguration",
+  "definitions": {
+    "HetznerVPSDeploymentConfiguration": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "$ref": "#/definitions/Location"
+        },
+        "serverType": {
+          "$ref": "#/definitions/ServerType"
+        },
+        "sshUserFingerprint": {
+          "$ref": "#/definitions/SSHUserFingerprint"
+        },
+        "serverName": {
+          "$ref": "#/definitions/ServerName"
+        },
+        "onlyAllowSshAccessFromIp": {
+          "$ref": "#/definitions/OnlyAllowSSHAccessFromIP"
+        },
+        "environmentVariables": {
+          "$ref": "#/definitions/EnvironmentVariables"
+        }
+      },
+      "required": ["location", "serverType", "serverName"],
+      "description": "The Hetzner server deployment configuration"
+    },
+    "Location": {
+      "type": "string",
+      "description": "The Hetzner location this server should be deployed to. See <a href=\"https://docs.hetzner.com/cloud/general/locations/\">Hetzner Locations</a>.",
+      "title": "Location",
+      "pattern": "^[^\\s]*"
+    },
+    "ServerType": {
+      "type": "string",
+      "description": "The Hetzner server type that should be used for this server. See <a href=\"https://docs.hetzner.com/cloud/servers/overview\">Hetzner Servers</a>.",
+      "title": "Server Type",
+      "pattern": "^[^\\s]*"
+    },
+    "SSHUserFingerprint": {
+      "type": "string",
+      "description": "The SSH fingerprint of the SSH user that should be granted access to the server.",
+      "title": "SSH User Fingerprint",
+      "pattern": "^[^\\s]*"
+    },
+    "ServerName": {
+      "type": "string",
+      "description": "The Hetzner server name that should be used for this server.",
+      "title": "Server Name",
+      "pattern": "^[^\\s]*"
+    },
+    "OnlyAllowSSHAccessFromIP": {
+      "type": "string",
+      "description": "Only allow SSH access to the server from the specified IP.",
+      "title": "Only allow SSH access from IP"
+    },
+    "EnvironmentVariables": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/EnvironmentVariable"
+      },
+      "description": "Environment variables configuration.",
+      "title": "Environment Variables"
+    },
+    "EnvironmentVariable": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/EnvVarName"
+        },
+        "value": {
+          "$ref": "#/definitions/EnvVarValue"
+        }
+      },
+      "required": ["name", "value"],
+      "additionalProperties": false,
+      "description": "Environment variable configuration.",
+      "title": "Environment Variable"
+    },
+    "EnvVarName": {
+      "type": "string",
+      "description": "Environment variable name.",
+      "title": "Environment Variable Name",
+      "pattern": "^[^\\s]*"
+    },
+    "EnvVarValue": {
+      "type": "string",
+      "description": "Environment variable value.",
+      "title": "Environment Variable Value"
+    }
+  }
+}

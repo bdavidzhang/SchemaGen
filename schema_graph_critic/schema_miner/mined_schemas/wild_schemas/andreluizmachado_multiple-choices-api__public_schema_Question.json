@@ -1,0 +1,56 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://oat.com/question.json",
+  "type": "object",
+  "title": "The Question Schema",
+  "required": [
+    "text",
+    "createdAt",
+    "choices"
+  ],
+  "properties": {
+    "text": {
+      "$id": "#/properties/text",
+      "type": "string",
+      "title": "The Text Schema",
+      "default": "",
+      "examples": [
+        "What is your name"
+      ]
+    },
+    "createdAt": {
+      "$id": "#/properties/createdAt",
+      "type": "string",
+      "title": "The CreatedAt Schema",
+      "default": "",
+      "examples": [
+        "2019-06-01T00:00:00+00:00"
+      ]
+    },
+    "choices": {
+      "$id": "#/properties/choices",
+      "type": "array",
+      "title": "The Choices Schema",
+      "items": {
+        "$id": "#/properties/choices/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "$id": "#/properties/choices/items/properties/text",
+            "type": "string",
+            "title": "The Text Schema",
+            "default": "",
+            "examples": [
+              "Luxembourg"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

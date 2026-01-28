@@ -1,0 +1,35 @@
+{
+	"id": "http://ethoinformatics.org/social-behavior-schema#",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "schema for a social behavior",
+	"type": "object",
+	"required": [ "_id" ],
+	"properties": {
+		"_id": {
+			"type": "string"
+		},
+		"animal": {
+			"type": "string",
+			"format": "uuid"
+		},
+		"title": {
+			"type": "string"
+		},
+		"notes": {
+			"type": "string"
+		},
+		"behaviors": {
+			"type": "array",
+			"oneOf": [
+				{ "$ref": "http://ethoinformatics.org/focal-behevaior-schema#" },
+				{ "$ref": "http://ethoinformatics.org/social-focal-behevaior-schema#" }
+			]
+		},
+		"collections": {
+			"type": "array",
+			"oneOf": [
+				{ "$ref": "http://ethoinformatics.org/poop-schema#" }
+			]
+		}
+	}
+}

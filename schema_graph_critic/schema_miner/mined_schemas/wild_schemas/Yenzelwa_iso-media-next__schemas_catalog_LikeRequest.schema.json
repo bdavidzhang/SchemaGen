@@ -1,0 +1,13 @@
+{
+  "$id": "https://isolakwamuntu.com/schemas/catalog/LikeRequest.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["like"],
+  "properties": {
+    "like": {
+      "type": "boolean",
+      "description": "True to like, false to unlike"
+    }
+  },
+  "additionalProperties": false
+}

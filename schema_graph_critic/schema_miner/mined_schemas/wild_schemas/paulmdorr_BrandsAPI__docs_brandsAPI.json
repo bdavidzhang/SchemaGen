@@ -1,0 +1,358 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Brands Service API",
+		"description": "This is a brand microservice testing several technologies.",
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		},
+		"version": 0.1
+	},
+	"servers": [
+		{
+			"url": "http://localhost:3000",
+			"description": "Local server"
+		}
+	],
+	"tags": [
+		{
+			"name": "brand",
+			"description": "Brands endpoints"
+		},
+		{
+			"name": "category",
+			"description": "Categories endpoints"
+		}
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security":{
+    "bearerAuth": []
+  },
+	"paths": {
+		"/brand": {
+			"get": {
+				"tags": [
+					"brand"
+				],
+				"summary": "Returns a list of brands.",
+				"parameters": [
+					{
+						"in": "query",
+						"name": "categoryId",
+						"required": false,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "The category id to filter by"
+					},
+					{
+						"in": "query",
+						"name": "offset",
+						"required": false,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "The number of items to skip before starting to collect the result set"
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"type": "integer"
+						},
+						"description": "The numbers of items to return"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "A JSON array of brand objects",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/definitions/Brand"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"brand"
+				],
+				"summary": "Add a new brand.",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Brand object that needs to be added",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Brand"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/Brand"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/brands/{id}": {
+			"put": {
+				"tags": [
+					"brand"
+				],
+				"summary": "Add a new brand.",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "The brand's id",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Brand object that needs to be added",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Brand"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/Brand"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Brand not found"
+					},
+					"500": {
+						"description": "General error"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"brand"
+				],
+				"summary": "Remove an existent brand.",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "The brand's id",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Removed"
+					},
+					"404": {
+						"description": "Brand not found"
+					},
+					"500": {
+						"description": "General error"
+					}
+				}
+			}
+		},
+		"/categories": {
+			"get": {
+				"tags": [
+					"category"
+				],
+				"summary": "Returns a list of categories.",
+				"responses": {
+					"200": {
+						"description": "A JSON array of category names",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/definitions/Category"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"category"
+				],
+				"summary": "Add a new category.",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Category object that needs to be added",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Category"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/Category"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/categories/{id}": {
+			"put": {
+				"tags": [
+					"category"
+				],
+				"summary": "Add a new category.",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "The category's id",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Category object that needs to be added",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Category"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/Category"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Category not found"
+					},
+					"500": {
+						"description": "General error"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"category"
+				],
+				"summary": "Remove an existent category.",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "The category's id",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Removed"
+					},
+					"404": {
+						"description": "Category not found"
+					},
+					"500": {
+						"description": "General error"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Brand": {
+			"type": "object",
+			"required": [
+				"name\ncategory_id"
+			],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"readOnly": true
+				},
+				"name": {
+					"type": "string"
+				},
+				"category_id": {
+					"type": "integer"
+				}
+			}
+		},
+		"Category": {
+			"type": "object",
+			"required": [
+				"name"
+			],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"readOnly": true
+				},
+				"name": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

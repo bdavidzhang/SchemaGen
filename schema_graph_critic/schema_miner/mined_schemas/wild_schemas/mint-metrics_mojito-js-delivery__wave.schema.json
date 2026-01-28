@@ -1,0 +1,151 @@
+{
+    "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
+    "title": "Wave configuration",
+    "description": "A Mojito Wave configuration for generating a test object",
+    "self": {
+        "vendor": "io.mintmetrics.mojito",
+        "name": "mojito_wave_configuration",
+        "format": "jsonschema",
+        "version": "1-0-0"
+    },
+    "type": "object",
+    "properties": {
+        "id": {
+            "title": "Wave ID",
+            "description": "The test ID. Also used as part of the experiment salt.",
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9-]+$",
+            "maxLength": 128
+        },
+        "name": {
+            "title": "Wave name",
+            "description": "The name of the test to be used in reports",
+            "type": "string",
+            "maxLength": 255
+        },
+        "sampleRate": {
+            "title": "Sample rate",
+            "description": "Percentage of units exposed to the test between 0-1",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+        },
+        "divertTo": {
+            "title": "Divert to a recipe",
+            "description": "Divert all traffic in this test to a specified recipe ID",
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9]+$",
+            "maxLength": 128
+        },
+        "recipes": {
+            "title": "Recipes object",
+            "description": "The different recipes or treatments to assign traffic amongst",
+            "type": "object",
+            "minProperties": 2,
+            "patternProperties": {
+                "^[a-zA-Z0-9]+$": {
+                    "title": "Recipe object",
+                    "description": "A recipe object",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "title": "Recipe name",
+                            "description": "The name of the recipe used in reports",
+                            "type": "string",
+                            "maxLength": 128
+                        },
+                        "js": {
+                            "title": "Recipe JS",
+                            "description": "Relative path to the recipe's JS function",
+                            "type": "string",
+                            "pattern": "\\.js$",
+                            "maxLength": 128
+                        },
+                        "css": {
+                            "title": "Recipe CSS",
+                            "description": "Relative path to the recipe's CSS stylesheet",
+                            "type": "string",
+                            "pattern": "\\.css$",
+                            "maxLength": 128
+                        },
+                        "sampleRate": {
+                            "title": "Sample rate",
+                            "description": "The sample of traffic in the test to assign to this recipe (between 0-1)",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                        }
+                    },
+                    "additionalProperties": true,
+                    "required": ["name"]
+                }
+            },
+            "additionalProperties": false
+        },
+        "trigger": {
+            "title": "Trigger function",
+            "description": "Relative path to the experiment's trigger JS function - the function that activates an experiment",
+            "type": "string",
+            "pattern": "\\.js$",
+            "maxLength": 128
+        },
+        "js": {
+            "title": "Shared JS",
+            "description": "Relative path to a shared JS function run before all recipes",
+            "type": "string",
+            "pattern": "\\.js$",
+            "maxLength": 128
+        },
+        "css": {
+            "title": "Shared CSS",
+            "description": "Relative path to shared CSS styles applied for all recipes",
+            "type": "string",
+            "pattern": "\\.css$",
+            "maxLength": 128
+        },
+        "gaExperimentId": {
+            "title": "Google Optimize Experiment ID",
+            "description": "Track this experiment in Google Optimize under a given Experiment ID",
+            "type": "string",
+            "maxLength": 40
+        },
+        "state": {
+            "title": "State",
+            "description": "Specifies whether the experiment is actively accepting users into the test (i.e. live) or not (i.e. staging or inactive)",
+            "type": "string",
+            "enum": ["live", "staging", "inactive"]
+        },
+        "manualExposure": {
+            "title": "Manual exposure",
+            "description": "Controls whether exposure tracking will be handled manually (i.e. within the variant code, or automatically, upon assignment)",
+            "type": "boolean"
+        }
+    },
+    "required": ["id", "name", "recipes", "state", "sampleRate"],
+    "additionalProperties": true,
+    "oneOf": [{
+            "properties": {
+                "recipes": {
+                    "patternProperties": {
+                        "^[a-zA-Z0-9]+$": {
+                            "required": ["sampleRate"]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "properties": {
+                "recipes": {
+                    "patternProperties": {
+                        "^[a-zA-Z0-9]+$": {
+                            "not": {
+                                "required": ["sampleRate"]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

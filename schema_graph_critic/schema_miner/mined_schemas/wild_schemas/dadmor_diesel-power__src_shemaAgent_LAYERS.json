@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Layers Configuration",
+  "description": "Konfiguracja warstw i tagów dla Schema Agent",
+  
+  "layersConfig": {
+    "system": {
+      "name": "System",
+      "description": "Opis systemu i jego funkcji",
+      "placeholder": "Opisz jaki system chcesz stworzyć...",
+      "defaultMessage": "Napisz jaki system chcesz stworzyć i jakie ma mieć funkcje",
+      "tags": [
+        {
+          "name": "define_system",
+          "description": "Definiuje główne pola: name, description, type.",
+          "params": ["name", "description", "type"],
+          "example": "<define_system name=\"System CRM\" description=\"Zarządzanie klientami\" type=\"web\">",
+          "nextLayer": "database",
+          "required": ["name", "description", "type"]
+        },
+        {
+          "name": "add_feature",
+          "description": "Dodaje pojedynczą funkcję do tablicy \"features\".",
+          "params": ["name"],
+          "example": "<add_feature name=\"Zarządzanie kontaktami\">",
+          "nextLayer": "database",
+          "outputArray": "features",
+          "required": ["name"]
+        }
+      ]
+    },
+
+    "database": {
+      "name": "Baza",
+      "description": "Tabele i relacje w bazie danych",
+      "placeholder": "Opisz jakie tabele i pola potrzebujesz...",
+      "defaultMessage": "Na podstawie opisu systemu, jakie tabele i relacje potrzebujesz?",
+      "tags": [
+        {
+          "name": "create_table",
+          "description": "Tworzy nową tabelę w bazie danych.",
+          "params": ["name", "fields"],
+          "example": "<create_table name=\"users\" fields=\"id:number:required:unique,name:string:required,email:string:required:unique\">",
+          "nextLayer": "ux",
+          "outputArray": "tables",
+          "required": ["name", "fields"],
+          "parseListParams": ["fields"]
+        },
+        {
+          "name": "create_relation",
+          "description": "Tworzy relację pomiędzy dwiema tabelami.",
+          "params": ["from", "to", "type", "foreignKey"],
+          "example": "<create_relation from=\"users\" to=\"orders\" type=\"one-to-many\" foreignKey=\"user_id\">",
+          "nextLayer": "ux",
+          "outputArray": "relations",
+          "required": ["from", "to", "type"]
+        }
+      ]
+    },
+
+    "ux": {
+      "name": "UX",
+      "description": "Interfejs użytkownika i strony",
+      "placeholder": "Opisz jakie strony i komponenty chcesz...",
+      "defaultMessage": "Jakie strony i interfejs chcesz dla swojej aplikacji?",
+      "tags": [
+        {
+          "name": "create_page",
+          "description": "Tworzy nową stronę w aplikacji.",
+          "params": ["name", "type", "table", "components"],
+          "example": "<create_page name=\"Lista użytkowników\" type=\"list\" table=\"users\" components=\"UserForm,UserTable\">",
+          "nextLayer": null,
+          "outputArray": "pages",
+          "required": ["name", "type"],
+          "parseListParams": ["components"],
+          "computedFields": [
+            {
+              "name": "slug",
+              "from": "name",
+              "type": "slugify"
+            }
+          ]
+        },
+        {
+          "name": "create_component",
+          "description": "Tworzy nowy komponent dla interfejsu.",
+          "params": ["name", "type", "props"],
+          "example": "<create_component name=\"UserForm\" type=\"form\" props=\"{\\\"method\\\":\\\"POST\\\"}\">",
+          "nextLayer": null,
+          "outputArray": "components",
+          "required": ["name", "type"]
+        },
+        {
+          "name": "set_theme",
+          "description": "Ustawia motyw interfejsu (kolor, układ, styl).",
+          "params": ["primaryColor", "layout", "style"],
+          "example": "<set_theme primaryColor=\"#3b82f6\" layout=\"sidebar\" style=\"modern\">",
+          "nextLayer": null,
+          "required": ["primaryColor", "layout"]
+        }
+      ]
+    }
+  },
+
+  "defaultSchemaState": {
+    "system": null,
+    "database": null,
+    "ux": null
+  },
+
+  "validationRules": {
+    "fieldTypes": ["string", "number", "boolean", "date", "json"],
+    "relationTypes": ["one-to-one", "one-to-many", "many-to-many"],
+    "pageTypes": ["list", "detail", "form", "dashboard", "auth"],
+    "componentTypes": ["button", "form", "table", "chart", "modal", "menu"],
+    "layoutTypes": ["sidebar", "topbar", "minimal"],
+    "styleTypes": ["modern", "classic", "material", "bootstrap"],
+    "systemTypes": ["web", "mobile", "desktop", "api"]
+  }
+}

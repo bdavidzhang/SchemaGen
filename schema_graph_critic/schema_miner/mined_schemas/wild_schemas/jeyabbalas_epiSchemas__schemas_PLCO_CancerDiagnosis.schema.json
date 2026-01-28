@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/schemas/PLCO/CancerDiagnosis.schema.json",
+    "title": "Cancer Diagnosis",
+    "type": "object",
+    "properties": {
+        "j_fstcan_cancer": {
+            "type": "string",
+            "title": "Confirmed Cancer?",
+            "description": "Does the participant have confirmed cancer diagnosed during the trial?",
+            "enum": [
+                "0",
+                "1"
+            ],
+            "enumDescriptions": [
+                "No Confirmed Cancer",
+                "Confirmed Cancer"
+            ]
+        },
+        "j_fstcan_cancer_diagdays": {
+            "type": [
+                "number",
+                "string"
+            ],
+            "title": "First Confirmed Cancer Diagnosis Days",
+            "description": "",
+            "enum": [
+                ".N"
+            ],
+            "enumDescriptions": [
+                "Not Applicable"
+            ]
+        },
+        "j_fstcan_registry_stat_cat": {
+            "type": "string",
+            "title": "Source of Cancer, Registry or Trial",
+            "description": "The source from where the cancer comes, trial or registry",
+            "enum": [
+                ".N",
+                "1",
+                "2",
+                "3"
+            ],
+            "enumDescriptions": [
+                "Not Applicable",
+                "Trial Only",
+                "Registry Only",
+                "Both"
+            ]
+        }
+    },
+    "required": [
+        "j_fstcan_cancer",
+        "j_fstcan_cancer_diagdays",
+        "j_fstcan_registry_stat_cat"
+    ]
+}

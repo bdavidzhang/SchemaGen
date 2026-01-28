@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Créditos Estudiantes",
+  "type": "object",
+  "properties": {
+    "creditosEstudiantes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "idEstudiante": { "type": "string" },
+          "nombreCompleto": { "type": "string" },
+          "cedula": { "type": "string" },
+          "carrera": { "type": "string" },
+          "correo": { "type": "string", "format": "email" },
+          "telefono": { "type": "string" },
+          "credito": {
+            "type": "object",
+            "properties": {
+              "idCredito": { "type": "string" },
+              "montoAprobado": { "type": "number" },
+              "fechaAprobacion": { "type": "string", "format": "date" },
+              "tasaInteresAnual": { "type": "number" },
+              "plazoMeses": { "type": "integer" },
+              "estado": { "type": "string" },
+              "historialPagos": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "fechaPago": { "type": "string", "format": "date" },
+                    "monto": { "type": "number" },
+                    "estatus": { "type": "string", "enum": ["Pagado", "Pendiente"] }
+                  },
+                  "required": ["fechaPago", "monto", "estatus"]
+                }
+              }
+            },
+            "required": [
+              "idCredito",
+              "montoAprobado",
+              "fechaAprobacion",
+              "tasaInteresAnual",
+              "plazoMeses",
+              "estado",
+              "historialPagos"
+            ]
+          }
+        },
+        "required": [
+          "idEstudiante",
+          "nombreCompleto",
+          "cedula",
+          "carrera",
+          "correo",
+          "telefono",
+          "credito"
+        ]
+      }
+    }
+  },
+  "required": ["creditosEstudiantes"]
+}

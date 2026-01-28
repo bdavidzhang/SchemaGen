@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ERP Adapter Profile",
+  "description": "Schema for defining a single ERP adapter profile that references external capabilities",
+  "type": "object",
+  "required": ["capabilitiesReference", "adapterProfile"],
+  "properties": {
+    "capabilitiesReference": {
+      "type": "object",
+      "description": "Reference to the capabilities definitions",
+      "required": ["generatedCapabilitiesNamespace", "generatedInterfacesNamespace"],
+      "properties": {
+        "generatedCapabilitiesNamespace": {
+          "type": "string",
+          "description": "The namespace for generated capability classes (must match the capabilities file)"
+        },
+        "generatedInterfacesNamespace": {
+          "type": "string",
+          "description": "The namespace for generated interface definitions (must match the capabilities file)"
+        },
+        "capabilitiesFile": {
+          "type": "string",
+          "description": "Optional path to the capabilities definition file for reference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "adapterProfile": {
+      "type": "object",
+      "description": "The adapter profile definition",
+      "required": ["name", "targetNamespace", "targetClassName"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the adapter profile (e.g., 'ViewpointVista')"
+        },
+        "targetNamespace": {
+          "type": "string",
+          "description": "The namespace where the adapter class will be generated"
+        },
+        "targetClassName": {
+          "type": "string", 
+          "description": "The name of the adapter class that will be generated"
+        },
+        "supportedCapabilities": {
+          "type": "array",
+          "description": "List of capability names that this adapter supports",
+          "items": {
+            "type": "string",
+            "description": "Name of a capability defined in the referenced capabilities file"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

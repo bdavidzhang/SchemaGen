@@ -1,0 +1,144 @@
+{
+  "$id": "https://github.com/softilium/elorm-gen/elorm.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Elorm Schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "Entities",
+    "PackageName"
+  ],
+  "properties": {
+    "PackageName": {
+      "type": "string"
+    },
+    "Entities": {
+      "type": "array",
+      "description": "List of entities",
+      "items": {
+        "$ref": "#/$defs/Entity"
+      }
+    },
+    "Fragments": {
+      "type": "array",
+      "description": "List of fragments",
+      "items": {
+        "$ref": "#/$defs/Fragment"
+      }
+    }
+  },
+  "$defs": {
+    "Index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Unique",
+        "Columns"
+      ],
+      "properties": {
+        "Unique": {
+          "type": "boolean"
+        },
+        "Columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "IsUnique": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "Entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ObjectName",
+        "TableName",
+        "Columns"
+      ],
+      "properties": {
+        "ObjectName": {
+          "type": "string"
+        },
+        "TableName": {
+          "type": "string"
+        },
+        "UseSoftDelete": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, the entity will use soft delete mechanism"
+        },
+        "Fragments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Columns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/entityColumn"
+          }
+        },
+        "Indexes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Index"
+          }
+        }
+      }
+    },
+    "Fragment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "FragmentName"
+      ],
+      "properties": {
+        "FragmentName": {
+          "type": "string"
+        },
+        "Columns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/entityColumn"
+          }
+        },
+        "Indexes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Index"
+          }
+        }
+      }
+    },
+    "entityColumn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Name",
+        "ColumnType"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "ColumnType": {
+          "type": "string"
+        },
+        "Len": {
+          "type": "number"
+        },
+        "Precision": {
+          "type": "number"
+        },
+        "Scale": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

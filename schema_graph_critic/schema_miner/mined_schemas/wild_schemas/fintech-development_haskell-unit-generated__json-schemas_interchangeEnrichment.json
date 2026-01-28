@@ -1,0 +1,77 @@
+{
+
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "interchangeEnrichment.json",
+  "definitions": {
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "depositAccount"
+                },
+                "id": {
+                  "$ref": "types.json#/definitions/identifier"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "account"
+      ],
+      "additionalProperties": false
+    },
+    "interchangeEnrichment": {
+      "title": "Sandbox Interchange Enrichment",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "interchangeEnrichment" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "interchange": {
+              "type": "integer"
+            }
+          },
+          "required": ["interchange"],
+          "additionalProperties": false
+        },
+        "relationships": { "$ref": "#/definitions/relationships" }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "relationships",
+        "attributes"
+      ]
+    }
+  },
+  "title": "Interchange Enrichment",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/interchangeEnrichment"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "data"
+  ]
+}

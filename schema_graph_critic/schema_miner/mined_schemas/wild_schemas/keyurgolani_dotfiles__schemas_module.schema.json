@@ -1,0 +1,265 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Module Definition Schema",
+  "description": "Schema for validating individual module.yaml files",
+  "type": "object",
+  "required": ["name", "version", "description", "platforms"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Module name (must match directory name)",
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "version": {
+      "type": "string",
+      "description": "Module version (semantic versioning)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9-]+)?$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the module",
+      "minLength": 10,
+      "maxLength": 200
+    },
+    "category": {
+      "type": "string",
+      "description": "Module category",
+      "enum": ["shell", "editor", "vcs", "development", "system", "security", "productivity", "media", "other"],
+      "default": "other"
+    },
+    "author": {
+      "type": "string",
+      "description": "Module author",
+      "maxLength": 100
+    },
+    "license": {
+      "type": "string",
+      "description": "Module license",
+      "default": "MIT"
+    },
+    "homepage": {
+      "type": "string",
+      "description": "Module homepage URL",
+      "format": "uri"
+    },
+    "platforms": {
+      "type": "array",
+      "description": "Supported platforms",
+      "items": {
+        "type": "string",
+        "enum": ["macos", "ubuntu", "wsl", "amazon-linux", "all"]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Required modules that must be installed first",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9_-]+$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "optional_dependencies": {
+      "type": "array",
+      "description": "Optional modules that enhance functionality if present",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9_-]+$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "conflicts": {
+      "type": "array",
+      "description": "Modules that conflict with this module",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9_-]+$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "system_dependencies": {
+      "type": "object",
+      "description": "System packages required by platform",
+      "patternProperties": {
+        "^(macos|ubuntu|wsl|amazon-linux|all)$": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "files": {
+      "type": "array",
+      "description": "Files to be installed",
+      "items": {
+        "type": "object",
+        "required": ["source", "target"],
+        "properties": {
+          "source": {
+            "type": "string",
+            "description": "Source file path relative to module directory"
+          },
+          "target": {
+            "type": "string",
+            "description": "Target file path (supports ~ expansion)"
+          },
+          "template": {
+            "type": "boolean",
+            "description": "Whether file should be processed as template",
+            "default": false
+          },
+          "executable": {
+            "type": "boolean",
+            "description": "Whether file should be executable",
+            "default": false
+          },
+          "backup": {
+            "type": "boolean",
+            "description": "Whether to backup existing file",
+            "default": true
+          },
+          "platforms": {
+            "type": "array",
+            "description": "Platforms this file applies to",
+            "items": {
+              "type": "string",
+              "enum": ["macos", "ubuntu", "wsl", "amazon-linux", "all"]
+            },
+            "uniqueItems": true,
+            "default": ["all"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "directories": {
+      "type": "array",
+      "description": "Directories to be created",
+      "items": {
+        "type": "object",
+        "required": ["path"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Directory path (supports ~ expansion)"
+          },
+          "mode": {
+            "type": "string",
+            "description": "Directory permissions (octal)",
+            "pattern": "^[0-7]{3,4}$",
+            "default": "755"
+          },
+          "platforms": {
+            "type": "array",
+            "description": "Platforms this directory applies to",
+            "items": {
+              "type": "string",
+              "enum": ["macos", "ubuntu", "wsl", "amazon-linux", "all"]
+            },
+            "uniqueItems": true,
+            "default": ["all"]
+          }
+        },
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "hooks": {
+      "type": "object",
+      "description": "Installation hooks",
+      "properties": {
+        "pre_install": {
+          "type": "string",
+          "description": "Script to run before installation"
+        },
+        "post_install": {
+          "type": "string",
+          "description": "Script to run after installation"
+        },
+        "pre_uninstall": {
+          "type": "string",
+          "description": "Script to run before uninstallation"
+        },
+        "post_uninstall": {
+          "type": "string",
+          "description": "Script to run after uninstallation"
+        },
+        "validate": {
+          "type": "string",
+          "description": "Script to validate installation"
+        }
+      },
+      "additionalProperties": false
+    },
+    "configuration": {
+      "type": "object",
+      "description": "Module-specific configuration options",
+      "properties": {
+        "interactive": {
+          "type": "boolean",
+          "description": "Whether module requires interactive input",
+          "default": false
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Installation priority (lower numbers install first)",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 50
+        },
+        "timeout": {
+          "type": "integer",
+          "description": "Installation timeout in seconds",
+          "minimum": 30,
+          "maximum": 3600,
+          "default": 300
+        },
+        "retry_count": {
+          "type": "integer",
+          "description": "Number of retry attempts on failure",
+          "minimum": 0,
+          "maximum": 5,
+          "default": 2
+        }
+      },
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "description": "Module tags for categorization",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_-]+$"
+          },
+          "uniqueItems": true
+        },
+        "size": {
+          "type": "string",
+          "description": "Estimated installation size"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "Last update date",
+          "format": "date"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

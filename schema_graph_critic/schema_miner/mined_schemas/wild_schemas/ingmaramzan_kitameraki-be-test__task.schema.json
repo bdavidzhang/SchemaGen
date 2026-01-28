@@ -1,0 +1,51 @@
+{
+  "title": "Task",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the task"
+    },
+    "organizationId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier of the organization to which the task belongs"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Title of the task"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Description of the task"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Due date and time for the task"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Priority level of the task"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["todo", "in-progress", "completed"],
+      "description": "Status of the task"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 50
+      },
+      "description": "Tags associated with the task"
+    }
+  },
+  "required": ["id", "organizationId", "title", "status"],
+  "additionalProperties": false
+}

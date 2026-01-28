@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/schemas/person",
+  "title": "Person",
+  "description": "A person.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "givenName": {
+      "type": "string"
+    },
+    "middleName": {
+      "type": ["string", "null"]
+    },
+    "familyName": {
+      "type": "string"
+    },
+    "securityMarking": {
+      "enum": [
+        "Ingen",
+        "Sekretessmarkering",
+        "Skyddad folkbokföring"
+      ]
+    },
+    "eduPersonPrincipalNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "civicNo": {
+      "$ref": "/schemas/personCivicNo"
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "$ref": "/schemas/email"
+      }
+    },
+    "enrolments": {
+      "type": "array",
+      "items": {
+        "$ref": "/schemas/enrolment"
+      }
+    },
+    "externalIdentifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "context": {
+            "type": "string"
+          },
+          "globallyUnique": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "value",
+          "context",
+          "globallyUnique"
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "givenName",
+    "familyName",
+    "eduPersonPrincipalNames",
+    "civicNo"
+  ]
+}

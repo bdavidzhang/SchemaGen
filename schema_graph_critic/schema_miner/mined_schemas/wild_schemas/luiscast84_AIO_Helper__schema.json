@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+      "timestamp": {
+          "type": "string"
+      },
+      "device_id": {
+          "type": "string"
+      },
+      "equipment_type": {
+          "type": "string"
+      },
+      "data": {
+          "type": "object",
+          "properties": {
+              "id": {
+                  "type": "integer"
+              },
+              "device_id": {
+                  "type": "string"
+              },
+              "temperature_celsius": {
+                  "type": "number"
+              },
+              "humidity_percent": {
+                  "type": "number"
+              },
+              "power_usage_kwh": {
+                  "type": "number"
+              },
+              "operting_mode": {
+                  "type": "string"
+              }
+          },
+          "required": [
+              "id",
+              "device_id",
+              "temperature_celsius",
+              "humidity_percent",
+              "power_usage_kwh",
+              "operting_mode"
+          ]
+      }
+  },
+  "required": [
+      "timestamp",
+      "device_id",
+      "equipment_type",
+      "data"
+  ]
+}

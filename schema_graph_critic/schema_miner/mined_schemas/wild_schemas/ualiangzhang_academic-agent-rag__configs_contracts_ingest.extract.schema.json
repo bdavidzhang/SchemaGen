@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ingest.extract",
+  "type": "object",
+  "properties": {
+    "doc_id": {"type": "string"},
+    "trace_id": {"type": "string"},
+    "run_id": {"type": "string"}
+  },
+  "required": ["doc_id"],
+  "additionalProperties": false,
+  "x-errors": {
+    "codes": [
+      {"code": "TIMEOUT", "retryable": true},
+      {"code": "NOT_FOUND", "retryable": false}
+    ],
+    "timeout_ms": 15000,
+    "rate_limit_rps": 5,
+    "idempotent": true
+  },
+  "x-output": {
+    "type": "object",
+    "properties": {
+      "text": {"type": "string"},
+      "metadata": {"type": "object"}
+    },
+    "required": ["text"]
+  }
+}

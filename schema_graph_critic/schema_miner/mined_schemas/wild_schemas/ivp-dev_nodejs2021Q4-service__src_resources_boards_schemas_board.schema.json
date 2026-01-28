@@ -1,0 +1,19 @@
+{
+  "$id": "board",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "$ref": "column"
+      }
+    }
+  },
+  "required": ["id"]
+}

@@ -1,0 +1,408 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Rule Set",
+  "required": [
+    "text",
+    "rules"
+  ],
+  "$ref": "#/$defs/described",
+  "properties": {
+    "rules": {
+      "type": "array",
+      "default": [],
+      "title": "The rules",
+      "items": {
+        "$ref": "#/$defs/rule"
+      },
+      "examples": [
+        [
+          {
+            "text": "The label",
+            "description": "Text Text",
+            "controller": {
+              "type": "label"
+            }
+          },
+          {
+            "text": "The boolean",
+            "description": "Text Text",
+            "controller": {
+              "type": "boolean",
+              "id": "sodium"
+            }
+          },
+          {
+            "text": "The cycling",
+            "description": "Text Text",
+            "controller": {
+              "type": "cycling",
+              "ids": [
+                "sodium",
+                "optifabric"
+              ]
+            }
+          },
+          {
+            "text": "The mods group",
+            "description": "Text Text",
+            "controller": {
+              "type": "mods_group",
+              "collapsed": false,
+              "ids": [
+                "sodium",
+                "optifabric"
+              ]
+            }
+          },
+          {
+            "text": "The rules group",
+            "description": "Text Text",
+            "controller": {
+              "type": "rules_group",
+              "collapsed": true,
+              "rules": [
+                {
+                  "text": "text",
+                  "description": "description",
+                  "controller": {
+                    "type": "label"
+                  }
+                },
+                {
+                  "text": "text",
+                  "description": "description",
+                  "controller": {
+                    "type": "boolean",
+                    "id": "sodium"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "examples": [
+    {
+      "text": {
+        "text": "My first rule set",
+        "bold": true,
+        "color": "green"
+      },
+      "description": "Awwww",
+      "rules": [
+        {
+          "text": "The label",
+          "description": "Text Text",
+          "controller": {
+            "type": "label"
+          }
+        },
+        {
+          "text": "The boolean",
+          "description": "Text Text",
+          "controller": {
+            "type": "boolean",
+            "id": "sodium"
+          }
+        },
+        {
+          "text": "The cycling",
+          "description": "Text Text",
+          "controller": {
+            "type": "cycling",
+            "ids": [
+              "sodium",
+              "optifabric"
+            ]
+          }
+        },
+        {
+          "text": "The mods group",
+          "description": "Text Text",
+          "controller": {
+            "type": "mods_group",
+            "collapsed": false,
+            "ids": [
+              "sodium",
+              "optifabric"
+            ]
+          }
+        },
+        {
+          "text": "The rules group",
+          "description": "Text Text",
+          "controller": {
+            "type": "rules_group",
+            "collapsed": true,
+            "rules": [
+              {
+                "text": "text",
+                "description": "description",
+                "controller": {
+                  "type": "label"
+                }
+              },
+              {
+                "text": "text",
+                "description": "description",
+                "controller": {
+                  "type": "boolean",
+                  "id": "sodium"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "$defs": {
+    "text": {
+      "description": "Minecraft Java Raw Json Text. Find a generator online",
+      "oneOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "described": {
+      "description": "Object with text and description",
+      "type": "object",
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "text": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "title": "Rule",
+      "required": [
+        "text",
+        "controller"
+      ],
+      "$ref": "#/$defs/described",
+      "properties": {
+        "text": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "controller": {
+          "type": "object",
+          "title": "The controllers",
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "label",
+                    "boolean",
+                    "cycling",
+                    "mods_group",
+                    "rules_group"
+                  ]
+                }
+              }
+            },
+            {
+              "oneOf": [
+                {
+                  "properties": {
+                    "type": "label"
+                  }
+                },
+                {
+                  "properties": {
+                    "type": "boolean",
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "type": "cycling",
+                    "ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "type": "mods_group",
+                    "collapsed": {
+                      "description": "Default is false",
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "show_mods": {
+                      "description": "For hiding mods of mod set in the mods",
+                      "type": "boolean",
+                      "default": true
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "type": "rules_group",
+                    "collapsed": {
+                      "description": "Default is false",
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "rules": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/rule"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "examples": [
+            {
+              "type": "label"
+            },
+            {
+              "type": "boolean",
+              "id": "sodium"
+            },
+            {
+              "type": "cycling",
+              "ids": [
+                "sodium",
+                "optifabric"
+              ]
+            },
+            {
+              "type": "mods_group",
+              "collapsed": false,
+              "ids": [
+                "sodium",
+                "optifabric"
+              ]
+            },
+            {
+              "type": "rules_group",
+              "collapsed": true,
+              "rules": [
+                {
+                  "text": "text",
+                  "description": "description",
+                  "controller": {
+                    "type": "label"
+                  }
+                },
+                {
+                  "text": "text",
+                  "description": "description",
+                  "controller": {
+                    "type": "boolean",
+                    "id": "sodium"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "examples": [
+        {
+          "text": "The label",
+          "description": "Text Text",
+          "controller": {
+            "type": "label"
+          }
+        },
+        {
+          "text": "The boolean",
+          "description": "Text Text",
+          "controller": {
+            "type": "boolean",
+            "id": "sodium"
+          }
+        },
+        {
+          "text": "The cycling",
+          "description": "Text Text",
+          "controller": {
+            "type": "cycling",
+            "ids": [
+              "sodium",
+              "optifabric"
+            ]
+          }
+        },
+        {
+          "text": "The mods group",
+          "description": "Text Text",
+          "controller": {
+            "type": "mods_group",
+            "collapsed": false,
+            "ids": [
+              "sodium",
+              "optifabric"
+            ]
+          }
+        },
+        {
+          "text": "The rules group",
+          "description": "Text Text",
+          "controller": {
+            "type": "rules_group",
+            "collapsed": true,
+            "rules": [
+              {
+                "text": "text",
+                "description": "description",
+                "controller": {
+                  "type": "label"
+                }
+              },
+              {
+                "text": "text",
+                "description": "description",
+                "controller": {
+                  "type": "boolean",
+                  "id": "sodium"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

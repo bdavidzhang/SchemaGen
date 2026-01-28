@@ -1,0 +1,265 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.1",
+        "title": "Collections of Persons Design Pattern"
+    },
+    "host": "kkanaskietraining-test.apigee.net",
+    "basePath": "/api/v1",
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/persons": {
+            "get": {
+                "tags": [
+                    "Person"
+                ],
+                "description": "Return list of persons",
+                "operationId": "getPersons",
+                "parameters": [
+                  { "$ref": "common.json#/parameters/authorization" },
+                  { "$ref": "common.json#/parameters/pageSize" },
+                  { "$ref": "common.json#/parameters/pageNumber" }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/PersonsResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "common.json#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Person"
+                ],
+                "description": "Create persons",
+                "operationId": "createPerson",
+                "parameters": [
+                    {
+                        "name": "profile",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Person"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/PersonResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "common.json#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/persons/{personId}": {
+            "get": {
+                "tags": [
+                    "Person"
+                ],
+                "description": "Return person detail",
+                "operationId": "getPerson",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "expand",
+                        "in": "query",
+                        "required": false,
+                        "description": "",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/PersonResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "common.json#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Person"
+                ],
+                "description": "Update person detail",
+                "operationId": "updatePerson",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "profile",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Person"
+                        }
+                    },
+                    {
+                        "name": "expand",
+                        "in": "query",
+                        "required": false,
+                        "description": "",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/PersonResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "common.json#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Person"
+                ],
+                "description": "Return person detail",
+                "operationId": "deletePerson",
+                "parameters": [
+                    {
+                        "name": "personId",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "expand",
+                        "in": "query",
+                        "required": false,
+                        "description": "",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/PersonResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "common.json#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }   
+        }
+    },
+    "definitions": {
+        "Person": {
+            "required": [
+                "personFullName"
+            ],
+            "properties": {
+                "personFullName": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "number"
+                },
+                "lastName": {
+                    "type": "string"
+                }
+            }
+        },
+        "PersonResponse": {
+            "allOf": [
+                {
+                    "properties": {
+                        "metadata": {
+                            "$ref": "common.json#/definitions/metadata"
+                        },
+                        "uuid": {
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/Person"
+                }
+            ]
+        },
+        "PersonsResponse": {
+            "type": "object",
+            "required": [
+                "metadata",
+                "pagination",
+                "persons"
+            ],
+            "properties": {
+                "metadata": {
+                    "$ref": "common.json#/definitions/metadata"
+                },
+                "pagination": {
+                    "$ref": "common.json#/definitions/pagination"
+                },
+                "persons": {
+                    "description": "Persons response",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PersonResponse"
+                    }
+                }
+            }
+        }
+    }
+}

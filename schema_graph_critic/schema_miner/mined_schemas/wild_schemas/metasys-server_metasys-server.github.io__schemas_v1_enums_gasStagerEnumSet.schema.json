@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/gasStagerEnumSet.schema.json",
+  "title": "gasStagerEnumSet",
+  "description": "Gas Stager",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "0"
+      ],
+      "description": "No Heat"
+    },
+    {
+      "enum": [
+        1,
+        "1"
+      ],
+      "description": "Low Fire Heat"
+    },
+    {
+      "enum": [
+        2,
+        "2"
+      ],
+      "description": "Modulated Heat"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

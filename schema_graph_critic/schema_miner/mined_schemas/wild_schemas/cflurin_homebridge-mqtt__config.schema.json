@@ -1,0 +1,89 @@
+{
+  "pluginAlias": "mqtt",
+  "pluginType": "platform",
+  "version": "1.0.2",
+  "singular": true,
+  "headerDisplay": "Homebridge-mqtt is a dynamic Plugin that allows you to add and control accessories with a mqtt API.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "mqtt",
+        "required": true
+      },
+      "url":  {
+        "title": "url",
+        "type": "string",
+        "default": "mqtt://127.0.0.1",
+        "required": true,
+        "description": "Replace 127.0.0.1 with the ip-address of your mqtt broker."
+      },
+      "port": {
+        "title": "port",
+        "type": "string",
+        "required": false,
+        "default": "1883",
+        "description": "Mqtt port (optional, default 1883)."
+      },
+      "username": {
+        "title": "username",
+        "type": "string",
+        "required": false,
+        "description": "Add a username for the mqtt broker if required."
+      },
+      "password": {
+        "title": "password",
+        "type": "string",
+        "required": false,
+        "description": "Add a password for the mqtt broker if required."
+      },
+      "qos": {
+        "title": "qos",
+        "type": "integer",
+        "required": false,
+        "default": 0,
+        "description": "0: fire and forget, 1: at least once, 2: once and once only. Default: 0."
+      },
+      "cert": {
+        "title": "cert",
+        "type": "string",
+        "required": false,
+        "description": "Path to the certificate (optional)."
+      },
+      "key": {
+        "title": "key",
+        "type": "string",
+        "required": false,
+        "description": "Path to the key (optional)."
+      },
+      "ca": {
+        "title": "ca",
+        "type": "string",
+        "required": false,
+        "description": "Path to the ca_certificate (optional)."
+      },
+      "client_id": {
+        "title": "client_id",
+        "type": "string",
+        "required": false,
+        "description": "Mqtt client id (optional)."
+      },
+      "topic_type": {
+        "title": "topic_type",
+        "type": "string",
+        "required": false,
+        "default": "multiple",
+        "description": "multiple: the data is sent to all devices, single: the data is sent to a single device. Default: multiple."
+      },
+      "topic_prefix": {
+        "title": "topic_prefix",
+        "type": "string",
+        "required": false,
+        "default": "homebridge",
+        "description": "User defined topic_prefix e.g. 'hmtest'. Default 'homebridge'."
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "description": "JSON Schema for holders of collections",
+  "definitions": {
+    "info": {
+      "type": "object",
+      "properties": {
+        "id": {"$ref": "id-attr"},
+        "name": {"$ref": "name-attr"},
+        "description": {"$ref": "description-attr"}
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "http://github.com/toboter/schema/raw/master/holder.json",
+  "type": "object",
+  "required": ["schema", "id"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "enum": ["http://github.com/toboter/schema/raw/master/holder.json"]
+    },
+    "id": {
+      "id": "id-attr",
+      "type": [
+        "string",
+        "number"
+      ]
+    },
+    "name": {
+      "id": "name-attr",
+      "type": "string"
+    },
+    "description": {
+      "id": "description-attr",
+      "$ref": "shared.json#/definitions/languages"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "geo": {
+          "$ref": "shared.json#/definitions/geo"
+        }
+      }
+    },
+    "people": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "personData": {
+            "$ref": "person.json#/definitions/info"
+          },
+          "participated": {
+            "$ref": "shared.json#/definitions/date-variable"
+          },
+          "role": {
+            "anyOf": [
+              {"type": "string"},
+              {"$ref": "concept.json#/definitions/info"}
+            ]
+          },
+          "comment": {
+            "$ref": "shared.json#/definitions/languages"
+          }
+        }
+      }
+    },
+    "collections": {
+      "type": "array",
+      "items": {
+        "$ref": "collection.json#/definitions/info"
+      }
+    }
+  }
+}

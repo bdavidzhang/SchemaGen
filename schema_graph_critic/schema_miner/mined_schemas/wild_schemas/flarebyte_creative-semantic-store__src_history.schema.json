@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "headline": {
+            "type": "string"
+          },
+          "alternativeHeadline": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "inLanguage": {
+            "type": "string"
+          },
+          "typeOfWork": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "url"
+            ]
+          },
+          "typeOfContribution": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "url"
+            ]
+          },
+          "license": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "twitter:hastag": {
+                "type": "string"
+              },
+              "alternateName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "description",
+              "name",
+              "twitter:hastag",
+              "alternateName"
+            ]
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "twitter:hastag": {
+                  "type": "string"
+                },
+                "wikipedia:url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "twitter:hastag",
+                "wikipedia:url"
+              ]
+            }
+          },
+          "author": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "twitter:username": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "url",
+              "twitter:username"
+            ]
+          }
+        },
+        "required": [
+          "headline",
+          "alternativeHeadline",
+          "description",
+          "url",
+          "inLanguage",
+          "typeOfWork",
+          "typeOfContribution",
+          "license",
+          "keywords",
+          "author"
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "history"
+  ]
+}

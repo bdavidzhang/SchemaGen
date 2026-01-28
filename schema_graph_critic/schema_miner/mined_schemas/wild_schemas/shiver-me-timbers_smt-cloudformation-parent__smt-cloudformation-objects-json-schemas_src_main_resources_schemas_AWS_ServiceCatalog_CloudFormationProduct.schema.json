@@ -1,0 +1,71 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "AWS_ServiceCatalog_CloudFormationProduct.schema.json",
+  "title" : "CloudFormationProduct",
+  "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html",
+  "type" : "object",
+  "javaType" : "shiver.me.timbers.aws.servicecatalog.CloudFormationProduct",
+  "properties" : {
+    "ReplaceProvisioningArtifacts" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-replaceprovisioningartifacts",
+      "type" : "boolean",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "Owner" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-owner",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "SupportDescription" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-supportdescription",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "Description" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-description",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "Distributor" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-distributor",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "SupportEmail" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-supportemail",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "AcceptLanguage" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-acceptlanguage",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "SupportUrl" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-supporturl",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "Tags" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-tags",
+      "type" : "array",
+      "items" : {
+        "$ref" : "Tag.schema.json",
+        "javaType" : "shiver.me.timbers.aws.Property<shiver.me.timbers.aws.Tag>"
+      }
+    },
+    "Name" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-name",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "ProvisioningArtifactParameters" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-provisioningartifactparameters",
+      "type" : "array",
+      "items" : {
+        "$ref" : "AWS_ServiceCatalog_CloudFormationProduct.ProvisioningArtifactProperties.schema.json",
+        "javaType" : "shiver.me.timbers.aws.Property<shiver.me.timbers.aws.servicecatalog.CloudFormationProductProvisioningArtifactProperties>"
+      }
+    }
+  }
+}

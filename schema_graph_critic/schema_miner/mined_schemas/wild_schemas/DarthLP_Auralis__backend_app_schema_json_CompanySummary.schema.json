@@ -1,0 +1,47 @@
+{
+  "$ref": "#/definitions/CompanySummary",
+  "definitions": {
+    "CompanySummary": {
+      "type": "object",
+      "properties": {
+        "company_id": {
+          "type": "string"
+        },
+        "one_liner": {
+          "type": "string"
+        },
+        "founded_year": {
+          "type": "number"
+        },
+        "hq_city": {
+          "type": "string"
+        },
+        "employees": {
+          "type": "string"
+        },
+        "footprint": {
+          "type": "string"
+        },
+        "sites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://auralis.com/schemas/CompanySummary.schema.json",
+  "title": "CompanySummary Schema",
+  "description": "JSON Schema for CompanySummary validation in Auralis backend",
+  "generated": "2025-09-07T14:50:54.730Z",
+  "version": "1.0.0"
+}

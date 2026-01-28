@@ -1,0 +1,137 @@
+{
+  "fields": [
+    {
+      "name": "Sample.ID",
+      "title": "Sample ID",
+      "type": "string",
+      "description": "Combined sample identifier",
+      "rdfType": "http://purl.obolibrary.org/obo/OBI_0001169",
+      "constraints": [ {"unique": true}, {"required": true} ],
+      "custom": {
+        "columnRole": "primaryIdentifier",
+        "relations": [
+          {
+            "relatedTo": ["Source"],
+            "relationType": "derivedFromBiologicalSource"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Source.ID",
+      "title": "Source ID",
+      "type": "string",
+      "description": "Identifier of source animal",
+      "rdfType": "http://purl.obolibrary.org/obo/OBI_0001169",
+      "constraints": [ {"unique": false}, {"required": true} ],
+      "custom": {"columnRole": "identifier"}
+    },
+    {
+      "name": "Birthdate",
+      "title": "Date of Birth",
+      "type": "date",
+      "description": "Date of birth of the source animal",
+      "rdfType": "http://purl.obolibrary.org/obo/NCIT_C68615",
+      "constraints": [ {"required": true} ],
+      "custom": {
+        "columnRole": "characteristic",
+        "unit": "weeks",
+        "mappedDefinition": {"name": "birth date", "quantityKind": "Time"}
+      }
+    },
+    {
+      "name": "Sex",
+      "title": "Sex",
+      "type": "string",
+      "description": "Biological sex of the source animal",
+      "rdfType": "http://purl.obolibrary.org/obo/PATO_0000047",
+      "constraints": [
+        { "required": true                             },
+        {                   "enum": ["Male", "Female"] }
+      ],
+      "custom": {
+        "columnRole": "characteristic",
+        "mappedDefinition": {"name": "sex", "quantityKind": "categorical"}
+      }
+    },
+    {
+      "name": "Genotype",
+      "title": "Genotype",
+      "type": "string",
+      "description": "Genetic makeup or allele combination of the source animal",
+      "rdfType": "http://purl.obolibrary.org/obo/GENO_0000002",
+      "constraints": [ {"required": false} ],
+      "custom": {
+        "columnRole": "factor",
+        "mappedDefinition": {"name": "genotype"}
+      }
+    },
+    {
+      "name": "Assay.Date",
+      "title": "Assay Date",
+      "type": "date",
+      "description": "Date when the assay was performed",
+      "rdfType": "http://purl.obolibrary.org/obo/OBI_0001319",
+      "constraints": [ {"required": false} ],
+      "custom": {"columnRole": "procedural"}
+    },
+    {
+      "name": "LTF_1",
+      "title": "Latency to Fall (1)",
+      "type": "number",
+      "description": "First trial latency to fall measurement, in seconds",
+      "rdfType": "http://purl.obolibrary.org/obo/OBI_0000968",
+      "constraints": [ {"minimum": 0}, {"maximum": 100} ],
+      "custom": {
+        "columnRole": "measure",
+        "unit": "seconds",
+        "index": 0,
+        "mappedDefinition": {
+          "name"        : "latency to fall",
+          "quantityKind": "Time"
+        },
+        "timepoint": 1
+      }
+    },
+    {
+      "name": "LTF_2",
+      "title": "Latency to Fall (2)",
+      "type": "number",
+      "description": "Second trial latency to fall measurement, in seconds",
+      "rdfType": "http://purl.obolibrary.org/obo/OBI_0000968",
+      "constraints": [ {"minimum": 0}, {"maximum": 100} ],
+      "custom": {
+        "columnRole": "measure",
+        "unit": "seconds",
+        "index": 1,
+        "mappedDefinition": {
+          "name"        : "latency to fall",
+          "quantityKind": "Time"
+        },
+        "timepoint": 2
+      }
+    },
+    {
+      "name": "LTF_AVE",
+      "title": "Latency to Fall Average",
+      "type": "number",
+      "description": "Average latency to fall measurement, in seconds",
+      "rdfType": "http://purl.obolibrary.org/obo/OBI_0000968",
+      "constraints": [ {"minimum": 0}, {"maximum": 100} ],
+      "custom": {
+        "columnRole": "measure",
+        "unit": "seconds",
+        "mappedDefinition": {
+          "name"        : "latency to fall",
+          "quantityKind": "Time"
+        },
+        "relations": [
+          {
+            "relatedTo": ["LTF_1", "LTF_2"],
+            "relationType": "derivedFromMeasurement"
+          }
+        ]
+      }
+    }
+  ]
+}

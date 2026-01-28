@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Python sample app configuration file",
+  "description": "JSON schema for the Mix.nlu python sample app configuration/credentials file",
+  "properties": {
+    "app_id": {
+      "type": "string",
+      "description": "Application ID",
+      "name": "app_id"
+    },
+    "app_key": {
+      "type": "string",
+      "description": "App key, in plain string version",
+      "name": "app_key",
+      "pattern": "^[0-9a-f]{128}$"
+    },
+    "url": {
+      "type": "string",
+      "description": "Address of the websocket runtime service",
+      "name": "url"
+    },
+    "context_tag": {
+      "type": "string",
+      "description": "Tag pointing to the appropriate NLU model version",
+      "name": "context_tag"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language corresponding to the project, expected format is language on 3 letters lowercase dash country on 3 letters uppercase, example : eng-USA, eng-GBR, fra-FRA, fra-CAN...",
+      "name": "language",
+      "pattern": "^[a-z]{3}-[A-Z]{3}$"
+    }
+  },
+  "required": [
+    "app_id",
+    "app_key",
+    "url",
+    "context_tag",
+    "language"
+  ]
+}

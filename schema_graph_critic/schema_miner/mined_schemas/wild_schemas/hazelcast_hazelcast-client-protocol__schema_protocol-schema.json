@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "https://github.com/hazelcast/hazelcast-client-protocol/blob/master/schema/protocol-schema.json",
+  "title": "Hazelcast Client Protocol Definition",
+  "type": "object",
+  "definitions": {
+    "since": {
+      "type": ["string", "number"],
+      "minimum": 2.0,
+      "exclusiveMaximum": 3.0,
+      "pattern": "^2\\.\\d*\\.?\\d*$"
+    },
+    "param": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "boolean",
+            "byte",
+            "int",
+            "long",
+            "float",
+            "UUID",
+            "byteArray",
+            "longArray",
+            "floatArray",
+            "String",
+            "Data",
+            "EntryList_Integer_UUID",
+            "EntryList_Integer_Long",
+            "EntryList_Integer_Integer",
+            "List_Integer",
+            "List_Long",
+            "List_UUID",
+            "Address",
+            "CacheEventData",
+            "DistributedObjectInfo",
+            "QueryCacheEventData",
+            "RaftGroupId",
+            "ScheduledTaskHandler",
+            "SimpleEntryView",
+            "ReplicatedMapEntryViewHolder",
+            "WanReplicationRef",
+            "Xid",
+            "CacheConfigHolder",
+            "CacheSimpleEntryListenerConfig",
+            "EventJournalConfig",
+            "EvictionConfigHolder",
+            "HotRestartConfig",
+            "ListenerConfigHolder",
+            "AttributeConfig",
+            "IndexConfig",
+            "BitmapIndexOptions",
+            "BTreeIndexConfig",
+            "MapStoreConfigHolder",
+            "MerkleTreeConfig",
+            "NearCacheConfigHolder",
+            "NearCachePreloaderConfig",
+            "PredicateConfigHolder",
+            "QueryCacheConfigHolder",
+            "QueueStoreConfigHolder",
+            "RingbufferStoreConfigHolder",
+            "TimedExpiryPolicyFactoryConfig",
+            "DurationConfig",
+            "ClientBwListEntry",
+            "EntryList_String_String",
+            "EntryList_String_byteArray",
+            "EntryList_Long_byteArray",
+            "EntryList_String_EntryList_Integer_Long",
+            "EntryList_UUID_Long",
+            "EntryList_UUID_UUID",
+            "EntryList_UUID_List_Integer",
+            "EntryList_Data_Data",
+            "EntryList_Data_List_Data",
+            "List_byteArray",
+            "List_CacheEventData",
+            "List_CacheSimpleEntryListenerConfig",
+            "List_Data",
+            "List_List_Data",
+            "ListCN_Data",
+            "List_ListCN_Data",
+            "List_DistributedObjectInfo",
+            "List_ListenerConfigHolder",
+            "List_AttributeConfig",
+            "List_IndexConfig",
+            "List_MemberInfo",
+            "List_QueryCacheConfigHolder",
+            "List_QueryCacheEventData",
+            "List_ScheduledTaskHandler",
+            "List_String",
+            "List_Xid",
+            "List_StackTraceElement",
+            "List_ClientBwListEntry",
+            "List_MCEvent",
+            "List_SqlColumnMetadata",
+            "List_JobAndSqlSummary",
+            "List_RaftGroupInfo",
+            "Set_UUID",
+            "Map_String_String",
+            "Map_EndpointQualifier_Address",
+            "MergePolicyConfig",
+            "MemberVersion",
+            "Version",
+            "MemberInfo",
+            "MCEvent",
+            "AnchorDataListHolder",
+            "PagingPredicateHolder",
+            "SqlQueryId",
+            "SqlError",
+            "SqlColumnMetadata",
+            "JobAndSqlSummary",
+            "SqlSummary",
+            "CPMember",
+            "List_CPMember",
+            "List_RaftGroupId",
+            "MigrationState",
+            "Schema",
+            "List_Schema",
+            "FieldDescriptor",
+            "List_FieldDescriptor",
+            "SqlPage",
+            "HazelcastJsonValue",
+            "DataPersistenceConfig",
+            "Capacity",
+            "MemoryTierConfig",
+            "DiskTierConfig",
+            "TieredStoreConfig",
+            "PartitioningAttributeConfig",
+            "List_PartitioningAttributeConfig",
+            "Map_String_Data",
+            "WanConsumerConfigHolder",
+            "WanCustomPublisherConfigHolder",
+            "List_WanCustomPublisherConfigHolder",
+            "List_WanBatchPublisherConfigHolder",
+            "List_SimpleEntryView",
+            "List_ReplicatedMapEntryViewHolder",
+            "ResourceDefinition",
+            "List_ResourceDefinition",
+            "List_VectorIndexConfig",
+            "VectorDocument",
+            "EntryList_Data_VectorDocument",
+            "VectorSearchOptions",
+            "List_VectorSearchResult",
+            "VectorPair",
+            "List_VectorPair",
+            "List_List_UUID"
+          ]
+        },
+        "nullable": {
+          "type": "boolean"
+        },
+        "since": {
+          "$ref": "#/definitions/since"
+        },
+        "doc": {
+          "type": "string",
+          "description": "parameter documentation"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "nullable",
+        "since",
+        "doc"
+      ]
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Event name"
+        },
+        "since": {
+          "$ref": "#/definitions/since"
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/param"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255,
+      "description": "Service unique id, 0-255"
+    },
+    "name": {
+      "type": "string",
+      "description": "Service name"
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 255,
+            "description": "Method unique id, 1-255"
+          },
+          "name": {
+            "type": "string",
+            "description": "Method name"
+          },
+          "since": {
+            "$ref": "#/definitions/since"
+          },
+          "doc": {
+            "type": "string",
+            "description": "method documentation"
+          },
+          "request": {
+            "type": "object",
+            "description": "Request message definition",
+            "additionalProperties": false,
+            "properties": {
+              "retryable": {
+                "type": "boolean",
+                "description": "Is the request retryable or not"
+              },
+              "partitionIdentifier": {
+                "type": ["integer", "string"],
+                "description": "How should the partition Id calculated for this request. Used in documentation."
+              },
+              "params": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/param"
+                },
+                "minItems": 0,
+                "uniqueItems": false
+              }
+            },
+            "required": ["retryable", "partitionIdentifier"]
+          },
+          "response": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "params": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/param"
+                },
+                "minItems": 0,
+                "uniqueItems": false
+              }
+            }
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/event"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "required": ["name", "since", "doc", "request", "response"]
+      }
+    }
+  },
+  "required": [
+    "name",
+    "methods"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$id": "https://akenza.io/abeeway/badgeTracker/activity_status.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "processingType": "uplink_decoder",
+  "topic": "activity_status",
+  "title": "Activity Status",
+  "properties": {
+    "activityCounter": {
+      "title": "Activity counter",
+      "description": "Activity counter",
+      "type": "integer"
+    }
+  },
+  "required": ["activityCounter"]
+}

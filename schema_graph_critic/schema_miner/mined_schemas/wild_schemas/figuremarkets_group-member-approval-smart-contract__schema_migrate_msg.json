@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MigrateMsg",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "contract_upgrade"
+      ],
+      "properties": {
+        "contract_upgrade": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$id": "did.v1.MsgAllocateVault.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "MsgAllocateVault is the message type for the AllocateVault RPC.",
+  "properties": {
+    "authority": {
+      "description": "authority is the address of the service account.",
+      "type": "string"
+    },
+    "subject": {
+      "description": "subject is a unique human-defined identifier to associate with the vault.",
+      "type": "string"
+    },
+    "token": {
+      "$ref": "did.v1.Token.schema.json",
+      "description": "token is the macron token to authenticate the operation."
+    }
+  },
+  "title": "Msg Allocate Vault",
+  "type": "object"
+}

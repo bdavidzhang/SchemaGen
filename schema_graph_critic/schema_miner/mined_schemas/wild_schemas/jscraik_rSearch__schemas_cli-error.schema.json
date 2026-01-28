@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "rSearch error envelope",
+  "type": "object",
+  "required": ["schema", "meta", "summary", "status", "data", "errors"],
+  "properties": {
+    "schema": { "type": "string", "const": "arxiv.error.v1" },
+    "meta": {
+      "type": "object",
+      "required": ["tool", "version", "timestamp"],
+      "properties": {
+        "tool": { "type": "string", "const": "arxiv" },
+        "version": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "request_id": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "summary": { "type": "string" },
+    "status": { "type": "string", "const": "error" },
+    "data": {
+      "type": "object",
+      "required": ["error", "exitCode"],
+      "properties": {
+        "error": {
+          "type": "object",
+          "required": ["code", "message"],
+          "properties": {
+            "code": { "type": "string", "pattern": "^E_[A-Z_]+$" },
+            "message": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "exitCode": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "errors": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Savvy scanner rule",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "protocol": {
+      "type": "string",
+      "enum": [
+        "tcp",
+        "udp"
+      ]
+    },
+    "rarity": {
+      "type": "integer"
+    },
+    "payload": {
+      "type": "string"
+    },
+    "ports": {
+      "type": "string"
+    },
+    "ssl-ports": {
+      "ref": "#/properties/ports"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "pattern": {
+            "type": "string"
+          },
+          "product": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "info": {
+            "type": "string"
+          },
+          "hostname": {
+            "type": "string"
+          },
+          "os": {
+            "type": "string"
+          },
+          "device-type": {
+            "type": "string"
+          },
+          "CPEs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "fallback-services": {
+      "ref": "#/properties/services"
+    },
+    "fallbacks": {
+      "type": "string"
+    },
+    "options": {
+      "type": "object"
+    }
+  }
+}

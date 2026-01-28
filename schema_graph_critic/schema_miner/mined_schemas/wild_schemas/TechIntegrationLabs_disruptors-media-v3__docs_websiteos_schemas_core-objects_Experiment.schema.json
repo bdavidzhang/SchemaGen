@@ -1,0 +1,202 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "A/B Test Experiment",
+  "description": "Defines an A/B test experiment with hypothesis, metrics, and variants",
+  "required": ["id", "hypothesis", "primaryMetric", "variants", "allocation", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^exp_[a-z0-9_]+$",
+      "description": "Unique identifier for the experiment"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Human-readable name for the experiment"
+    },
+    "hypothesis": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 500,
+      "description": "The hypothesis being tested"
+    },
+    "primaryMetric": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Metric name (e.g., 'conversion_rate', 'click_through_rate')"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["rate", "count", "duration", "revenue"],
+          "description": "Type of metric being measured"
+        },
+        "target_improvement": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Expected percentage improvement"
+        }
+      }
+    },
+    "secondaryMetrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["rate", "count", "duration", "revenue"]
+          }
+        }
+      }
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "config"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$",
+            "description": "Variant identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable variant name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of changes in this variant"
+          },
+          "config": {
+            "type": "object",
+            "description": "Variant-specific configuration"
+          },
+          "is_control": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this is the control variant"
+          }
+        }
+      }
+    },
+    "allocation": {
+      "type": "object",
+      "required": ["method", "percentages"],
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["equal", "custom", "weighted"],
+          "description": "Traffic allocation method"
+        },
+        "percentages": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z0-9_]+$": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            }
+          },
+          "description": "Percentage allocation per variant"
+        },
+        "total_traffic": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 100,
+          "description": "Percentage of total traffic included in experiment"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "paused", "completed", "cancelled"],
+      "description": "Current experiment status"
+    },
+    "targeting": {
+      "type": "object",
+      "properties": {
+        "audience_segments": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Target audience segments"
+        },
+        "geo_targets": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Geographic targeting"
+        },
+        "device_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["desktop", "mobile", "tablet"]
+          }
+        },
+        "custom_filters": {
+          "type": "object",
+          "description": "Custom targeting criteria"
+        }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration_days": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "statistical_config": {
+      "type": "object",
+      "properties": {
+        "confidence_level": {
+          "type": "number",
+          "minimum": 0.8,
+          "maximum": 0.99,
+          "default": 0.95
+        },
+        "minimum_sample_size": {
+          "type": "integer",
+          "minimum": 100
+        },
+        "power": {
+          "type": "number",
+          "minimum": 0.7,
+          "maximum": 0.99,
+          "default": 0.8
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "User ID who created the experiment"
+    }
+  }
+}

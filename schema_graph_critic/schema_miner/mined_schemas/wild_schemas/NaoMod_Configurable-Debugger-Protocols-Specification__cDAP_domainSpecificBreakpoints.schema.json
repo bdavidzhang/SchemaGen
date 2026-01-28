@@ -1,0 +1,86 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Arguments": {
+            "properties": {
+                "sourceFile": {
+                    "description": "Source file targeted by the service call.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sourceFile"
+            ],
+            "type": "object"
+        },
+        "BreakpointType": {
+            "description": "Breakpoint type defined by the language runtime.",
+            "properties": {
+                "description": {
+                    "description": "Human-readable description of the breakpoint type.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier of the breakpoint type.",
+                    "type": "string"
+                },
+                "isEnabled": {
+                    "description": "True if this breakpoint type is currently enabled, false otherwise.",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "Human-readable name of the breakpoint type.",
+                    "type": "string"
+                },
+                "targetElementTypeId": {
+                    "description": "Type of the elements targeted by this breakpoint type.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "description",
+                "id",
+                "isEnabled",
+                "name",
+                "targetElementTypeId"
+            ],
+            "type": "object"
+        },
+        "EnableBreakpointTypesArgs": {
+            "properties": {
+                "breakpointTypeIds": {
+                    "description": "Breakpoint types to enable.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "sourceFile": {
+                    "description": "Source file targeted by the service call.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "breakpointTypeIds",
+                "sourceFile"
+            ],
+            "type": "object"
+        },
+        "GetBreakpointTypesResponse": {
+            "properties": {
+                "breakpointTypes": {
+                    "description": "Breakpoint types defined by the language runtime.",
+                    "items": {
+                        "$ref": "#/definitions/BreakpointType"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "breakpointTypes"
+            ],
+            "type": "object"
+        }
+    }
+}
+

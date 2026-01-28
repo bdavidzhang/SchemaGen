@@ -1,0 +1,122 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "YAML Schema",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "number",
+            "description": "CI/CD configuration file version"
+        },
+        "runners": {
+            "type": "object",
+            "description": "Configuration for CI/CD runners",
+            "patternProperties": {
+                ".*": {
+                  "type": "object",
+                  "description": "Individual Runner",
+                  "properties": {
+                    "config-id": {
+                        "type": "number",
+                        "description": "Configuration 1-> Low 2-> Medium 3-> High",
+                        "enum": [1, 2, 3]
+                    }
+                  },
+                  "required": ["config-id"]
+                }
+              }
+        },
+        "images": {
+            "type": "object",
+            "description": "Container images for jobs",
+            "patternProperties": {
+                ".*": {
+                  "type": "object",
+                  "properties": {
+                    "image":{
+                        "type": "string",
+                        "description": "Image name"
+                    },
+                    "registry":{
+                        "type": "string",
+                        "description": "URL of the registry"
+                    },
+                    "auth":{
+                        "type": "object",
+                        "description": "Authorisation to pull image",
+                        "properties": {
+                            "username":{
+                                "type": "string",
+                                "description": "Username of the account"
+                            },
+                            "password":{
+                                "type": "string",
+                                "description": "Password of the account"
+                            }
+                        },
+                        "required": ["username","password"]
+                    }
+                },
+                "required": ["image"]
+            }
+        }
+        },
+        "jobs": {
+            "type": "object",
+            "description": "Individual CI/CD jobs",
+            "patternProperties": {
+                ".*": {
+                  "type": "object",
+                  "properties": {
+                  }
+                }
+            }
+        },
+        "stages": {
+            "type": "array",
+            "description": "Sequences of jobs in the CI/CD pipeline",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the Stage"
+                    },
+                    "runner": {
+                        "type": "string",
+                        "description": "Runner specific to stage"
+                    },
+                    "image": {
+                        "type": "string",
+                        "description": "Image specific to stage"
+                    },
+                    "jobs": {
+                        "type": "array",
+                        "description": "List of jobs",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "name",
+                    "jobs"
+                ]
+            }
+        },
+        "pipeline-runner": {
+            "type": "string",
+            "description": "Global Runner"
+        },
+        "pipeline-image": {
+            "type": "string",
+            "description": "Global Image"
+        }
+    },
+    "required": [
+        "version",
+        "runners",
+        "images",
+        "jobs",
+        "stages"
+    ]
+}

@@ -1,0 +1,80 @@
+{
+    "title": "Ability",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string",
+            "default": ""
+        },
+        "name": {
+            "type": "string"
+        },
+        "range_min": {
+            "default": 1,
+            "oneOf": [
+                {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                {
+                     "type": "string",
+                     "enum": ["weapon"]
+                }
+            ]
+        },
+        "range_max": {
+            "default": 1,
+            "oneOf": [
+                {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                {
+                     "type": "string",
+                     "enum": ["weapon"]
+                }
+            ]
+        },
+        "power": {
+            "oneOf": [
+                { "type": "integer" },
+                { "type": "string", "enum": ["weapon"] }
+            ]
+        },
+        "hit_chance": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 100
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "physical",
+                "magical",
+                "none"
+            ]
+        },
+        "passives": {
+            "type": "array",
+            "items": {
+                "type": "object"
+            },
+            "default": []
+        },
+        "effects": {
+            "type": "array",
+            "items": {
+                "type": "object"
+            },
+            "default": [
+                {
+                    "type": "template_simple"
+                }
+            ]
+        }
+
+    }
+}

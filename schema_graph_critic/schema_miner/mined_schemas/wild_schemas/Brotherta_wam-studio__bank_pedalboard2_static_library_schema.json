@@ -1,0 +1,138 @@
+{
+  "$ref": "#/definitions/Pedalboard2LibraryDescriptor",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Pedalboard2LibraryDescriptor": {
+      "additionalProperties": false,
+      "description": "A list of plugins the pedalboard2 have access to",
+      "properties": {
+        "id": {
+          "description": "A unique identifier for the library *",
+          "type": "string"
+        },
+        "includes": {
+          "description": "A list of urls to other Pedalboard2 Libraries this library include with their compatible version and their id. These libraries plugins will be included in this pedalboard2 library. Make sure the url is linked to a specific version of the library, else it could become incompatible. Relative to the descriptor url.",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "version": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              }
+            },
+            "required": [
+              "url",
+              "version",
+              "id"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The name of the library",
+          "type": "string"
+        },
+        "permissive": {
+          "description": "Default: false ; If true, the library can be loaded if a plugin is missing, or if a included library cannot be loaded.",
+          "type": "boolean"
+        },
+        "plugins": {
+          "description": "A list of urls to the main js file of WAMs, relative to the descriptor url",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "presets": {
+          "additionalProperties": {
+            "additionalProperties": false,
+            "properties": {
+              "category": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "state": {
+                "$ref": "#/definitions/Pedalboard2NodeState"
+              }
+            },
+            "required": [
+              "description",
+              "category",
+              "state"
+            ],
+            "type": "object"
+          },
+          "description": "A list of builtin presets",
+          "type": "object"
+        },
+        "url": {
+          "description": "The url of the library, should not be provided by the json.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the library as [major,minor]. Versions with a different major number are not compatible. Versions with a same major number are just backward compatible.",
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "id",
+        "url",
+        "version",
+        "plugins",
+        "includes"
+      ],
+      "type": "object"
+    },
+    "Pedalboard2NodeState": {
+      "additionalProperties": false,
+      "properties": {
+        "library": {
+          "type": "string"
+        },
+        "plugins": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "state": {},
+              "wam_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "wam_id",
+              "state"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "plugins"
+      ],
+      "type": "object"
+    }
+  }
+}

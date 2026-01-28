@@ -1,0 +1,52 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://github-hosted-webapp.github.io/schemas/v0.0.0/ModelDescriptors.schema.json",
+    "title": "ModelDescriptors",
+    "description": "A list of ModelDescriptors",
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/ModelDescriptor"
+    },
+    "definitions": {
+        "ModelDescriptor": {
+            "title": "ModelDescriptor",
+            "type": "object",
+            "properties": {
+                "$schema": {
+                    "type": "string",
+                    "description": "Link to the ModelDescriptor JSON schema"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "UUID that identifies the ModelDescriptor"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the model"
+                },
+                "schemaUrl": {
+                    "type": "string",
+                    "description": "URL to the schema of the model"
+                },
+                "indexUrl": {
+                    "type": "string",
+                    "description": "URL to the index json (an URL that returns a list of all model ids)"
+                },
+                "indexPath": {
+                    "type": "string",
+                    "description": "Path to the index json (an URL that returns a list of all model ids)\nrelative to the ModelDescriptors json file."
+                }
+            },
+            "required": [
+                "$schema",
+                "id",
+                "name",
+                "schemaUrl",
+                "indexUrl",
+                "indexPath"
+            ],
+            "additionalProperties": false,
+            "description": "Describes how a model is stored"
+        }
+    }
+}

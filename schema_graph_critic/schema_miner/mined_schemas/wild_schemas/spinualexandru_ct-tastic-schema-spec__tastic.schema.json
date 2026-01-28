@@ -1,0 +1,171 @@
+{
+  "title": "Commerce Tool Component Tastic",
+  "description": "A schema for Commerce Tools Component Tastic",
+  "type": "object",
+  "properties": {
+    "tasticType": {
+      "type": "string",
+      "description": "The unique identifier of the Frontend component"
+    },
+    "customDataSourceType": {
+      "type": "string",
+      "description": "The unique identifier of the data source extension"
+    },
+    "dynamicPageType": {
+      "type": "string",
+      "description": "The unique identifier of the dynamic page"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name displayed in the Studio"
+    },
+    "category": {
+      "type": "string",
+      "description": "The category used to group schemas in the Studio"
+    },
+    "maxUsePerPage": {
+      "type": "number",
+      "description": "Maximum number of times the component can be added to the same page version"
+    },
+    "icon": {
+      "type": "string",
+      "description": "The name of the icon displayed in the Studio"
+    },
+    "schema": {
+      "type": "array",
+      "description": "Configuration sections and related fields",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the configuration section"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["label", "field", "type"],
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "The field label displayed in the Studio"
+                },
+                "field": {
+                  "type": "string",
+                  "description": "The unique name of the field"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "boolean",
+                    "dataSource",
+                    "dynamic-filter",
+                    "encrypted",
+                    "enum",
+                    "group",
+                    "instant",
+                    "json",
+                    "markdown",
+                    "media",
+                    "node",
+                    "number",
+                    "integer",
+                    "decimal",
+                    "reference",
+                    "string",
+                    "text",
+                    "tree",
+                    "description",
+                    "image"
+                  ],
+                  "description": "The type of the field"
+                },
+                "default": {
+                  "description": "Default value for the field"
+                },
+                "required": {
+                  "type": "boolean",
+                  "description": "Whether the field is mandatory"
+                },
+                "translatable": {
+                  "type": "boolean",
+                  "description": "Whether the field can be translated"
+                },
+                "dataSourceType": {
+                  "type": "string",
+                  "description": "The unique data source identifier for dataSource fields"
+                },
+                "dynamicFilterEndpoint": {
+                  "type": "string",
+                  "description": "The endpoint path for dynamic-filter fields"
+                },
+                "values": {
+                  "type": "array",
+                  "description": "Array of options for enum fields",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Display name of the option"
+                      },
+                      "value": {
+                        "description": "Value of the option"
+                      }
+                    }
+                  }
+                },
+                "itemLabelField": {
+                  "type": "string",
+                  "description": "Field used to display group names for group fields"
+                },
+                "min": {
+                  "type": "number",
+                  "description": "Minimum number for numeric fields or minimum items for group fields"
+                },
+                "max": {
+                  "type": "number",
+                  "description": "Maximum number for numeric fields or maximum items for group fields"
+                },
+                "format": {
+                  "type": "string",
+                  "enum": ["hex", "email", "url"],
+                  "description": "Format validation for string/text fields"
+                },
+                "minLength": {
+                  "type": "number",
+                  "description": "Minimum length for string/text fields"
+                },
+                "maxLength": {
+                  "type": "number",
+                  "description": "Maximum length for string/text fields"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "Text content for description fields"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Image URL for image fields"
+                }
+              }
+            }
+          }
+        },
+        "required": ["name", "fields"]
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "required": ["tasticType"]
+    },
+    {
+      "required": ["customDataSourceType"]
+    },
+    {
+      "required": ["dynamicPageType"]
+    }
+  ]
+}

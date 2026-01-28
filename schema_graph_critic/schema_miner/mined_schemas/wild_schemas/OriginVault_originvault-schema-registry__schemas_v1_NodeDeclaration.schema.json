@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://schema.org",
+    "https://w3id.org/security/multikey/v1",
+    "https://schemas.originvault.box/contexts/v1"
+  ],
+  "$id": "https://schemas.originvault.box/v1/NodeDeclaration.schema.json",
+  "title": "Node Declaration",
+  "description": "Defines an OV Node within a cluster with multi-root trust and BFF integration support.",
+  "type": "object",
+  "examples": [
+    {
+      "@type": "NodeDeclaration",
+      "id": "did:cheqd:mainnet:node:storage-001",
+      "type": "NodeDeclaration",
+      "cluster": "did:cheqd:mainnet:cluster:us-east-primary",
+      "role": "StorageNode",
+      "operator": "did:cheqd:mainnet:operator:node-services-inc",
+      "status": "active",
+      "rootType": "delegated",
+      "governanceModel": "hierarchical",
+      "delegationChain": [
+        "did:cheqd:mainnet:root-authority",
+        "did:cheqd:mainnet:cluster:us-east-primary"
+      ],
+      "trustChainContext": "https://schemas.originvault.box/trust/v1",
+      "metadata": {
+        "version": "1.0.0",
+        "schemaVersion": "2024-06-25",
+        "category": "node-infrastructure"
+      },
+      "createdAt": "2024-06-25T10:30:00Z",
+      "updatedAt": "2024-06-25T10:30:00Z",
+      "blockchainSync": {
+        "lastSyncAt": "2024-06-25T10:30:00Z",
+        "txHash": "0x1a2b3c4d5e6f...",
+        "blockNumber": 123456
+      },
+      "verificationPolicies": {
+        "assignedBy": [
+          "did:cheqd:mainnet:validator:001"
+        ],
+        "verificationRules": "ceramic://k2t6wyfsu4pg0t2n4j8ms3s33xsgqjhtto04mvq8w5a1jyrpaa5nf2s2oupt3ak"
+      },
+      "timestamp": "2024-06-25T10:30:00Z"
+    }
+  ],
+  "properties": {
+    "@type": {
+      "type": "string",
+      "const": "NodeDeclaration",
+      "description": "JSON-LD type identifier for semantic interoperability.",
+      "examples": [
+        "NodeDeclaration"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^did:[a-z0-9]+:[a-zA-Z0-9._-]+",
+      "minLength": 10,
+      "maxLength": 200,
+      "description": "The DID of the node.",
+      "examples": [
+        "did:cheqd:mainnet:node:storage-001"
+      ]
+    },
+    "type": {
+      "const": "NodeDeclaration",
+      "description": "Indicates this is a Node DID declaration.",
+      "examples": [
+        "NodeDeclaration"
+      ]
+    },
+    "cluster": {
+      "type": "string",
+      "pattern": "^did:[a-z0-9]+:[a-zA-Z0-9._-]+",
+      "minLength": 10,
+      "maxLength": 200,
+      "description": "The Cluster DID this node belongs to.",
+      "examples": [
+        "did:cheqd:mainnet:cluster:us-east-primary"
+      ]
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "IdentityNode",
+        "StorageNode",
+        "ComputeNode",
+        "VerificationNode"
+      ],
+      "description": "The functional role of this node.",
+      "examples": [
+        "StorageNode"
+      ]
+    },
+    "operator": {
+      "type": "string",
+      "pattern": "^did:[a-z0-9]+:[a-zA-Z0-9._-]+",
+      "minLength": 10,
+      "maxLength": 200,
+      "description": "The DID of the entity that operates this node.",
+      "examples": [
+        "did:cheqd:mainnet:operator:node-services-inc"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "suspended",
+        "revoked"
+      ],
+      "description": "The operational status of the node.",
+      "examples": [
+        "active"
+      ]
+    },
+    "rootType": {
+      "type": "string",
+      "enum": [
+        "self-sovereign",
+        "delegated",
+        "federated",
+        "hybrid"
+      ],
+      "description": "Multi-root trust pattern: how this node establishes its root of trust.",
+      "examples": [
+        "delegated"
+      ]
+    },
+    "governanceModel": {
+      "type": "string",
+      "enum": [
+        "hierarchical",
+        "democratic",
+        "consensus",
+        "autonomous"
+      ],
+      "description": "Multi-root trust pattern: governance model for trust decisions.",
+      "examples": [
+        "hierarchical"
+      ]
+    },
+    "delegationChain": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^did:[a-z0-9]+:[a-zA-Z0-9._-]+"
+      },
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "Multi-root trust pattern: chain of authority delegation from root to this node.",
+      "examples": [
+        [
+          "did:cheqd:mainnet:root-authority",
+          "did:cheqd:mainnet:cluster:us-east-primary"
+        ]
+      ]
+    },
+    "trustChainContext": {
+      "type": "string",
+      "format": "uri",
+      "description": "Multi-root trust pattern: URI to the trust chain context document.",
+      "examples": [
+        "https://schemas.originvault.box/trust/v1"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "BFF Integration: Schema version for API compatibility.",
+          "examples": [
+            "1.0.0"
+          ]
+        },
+        "schemaVersion": {
+          "type": "string",
+          "format": "date",
+          "description": "BFF Integration: Schema release date for version tracking.",
+          "examples": [
+            "2024-06-25"
+          ]
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "node-infrastructure",
+            "node-compute",
+            "node-storage",
+            "node-identity",
+            "node-verification"
+          ],
+          "description": "BFF Integration: Category for API routing and filtering.",
+          "examples": [
+            "node-infrastructure"
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "schemaVersion",
+        "category"
+      ],
+      "description": "BFF Integration: Metadata for API integration and versioning.",
+      "additionalProperties": false
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "BFF Integration: Creation timestamp for audit trails.",
+      "examples": [
+        "2024-06-25T10:30:00Z"
+      ]
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "BFF Integration: Last update timestamp for change tracking.",
+      "examples": [
+        "2024-06-25T10:30:00Z"
+      ]
+    },
+    "blockchainSync": {
+      "type": "object",
+      "properties": {
+        "lastSyncAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last successful blockchain synchronization timestamp.",
+          "examples": [
+            "2024-06-25T10:30:00Z"
+          ]
+        },
+        "txHash": {
+          "type": "string",
+          "pattern": "^0x[a-fA-F0-9]{64}$",
+          "description": "Transaction hash of the last blockchain update.",
+          "examples": [
+            "0x1a2b3c4d5e6f7890abcdef1234567890abcdef1234567890abcdef1234567890"
+          ]
+        },
+        "blockNumber": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Block number of the last blockchain update.",
+          "examples": [
+            123456
+          ]
+        }
+      },
+      "required": [
+        "lastSyncAt",
+        "txHash",
+        "blockNumber"
+      ],
+      "description": "BFF Integration: Blockchain synchronization status for distributed systems.",
+      "additionalProperties": false
+    },
+    "linkedResources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The DID of the linked resource."
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of resource (e.g., GovernancePolicy, VerificationLog)."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the linked resource."
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the linked resource."
+          },
+          "uri": {
+            "type": "string",
+            "description": "The uri of the linked resource."
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "name",
+          "description",
+          "uri"
+        ]
+      },
+      "description": "Linked resources associated with this node."
+    },
+    "verificationPolicies": {
+      "type": "object",
+      "properties": {
+        "assignedBy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of validators who approved this node."
+        },
+        "verificationRules": {
+          "type": "string",
+          "description": "Reference to verification policies in Ceramic."
+        }
+      },
+      "description": "Verification details for this node."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of when this node declaration was issued."
+    }
+  },
+  "required": [
+    "@type",
+    "id",
+    "type",
+    "cluster",
+    "role",
+    "operator",
+    "status",
+    "rootType",
+    "governanceModel",
+    "delegationChain",
+    "trustChainContext",
+    "metadata",
+    "createdAt",
+    "updatedAt",
+    "blockchainSync",
+    "timestamp"
+  ],
+  "additionalProperties": false
+}

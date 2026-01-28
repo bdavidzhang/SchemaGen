@@ -1,0 +1,375 @@
+{
+  "$id": "https://map.railfans.ca/schema.json",
+  "title": "Data",
+  "description": "Data used in the RailFans Canada map",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "FeatureCollection"
+    },
+    "name": {
+      "type": "string"
+    },
+    "metadata": {
+      "oneOf": [
+        { "$ref": "#/definitions/metadata-rail-line" },
+        { "$ref": "#/definitions/metadata-rail-yard" }
+      ]
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "$ref": "#/definitions/alignment" },
+          { "$ref": "#/definitions/tracks" },
+          { "$ref": "#/definitions/tracks-future" },
+          { "$ref": "#/definitions/overpass" },
+          { "$ref": "#/definitions/station-platforms" },
+          { "$ref": "#/definitions/station-platforms-future" },
+          { "$ref": "#/definitions/station-label" },
+          { "$ref": "#/definitions/station-connector-label" },
+          { "$ref": "#/definitions/yard-label" },
+          { "$ref": "#/definitions/tunnel" }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Point": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Point" },
+        "coordinates": {
+          "type": "array",
+          "maxItems": 2,
+          "minItems": 2,
+          "items": { "type": "number" }
+        }
+      },
+      "required": ["type", "coordinates"]
+    },
+    "LineString": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "LineString" },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 2,
+            "items": { "type": "number" }
+          }
+        }
+      },
+      "required": ["type", "coordinates"]
+    },
+    "Polygon": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Polygon" },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2,
+              "items": { "type": "number" }
+            }
+          }
+        }
+      },
+      "required": ["type", "coordinates"]
+    },
+    "MultiPolygon": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "MultiPolygon" },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "maxItems": 2,
+                "minItems": 2,
+                "items": { "type": "number" }
+              }
+            }
+          }
+        }
+      },
+      "required": ["type", "coordinates"]
+    },
+
+    "alignment": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "alignment" },
+            "layer": { "type": "number" }
+          },
+          "required": ["type"]
+        },
+        "geometry": {
+          "$ref": "#/definitions/LineString"
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+    "tracks": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "tracks" },
+            "layer": { "type": "number" }
+          },
+          "required": ["type"]
+        },
+        "geometry": {
+          "$ref": "#/definitions/LineString"
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+    "tracks-future": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "tracks-future" },
+            "layer": { "type": "number" }
+          },
+          "required": ["type"]
+        },
+        "geometry": {
+          "$ref": "#/definitions/LineString"
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+    "overpass": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "overpass" },
+            "layer": { "type": "number" }
+          },
+          "required": ["type"]
+        },
+        "geometry": {
+          "$ref": "#/definitions/LineString"
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+    "station-platforms": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "station-platforms" },
+            "name": { "type": "string" },
+            "layer": { "type": "number" }
+          },
+          "required": ["type", "name"]
+        },
+        "geometry": {
+          "oneOf": [
+            { "$ref": "#/definitions/MultiPolygon" },
+            { "$ref": "#/definitions/Polygon" }
+          ]
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+    "station-platforms-future": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "station-platforms-future" },
+            "name": { "type": "string" },
+            "layer": { "type": "number" }
+          },
+          "required": ["type", "name"]
+        },
+        "geometry": {
+          "oneOf": [
+            { "$ref": "#/definitions/MultiPolygon" },
+            { "$ref": "#/definitions/Polygon" }
+          ]
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+    "station-label": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "station-label" },
+            "name": { "type": "string" },
+            "major": { "type": "boolean" },
+            "url": {
+              "oneOf": [
+                { "type": "string", "format": "uri-reference" },
+                { "type": "null" }
+              ]
+            },
+            "lines": { "type": "array", "items": { "type": "string" } },
+            "searchTerms": { "type": "array", "items": { "type": "string" } },
+            "scale": { "enum": ["regular", "large"] }
+          },
+          "required": ["type", "name", "lines"]
+        },
+        "geometry": {
+          "$ref": "#/definitions/Point"
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+    "station-connector-label": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "station-connector-label" },
+            "name": { "type": "string" },
+            "url": {
+              "oneOf": [
+                { "type": "string", "format": "uri-reference" },
+                { "type": "null" }
+              ]
+            },
+            "lines": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": ["type", "name", "lines"]
+        },
+        "geometry": {
+          "$ref": "#/definitions/LineString"
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+    "yard-label": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "yard-label" },
+            "name": { "type": "string" },
+            "url": {
+              "oneOf": [
+                { "type": "string", "format": "uri-reference" },
+                { "type": "null" }
+              ]
+            }
+          },
+          "required": ["type", "name"]
+        },
+        "geometry": {
+          "$ref": "#/definitions/Point"
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+    "tunnel": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "Feature" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "type": { "const": "tunnel" }
+          },
+          "required": ["type"]
+        },
+        "geometry": {
+          "$ref": "#/definitions/Polygon"
+        }
+      },
+      "required": ["type", "properties", "geometry"]
+    },
+
+    "metadata-rail-line": {
+      "type": "object",
+      "allOf": [{ "$ref": "#/definitions/info" }],
+      "properties": {
+        "type": {
+          "enum": ["rail-line", "streetcar-line"]
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
+        },
+        "icon": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "offset": {
+          "type": "number"
+        },
+        "id": {
+          "type": "string"
+        },
+        "alternatives": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["id", "type", "color"]
+    },
+    "metadata-rail-yard": {
+      "allOf": [{ "$ref": "#/definitions/info" }],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": ["rail-yard", "streetcar-yard"]
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": ["type", "id"]
+    },
+    "info": {
+      "type": "object",
+      "properties": {
+        "filterKey": { "type": "string" },
+        "sources": { "type": "array", "items": { "type": "string" } },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "searchTerms": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": "string" },
+        "alternatives": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["sources", "name", "description"]
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "WidgetDef",
+    "description": "Atomic definition of a UI input widget for a given property",
+    "type": "object",
+    "required": [
+        "type",
+        "label",
+        "field",
+        "tab",
+        "order"
+    ],
+    "allOf": [
+        {
+            "$ref": "./common-props.schema.json"
+        },
+        {
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "calendar",
+                        "container",
+                        "custom",
+                        "dropdown",
+                        "image",
+                        "list",
+                        "none",
+                        "number",
+                        "text",
+                        "textarea",
+                        "toggle"
+                    ]
+                },
+                "label": {
+                    "type": "string"
+                },
+                "field": {
+                    "type": "string"
+                },
+                "tab": {
+                    "type": "string"
+                },
+                "default": {},
+                "required": {
+                    "type": "boolean"
+                },
+                "order": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "read_only": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "validation": {
+                    "type": "object",
+                    "properties": {
+                        "minLength": {
+                            "type": "integer"
+                        },
+                        "maxLength": {
+                            "type": "integer"
+                        },
+                        "pattern": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "formatting": {
+                    "type": "object",
+                    "properties": {
+                        "as": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "undoable": {
+                    "type": "boolean"
+                },
+                "visibleIf": {
+                    "type": "object",
+                    "properties": {
+                        "field": {
+                            "type": "string"
+                        },
+                        "equals": {}
+                    }
+                },
+                "tooltip": {
+                    "type": "string"
+                }
+            }
+        }
+    ]
+}

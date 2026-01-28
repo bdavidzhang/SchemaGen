@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/agroqirax/timberborn-schemas/main/schemas/Recipe.schema.json",
+  "title": "Recipe specification",
+  "description": "Add or modify a recipe",
+  "type": "object",
+  "properties": {
+    "RecipeSpec": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string",
+          "title": "Id",
+          "examples": [
+            "MetalBlock",
+            "FlowingBadwater",
+            "Bread",
+            "Explosives",
+            "CattailFlour",
+            "Mushroom",
+            "Antidote",
+            "Badwater",
+            "Bot.Folktails",
+            "Grease",
+            "BotLimb.IronTeeth",
+            "Catalyst",
+            "CanolaOil",
+            "AlgaeRation",
+            "ScrapMetal.Efficient",
+            "Plank",
+            "BotChassis.IronTeeth",
+            "Biofuel.Carrot",
+            "FlowingWater",
+            "FermentedMushroom",
+            "Book",
+            "BotHead.IronTeeth",
+            "BotLimb.Folktails",
+            "GrilledPotato",
+            "FermentedSoybean",
+            "Biofuel.Potato",
+            "Biofuel.Spadderdock",
+            "Paper",
+            "TreatedPlank",
+            "SciencePoints",
+            "SciencePointsNumbercruncher",
+            "FermentedCassava",
+            "Water.Efficient",
+            "WheatFlour",
+            "SciencePointsObservatory",
+            "BotChassis.Folktails",
+            "MaplePastry",
+            "CattailCracker",
+            "PunchCard",
+            "GrilledSpadderdock",
+            "Extract",
+            "BotHead.Folktails",
+            "Bot.IronTeeth",
+            "Coffee",
+            "GrilledChestnut",
+            "Gear",
+            "EggplantRation",
+            "BadwaterExtracted",
+            "Dirt",
+            "Water",
+            "ScrapMetal",
+            "CornRation",
+            "Algae"
+          ]
+        },
+        "BackwardCompatibleIds": {
+          "$ref": "#/$defs/BackwardCompatibleIds"
+        },
+        "DisplayLocKey": {
+          "type": "string",
+          "title": "Display loc key",
+          "examples": [
+            "Science.SciencePoints",
+            "Good.Badwater.PluralDisplayName",
+            "Bot.PluralDisplayName",
+            "Good.BotLimb.PluralDisplayName",
+            "Good.BotChassis.PluralDisplayName",
+            "Good.BotHead.PluralDisplayName",
+            "Good.Water.PluralDisplayName",
+            "Good.MetalBlock.PluralDisplayName",
+            "Good.Badwater.DisplayName",
+            "Good.Bread.PluralDisplayName",
+            "Good.Explosives.PluralDisplayName",
+            "Good.CattailFlour.PluralDisplayName",
+            "Good.Mushroom.PluralDisplayName",
+            "Good.Antidote.PluralDisplayName",
+            "Good.Grease.PluralDisplayName",
+            "Good.Catalyst.DisplayName",
+            "Good.CanolaOil.PluralDisplayName",
+            "Good.AlgaeRation.PluralDisplayName",
+            "Manufactory.Recipe.EfficientScrapMetal",
+            "Good.Plank.PluralDisplayName",
+            "Manufactory.Recipe.BiofuelCarrot",
+            "Good.Water.DisplayName",
+            "Good.FermentedMushroom.PluralDisplayName",
+            "Good.Book.PluralDisplayName",
+            "Good.GrilledPotato.PluralDisplayName",
+            "Good.FermentedSoybean.PluralDisplayName",
+            "Manufactory.Recipe.BiofuelPotato",
+            "Manufactory.Recipe.BiofuelSpadderdock",
+            "Good.Paper.PluralDisplayName",
+            "Good.TreatedPlank.PluralDisplayName",
+            "Good.FermentedCassava.PluralDisplayName",
+            "Good.WheatFlour.PluralDisplayName",
+            "Good.MaplePastry.PluralDisplayName",
+            "Good.CattailCracker.PluralDisplayName",
+            "Good.PunchCard.PluralDisplayName",
+            "Good.GrilledSpadderdock.PluralDisplayName",
+            "Good.Extract.PluralDisplayName",
+            "Good.Coffee.PluralDisplayName",
+            "Good.GrilledChestnut.PluralDisplayName",
+            "Good.Gear.PluralDisplayName",
+            "Good.EggplantRation.PluralDisplayName",
+            "Good.Dirt.PluralDisplayName",
+            "Good.ScrapMetal.PluralDisplayName",
+            "Good.CornRation.PluralDisplayName",
+            "Good.Algae.PluralDisplayName"
+          ],
+          "default": "Science.SciencePoints"
+        },
+        "CycleDurationInHours": {
+          "type": "number",
+          "title": "Cycle duration in hours",
+          "examples": [
+            1.0, 3.0, 18.0, 2.0, 6.0, 0.5, 0.33, 1.5, 0.25, 72.0, 4.5, 1.25,
+            192.0, 4.0, 0.52, 1.56, 0.4, 10.0, 288.0
+          ]
+        },
+        "Ingredients": {
+          "$ref": "#/$defs/Ingredients"
+        },
+        "Products": {
+          "$ref": "#/$defs/Products"
+        },
+        "ProducedSciencePoints": {
+          "type": "integer",
+          "title": "Produced science points"
+        },
+        "Fuel": {
+          "type": "string",
+          "title": "Fuel",
+          "examples": ["", "Log"],
+          "default": ""
+        },
+        "CyclesFuelLasts": {
+          "type": "integer",
+          "title": "Cycles fuel lasts"
+        },
+        "FuelCapacity": {
+          "type": "integer",
+          "title": "Fuel capacity"
+        },
+        "CyclesCapacity": {
+          "type": "integer",
+          "title": "Cycles capacity"
+        },
+        "Icon": {
+          "type": "string",
+          "title": "Icon",
+          "examples": [
+            "Sprites/Goods/BadwaterIcon",
+            "Sprites/Goods/BiofuelIcon",
+            "Sprites/Goods/WaterIcon",
+            "UI/Images/Game/science-icon",
+            "",
+            "Sprites/Goods/BotLimbIcon",
+            "Sprites/Goods/ScrapMetalIcon",
+            "Sprites/Goods/BotChassisIcon",
+            "Sprites/Goods/BotHeadIcon",
+            "Sprites/Goods/MetalBlockIcon",
+            "Sprites/Goods/BreadIcon",
+            "Sprites/Goods/ExplosivesIcon",
+            "Sprites/Goods/CattailFlourIcon",
+            "Sprites/Goods/MushroomIcon",
+            "Sprites/Goods/AntidoteIcon",
+            "Sprites/Goods/GreaseIcon",
+            "Sprites/Goods/CatalystIcon",
+            "Sprites/Goods/CanolaOilIcon",
+            "Sprites/Goods/AlgaeRationIcon",
+            "Sprites/Goods/PlankIcon",
+            "Sprites/Goods/FermentedMushroomIcon",
+            "Sprites/Goods/BookIcon",
+            "Sprites/Goods/GrilledPotatoIcon",
+            "Sprites/Goods/FermentedSoybeanIcon",
+            "Sprites/Goods/PaperIcon",
+            "Sprites/Goods/TreatedPlankIcon",
+            "Sprites/Goods/FermentedCassavaIcon",
+            "Sprites/Goods/WheatFlourIcon",
+            "Sprites/Goods/MaplePastryIcon",
+            "Sprites/Goods/CattailCrackerIcon",
+            "Sprites/Goods/PunchCardIcon",
+            "Sprites/Goods/GrilledSpadderdockIcon",
+            "Sprites/Goods/ExtractIcon",
+            "Sprites/Goods/CoffeeIcon",
+            "Sprites/Goods/GrilledChestnutIcon",
+            "Sprites/Goods/GearIcon",
+            "Sprites/Goods/EggplantRationIcon",
+            "Sprites/Goods/DirtIcon",
+            "Sprites/Goods/CornRationIcon",
+            "Sprites/Goods/AlgaeIcon"
+          ]
+        },
+        "BackwardCompatibleIds#append": {
+          "$ref": "#/$defs/BackwardCompatibleIds"
+        },
+        "BackwardCompatibleIds#remove": {
+          "$ref": "#/$defs/BackwardCompatibleIds"
+        },
+        "BackwardCompatibleIds#delete": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "Ingredients#append": {
+          "$ref": "#/$defs/Ingredients"
+        },
+        "Ingredients#remove": {
+          "$ref": "#/$defs/Ingredients"
+        },
+        "Ingredients#delete": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "Products#append": {
+          "$ref": "#/$defs/Products"
+        },
+        "Products#remove": {
+          "$ref": "#/$defs/Products"
+        },
+        "Products#delete": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        }
+      },
+      "minProperties": 1,
+      "additionalProperties": false,
+      "title": "Recipe specification"
+    }
+  },
+  "minProperties": 1,
+  "additionalProperties": false,
+  "$defs": {
+    "BackwardCompatibleIds": {
+      "type": "array",
+      "title": "Backward compatible ids"
+    },
+    "Ingredients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "Amount": {
+            "type": "integer",
+            "title": "Amount"
+          }
+        },
+        "minProperties": 1,
+        "additionalProperties": false
+      },
+      "title": "Ingredients"
+    },
+    "Products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "Amount": {
+            "type": "integer",
+            "title": "Amount"
+          }
+        },
+        "minProperties": 1,
+        "additionalProperties": false
+      },
+      "title": "Products"
+    }
+  }
+}

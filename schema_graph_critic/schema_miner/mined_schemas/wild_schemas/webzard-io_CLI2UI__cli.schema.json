@@ -1,0 +1,120 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$ref": "#/$defs/CLI",
+    "$defs": {
+        "CLI": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "help": {
+                    "type": "string"
+                },
+                "optionDelim": {
+                    "type": "string"
+                },
+                "command": {
+                    "$ref": "#/$defs/Command"
+                },
+                "explicitBool": {
+                    "type": "boolean"
+                },
+                "ui": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object",
+            "required": [
+                "name",
+                "command"
+            ]
+        },
+        "Command": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "display": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "flags": {
+                    "items": {
+                        "$ref": "#/$defs/Option"
+                    },
+                    "type": "array"
+                },
+                "args": {
+                    "items": {
+                        "$ref": "#/$defs/Option"
+                    },
+                    "type": "array"
+                },
+                "subcommands": {
+                    "items": {
+                        "$ref": "#/$defs/Command"
+                    },
+                    "type": "array"
+                },
+                "format": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "Option": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "display": {
+                    "type": "string"
+                },
+                "long": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                },
+                "default": true,
+                "options": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "annotations": {
+                    "$ref": "#/$defs/TypeAnnotations"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object",
+            "required": [
+                "name",
+                "type"
+            ]
+        },
+        "TypeAnnotations": {
+            "properties": {
+                "format": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object"
+        }
+    }
+}

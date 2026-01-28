@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PromptSpec",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "blocks",
+    "variables"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.-]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "locale": {
+      "type": "string"
+    },
+    "owners": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_tier": {
+      "type": "string",
+      "enum": [
+        "low",
+        "med",
+        "high"
+      ]
+    },
+    "models": {
+      "type": "object",
+      "properties": {
+        "recommended": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "max_tokens": {
+          "type": "number"
+        },
+        "temperature": {
+          "type": "number"
+        }
+      }
+    },
+    "variables": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "default": {},
+          "validators": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "regex": {
+                  "type": "string"
+                },
+                "enum": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "type"
+        ]
+      }
+    },
+    "blocks": {
+      "type": "object",
+      "properties": {
+        "system": {
+          "type": "string"
+        },
+        "instructions": {
+          "type": "string"
+        },
+        "constraints": {
+          "type": "string"
+        },
+        "style": {
+          "type": "string"
+        },
+        "mos_detail": {
+          "type": "string"
+        },
+        "examples": {
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "system",
+        "instructions"
+      ]
+    },
+    "telemetry": {
+      "type": "object"
+    }
+  }
+}

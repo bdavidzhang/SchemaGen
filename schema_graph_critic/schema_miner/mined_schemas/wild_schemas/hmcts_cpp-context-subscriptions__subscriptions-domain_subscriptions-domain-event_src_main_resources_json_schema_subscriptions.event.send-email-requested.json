@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://cpp.moj.gov.uk/subscriptions/json/schemas/send-email-requested.json",
+  "type": "object",
+  "properties": {
+    "notificationId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "sendToAddress": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "caseLink": {
+      "type": "string"
+    },
+    "subscriptionId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "subscriptionName": {
+      "type": "string"
+    },
+    "templateId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "materialId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    }
+  },
+  "required": [
+    "notificationId",
+    "sendToAddress",
+    "subject",
+    "body",
+    "subscriptionId",
+    "subscriptionName",
+    "templateId"
+  ],
+  "additionalProperties": false
+}

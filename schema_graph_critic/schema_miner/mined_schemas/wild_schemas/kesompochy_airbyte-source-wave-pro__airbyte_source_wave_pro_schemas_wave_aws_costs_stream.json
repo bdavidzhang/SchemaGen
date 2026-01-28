@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "account": { "type": "string" },
+    "groupId": { "type": "string" },
+    "type": { "type": "string" },
+    "date": { "type": "string" },
+    "productCode": { "type": "string" },
+    "serviceCode": { "type": "string" },
+    "region": { "type": "string" },
+    "zone": { "type": "string" },
+    "usageType": { "type": "string" },
+    "instanceType": { "type": "string" },
+    "operation": { "type": "string" },
+    "invoiceId": { "type": "string" },
+    "description": { "type": "string" },
+    "resourceId": { "type": "string" },
+    "tags": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "costCategories": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "usage": { "type": "number" },
+    "cost": { "type": "number" },
+    "unblendedCost": { "type": "number" },
+    "baseCurrency": { "type": "string" },
+    "exchangeRate": { "type": "number" },
+    "targetCost": { "type": "number" },
+    "targetUnblendedCost": { "type": "number" },
+    "targetCurrency": { "type": "string" },
+    "effectiveCost": { "type": "number" },
+    "targetEffectiveCost": { "type": "number" },
+    "amortizedCost": { "type": "number" },
+    "targetAmortizedCost": { "type": "number" },
+    "tagId": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "metadata": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    }
+  }
+}

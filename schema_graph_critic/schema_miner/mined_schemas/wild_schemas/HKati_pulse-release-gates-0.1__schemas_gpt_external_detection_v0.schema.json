@@ -1,0 +1,99 @@
+{
+  "version": "gpt_external_detection_v0",
+  "created_at": "2025-12-04T09:30:00Z",
+  "source": "gpt_external_detector_v0",
+  "input_file": "logs/gpt_usage.log",
+
+  "records": [],
+
+  "summary": {
+    "total_records": 3,
+    "num_external_gpt": 2,
+    "num_internal": 1,
+    "num_unknown": 0,
+
+    "vendors": [
+      {
+        "name": "internal_hpc",
+        "count": 1,
+        "kind": "internal"
+      },
+      {
+        "name": "openai",
+        "count": 2,
+        "kind": "external"
+      }
+    ],
+
+    "models": [
+      {
+        "name": "internal_hpc_model",
+        "vendor": "internal_hpc",
+        "origin": "internal",
+        "total_calls": 1
+      },
+      {
+        "name": "gpt-5.1",
+        "vendor": "openai",
+        "origin": "external",
+        "total_calls": 2
+      }
+    ],
+
+    "total_calls": 3,
+    "internal_calls": 1,
+    "external_calls": 2,
+    "external_share": 66.7,
+
+    "top_vendors": [
+      {
+        "name": "openai",
+        "count": 2
+      }
+    ],
+
+    "top_models": [
+      {
+        "name": "gpt-5.1",
+        "vendor": "openai",
+        "total_calls": 2
+      }
+    ],
+
+    "notes": [
+      "Overlay rebuilt to match gpt_external_detection_v0.schema.json.",
+      "Vendors encoded as array-of-object instead of map; counts preserved (internal_hpc=1, openai=2)."
+    ]
+  },
+
+  "breakdowns": {
+    "by_vendor": [
+      {
+        "name": "internal_hpc",
+        "total_calls": 1
+      },
+      {
+        "name": "openai",
+        "total_calls": 2
+      }
+    ],
+    "by_model": [
+      {
+        "name": "internal_hpc_model",
+        "vendor": "internal_hpc",
+        "total_calls": 1
+      },
+      {
+        "name": "gpt-5.1",
+        "vendor": "openai",
+        "total_calls": 2
+      }
+    ],
+    "by_product_line": [],
+    "by_scenario": []
+  },
+
+  "diagnostics": {
+    "notes": "Schema-aligned shadow overlay for GPT external detection (v0)."
+  }
+}

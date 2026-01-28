@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "JSON schema for configuring tlorganizer.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source", "scan", "actions"],
+  "properties": {
+    "source": {
+      "description": "The directory where files will be scanned from, and have actions performed on them.",
+      "type": "string"
+    },
+    "scan": {
+      "description": "If true, the source directory will continually be scanned for changes.",
+      "type": "boolean"
+    },
+    "interval": {
+      "description": "If scan is true, the interval that the source directory will be scanned at. (in seconds)",
+      "type": "integer",
+      "minimum": 0,
+      "exclusiveMinimum": true
+    },
+    "actions": {
+      "type": "array",
+      "additionalProperties": false,
+      "items": {
+        "type": "object",
+        "required": ["pattern", "action", "destination"],
+        "properties": {
+          "pattern": {
+            "description": "Regular expression to match filename with action.",
+            "type": "string"
+          },
+          "action": {
+            "description": "File operation that will be performed on the file. Can be copy, rename, move, delete.",
+            "type": "string"
+          },
+          "destination": {
+            "description": "The new destination directory of the file. (applicable to copy and move)",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

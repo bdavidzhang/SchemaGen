@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Challenge Info",
+    "type": "object",
+    "description": "Information about a challenge's difficulty and the number of users that have completed it.",
+    "properties": {
+        "difficulty": {
+            "$ref": "./Difficulty.schema.json"
+        },
+        "users_solved": {
+            "type": "number",
+            "title": "Users Solved",
+            "description": "The number of users that solved the challenge."
+        }
+    }
+}

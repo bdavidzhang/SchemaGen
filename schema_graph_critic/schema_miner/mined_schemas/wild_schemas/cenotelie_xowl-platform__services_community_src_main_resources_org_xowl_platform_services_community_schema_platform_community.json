@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "http://xowl.org/platform/services/collaboration/schema",
+  "definitions": {
+    "Bot": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "org.xowl.platform.services.community.bots.Bot"
+          ]
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "botType": {
+          "type": "string"
+        },
+        "wakeupOnStartup": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "Invalid",
+            "Asleep",
+            "WakingUp",
+            "Awaken",
+            "Working",
+            "GoingToSleep"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "identifier",
+        "name",
+        "botType",
+        "status"
+      ]
+    },
+    "Bots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/definitions/Bot"
+          }
+        ]
+      }
+    },
+    "BotSpecification": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "org.xowl.platform.services.community.bots.BotSpecification"
+          ]
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "botType": {
+          "type": "string"
+        },
+        "wakeupOnStartup": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "identifier",
+        "name",
+        "botType"
+      ]
+    },
+    "Badge": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "org.xowl.platform.services.community.profiles.Badge"
+          ]
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageMime": {
+          "type": "string"
+        },
+        "imageContent": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "identifier",
+        "name",
+        "imageMime",
+        "imageContent",
+        "description"
+      ]
+    },
+    "Badges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/definitions/Badge"
+          }
+        ]
+      }
+    },
+    "PublicProfile": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "org.xowl.platform.services.community.profiles.PublicProfile"
+          ]
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "avatarMime": {
+          "type": "string"
+        },
+        "avatarContent": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "occupation": {
+          "type": "string"
+        },
+        "badges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Badge"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "identifier",
+        "name",
+        "email",
+        "avatarMime",
+        "avatarContent",
+        "organization",
+        "occupation",
+        "badges"
+      ]
+    }
+  }
+}

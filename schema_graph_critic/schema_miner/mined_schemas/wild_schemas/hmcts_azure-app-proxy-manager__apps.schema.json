@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://platform.hmcts.net/azure-app-proxy-manager.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": ["apps"],
+  "unevaluatedProperties": false,
+  "properties": {
+    "apps": {
+      "type": "array",
+      "default": [],
+      "title": "The apps Schema",
+      "items": {
+        "type": "object",
+        "default": {},
+        "title": "A Schema",
+        "required": ["name", "externalUrl", "internalUrl"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "default": "",
+            "title": "Name of the app, this should be human readable and unique. It will be displayed on https://myapps.microsoft.com.",
+            "examples": ["Pact broker"]
+          },
+          "externalUrl": {
+            "type": "string",
+            "default": "",
+            "title": "The published external url for the application. This is the url that will be used to access the application.",
+            "examples": ["https://my-external-facing-url.domain.com"]
+          },
+          "logoUrl": {
+            "type": "string",
+            "default": "",
+            "title": "A URL for fetching a logo for the application. This will be displayed on https://myapps.microsoft.com.",
+            "examples": [
+              "https://raw.githubusercontent.com/hmcts/azure-app-proxy/main/logos/incident-bot.png"
+            ]
+          },
+          "externalAuthenticationType": {
+            "type": "string",
+            "default": "aadPreAuthentication",
+            "title": "externalAuthenticationType to be set on application onPremisesPublishing setting. Defaults to aadPreAuthentication ",
+            "examples": ["passthru"]
+          },
+          "groupMembershipClaims": {
+            "type": "string",
+            "default": "",
+            "title": "groupMembershipClaims setting for the application.",
+            "examples": ["SecurityGroup"]
+          },
+          "hideApp": {
+            "type": "boolean",
+            "default": false,
+            "title": "Flag to determine whether an app should be hidden from end user.",
+            "examples": [true, false]
+          },
+          "optionalClaims": {
+            "type": "array",
+            "default": [],
+            "title": "A list of optionalClaims that will be added to the application token.",
+            "items": {
+              "type": "object",
+              "title": "Optional claim",
+              "required": ["name"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "default": "",
+                  "title": "Name of the token",
+                  "examples": ["groups"]
+                },
+                "additionalProperties": {
+                  "type": "array",
+                  "default": [],
+                  "title": "A list of additionalProperties",
+                  "items": {
+                    "type": "string",
+                    "default": "",
+                    "examples": ["sam_account_name"]
+                  }
+                }
+              }
+            }
+          },
+          "tls": {
+            "type": "object",
+            "title": "TLS configuration for the application",
+            "required": ["name", "key_vault_name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "Certificate name in the Azure Key Vault",
+                "examples": ["wildcard-my-domain"]
+              },
+              "key_vault_name": {
+                "type": "string",
+                "default": "",
+                "title": "Azure Key Vault name",
+                "examples": ["my-key-vault"]
+              }
+            }
+          },
+          "clientSecret": {
+            "type": "object",
+            "title": "clientSecret configuration for the application, a new secret will be created and stored in Key Vault if the existing ones with the name are expiring",
+            "required": ["name", "key_vault_name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "Name of the client secret and also the name of the secret to be stored in Azure Key Vault",
+                "examples": ["jenkins-client-secret"]
+              },
+              "key_vault_name": {
+                "type": "string",
+                "default": "",
+                "title": "Azure Key Vault name to store the client secret",
+                "examples": ["my-key-vault"]
+              }
+            }
+          },
+          "appRoleAssignments": {
+            "type": "array",
+            "default": [],
+            "title": "A list of Azure AD groups that will be assigned to the application. It's recommended to assign groups even if userAssignmentRequired is set to false as otherwise they won't show up on https://myapps.microsoft.com.",
+            "items": {
+              "type": "string",
+              "default": "",
+              "title": "An Azure AD security group display name",
+              "examples": ["Developers"]
+            },
+            "examples": [["Developers"]]
+          },
+          "appRoles": {
+            "type": "array",
+            "title": "App roles to be added to application, and the groups that they should have these roles assigned to them for the application.",
+            "items": {
+              "type": "object",
+              "title": "App Role",
+              "required": [
+                "displayName",
+                "description",
+                "value",
+                "id",
+                "groups"
+              ],
+              "properties": {
+                "displayName": {
+                  "type": "string",
+                  "default": "",
+                  "title": "Display Name",
+                  "examples": ["Some display name 1"]
+                },
+                "description": {
+                  "type": "string",
+                  "default": "",
+                  "title": "Description",
+                  "examples": ["Some description 1"]
+                },
+                "value": {
+                  "type": "string",
+                  "default": "",
+                  "title": "Value, must be unique, which will be included in the roles claim of a token identifying a user or app which has been granted this app role",
+                  "examples": ["test"]
+                },
+                "id": {
+                  "type": "string",
+                  "default": "",
+                  "title": "Generate some GUID for each app role, must be unique within each application assignment",
+                  "examples": ["ac9deede-2ee8-49ae-954f-f3ddfb08eee3"]
+                },
+                "groups": {
+                  "type": "array",
+                  "title": "Groups",
+                  "items": {
+                    "type": "string",
+                    "default": "",
+                    "examples": ["test_group_B"]
+                  }
+                }
+              }
+            }
+          },
+          "graphApiPermissions": {
+            "type": "array",
+            "default": [],
+            "title": "A list of Oauth2 graph api permissions to be added for application",
+            "items": {
+              "type": "string",
+              "default": "",
+              "title": "Graph Api permission",
+              "examples": ["User.Read.All"]
+            },
+            "examples": [["User.Read.All"]]
+          },
+          "redirectUrls": {
+            "type": "array",
+            "default": [],
+            "title": "A list of redirect Urls that will be added to the application. Defaults to externalUrl if not set",
+            "items": {
+              "type": "string",
+              "default": "",
+              "title": "Redirect URL of the application",
+              "examples": ["https://my-external-facing-url.domain.com/redirect"]
+            },
+            "examples": [["https://my-external-facing-url.domain.com/redirect"]]
+          },
+          "identifierUrls": {
+            "type": "array",
+            "default": [],
+            "title": "A list of identifier Urls that will be added to the application. Defaults to externalUrl if not set",
+            "items": {
+              "type": "string",
+              "default": "",
+              "title": "Identifier URL of the application",
+              "examples": ["https://my-external-facing-url.domain.com/"]
+            },
+            "examples": [["https://my-external-facing-url.domain.com/"]]
+          },
+          "preferredSingleSignOnMode": {
+            "type": "string",
+            "default": "",
+            "title": "Preferred Single sign-on mode, currently only saml is supported.",
+            "examples": ["saml"],
+            "enum": ["saml"]
+          },
+          "internalUrl": {
+            "type": "string",
+            "default": "",
+            "title": "The internal url of the application.",
+            "examples": ["https://my-internal-url.internal.my-domain"]
+          },
+          "userAssignmentRequired": {
+            "type": "boolean",
+            "default": false,
+            "title": "The userAssignmentRequired Schema",
+            "examples": [true]
+          }
+        }
+      }
+    }
+  }
+}

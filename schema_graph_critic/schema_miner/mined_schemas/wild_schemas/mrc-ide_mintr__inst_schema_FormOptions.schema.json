@@ -1,0 +1,239 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Form Options",
+  "type": "object",
+  "properties": {
+    "groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/group" }
+    },
+    "customValidationRules": {
+      "type": "object",
+      "description": "Custom validation rules.",
+      "patternProperties": {
+        ".+": {
+          "oneOf": [{ "$ref": "#/definitions/crossFieldValidationRule" }]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["groups"],
+  "additionalProperties": false,
+  "definitions": {
+    "group": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "helpText": { "type": "string" },
+        "collapsible": { "type": "boolean" },
+        "triggersRun": { "type": "boolean" },
+        "preRun": { "type": "boolean" },
+        "subGroups": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/subGroup" },
+          "minItems": 1
+        }
+      },
+      "required": ["id", "title", "subGroups", "description"],
+      "additionalProperties": false
+    },
+    "subGroup": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "helpText": { "type": "string" },
+        "collapsible": { "type": "boolean" },
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/field" },
+          "minItems": 1
+        }
+      },
+      "required": ["id", "title", "fields", "description"],
+      "additionalProperties": false
+    },
+    "field": {
+      "description": "A form field definition.",
+      "oneOf": [
+        { "$ref": "#/definitions/numberField" },
+        { "$ref": "#/definitions/sliderField" },
+        { "$ref": "#/definitions/toggleField" },
+        { "$ref": "#/definitions/multiselectField" },
+        { "$ref": "#/definitions/displayField" }
+      ]
+    },
+    "fieldBase": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "helpText": { "type": "string" },
+        "type": {
+          "enum": ["number", "slider", "toggle", "multiselect", "display"]
+        },
+        "required": { "type": "boolean" },
+        "default": {},
+        "unit": { "type": "string" },
+        "disabled": {
+          "oneOf": [
+            { "type": "boolean" },
+            {
+              "oneOf": [{ "$ref": "#/definitions/disabledCrossFieldCondition" }]
+            }
+          ]
+        }
+      },
+      "required": ["id", "label", "type"],
+      "additionalProperties": true
+    },
+    "numericCommon": {
+      "type": "object",
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "step": { "type": "number" },
+        "integer": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "numberField": {
+      "allOf": [
+        { "$ref": "#/definitions/fieldBase" },
+        { "$ref": "#/definitions/numericCommon" },
+        {
+          "properties": {
+            "type": { "enum": ["number"] },
+            "default": { "type": "number" }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "sliderField": {
+      "allOf": [
+        { "$ref": "#/definitions/fieldBase" },
+        { "$ref": "#/definitions/numericCommon" },
+        {
+          "properties": {
+            "type": { "enum": ["slider"] },
+            "default": { "type": "number" }
+          },
+          "required": ["type", "min", "max", "step"]
+        }
+      ]
+    },
+    "toggleField": {
+      "allOf": [
+        { "$ref": "#/definitions/fieldBase" },
+        {
+          "properties": {
+            "type": { "enum": ["toggle"] },
+            "default": { "type": "boolean" }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "multiselectField": {
+      "allOf": [
+        { "$ref": "#/definitions/fieldBase" },
+        {
+          "properties": {
+            "type": { "enum": ["multiselect"] },
+            "options": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/definitions/multiselectOption" }
+            },
+            "default": {
+              "type": ["array", "null"],
+              "items": { "type": "string" }
+            }
+          },
+          "required": ["type", "options"]
+        }
+      ]
+    },
+    "multiselectOption": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "value": { "type": "string" }
+      },
+      "required": ["label", "value"],
+      "additionalProperties": false
+    },
+    "displayField": {
+      "allOf": [
+        { "$ref": "#/definitions/fieldBase" },
+        {
+          "properties": {
+            "type": { "enum": ["display"] },
+            "value": {
+              "oneOf": [{ "$ref": "#/definitions/crossFieldComputation" }]
+            }
+          },
+          "required": ["type", "value"]
+        }
+      ]
+    },
+    "crossFieldComputation": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["cross_field"] },
+        "fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "operator": { "enum": ["sum", "avg", "min", "max"] }
+      },
+      "required": ["type", "fields", "operator"],
+      "additionalProperties": false
+    },
+    "disabledCrossFieldCondition": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["cross_field"] },
+        "fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "operator": { "enum": ["falsy", "all", "any"] }
+      },
+      "required": ["type", "fields", "operator"],
+      "additionalProperties": false
+    },
+    "crossFieldValidationRule": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["cross_field"] },
+        "fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "operator": { "enum": ["sum_lte", "sum_lt", "sum_gte", "sum_eq"] },
+        "threshold": { "type": "number" },
+        "errorFields": { "type": "array", "items": { "type": "string" } },
+        "message": { "type": "string" }
+      },
+      "required": [
+        "type",
+        "fields",
+        "operator",
+        "threshold",
+        "errorFields",
+        "message"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

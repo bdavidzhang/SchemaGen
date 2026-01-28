@@ -1,0 +1,104 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": ""
+        },
+        "title": {
+            "type": "string",
+            "description": ""
+        },
+        "line-comment-char": {
+            "type": "string",
+            "description": "Set the characters for a line comment such as '//' or '#'. UiUi needs comments to save its meta data."
+        },
+        "outfile": {
+            "type": "string",
+            "description": ""
+        },
+        "template": {
+            "type": "string",
+            "description": ""
+        },
+        "render": {
+            "type": "string",
+            "description": ""
+        },
+        "placeholder": {
+            "type": "string",
+            "description": ""
+        },
+        "children": {
+            "type": "array",
+            "description": "",
+            "items": {
+                "$ref": "#/definitions/childNode"
+            }
+        }
+    },
+    "required": [
+        "outfile",
+        "line-comment-char"
+    ],
+    "definitions": {
+        "childNode": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": ""
+                },
+                "title": {
+                    "type": "string",
+                    "description": ""
+                },
+                "render": {
+                    "type": "string",
+                    "description": ""
+                },
+                "placeholder": {
+                    "type": "string",
+                    "description": ""
+                },
+                "direction": {
+                    "type": "string",
+                    "description": ""
+                },
+                "ctrl": {
+                    "type": "string",
+                    "description": "",
+                    "enum": ["slider"]
+                },
+                "minValue": {
+                    "type": "number",
+                    "description": ""
+                },
+                "maxValue": {
+                    "type": "number",
+                    "description": ""
+                },
+                "step": {
+                    "type": "number",
+                    "description": ""
+                },
+                "defaultValue": {
+                    "description": ""
+                },
+                "postProcess": {
+                    "type": "string",
+                    "description": ""
+                },
+                "children": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                        "$ref": "#/definitions/childNode"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/localRemoteEnumSet.schema.json",
+  "title": "localRemoteEnumSet",
+  "description": "Local/Remote",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "locremLocal"
+      ],
+      "description": "Local"
+    },
+    {
+      "enum": [
+        1,
+        "locremRemote"
+      ],
+      "description": "Remote"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

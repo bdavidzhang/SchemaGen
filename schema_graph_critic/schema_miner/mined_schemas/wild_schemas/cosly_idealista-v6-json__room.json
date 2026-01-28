@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "https://feeds.idealista.com/v6/schemas/properties/room.json",
+  "title": "Room Object",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "featuresType",
+    "featuresAreaConstructed",
+    "featuresTenantNumber",
+    "featuresRooms",
+    "featuresBathroomNumber",
+    "featuresSmokingAllowed",
+    "featuresAllowPets",
+    "featuresMinTenantAge",
+    "featuresMaxTenantAge",
+    "featuresCouplesAllowed",
+    "featuresLiftAvailable",
+    "featuresBedType",
+    "featuresMinimalStay",
+    "featuresWindowView",
+    "featuresOwnerLiving",
+    "featuresAvailableFrom"
+  ],
+  "properties": {
+    "featuresType": {
+      "title": "property types",
+      "enum": ["room_shared_flat", "room_shared_chalet"]
+    },
+    "featuresAreaConstructed": {
+      "$ref": "features.json#/featuresAreaConstructed"
+    },
+    "featuresTenantNumber": {
+      "$ref": "features.json#/featuresTenantNumber"
+    },
+    "featuresRooms": {
+      "$ref": "features.json#/featuresRooms"
+    },
+    "featuresBathroomNumber": {
+      "$ref": "features.json#/featuresBathroomNumber"
+    },
+    "featuresSmokingAllowed": {
+      "$ref": "features.json#/featuresSmokingAllowed"
+    },
+    "featuresAllowPets": {
+      "$ref": "features.json#/featuresAllowPets"
+    },
+    "featuresMinTenantAge": {
+      "$ref": "features.json#/featuresMinTenantAge"
+    },
+    "featuresMaxTenantAge": {
+      "$ref": "features.json#/featuresMaxTenantAge"
+    },
+    "featuresCouplesAllowed": {
+      "$ref": "features.json#/featuresCouplesAllowed"
+    },
+    "featuresLiftAvailable": {
+      "$ref": "features.json#/featuresLiftAvailable"
+    },
+    "featuresBedType": {
+      "$ref": "features.json#/featuresBedType"
+    },
+    "featuresMinimalStay": {
+      "$ref": "features.json#/featuresMinimalStay"
+    },
+    "featuresWindowView": {
+      "$ref": "features.json#/featuresWindowView"
+    },
+    "featuresOwnerLiving": {
+      "$ref": "features.json#/featuresOwnerLiving"
+    },
+    "featuresAvailableFrom": {
+      "$ref": "features.json#/featuresAvailableFrom"
+    },
+    "featuresTenantGender": {
+      "$ref": "features.json#/featuresTenantGender"
+    },
+    "featuresConditionedAir": {
+      "$ref": "features.json#/featuresConditionedAir"
+    },
+    "featuresInternetAvailable": {
+      "$ref": "features.json#/featuresInternetAvailable"
+    },
+    "featuresHouseKeeper": {
+      "$ref": "features.json#/featuresHouseKeeper"
+    },
+    "featuresHeatingType": {
+      "$ref": "features.json#/featuresHeatingType"
+    },
+    "featuresEquippedWithFurniture": {
+      "$ref": "features.json#/featuresEquippedWithFurniture"
+    },
+    "featuresCupboard": {
+      "$ref": "features.json#/featuresCupboard"
+    },
+    "featuresPrivateBathroom": {
+      "$ref": "features.json#/featuresPrivateBathroom"
+    },
+    "featuresGenderPreference": {
+      "$ref": "features.json#/featuresGenderPreference"
+    },
+    "featuresOccupation": {
+      "$ref": "features.json#/featuresOccupation"
+    },
+    "featuresLgtbFriendly": {
+      "$ref": "features.json#/featuresLgtbFriendly"
+    },
+    "featuresChildrenAllowed": {
+      "$ref": "features.json#/featuresChildrenAllowed"
+    },
+    "featuresFloorsInTop": {
+      "$ref": "features.json#/featuresFloorsInTop"
+    },
+    "featuresOccupiedNow": {
+      "$ref": "features.json#/featuresOccupiedNow"
+    },
+    "featuresTenantWorkers": {
+      "$ref": "features.json#/featuresTenantWorkers"
+    },
+    "featuresTenantStudents": {
+      "$ref": "features.json#/featuresTenantStudents"
+    },
+    "featuresMinNewTenantAge": {
+      "$ref": "features.json#/featuresMinNewTenantAge"
+    },
+    "featuresMaxNewTenantAge": {
+      "$ref": "features.json#/featuresMaxNewTenantAge"
+    },
+    "featuresEquippedKitchen": {
+      "$ref": "features.json#/featuresEquippedKitchen"
+    },
+    "featuresTerrace": {
+      "$ref": "features.json#/featuresTerrace"
+    },
+    "featuresDoorman": {
+      "$ref": "features.json#/featuresDoorman"
+    },
+    "featuresExteriorAccessibility": {
+      "$ref": "features.json#/featuresExteriorAccessibility"
+    },
+    "featuresInteriorAccessibility": {
+      "$ref": "features.json#/featuresInteriorAccessibility"
+    },
+    "featuresLifeStyle": {
+      "$ref": "features.json#/featuresLifeStyle"
+    },
+    "featuresWindowsLocation": {
+      "$ref": "features.json#/featuresWindowsLocation"
+    },
+    "featuresPool": {
+      "$ref": "features.json#/featuresPool"
+    },
+    "featuresGarden": {
+      "$ref": "features.json#/featuresGarden"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "yas-sequence-diagram",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/$id"
+    }
+  ],
+  "definitions": {
+    "$id": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "$id": {
+          "description": "Auto extract comment line in code to sequence diagrams",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "commentTag": {
+              "type": "string",
+              "description": "Prefix each of line which will be handled to document (optional)",
+              "examples": [
+                "///",
+                "#/"
+              ]
+            },
+            "includes": {
+              "description": "All of files in these path will be scanned (required)",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "excludes": {
+              "description": "All of files in these path will be ignored (optional)",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "examples": [
+                "node_modules"
+              ]
+            },
+            "includePattern": {
+              "type": "string",
+              "description": "Files matched this pattern will be handled (required)"
+            },
+            "outDir": {
+              "$ref": "#/definitions/getVarString",
+              "description": "Output directory which includes sequence diagrams"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+"$id": "https://github.com/paulajagic/singers-opendata/blob/v2.0/schema.json",
+  "title": "Pjevaci",
+  "type": "array",
+  "description": "Skup pjevaca za otvoreno računarstvo.",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "number"
+      },
+      "ime_prezime": {
+        "type": "string"
+      },
+      "nadimak": {
+        "type": "string"
+      },
+      "datum_rodjenja": {
+        "type": "string"
+      },
+      "mjesto_rodjenja": {
+        "type": "string"
+      },
+      "zanr": {
+        "type": "string"
+      },
+      "aktivan_od": {
+        "type": "number"
+      },
+      "broj_nagrada": {
+        "type": "number"
+      },
+      "broj_albuma": {
+        "type": "number"
+      },
+      "najpoznatije_pjesma": {
+        "type": "string"
+      },
+      "drzava_podrijetla": {
+        "type": "string"
+      },
+      "albumi": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "naziv_albuma": {
+              "type": "string"
+            },
+            "godina_izdanja": {
+              "type": "number"
+            },
+            "izdavacka_kuca": {
+              "type": "string"
+            },
+            "broj_pjesama": {
+              "type": "number"
+            },
+            "trajanje_minuta": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "naziv_albuma",
+            "godina_izdanja",
+            "izdavacka_kuca",
+            "broj_pjesama",
+            "trajanje_minuta"
+          ]
+        }
+      }
+    },
+    "required": [
+      "id",
+      "ime_prezime",
+      "nadimak",
+      "datum_rodjenja",
+      "mjesto_rodjenja",
+      "zanr",
+      "aktivan_od",
+      "broj_nagrada",
+      "broj_albuma",
+      "najpoznatije_pjesma",
+      "drzava_podrijetla",
+      "albumi"
+    ]
+  }
+}

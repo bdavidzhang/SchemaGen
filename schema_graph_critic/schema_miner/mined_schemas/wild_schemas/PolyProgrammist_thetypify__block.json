@@ -1,0 +1,508 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RpcBlockResponse",
+  "type": "object",
+  "required": [
+    "author",
+    "chunks",
+    "header"
+  ],
+  "properties": {
+    "author": {
+      "$ref": "#/definitions/AccountId"
+    },
+    "chunks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ChunkHeaderView"
+      }
+    },
+    "header": {
+      "$ref": "#/definitions/BlockHeaderView"
+    }
+  },
+  "definitions": {
+    "AccountId": {
+      "description": "NEAR Account Identifier.\n\nThis is a unique, syntactically valid, human-readable account identifier on the NEAR network.\n\n[See the crate-level docs for information about validation.](index.html#account-id-rules)\n\nAlso see [Error kind precedence](AccountId#error-kind-precedence).\n\n## Examples\n\n``` use near_account_id::AccountId;\n\nlet alice: AccountId = \"alice.near\".parse().unwrap();\n\nassert!(\"ƒelicia.near\".parse::<AccountId>().is_err()); // (ƒ is not f) ```",
+      "type": "string"
+    },
+    "BandwidthRequest": {
+      "description": "`BandwidthRequest` describes the size of receipts that a shard would like to send to another shard. When a shard wants to send a lot of receipts to another shard, it needs to create a request and wait for a bandwidth grant from the bandwidth scheduler.",
+      "type": "object",
+      "required": [
+        "requested_values_bitmap",
+        "to_shard"
+      ],
+      "properties": {
+        "requested_values_bitmap": {
+          "description": "Bitmap which describes what values of bandwidth are requested.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/BandwidthRequestBitmap"
+            }
+          ]
+        },
+        "to_shard": {
+          "description": "Requesting bandwidth to this shard.",
+          "type": "integer",
+          "format": "uint16",
+          "minimum": 0.0
+        }
+      }
+    },
+    "BandwidthRequestBitmap": {
+      "description": "Bitmap which describes which values from the predefined list are being requested. The nth bit is set to 1 when the nth value from the list is being requested.",
+      "type": "object",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "uint8",
+            "minimum": 0.0
+          },
+          "maxItems": 5,
+          "minItems": 5
+        }
+      }
+    },
+    "BandwidthRequests": {
+      "description": "A list of shard's bandwidth requests. Describes how much the shard would like to send to other shards.",
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "V1"
+          ],
+          "properties": {
+            "V1": {
+              "$ref": "#/definitions/BandwidthRequestsV1"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "BandwidthRequestsV1": {
+      "type": "object",
+      "required": [
+        "requests"
+      ],
+      "properties": {
+        "requests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BandwidthRequest"
+          }
+        }
+      }
+    },
+    "BlockHeaderView": {
+      "type": "object",
+      "required": [
+        "approvals",
+        "block_merkle_root",
+        "challenges_result",
+        "challenges_root",
+        "chunk_headers_root",
+        "chunk_mask",
+        "chunk_receipts_root",
+        "chunk_tx_root",
+        "chunks_included",
+        "epoch_id",
+        "gas_price",
+        "hash",
+        "height",
+        "last_ds_final_block",
+        "last_final_block",
+        "latest_protocol_version",
+        "next_bp_hash",
+        "next_epoch_id",
+        "outcome_root",
+        "prev_hash",
+        "prev_state_root",
+        "random_value",
+        "rent_paid",
+        "signature",
+        "timestamp",
+        "timestamp_nanosec",
+        "total_supply",
+        "validator_proposals",
+        "validator_reward"
+      ],
+      "properties": {
+        "approvals": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Signature"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "block_body_hash": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CryptoHash"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "block_merkle_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "block_ordinal": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "challenges_result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SlashedValidator"
+          }
+        },
+        "challenges_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "chunk_endorsements": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "uint8",
+              "minimum": 0.0
+            }
+          }
+        },
+        "chunk_headers_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "chunk_mask": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "chunk_receipts_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "chunk_tx_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "chunks_included": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "epoch_id": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "epoch_sync_data_hash": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CryptoHash"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "gas_price": {
+          "type": "string"
+        },
+        "hash": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "height": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "last_ds_final_block": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "last_final_block": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "latest_protocol_version": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "next_bp_hash": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "next_epoch_id": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "outcome_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "prev_hash": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "prev_height": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "prev_state_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "random_value": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "rent_paid": {
+          "description": "TODO(2271): deprecated.",
+          "type": "string"
+        },
+        "signature": {
+          "$ref": "#/definitions/Signature"
+        },
+        "timestamp": {
+          "description": "Legacy json number. Should not be used.",
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "timestamp_nanosec": {
+          "type": "string"
+        },
+        "total_supply": {
+          "type": "string"
+        },
+        "validator_proposals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ValidatorStakeView"
+          }
+        },
+        "validator_reward": {
+          "description": "TODO(2271): deprecated.",
+          "type": "string"
+        }
+      }
+    },
+    "ChunkHeaderView": {
+      "type": "object",
+      "required": [
+        "balance_burnt",
+        "chunk_hash",
+        "encoded_length",
+        "encoded_merkle_root",
+        "gas_limit",
+        "gas_used",
+        "height_created",
+        "height_included",
+        "outcome_root",
+        "outgoing_receipts_root",
+        "prev_block_hash",
+        "prev_state_root",
+        "rent_paid",
+        "shard_id",
+        "signature",
+        "tx_root",
+        "validator_proposals",
+        "validator_reward"
+      ],
+      "properties": {
+        "balance_burnt": {
+          "type": "string"
+        },
+        "bandwidth_requests": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/BandwidthRequests"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "chunk_hash": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "congestion_info": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CongestionInfoView"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "encoded_length": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "encoded_merkle_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "gas_limit": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "gas_used": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "height_created": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "height_included": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "outcome_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "outgoing_receipts_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "prev_block_hash": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "prev_state_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "rent_paid": {
+          "description": "TODO(2271): deprecated.",
+          "type": "string"
+        },
+        "shard_id": {
+          "$ref": "#/definitions/ShardId"
+        },
+        "signature": {
+          "$ref": "#/definitions/Signature"
+        },
+        "tx_root": {
+          "$ref": "#/definitions/CryptoHash"
+        },
+        "validator_proposals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ValidatorStakeView"
+          }
+        },
+        "validator_reward": {
+          "description": "TODO(2271): deprecated.",
+          "type": "string"
+        }
+      }
+    },
+    "CongestionInfoView": {
+      "type": "object",
+      "required": [
+        "allowed_shard",
+        "buffered_receipts_gas",
+        "delayed_receipts_gas",
+        "receipt_bytes"
+      ],
+      "properties": {
+        "allowed_shard": {
+          "type": "integer",
+          "format": "uint16",
+          "minimum": 0.0
+        },
+        "buffered_receipts_gas": {
+          "type": "string"
+        },
+        "delayed_receipts_gas": {
+          "type": "string"
+        },
+        "receipt_bytes": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        }
+      }
+    },
+    "CryptoHash": {
+      "type": "string"
+    },
+    "PublicKey": {
+      "type": "string"
+    },
+    "ShardId": {
+      "description": "The shard identifier. It may be an arbitrary number - it does not need to be a number in the range 0..NUM_SHARDS. The shard ids do not need to be sequential or contiguous.\n\nThe shard id is wrapped in a new type to prevent the old pattern of using indices in range 0..NUM_SHARDS and casting to ShardId. Once the transition if fully complete it potentially may be simplified to a regular type alias.",
+      "type": "integer",
+      "format": "uint64",
+      "minimum": 0.0
+    },
+    "Signature": {
+      "type": "string"
+    },
+    "SlashedValidator": {
+      "type": "object",
+      "required": [
+        "account_id",
+        "is_double_sign"
+      ],
+      "properties": {
+        "account_id": {
+          "$ref": "#/definitions/AccountId"
+        },
+        "is_double_sign": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ValidatorStakeView": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "account_id",
+            "public_key",
+            "stake",
+            "validator_stake_struct_version"
+          ],
+          "properties": {
+            "account_id": {
+              "$ref": "#/definitions/AccountId"
+            },
+            "public_key": {
+              "$ref": "#/definitions/PublicKey"
+            },
+            "stake": {
+              "type": "string"
+            },
+            "validator_stake_struct_version": {
+              "type": "string",
+              "enum": [
+                "V1"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

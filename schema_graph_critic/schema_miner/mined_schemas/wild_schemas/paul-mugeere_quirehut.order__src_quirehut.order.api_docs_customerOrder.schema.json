@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Customer Order",
+    "type": "object",
+    "properties": {
+        "orderId": {
+            "type": "string",
+            "description": "Unique identifier for the order"
+        },
+        "customerId": {
+            "type": "string",
+            "description": "Identifier for the customer placing the order"
+        },
+        "orderDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time when the order was placed"
+        },
+        "items": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/orderLine"
+            },
+            "description": "List of items in the order"
+        },
+        "totalAmount": {
+            "type": "number",
+            "format": "float",
+            "description": "Total amount for the order"
+        },
+        "status": {
+            "type": "string",
+            "description": "Current status of the order"
+        }
+    },
+    "$defs": {
+        "orderLine": {
+            "type": "object",
+            "title": " Order Line",
+            "description": "An item in the order",
+            "properties": {
+                "productId": {
+                    "type": "string",
+                    "description": "Unique identifier for the product"
+                },
+                "productName": {
+                    "type": "string",
+                    "description": "Name of the product"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "description": "Number of units of the product to be ordered"
+                }
+            }
+        }
+    }
+}

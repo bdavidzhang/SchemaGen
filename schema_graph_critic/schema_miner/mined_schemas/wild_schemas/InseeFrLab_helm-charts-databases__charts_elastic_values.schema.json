@@ -1,0 +1,328 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "elasticsearch": {
+      "description": "Elasticsearch configuration",
+      "type": "object",
+      "properties": {
+        "image": {
+          "description": "Elasticsearch image",
+          "type": "object",
+          "properties": {
+            "registry": {
+              "description": "registry",
+              "type": "string",
+              "default": "docker.io"
+            },
+            "repository": {
+              "description": "repository",
+              "type": "string",
+              "default": "bitnami/elasticsearch"
+            },
+            "tag": {
+              "description": "Tag Elasticsearch",
+              "type": "string",
+              "default": "8.17.1-debian-12-r4",
+              "enum": [
+                "8.17.1-debian-12-r4",
+                "8.16.1-debian-12-r0",
+                "8.15.1-debian-12-r2",
+                "8.14.2-debian-12-r1"
+              ]
+            },
+            "pullPolicy": {
+              "type": "string",
+              "description": "option when pulling the docker image",
+              "default": "IfNotPresent",
+              "enum": [
+                "IfNotPresent",
+                "Always",
+                "Never"
+              ]
+            }
+          }
+        },
+        "security": {
+          "description": "elasticsearch security specific configuration",
+          "type": "object",
+          "properties": {
+            "elasticPassword": {
+              "type": "string",
+              "description": "Password",
+              "default": "changeme",
+              "render": "password",
+              "x-onyxia": {
+                "hidden": true,
+                "overwriteDefaultWith": "{{project.password}}"
+              }
+            }
+          }
+        },
+        "kibana": {
+          "description": "kibana specific configuration",
+          "type": "object",
+          "properties": {
+            "image": {
+              "description": "Kibana image",
+              "type": "object",
+              "properties": {
+                "tag": {
+                  "description": "Tag Kibana",
+                  "type": "string",
+                  "default": "8.16.1-debian-12-r0",
+                  "enum": [
+                    "8.16.1-debian-12-r0",
+                    "8.16.0-debian-12-r0",
+                    "8.15.3-debian-12-r0"
+                  ]
+                }
+              }
+            },
+            "elasticsearch": {
+              "type": "object",
+              "properties": {
+                "security": {
+                  "type": "object",
+                  "properties": {
+                    "auth": {
+                      "type": "object",
+                      "properties": {
+                        "kibanaPassword": {
+                          "type": "string",
+                          "description": "Password",
+                          "default": "changeme",
+                          "render": "password",
+                          "x-onyxia": {
+                            "hidden": true,
+                            "overwriteDefaultWith": "{{project.password}}"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "extraConfiguration": {
+                  "type": "object",
+                  "properties": {
+                    "monitoring.ui.ccs.enabled": {
+                      "type": "boolean",
+                      "description": "monitoring.ui.ccs.enabled",
+                      "default": false
+                    }
+                  },
+                  "x-onyxia": {
+                    "hidden": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "discovery": {
+      "description": "Database discovery",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "Enable discovery of this database",
+          "description": "Allows clients to automatically preconfigure a connection to this database",
+          "default": true
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "form": true,
+      "title": "Ingress Details",
+      "properties": {
+        "enabled": {
+          "description": "Enable Ingress",
+          "type": "boolean",
+          "default": true,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.ingress"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-elasticsearch-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+          }
+        },
+        "ingressClassName": {
+          "type": "string",
+          "form": true,
+          "title": "ingressClassName",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{k8s.ingressClassName}}"
+          }
+        },
+        "useCertManager": {
+          "type": "boolean",
+          "description": "Whether CertManager should be used to generate a certificate",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.useCertManager"
+          }
+        },
+        "certManagerClusterIssuer": {
+          "type": "string",
+          "description": "certManager cluster issuer",
+          "title": "CertManager Cluster Issuer",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.certManagerClusterIssuer"
+          }
+        }
+      }
+    },
+    "ingressKibana": {
+      "type": "object",
+      "form": true,
+      "title": "Kibana Ingress Details",
+      "properties": {
+        "enabled": {
+          "description": "Enable Ingress",
+          "type": "boolean",
+          "default": true,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.ingress"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+          }
+        },
+        "ingressClassName": {
+          "type": "string",
+          "form": true,
+          "title": "ingressClassName",
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{k8s.ingressClassName}}"
+          }
+        }
+      }
+    },
+    "route": {
+      "type": "object",
+      "form": true,
+      "title": "Route details",
+      "properties": {
+        "enabled": {
+          "description": "Enable route",
+          "type": "boolean",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.route"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-elasticsearch-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+          }
+        }
+      }
+    },
+    "routeKibana": {
+      "type": "object",
+      "form": true,
+      "title": "Route details",
+      "properties": {
+        "enabled": {
+          "description": "Enable route",
+          "type": "boolean",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "k8s.route"
+          }
+        },
+        "hostname": {
+          "type": "string",
+          "form": true,
+          "title": "Hostname",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+          }
+        }
+      }
+    },
+    "security": {
+      "description": "security specific configuration",
+      "type": "object",
+      "properties": {
+        "networkPolicy": {
+          "type": "object",
+          "description": "Define access policy to the service",
+          "x-onyxia": {
+            "overwriteSchemaWith": "network-policy.json"
+          },
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable network policy",
+              "description": "Only pod from the same namespace will be allowed",
+              "default": false,
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.defaultNetworkPolicy"
+              }
+            },
+            "from": {
+              "description": "Array of sources allowed to have network access to your service",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "default": [],
+              "x-onyxia": {
+                "hidden": true,
+                "overwriteDefaultWith": "region.from"
+              }
+            }
+          }
+        }
+      }
+    },
+    "userPreferences": {
+      "description": "User Preferences",
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Preferred language",
+          "default": "en",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "user.lang"
+          }
+        }
+      }
+    }
+  }
+}

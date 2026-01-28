@@ -1,0 +1,270 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_oldblockvalue": {
+      "title": "Old Block Value",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_sublistid": {
+      "title": "Sublist ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_fieldtype": {
+      "title": "Field Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_nsfieldid": {
+      "title": "NetSuite Field ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_initfieldvalue": {
+      "title": "Initial Field Value",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_linenumber": {
+      "title": "Line Number",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_xmin": {
+      "title": "X Min",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_ymax": {
+      "title": "Y Max",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_oldblockid": {
+      "title": "Old Block ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_newblockid": {
+      "title": "New Block ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_newfieldvalue": {
+      "title": "New Field Value",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_was_edited": {
+      "title": "Was Edited",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_pagenumber": {
+      "title": "Page Number",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_ymin": {
+      "title": "Y Min",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_xmax": {
+      "title": "X Max",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_tcd_newblockvalue": {
+      "title": "New Block Value",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_ff_sc_tcd_traindata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_tcd_b2p_id": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [],
+  "x-ns-custom-record": true
+}

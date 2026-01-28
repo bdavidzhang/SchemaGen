@@ -1,0 +1,48 @@
+{
+  "$ref": "#/definitions/rigs",
+  "definitions": {
+    "rigs": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "thumbnail": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "software": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "downloadUrl": {
+          "type": "string"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "thumbnail",
+        "description",
+        "software",
+        "price",
+        "downloadUrl",
+        "features"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

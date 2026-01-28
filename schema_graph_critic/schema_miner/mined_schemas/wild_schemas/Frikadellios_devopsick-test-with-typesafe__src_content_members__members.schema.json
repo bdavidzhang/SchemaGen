@@ -1,0 +1,98 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "founder": {
+      "type": "boolean",
+      "default": false
+    },
+    "apdi": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "thumbnail": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string",
+          "default": "photo of APDI member"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "linkedin": {
+      "type": "string",
+      "format": "uri"
+    },
+    "twitter": {
+      "type": "string",
+      "format": "uri"
+    },
+    "instagram": {
+      "type": "string",
+      "format": "uri"
+    },
+    "facebook": {
+      "type": "string",
+      "format": "uri"
+    },
+    "dla": {
+      "type": "string",
+      "enum": [
+        "2021",
+        "2022",
+        "2023"
+      ]
+    },
+    "stream": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "en",
+        "es",
+        "uk",
+        "ru",
+        "de",
+        "fr",
+        "nl"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "title",
+    "photo",
+    "email",
+    "linkedin",
+    "dla",
+    "stream",
+    "skills"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

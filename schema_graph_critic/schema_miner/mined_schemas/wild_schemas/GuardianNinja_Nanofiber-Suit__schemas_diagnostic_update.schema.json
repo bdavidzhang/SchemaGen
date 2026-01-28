@@ -1,0 +1,13 @@
+{
+  "$id": "https://spaceleaf.local/schemas/diagnostic_update.schema.json",
+  "type": "object",
+  "properties": {
+    "chemistry": { "type": "object" },
+    "mechanics": { "type": "object" },
+    "mentalState": { "type": "object" },
+    "sleepStatus": { "type": "object" },
+    "recommendations": { "type": "array", "items": { "type": "string" } },
+    "tone": { "type": "string", "enum": ["calm"] }
+  },
+  "required": ["recommendations", "tone"]
+}

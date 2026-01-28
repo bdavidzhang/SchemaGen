@@ -1,0 +1,14 @@
+{
+	"id": "http://caem.modernizacion.gob.cl/sexo.schema.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "Comment describing your JSON Schema",
+	"definitions": {
+		"sexo": {
+			"enum": [
+				"F",
+				"M",
+				"I"
+			]
+		}
+	}
+}

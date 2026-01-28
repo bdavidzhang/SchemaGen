@@ -1,0 +1,26 @@
+{
+  "$id": "http://example.com/schemas/definitions/subcategoryArray",
+  "type": "array",
+  "minItems": 0,
+  "maxItems": 256,
+  "items": {
+    "type": "object",
+    "required": ["subindex", "name", "description"],
+    "properties": {
+      "subindex": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 255
+      },
+      "name": {
+        "type": "string",
+        "maxLength": 32
+      },
+      "description": {
+        "type": "string",
+        "maxLength": 256
+      }
+    },
+    "additionalProperties": false
+  }
+}

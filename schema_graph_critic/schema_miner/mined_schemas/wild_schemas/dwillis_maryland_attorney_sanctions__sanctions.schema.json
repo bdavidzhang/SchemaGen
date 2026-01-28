@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the event in YYYY-MM-DD format."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The effective date of the event in YYYY-MM-DD format, if present."
+    },
+    "reciprocal": {
+      "type": "string",
+      "description": "the state(s) or court(s) that shared the action"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "action",
+    "date",
+    "effective_date",
+    "reciprocal",
+    "reason"
+  ]
+}

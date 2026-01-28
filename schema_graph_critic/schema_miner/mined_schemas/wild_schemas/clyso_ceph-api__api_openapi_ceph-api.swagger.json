@@ -1,0 +1,4520 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Ceph management API",
+    "version": "version not set",
+    "contact": {
+      "name": "Ceph API",
+      "url": "https://github.com/clyso/ceph-api"
+    },
+    "license": {
+      "name": "GPL-3.0 license",
+      "url": "https://github.com/clyso/ceph-api/blob/main/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Cluster"
+    },
+    {
+      "name": "CrushRule"
+    },
+    {
+      "name": "Status"
+    },
+    {
+      "name": "Users"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/auth": {
+      "post": {
+        "operationId": "Auth_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephLoginResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephLoginReq"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/auth/check": {
+      "post": {
+        "operationId": "Auth_Check",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephTokenCheckResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephTokenCheckReq"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "operationId": "Auth_Logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/cluster": {
+      "get": {
+        "summary": "Get cluster status",
+        "operationId": "Cluster_GetStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephClusterStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cluster"
+        ]
+      },
+      "put": {
+        "summary": "Update cluster status",
+        "operationId": "Cluster_UpdateStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephClusterStatus"
+            }
+          }
+        ],
+        "tags": [
+          "Cluster"
+        ]
+      }
+    },
+    "/api/cluster/config/search": {
+      "get": {
+        "operationId": "Cluster_SearchConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephSearchConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "common",
+              "mon",
+              "mds",
+              "osd",
+              "mgr",
+              "rgw",
+              "rbd",
+              "rbd_mirror",
+              "immutable_object_cache",
+              "mds_client",
+              "cephfs_mirror",
+              "ceph_exporter"
+            ],
+            "default": "common"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fullText",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "basic",
+              "advanced",
+              "dev"
+            ],
+            "default": "basic"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "NAME",
+              "TYPE",
+              "LEVEL"
+            ],
+            "default": "NAME"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ASC",
+              "DESC"
+            ],
+            "default": "ASC"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "str",
+              "uuid",
+              "addr",
+              "addrvec",
+              "bool",
+              "int",
+              "float",
+              "uint",
+              "size",
+              "secs",
+              "millisecs"
+            ],
+            "default": "str"
+          }
+        ],
+        "tags": [
+          "Cluster"
+        ]
+      }
+    },
+    "/api/cluster/user": {
+      "get": {
+        "operationId": "Cluster_GetUsers",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/cephClusterUser"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cluster"
+        ]
+      },
+      "post": {
+        "operationId": "Cluster_CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephCreateClusterUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "Cluster"
+        ]
+      },
+      "put": {
+        "operationId": "Cluster_UpdateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephUpdateClusterUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "Cluster"
+        ]
+      }
+    },
+    "/api/cluster/user/export": {
+      "post": {
+        "operationId": "Cluster_ExportUser",
+        "responses": {
+          "200": {
+            "description": "User key and capabilities in Ceph config file format",
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephExportClusterUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "Cluster"
+        ]
+      }
+    },
+    "/api/cluster/user/{user_entity}": {
+      "delete": {
+        "operationId": "Cluster_DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_entity",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cluster"
+        ]
+      }
+    },
+    "/api/crush_rule": {
+      "get": {
+        "operationId": "CrushRule_ListRules",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/cephRule"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CrushRule"
+        ]
+      },
+      "post": {
+        "operationId": "CrushRule_CreateRule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephCreateRuleRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CrushRule"
+        ]
+      }
+    },
+    "/api/crush_rule/{name}": {
+      "get": {
+        "operationId": "CrushRule_GetRule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephRule"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CrushRule"
+        ]
+      },
+      "delete": {
+        "operationId": "CrushRule_DeleteRule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CrushRule"
+        ]
+      }
+    },
+    "/api/role": {
+      "get": {
+        "operationId": "Users_ListRoles",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/cephRole"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      },
+      "post": {
+        "operationId": "Users_CreateRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephRole"
+            }
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/role/{name}": {
+      "get": {
+        "operationId": "Users_GetRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephRole"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      },
+      "delete": {
+        "operationId": "Users_DeleteRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      },
+      "put": {
+        "operationId": "Users_UpdateRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UsersUpdateRoleBody"
+            }
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/status/ceph": {
+      "get": {
+        "summary": "command: ceph status",
+        "operationId": "Status_GetCephStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephGetCephStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Status"
+        ]
+      }
+    },
+    "/api/status/mon_dump": {
+      "get": {
+        "summary": "command: ceph mon dump",
+        "operationId": "Status_GetCephMonDump",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephCephMonDumpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Status"
+        ]
+      }
+    },
+    "/api/status/osd_dump": {
+      "get": {
+        "summary": "command: ceph osd dump",
+        "operationId": "Status_GetCephOsdDump",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephGetCephOsdDumpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Status"
+        ]
+      }
+    },
+    "/api/status/report": {
+      "get": {
+        "summary": "command: ceph report",
+        "operationId": "Status_GetCephReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Status"
+        ]
+      }
+    },
+    "/api/user": {
+      "get": {
+        "operationId": "Users_ListUsers",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/cephUser"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      },
+      "post": {
+        "operationId": "Users_CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephCreateUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/user/{name}/clone": {
+      "get": {
+        "operationId": "Users_CloneRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "new_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/user/{username}": {
+      "get": {
+        "operationId": "Users_GetUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/cephUser"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      },
+      "delete": {
+        "operationId": "Users_DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      },
+      "put": {
+        "operationId": "Users_UpdateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cephUsersUpdateUserBody"
+            }
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/user/{username}/change_password": {
+      "post": {
+        "operationId": "Users_UserChangePassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UsersUserChangePasswordBody"
+            }
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ConfigParamConfigLevel": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "advanced",
+        "dev"
+      ],
+      "default": "basic"
+    },
+    "ConfigParamParamType": {
+      "type": "string",
+      "enum": [
+        "str",
+        "uuid",
+        "addr",
+        "addrvec",
+        "bool",
+        "int",
+        "float",
+        "uint",
+        "size",
+        "secs",
+        "millisecs"
+      ],
+      "default": "str"
+    },
+    "ConfigParamServiceType": {
+      "type": "string",
+      "enum": [
+        "common",
+        "mon",
+        "mds",
+        "osd",
+        "mgr",
+        "rgw",
+        "rbd",
+        "rbd_mirror",
+        "immutable_object_cache",
+        "mds_client",
+        "cephfs_mirror",
+        "ceph_exporter"
+      ],
+      "default": "common"
+    },
+    "PGStatPGStat_StatSum": {
+      "type": "object",
+      "properties": {
+        "numBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjects": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectClones": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectCopies": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMissingOnPrimary": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMissing": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsDegraded": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMisplaced": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsUnfound": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsDirty": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWhiteouts": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numRead": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numReadKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWrite": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWriteKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numShallowScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numDeepScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numBytesRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numKeysRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsOmap": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsHitSetArchive": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numBytesHitSetArchive": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlush": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvict": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPromote": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushModeHigh": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushModeLow": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictModeSome": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictModeFull": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsPinned": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numLegacySnapsets": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numLargeOmapObjects": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsManifest": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOmapBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOmapKeys": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsRepaired": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "PGStatsDeltaPGStatsDelta_StatSum": {
+      "type": "object",
+      "properties": {
+        "numBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjects": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectClones": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectCopies": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMissingOnPrimary": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMissing": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsDegraded": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMisplaced": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsUnfound": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsDirty": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWhiteouts": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numRead": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numReadKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWrite": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWriteKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numShallowScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numDeepScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numBytesRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numKeysRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsOmap": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsHitSetArchive": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numBytesHitSetArchive": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlush": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvict": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPromote": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushModeHigh": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushModeLow": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictModeSome": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictModeFull": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsPinned": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numLegacySnapsets": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numLargeOmapObjects": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsManifest": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOmapBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOmapKeys": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsRepaired": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "PGStatsDeltaPGStatsDelta_StoreStats": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "available": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internallyReserved": {
+          "type": "string",
+          "format": "int64"
+        },
+        "allocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataStored": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedOriginal": {
+          "type": "string",
+          "format": "int64"
+        },
+        "omapAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internalMetadata": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "PGStatsSumPGStatsSum_StatSum": {
+      "type": "object",
+      "properties": {
+        "numBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjects": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectClones": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectCopies": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMissingOnPrimary": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMissing": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsDegraded": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMisplaced": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsUnfound": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsDirty": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWhiteouts": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numRead": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numReadKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWrite": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWriteKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numShallowScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numDeepScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numBytesRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numKeysRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsOmap": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsHitSetArchive": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numBytesHitSetArchive": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlush": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvict": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPromote": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushModeHigh": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushModeLow": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictModeSome": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictModeFull": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsPinned": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numLegacySnapsets": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numLargeOmapObjects": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsManifest": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOmapBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOmapKeys": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsRepaired": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "PGStatsSumPGStatsSum_StoreStats": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "available": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internallyReserved": {
+          "type": "string",
+          "format": "int64"
+        },
+        "allocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataStored": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedOriginal": {
+          "type": "string",
+          "format": "int64"
+        },
+        "omapAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internalMetadata": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "PoolStatsPoolStats_StatSum": {
+      "type": "object",
+      "properties": {
+        "numBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjects": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectClones": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectCopies": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMissingOnPrimary": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMissing": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsDegraded": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsMisplaced": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsUnfound": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsDirty": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWhiteouts": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numRead": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numReadKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWrite": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numWriteKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numShallowScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numDeepScrubErrors": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numBytesRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numKeysRecovered": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsOmap": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsHitSetArchive": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numBytesHitSetArchive": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlush": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvict": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictKb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPromote": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushModeHigh": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numFlushModeLow": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictModeSome": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numEvictModeFull": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsPinned": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numLegacySnapsets": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numLargeOmapObjects": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsManifest": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOmapBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOmapKeys": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numObjectsRepaired": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "PoolStatsPoolStats_StoreStats": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "available": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internallyReserved": {
+          "type": "string",
+          "format": "int64"
+        },
+        "allocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataStored": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedOriginal": {
+          "type": "string",
+          "format": "int64"
+        },
+        "omapAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internalMetadata": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "SearchConfigRequestSortField": {
+      "type": "string",
+      "enum": [
+        "NAME",
+        "TYPE",
+        "LEVEL"
+      ],
+      "default": "NAME"
+    },
+    "SearchConfigRequestSortOrder": {
+      "type": "string",
+      "enum": [
+        "ASC",
+        "DESC"
+      ],
+      "default": "ASC"
+    },
+    "UsersUpdateRoleBody": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "scopes_permissions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "UsersUserChangePasswordBody": {
+      "type": "object",
+      "properties": {
+        "old_password": {
+          "type": "string"
+        },
+        "new_password": {
+          "type": "string"
+        }
+      }
+    },
+    "cephCephMonDumpAddrVec": {
+      "type": "object",
+      "properties": {
+        "addrvec": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephCephMonDumpAddress"
+          }
+        }
+      }
+    },
+    "cephCephMonDumpAddress": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "addr": {
+          "type": "string"
+        },
+        "nonce": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cephCephMonDumpFeatures": {
+      "type": "object",
+      "properties": {
+        "persistent": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "optional": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cephCephMonDumpMonInfo": {
+      "type": "object",
+      "properties": {
+        "rank": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "publicAddrs": {
+          "$ref": "#/definitions/cephCephMonDumpAddrVec"
+        },
+        "addr": {
+          "type": "string"
+        },
+        "publicAddr": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "weight": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "crushLocation": {
+          "type": "string"
+        }
+      }
+    },
+    "cephCephMonDumpResponse": {
+      "type": "object",
+      "properties": {
+        "epoch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fsid": {
+          "type": "string"
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "minMonRelease": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minMonReleaseName": {
+          "type": "string"
+        },
+        "electionStrategy": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "disallowedLeaders": {
+          "type": "string"
+        },
+        "stretchMode": {
+          "type": "boolean"
+        },
+        "tiebreakerMon": {
+          "type": "string"
+        },
+        "removedRanks": {
+          "type": "string"
+        },
+        "features": {
+          "$ref": "#/definitions/cephCephMonDumpFeatures"
+        },
+        "mons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephCephMonDumpMonInfo"
+          }
+        },
+        "quorum": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "cephCephStatusFSMap": {
+      "type": "object",
+      "properties": {
+        "epoch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "byRank": {
+          "type": "array",
+          "items": {}
+        },
+        "upStandby": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cephCephStatusHealth": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "mutes": {
+          "type": "array",
+          "items": {}
+        }
+      }
+    },
+    "cephCephStatusMgrMap": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "numStandbys": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "services": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cephCephStatusMonMap": {
+      "type": "object",
+      "properties": {
+        "epoch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minMonReleaseName": {
+          "type": "string"
+        },
+        "numMons": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cephCephStatusOSDMap": {
+      "type": "object",
+      "properties": {
+        "epoch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numOsds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numUpOsds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "osdUpSince": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numInOsds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "osdInSince": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numRemappedPgs": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cephCephStatusPGMap": {
+      "type": "object",
+      "properties": {
+        "pgsByState": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephCephStatusPGState"
+          }
+        },
+        "numPgs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numPools": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numObjects": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "dataBytes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "bytesUsed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "bytesAvail": {
+          "type": "string",
+          "format": "int64"
+        },
+        "bytesTotal": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephCephStatusPGState": {
+      "type": "object",
+      "properties": {
+        "stateName": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cephCephStatusService": {
+      "type": "object",
+      "properties": {
+        "daemons": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "cephCephStatusServiceMap": {
+      "type": "object",
+      "properties": {
+        "epoch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modified": {
+          "type": "string"
+        },
+        "services": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/cephCephStatusService"
+          }
+        }
+      }
+    },
+    "cephClusterStatus": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/cephClusterStatusStatus"
+        }
+      }
+    },
+    "cephClusterStatusStatus": {
+      "type": "string",
+      "enum": [
+        "INSTALLED",
+        "POST_INSTALLED"
+      ],
+      "default": "INSTALLED"
+    },
+    "cephClusterUser": {
+      "type": "object",
+      "properties": {
+        "entity": {
+          "type": "string",
+          "title": "entity, e.g: \"client.admin\""
+        },
+        "caps": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "user capabilities, e.g: {\"mon\": \"allow r\",\"osd\":\"allow rw pool=liverpool\"}"
+        },
+        "key": {
+          "type": "string",
+          "title": "keyring"
+        }
+      }
+    },
+    "cephClusterUsers": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephClusterUser"
+          }
+        }
+      }
+    },
+    "cephConfigParam": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/ConfigParamParamType"
+        },
+        "level": {
+          "$ref": "#/definitions/ConfigParamConfigLevel"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "longDesc": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "daemonDefault": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigParamServiceType"
+          }
+        },
+        "seeAlso": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enumValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min": {
+          "type": "number",
+          "format": "double"
+        },
+        "max": {
+          "type": "number",
+          "format": "double"
+        },
+        "canUpdateAtRuntime": {
+          "type": "boolean"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cephCreateClusterUserReq": {
+      "type": "object",
+      "properties": {
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "user capabilities, e.g: {\"mon\": \"allow r\",\"osd\":\"allow rw pool=liverpool\"}"
+        },
+        "user_entity": {
+          "type": "string",
+          "title": "entity, e.g: \"client.admin\""
+        },
+        "import_data": {
+          "type": "string",
+          "format": "byte",
+          "title": "keyring file format - if import_data is set then other fields ignored"
+        }
+      }
+    },
+    "cephCreateRuleRequest": {
+      "type": "object",
+      "properties": {
+        "deviceClass": {
+          "type": "string"
+        },
+        "failureDomain": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "poolType": {
+          "$ref": "#/definitions/cephPoolType"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "root": {
+          "type": "string"
+        }
+      },
+      "title": "CREATE RULE"
+    },
+    "cephCreateUserReq": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "pwdExpirationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "pwdUpdateRequired": {
+          "type": "boolean"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "cephExportClusterUserReq": {
+      "type": "object",
+      "properties": {
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cephExportClusterUserResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "title": "User key and capabilities in Ceph config file format"
+        }
+      }
+    },
+    "cephGetCephOsdDumpResponse": {
+      "type": "object",
+      "properties": {
+        "epoch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fsid": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastUpChange": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastInChange": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "flags": {
+          "type": "string"
+        },
+        "flagsNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "flagsSet": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "crushVersion": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fullRatio": {
+          "type": "number",
+          "format": "double"
+        },
+        "backfillfullRatio": {
+          "type": "number",
+          "format": "double"
+        },
+        "nearfullRatio": {
+          "type": "number",
+          "format": "double"
+        },
+        "clusterSnapshot": {
+          "type": "string"
+        },
+        "poolMax": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxOsd": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requireMinCompatClient": {
+          "type": "string"
+        },
+        "minCompatClient": {
+          "type": "string"
+        },
+        "requireOsdRelease": {
+          "type": "string"
+        },
+        "allowCrimson": {
+          "type": "boolean"
+        },
+        "pools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOsdDumpPool"
+          }
+        },
+        "osds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOsdDumpOsdInfo"
+          }
+        },
+        "osdXinfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOsdDumpOsdXInfo"
+          }
+        },
+        "pgUpmap": {
+          "type": "array",
+          "items": {}
+        },
+        "pgUpmapItems": {
+          "type": "array",
+          "items": {}
+        },
+        "pgUpmapPrimaries": {
+          "type": "array",
+          "items": {}
+        },
+        "pgTemp": {
+          "type": "array",
+          "items": {}
+        },
+        "primaryTemp": {
+          "type": "array",
+          "items": {}
+        },
+        "blocklist": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "rangeBlocklist": {
+          "type": "object"
+        },
+        "erasureCodeProfiles": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/cephOsdDumpErasureCodeProfile"
+          }
+        },
+        "removedSnapsQueue": {
+          "type": "array",
+          "items": {}
+        },
+        "newRemovedSnaps": {
+          "type": "array",
+          "items": {}
+        },
+        "newPurgedSnaps": {
+          "type": "array",
+          "items": {}
+        },
+        "crushNodeFlags": {
+          "type": "object"
+        },
+        "deviceClassFlags": {
+          "type": "object"
+        },
+        "stretchMode": {
+          "$ref": "#/definitions/cephOsdDumpStretchMode"
+        }
+      }
+    },
+    "cephGetCephPgDumpResponse": {
+      "type": "object",
+      "properties": {
+        "pgReady": {
+          "type": "boolean"
+        },
+        "pgMap": {
+          "$ref": "#/definitions/cephPGMap"
+        }
+      },
+      "title": "PG DUMP"
+    },
+    "cephGetCephStatusResponse": {
+      "type": "object",
+      "properties": {
+        "fsid": {
+          "type": "string"
+        },
+        "health": {
+          "$ref": "#/definitions/cephCephStatusHealth"
+        },
+        "electionEpoch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "quorum": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "quorumNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "quorumAge": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "monmap": {
+          "$ref": "#/definitions/cephCephStatusMonMap"
+        },
+        "osdmap": {
+          "$ref": "#/definitions/cephCephStatusOSDMap"
+        },
+        "pgmap": {
+          "$ref": "#/definitions/cephCephStatusPGMap"
+        },
+        "fsmap": {
+          "$ref": "#/definitions/cephCephStatusFSMap"
+        },
+        "mgrmap": {
+          "$ref": "#/definitions/cephCephStatusMgrMap"
+        },
+        "servicemap": {
+          "$ref": "#/definitions/cephCephStatusServiceMap"
+        },
+        "progressEvents": {
+          "type": "object"
+        }
+      }
+    },
+    "cephListRulesResponse": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephRule"
+          }
+        }
+      },
+      "title": "LIST RULES"
+    },
+    "cephLoginReq": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "cephLoginResp": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "pwdUpdateRequired": {
+          "type": "boolean"
+        },
+        "pwdExpirationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sso": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "cephOSDStatsSum": {
+      "type": "object",
+      "properties": {
+        "upFrom": {
+          "type": "string",
+          "format": "int64"
+        },
+        "seq": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPgs": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOsds": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPerPoolOsds": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPerPoolOmapOsds": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbUsed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbUsedData": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbUsedOmap": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbUsedMeta": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbAvail": {
+          "type": "string",
+          "format": "int64"
+        },
+        "statfs": {
+          "$ref": "#/definitions/cephOSDStatsSumStatFs"
+        },
+        "hbPeers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "snapTrimQueueLen": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numSnapTrimming": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numShardsRepaired": {
+          "type": "string",
+          "format": "int64"
+        },
+        "opQueueAgeHist": {
+          "$ref": "#/definitions/cephOSDStatsSumOpQueueAgeHist"
+        },
+        "perfStat": {
+          "$ref": "#/definitions/cephOSDStatsSumPerfStat"
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "networkPingTimes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOSDStatsSumNetworkPingTime"
+          }
+        }
+      }
+    },
+    "cephOSDStatsSumNetworkPingTime": {
+      "type": "object",
+      "properties": {
+        "osd": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastUpdate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "interfaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOSDStatsSumNetworkPingTimeInterface"
+          }
+        }
+      }
+    },
+    "cephOSDStatsSumNetworkPingTimeInterface": {
+      "type": "object",
+      "properties": {
+        "interfaceName": {
+          "type": "string"
+        },
+        "average": {
+          "$ref": "#/definitions/cephOSDStatsSumNetworkPingTimeInterfaceAverage"
+        },
+        "min": {
+          "$ref": "#/definitions/cephOSDStatsSumNetworkPingTimeInterfaceMin"
+        },
+        "max": {
+          "$ref": "#/definitions/cephOSDStatsSumNetworkPingTimeInterfaceMax"
+        },
+        "last": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "cephOSDStatsSumNetworkPingTimeInterfaceAverage": {
+      "type": "object",
+      "properties": {
+        "min1": {
+          "type": "number",
+          "format": "double"
+        },
+        "min5": {
+          "type": "number",
+          "format": "double"
+        },
+        "min15": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "cephOSDStatsSumNetworkPingTimeInterfaceMax": {
+      "type": "object",
+      "properties": {
+        "min1": {
+          "type": "number",
+          "format": "double"
+        },
+        "min5": {
+          "type": "number",
+          "format": "double"
+        },
+        "min15": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "cephOSDStatsSumNetworkPingTimeInterfaceMin": {
+      "type": "object",
+      "properties": {
+        "min1": {
+          "type": "number",
+          "format": "double"
+        },
+        "min5": {
+          "type": "number",
+          "format": "double"
+        },
+        "min15": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "cephOSDStatsSumOpQueueAgeHist": {
+      "type": "object",
+      "properties": {
+        "histogram": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "upperBound": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephOSDStatsSumPerfStat": {
+      "type": "object",
+      "properties": {
+        "commitLatencyMs": {
+          "type": "string",
+          "format": "int64"
+        },
+        "applyLatencyMs": {
+          "type": "string",
+          "format": "int64"
+        },
+        "commitLatencyNs": {
+          "type": "string",
+          "format": "int64"
+        },
+        "applyLatencyNs": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephOSDStatsSumStatFs": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "available": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internallyReserved": {
+          "type": "string",
+          "format": "int64"
+        },
+        "allocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataStored": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedOriginal": {
+          "type": "string",
+          "format": "int64"
+        },
+        "omapAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internalMetadata": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephOsdDumpAddrVec": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "addr": {
+          "type": "string"
+        },
+        "nonce": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "cephOsdDumpClusterAddrs": {
+      "type": "object",
+      "properties": {
+        "addrvec": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOsdDumpAddrVec"
+          }
+        }
+      }
+    },
+    "cephOsdDumpErasureCodeProfile": {
+      "type": "object",
+      "properties": {
+        "k": {
+          "type": "string"
+        },
+        "m": {
+          "type": "string"
+        },
+        "plugin": {
+          "type": "string"
+        },
+        "technique": {
+          "type": "string"
+        }
+      }
+    },
+    "cephOsdDumpHeartbeatAddrs": {
+      "type": "object",
+      "properties": {
+        "addrvec": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOsdDumpAddrVec"
+          }
+        }
+      }
+    },
+    "cephOsdDumpHitSetParams": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "cephOsdDumpLastPgMergeMeta": {
+      "type": "object",
+      "properties": {
+        "sourcePgid": {
+          "type": "string"
+        },
+        "readyEpoch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lastEpochStarted": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lastEpochClean": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sourceVersion": {
+          "type": "string"
+        },
+        "targetVersion": {
+          "type": "string"
+        }
+      }
+    },
+    "cephOsdDumpOsdInfo": {
+      "type": "object",
+      "properties": {
+        "osd": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "up": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "in": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "weight": {
+          "type": "number",
+          "format": "double"
+        },
+        "primaryAffinity": {
+          "type": "number",
+          "format": "double"
+        },
+        "lastCleanBegin": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lastCleanEnd": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "upFrom": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "upThru": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "downAt": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lostAt": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "publicAddrs": {
+          "$ref": "#/definitions/cephOsdDumpPublicAddrs"
+        },
+        "clusterAddrs": {
+          "$ref": "#/definitions/cephOsdDumpClusterAddrs"
+        },
+        "heartbeatBackAddrs": {
+          "$ref": "#/definitions/cephOsdDumpHeartbeatAddrs"
+        },
+        "heartbeatFrontAddrs": {
+          "$ref": "#/definitions/cephOsdDumpHeartbeatAddrs"
+        },
+        "publicAddr": {
+          "type": "string"
+        },
+        "clusterAddr": {
+          "type": "string"
+        },
+        "heartbeatBackAddr": {
+          "type": "string"
+        },
+        "heartbeatFrontAddr": {
+          "type": "string"
+        },
+        "state": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cephOsdDumpOsdXInfo": {
+      "type": "object",
+      "properties": {
+        "osd": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "downStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "laggyProbability": {
+          "type": "number",
+          "format": "double"
+        },
+        "laggyInterval": {
+          "type": "number",
+          "format": "double"
+        },
+        "features": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "oldWeight": {
+          "type": "number",
+          "format": "double"
+        },
+        "lastPurgedSnapsScrub": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deadEpoch": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cephOsdDumpPool": {
+      "type": "object",
+      "properties": {
+        "pool": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "poolName": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "flags": {
+          "type": "string",
+          "format": "int64"
+        },
+        "flagsNames": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "crushRule": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "peeringCrushBucketCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "peeringCrushBucketTarget": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "peeringCrushBucketBarrier": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "peeringCrushBucketMandatoryMember": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "objectHash": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pgAutoscaleMode": {
+          "type": "string"
+        },
+        "pgNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pgPlacementNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pgPlacementNumTarget": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pgNumTarget": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pgNumPending": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lastPgMergeMeta": {
+          "$ref": "#/definitions/cephOsdDumpLastPgMergeMeta"
+        },
+        "lastChange": {
+          "type": "string"
+        },
+        "lastForceOpResend": {
+          "type": "string"
+        },
+        "lastForceOpResendPrenautilus": {
+          "type": "string"
+        },
+        "lastForceOpResendPreluminous": {
+          "type": "string"
+        },
+        "auid": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "snapMode": {
+          "type": "string"
+        },
+        "snapSeq": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "snapEpoch": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "poolSnaps": {
+          "type": "array",
+          "items": {}
+        },
+        "removedSnaps": {
+          "type": "string"
+        },
+        "quotaMaxBytes": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "quotaMaxObjects": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "tiers": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "tierOf": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "readTier": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "writeTier": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cacheMode": {
+          "type": "string"
+        },
+        "targetMaxBytes": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "targetMaxObjects": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "cacheTargetDirtyRatioMicro": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "cacheTargetDirtyHighRatioMicro": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "cacheTargetFullRatioMicro": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "cacheMinFlushAge": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "cacheMinEvictAge": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "erasureCodeProfile": {
+          "type": "string"
+        },
+        "hitSetParams": {
+          "$ref": "#/definitions/cephOsdDumpHitSetParams"
+        },
+        "hitSetPeriod": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "hitSetCount": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "useGmtHitset": {
+          "type": "boolean"
+        },
+        "minReadRecencyForPromote": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "minWriteRecencyForPromote": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "hitSetGradeDecayRate": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "hitSetSearchLastN": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "gradeTable": {
+          "type": "array",
+          "items": {}
+        },
+        "stripeWidth": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "expectedNumObjects": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "fastRead": {
+          "type": "boolean"
+        },
+        "options": {
+          "type": "object"
+        },
+        "applicationMetadata": {
+          "type": "object"
+        },
+        "readBalance": {
+          "$ref": "#/definitions/cephOsdDumpReadBalance"
+        }
+      }
+    },
+    "cephOsdDumpPublicAddrs": {
+      "type": "object",
+      "properties": {
+        "addrvec": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOsdDumpAddrVec"
+          }
+        }
+      }
+    },
+    "cephOsdDumpReadBalance": {
+      "type": "object",
+      "properties": {
+        "scoreActing": {
+          "type": "number",
+          "format": "double"
+        },
+        "scoreStable": {
+          "type": "number",
+          "format": "double"
+        },
+        "optimalScore": {
+          "type": "number",
+          "format": "double"
+        },
+        "rawScoreActing": {
+          "type": "number",
+          "format": "double"
+        },
+        "rawScoreStable": {
+          "type": "number",
+          "format": "double"
+        },
+        "primaryAffinityWeighted": {
+          "type": "number",
+          "format": "double"
+        },
+        "averagePrimaryAffinity": {
+          "type": "number",
+          "format": "double"
+        },
+        "averagePrimaryAffinityWeighted": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "cephOsdDumpStretchMode": {
+      "type": "object",
+      "properties": {
+        "stretchModeEnabled": {
+          "type": "boolean"
+        },
+        "stretchBucketCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "degradedStretchMode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "recoveringStretchMode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "stretchModeBucket": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "cephOsdStats": {
+      "type": "object",
+      "properties": {
+        "osd": {
+          "type": "string",
+          "format": "int64"
+        },
+        "upFrom": {
+          "type": "string",
+          "format": "int64"
+        },
+        "seq": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPgs": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numOsds": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPerPoolOsds": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPerPoolOmapOsds": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbUsed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbUsedData": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbUsedOmap": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbUsedMeta": {
+          "type": "string",
+          "format": "int64"
+        },
+        "kbAvail": {
+          "type": "string",
+          "format": "int64"
+        },
+        "statfs": {
+          "$ref": "#/definitions/cephOsdStatsStatFs"
+        },
+        "hbPeers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "snapTrimQueueLen": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numSnapTrimming": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numShardsRepaired": {
+          "type": "string",
+          "format": "int64"
+        },
+        "opQueueAgeHist": {
+          "$ref": "#/definitions/cephOsdStatsOpQueueAgeHist"
+        },
+        "perfStat": {
+          "$ref": "#/definitions/cephOsdStatsPerfStat"
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "networkPingTimes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOsdStatsNetworkPingTime"
+          }
+        }
+      }
+    },
+    "cephOsdStatsNetworkPingTime": {
+      "type": "object",
+      "properties": {
+        "osd": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastUpdate": {
+          "type": "string"
+        },
+        "interfaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOsdStatsNetworkPingTimeInterface"
+          }
+        }
+      }
+    },
+    "cephOsdStatsNetworkPingTimeInterface": {
+      "type": "object",
+      "properties": {
+        "interfaceName": {
+          "type": "string"
+        },
+        "average": {
+          "$ref": "#/definitions/cephOsdStatsNetworkPingTimeInterfaceAverage"
+        },
+        "min": {
+          "$ref": "#/definitions/cephOsdStatsNetworkPingTimeInterfaceMin"
+        },
+        "max": {
+          "$ref": "#/definitions/cephOsdStatsNetworkPingTimeInterfaceMax"
+        },
+        "last": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "cephOsdStatsNetworkPingTimeInterfaceAverage": {
+      "type": "object",
+      "properties": {
+        "min1": {
+          "type": "number",
+          "format": "double"
+        },
+        "min5": {
+          "type": "number",
+          "format": "double"
+        },
+        "min15": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "cephOsdStatsNetworkPingTimeInterfaceMax": {
+      "type": "object",
+      "properties": {
+        "min1": {
+          "type": "number",
+          "format": "double"
+        },
+        "min5": {
+          "type": "number",
+          "format": "double"
+        },
+        "min15": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "cephOsdStatsNetworkPingTimeInterfaceMin": {
+      "type": "object",
+      "properties": {
+        "min1": {
+          "type": "number",
+          "format": "double"
+        },
+        "min5": {
+          "type": "number",
+          "format": "double"
+        },
+        "min15": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "cephOsdStatsOpQueueAgeHist": {
+      "type": "object",
+      "properties": {
+        "histogram": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "upperBound": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephOsdStatsPerfStat": {
+      "type": "object",
+      "properties": {
+        "commitLatencyMs": {
+          "type": "string",
+          "format": "int64"
+        },
+        "applyLatencyMs": {
+          "type": "string",
+          "format": "int64"
+        },
+        "commitLatencyNs": {
+          "type": "string",
+          "format": "int64"
+        },
+        "applyLatencyNs": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephOsdStatsStatFs": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "available": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internallyReserved": {
+          "type": "string",
+          "format": "int64"
+        },
+        "allocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataStored": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedOriginal": {
+          "type": "string",
+          "format": "int64"
+        },
+        "omapAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internalMetadata": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephPGMap": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "format": "int64"
+        },
+        "stamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastOsdmapEpoch": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastPgScan": {
+          "type": "string",
+          "format": "int64"
+        },
+        "pgStatsSum": {
+          "$ref": "#/definitions/cephPGStatsSum"
+        },
+        "osdStatsSum": {
+          "$ref": "#/definitions/cephOSDStatsSum"
+        },
+        "pgStatsDelta": {
+          "$ref": "#/definitions/cephPGStatsDelta"
+        },
+        "pgStats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephPGStat"
+          }
+        },
+        "poolStats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephPoolStats"
+          }
+        },
+        "osdStats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephOsdStats"
+          }
+        },
+        "poolStatfs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephPoolStatFs"
+          }
+        }
+      }
+    },
+    "cephPGStat": {
+      "type": "object",
+      "properties": {
+        "pgid": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "reportedSeq": {
+          "type": "string",
+          "format": "int64"
+        },
+        "reportedEpoch": {
+          "type": "string",
+          "format": "int64"
+        },
+        "state": {
+          "type": "string"
+        },
+        "lastFresh": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastChange": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastActive": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastPeered": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastClean": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastBecameActive": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastBecamePeered": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastUnstale": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastUndegraded": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastFullsized": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mappingEpoch": {
+          "type": "string",
+          "format": "int64"
+        },
+        "logStart": {
+          "type": "string"
+        },
+        "ondiskLogStart": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastEpochClean": {
+          "type": "string",
+          "format": "int64"
+        },
+        "parent": {
+          "type": "string"
+        },
+        "parentSplitBits": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastScrub": {
+          "type": "string"
+        },
+        "lastScrubStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastDeepScrub": {
+          "type": "string"
+        },
+        "lastDeepScrubStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastCleanScrubStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "objectsScrubbed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "logSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "logDupsSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ondiskLogSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "statsInvalid": {
+          "type": "boolean"
+        },
+        "dirtyStatsInvalid": {
+          "type": "boolean"
+        },
+        "omapStatsInvalid": {
+          "type": "boolean"
+        },
+        "hitsetStatsInvalid": {
+          "type": "boolean"
+        },
+        "hitsetBytesStatsInvalid": {
+          "type": "boolean"
+        },
+        "pinStatsInvalid": {
+          "type": "boolean"
+        },
+        "manifestStatsInvalid": {
+          "type": "boolean"
+        },
+        "snaptrimqLen": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastScrubDuration": {
+          "type": "string",
+          "format": "int64"
+        },
+        "scrubSchedule": {
+          "type": "string"
+        },
+        "scrubDuration": {
+          "type": "number",
+          "format": "double"
+        },
+        "objectsTrimmed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "snaptrimDuration": {
+          "type": "number",
+          "format": "double"
+        },
+        "statSum": {
+          "$ref": "#/definitions/PGStatPGStat_StatSum"
+        },
+        "up": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "acting": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "availNoMissing": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "objectLocationCounts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "blockedBy": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "upPrimary": {
+          "type": "string",
+          "format": "int64"
+        },
+        "actingPrimary": {
+          "type": "string",
+          "format": "int64"
+        },
+        "purgedSnaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "cephPGStatsDelta": {
+      "type": "object",
+      "properties": {
+        "statSum": {
+          "$ref": "#/definitions/PGStatsDeltaPGStatsDelta_StatSum"
+        },
+        "storeStats": {
+          "$ref": "#/definitions/PGStatsDeltaPGStatsDelta_StoreStats"
+        },
+        "logSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ondiskLogSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "up": {
+          "type": "string",
+          "format": "int64"
+        },
+        "acting": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numStoreStats": {
+          "type": "string",
+          "format": "int64"
+        },
+        "stampDelta": {
+          "type": "string"
+        }
+      }
+    },
+    "cephPGStatsSum": {
+      "type": "object",
+      "properties": {
+        "statSum": {
+          "$ref": "#/definitions/PGStatsSumPGStatsSum_StatSum"
+        },
+        "storeStats": {
+          "$ref": "#/definitions/PGStatsSumPGStatsSum_StoreStats"
+        },
+        "logSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ondiskLogSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "up": {
+          "type": "string",
+          "format": "int64"
+        },
+        "acting": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numStoreStats": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephPoolStatFs": {
+      "type": "object",
+      "properties": {
+        "poolid": {
+          "type": "string",
+          "format": "int64"
+        },
+        "osd": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "available": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internallyReserved": {
+          "type": "string",
+          "format": "int64"
+        },
+        "allocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataStored": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dataCompressedOriginal": {
+          "type": "string",
+          "format": "int64"
+        },
+        "omapAllocated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "internalMetadata": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephPoolStats": {
+      "type": "object",
+      "properties": {
+        "poolid": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numPg": {
+          "type": "string",
+          "format": "int64"
+        },
+        "statSum": {
+          "$ref": "#/definitions/PoolStatsPoolStats_StatSum"
+        },
+        "storeStats": {
+          "$ref": "#/definitions/PoolStatsPoolStats_StoreStats"
+        },
+        "logSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ondiskLogSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "up": {
+          "type": "string",
+          "format": "int64"
+        },
+        "acting": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numStoreStats": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "cephPoolType": {
+      "type": "string",
+      "enum": [
+        "replication",
+        "erasure"
+      ],
+      "default": "replication"
+    },
+    "cephRole": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "scopes_permissions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "cephRolesResp": {
+      "type": "object",
+      "properties": {
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephRole"
+          }
+        }
+      }
+    },
+    "cephRule": {
+      "type": "object",
+      "properties": {
+        "ruleId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ruleName": {
+          "type": "string"
+        },
+        "ruleset": {
+          "type": "string",
+          "format": "int64"
+        },
+        "type": {
+          "type": "string",
+          "format": "int64"
+        },
+        "minSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "maxSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephStep"
+          }
+        }
+      }
+    },
+    "cephSearchConfigResponse": {
+      "type": "object",
+      "properties": {
+        "params": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephConfigParam"
+          }
+        }
+      }
+    },
+    "cephStep": {
+      "type": "object",
+      "properties": {
+        "entries": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cephTokenCheckReq": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "cephTokenCheckResp": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "pwdUpdateRequired": {
+          "type": "boolean"
+        },
+        "pwdExpirationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sso": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "cephUpdateClusterUserReq": {
+      "type": "object",
+      "properties": {
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "user capabilities, e.g: {\"mon\": \"allow r\",\"osd\":\"allow rw pool=liverpool\"}"
+        },
+        "user_entity": {
+          "type": "string",
+          "title": "entity, e.g: \"client.admin\""
+        }
+      }
+    },
+    "cephUser": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lastUpdate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "pwdExpirationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "pwdUpdateRequired": {
+          "type": "boolean"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "cephUsersResp": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/cephUser"
+          }
+        }
+      }
+    },
+    "cephUsersUpdateUserBody": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "pwdExpirationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "pwdUpdateRequired": {
+          "type": "boolean"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "flow": "password",
+      "tokenUrl": "http://localhost:9969/api/oauth/token",
+      "scopes": {
+        "openid": "default scope"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2": [
+        "openid"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "pluginAlias": "OpenSesame",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "This name will be used at history page on Sesame.app",
+      "default": "Open Sesame",
+      "required": true
+    },
+    "debug": {
+      "type": "boolean",
+      "title": "Debug logging",
+      "required": false,
+      "default": false
+    },
+    "apiKey": {
+      "title": "API Key",
+      "type": "string",
+      "required": true,
+      "x-schema-form": {
+        "type": "password"
+      }
+    },
+    "locks": {
+      "title": "Sesame Locks",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "uuid": {
+            "title": "UUID",
+            "description": "UUID can be found at Sesame app.",
+            "type": "string",
+            "required": true
+          },
+          "secret": {
+            "title": "KEY Secret",
+            "description": "Key Secret. Can be retreived at https://sesame-qr-reader.vercel.app",
+            "type": "string",
+            "required": true,
+            "x-schema-form": {
+              "type": "password"
+            }
+          }
+        }
+      }
+    },
+    "bots": {
+      "title": "Sesame Bots",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "uuid": {
+            "title": "UUID",
+            "description": "UUID can be found at Sesame app.",
+            "type": "string",
+            "required": true
+          },
+          "secret": {
+            "title": "KEY Secret",
+            "description": "Key Secret. Can be retreived at https://sesame-qr-reader.vercel.app",
+            "type": "string",
+            "required": true,
+            "x-schema-form": {
+              "type": "password"
+            }
+          }
+        }
+      }
+    }
+  },
+  "layout": [
+    {
+      "type": "fieldset",
+      "title": "Common settings",
+      "items": [
+        "name",
+        "apiKey"
+      ]
+    },
+    {
+      "type": "fieldset",
+      "title": "Sesame Locks",
+      "expandable": true,
+      "expanded": true,
+      "buttonText": "Add Locks",
+      "key": "locks",
+      "items": [
+        "locks[].name",
+        "locks[].uuid",
+        "locks[].secret"
+      ]
+    },
+    {
+      "type": "fieldset",
+      "title": "Sesame Bots",
+      "expandable": true,
+      "expanded": false,
+      "buttonText": "Add Bots",
+      "key": "bots",
+      "items": [
+        "bots[].name",
+        "bots[].uuid",
+        "bots[].secret"
+      ]
+    }
+  ]
+}

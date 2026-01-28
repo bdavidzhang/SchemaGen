@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "description": "Schema for a Level-2 (Implementation) DSpec. Binds the Level-1 Design to concrete technology choices (schemas, APIs, code).",
+  "required": [
+    "extends",
+    "what",
+    "boundaries",
+    "success"
+  ],
+  "properties": {
+    "extends": {
+      "type": "string",
+      "description": "The ID of the Level-1 Design Spec that this implementation refines."
+    },
+    "what": {
+      "type": "object",
+      "description": "Concrete implementation details (APIs, Table Schemas, Class structures). Reserved for future expansion.",
+      "additionalProperties": true
+    },
+    "boundaries": {
+      "type": "object",
+      "description": "Physical boundaries and infrastructure constraints (e.g., specific database instances, region constraints).",
+      "additionalProperties": true
+    },
+    "success": {
+      "type": "object",
+      "description": "Implementation-specific success criteria, including specific test cases and SLO measurements.",
+      "additionalProperties": true
+    }
+  }
+}

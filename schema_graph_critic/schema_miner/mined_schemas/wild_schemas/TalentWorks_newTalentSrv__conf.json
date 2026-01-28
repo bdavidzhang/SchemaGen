@@ -1,0 +1,109 @@
+{
+  "instancesPerCore": 1,
+  "router": {
+    "host": "0.0.0.0",
+    "port": 8080
+  },
+  "mongodb": {
+    "address": "vertx.mongopersistor",
+    "host": "ds051170.mongolab.com",
+    "port": 51170,
+    "username": "talent_srv",
+    "password": "Hello1313",
+    "db_name": "talent_test"
+  },
+  "jsonValidator": {
+    "address": "campudus.jsonvalidator",
+    "schemas": [
+      {
+        "key": "UserSchema",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "title": "Json representation of a user",
+          "description": "User properties",
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string"
+            },
+            "middleName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "dateOfBirth": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "primaryEmail": {
+              "type": "string",
+              "format": "email"
+            },
+            "password": {
+              "description": "Password must start with a letter, contain at least 4 and no more than 15 characters. Only letters, numbers, and underscore may be used",
+              "type": "string",
+              "pattern": "^[a-zA-Z]\\w{3,14}$"
+            },
+            "interests": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0,
+              "uniqueItems": true
+            },
+            "address": {
+              "$ref": "vertxjsonschema://AddressSchema"
+            }
+          },
+          "required": [
+            "firstName",
+            "lastName",
+            "primaryEmail"
+          ]
+        }
+      },
+      {
+        "key": "AddressSchema",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "title": "Json representation of an Address",
+          "description": "Address properties",
+          "type": "object",
+          "properties": {
+            "street1": {
+              "type": "string",
+               "maxLength": 50
+            },
+            "street2": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "city": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "state": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 50
+            },
+            "postalCode": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 10
+            },
+            "country": {
+              "type": "string",
+              "maxLength": 50
+            }
+          }
+        }
+      }
+    ]
+  }
+}

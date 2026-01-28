@@ -1,0 +1,379 @@
+{
+  "$id": "networking-v2.4.0",
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "AccountId": {
+      "type": "string",
+      "description": "AWS account ID."
+    },
+    "AwsProviderVersion": {
+      "type": "string",
+      "description": "The version of the AWS provider to use.",
+      "default": "\u003e= 5.70.0"
+    },
+    "DefaultDependenciesPaths": {
+      "type": "string",
+      "description": "Default dependecies paths for terragrunt.\nThis is a experimental feature and should not be used in production.",
+      "default": []
+    },
+    "Environment": {
+      "type": "string",
+      "description": "Environment name."
+    },
+    "IamForCicd": {
+      "type": "object",
+      "description": "Enable IAM roles for CI/CD.",
+      "default": {
+        "AssumableCdRole": false
+      },
+      "properties": {
+        "AssumableCdRole": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "AssumableCdRole"
+      ]
+    },
+    "IamForCicd.AssumableCdRole": {
+      "type": "boolean",
+      "description": "Override single parameter of IamForCicd",
+      "default": false
+    },
+    "IncludeLockFile": {
+      "type": "boolean",
+      "description": "Include a Terraform lock file.",
+      "default": false
+    },
+    "Region": {
+      "type": "string",
+      "description": "AWS region.",
+      "default": "eu-west-1"
+    },
+    "S3Backend": {
+      "type": "boolean",
+      "description": "Use S3 as a backend.",
+      "default": true
+    },
+    "StackName": {
+      "type": "string",
+      "description": "Name of Terraform stack."
+    },
+    "Team": {
+      "type": "string",
+      "description": "Team name."
+    },
+    "TerraformVersion": {
+      "type": "string",
+      "description": "The version of Terraform to use.",
+      "default": "\u003e= 1.7.0"
+    },
+    "Terragrunt": {
+      "type": "object",
+      "description": "Enable Terragrunt.\nThis is a experimental feature and should not be used in production.",
+      "default": {
+        "DependenciesPaths": [],
+        "Enable": false
+      },
+      "properties": {
+        "DependenciesPaths": {
+          "default": []
+        },
+        "Enable": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "Enable",
+        "DependenciesPaths"
+      ]
+    },
+    "Terragrunt.DependenciesPaths": {
+      "description": "Override single parameter of Terragrunt",
+      "default": []
+    },
+    "Terragrunt.Enable": {
+      "type": "boolean",
+      "description": "Override single parameter of Terragrunt",
+      "default": false
+    },
+    "VpcEndpoints": {
+      "type": "object",
+      "description": "Enable VPC Endpoints",
+      "default": {
+        "Dkr": false,
+        "Ecr": false,
+        "Enable": false,
+        "Lambda": false,
+        "Logs": false,
+        "Prometheus": false,
+        "S3": false,
+        "SecretsManager": false,
+        "Sqs": false,
+        "Ssm": false,
+        "SsmMessages": false,
+        "Sts": false,
+        "Xray": false
+      },
+      "properties": {
+        "Dkr": {
+          "type": "boolean",
+          "default": false
+        },
+        "Ecr": {
+          "type": "boolean",
+          "default": false
+        },
+        "Enable": {
+          "type": "boolean",
+          "default": false
+        },
+        "Lambda": {
+          "type": "boolean",
+          "default": false
+        },
+        "Logs": {
+          "type": "boolean",
+          "default": false
+        },
+        "Prometheus": {
+          "type": "boolean",
+          "default": false
+        },
+        "S3": {
+          "type": "boolean",
+          "default": false
+        },
+        "SecretsManager": {
+          "type": "boolean",
+          "default": false
+        },
+        "Sqs": {
+          "type": "boolean",
+          "default": false
+        },
+        "Ssm": {
+          "type": "boolean",
+          "default": false
+        },
+        "SsmMessages": {
+          "type": "boolean",
+          "default": false
+        },
+        "Sts": {
+          "type": "boolean",
+          "default": false
+        },
+        "Xray": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "Enable",
+        "Dkr",
+        "SsmMessages",
+        "Ssm",
+        "S3",
+        "Xray",
+        "SecretsManager",
+        "Ecr",
+        "Logs",
+        "Prometheus",
+        "Sqs",
+        "Sts",
+        "Lambda"
+      ]
+    },
+    "VpcEndpoints.Dkr": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.Ecr": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.Enable": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.Lambda": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.Logs": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.Prometheus": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.S3": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.SecretsManager": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.Sqs": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.Ssm": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.SsmMessages": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.Sts": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcEndpoints.Xray": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcEndpoints",
+      "default": false
+    },
+    "VpcFlowLogs": {
+      "type": "object",
+      "description": "Enable VPC Flow Logs",
+      "default": {
+        "Enable": false
+      },
+      "properties": {
+        "Enable": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "Enable"
+      ]
+    },
+    "VpcFlowLogs.Enable": {
+      "type": "boolean",
+      "description": "Override single parameter of VpcFlowLogs",
+      "default": false
+    },
+    "networking-data.AccountId": {
+      "type": "string",
+      "description": "AWS account ID."
+    },
+    "networking-data.AwsProviderVersion": {
+      "type": "string",
+      "description": "The version of the AWS provider to use.",
+      "default": "\u003e= 5.70.0"
+    },
+    "networking-data.DefaultDependenciesPaths": {
+      "type": "string",
+      "description": "Default dependecies paths for terragrunt.\nThis is a experimental feature and should not be used in production.",
+      "default": []
+    },
+    "networking-data.Environment": {
+      "type": "string",
+      "description": "Environment name."
+    },
+    "networking-data.IamForCicd": {
+      "type": "object",
+      "description": "Enable IAM roles for CI/CD.",
+      "default": {
+        "AssumableCdRole": false
+      },
+      "properties": {
+        "AssumableCdRole": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "AssumableCdRole"
+      ]
+    },
+    "networking-data.IamForCicd.AssumableCdRole": {
+      "type": "boolean",
+      "description": "Override single parameter of networking-data.IamForCicd",
+      "default": false
+    },
+    "networking-data.IncludeLockFile": {
+      "type": "boolean",
+      "description": "Include a Terraform lock file.",
+      "default": false
+    },
+    "networking-data.Region": {
+      "type": "string",
+      "description": "AWS region.",
+      "default": "eu-west-1"
+    },
+    "networking-data.S3Backend": {
+      "type": "boolean",
+      "description": "Use S3 as a backend.",
+      "default": true
+    },
+    "networking-data.StackName": {
+      "type": "string",
+      "description": "Name of Terraform stack."
+    },
+    "networking-data.Team": {
+      "type": "string",
+      "description": "Team name."
+    },
+    "networking-data.TerraformVersion": {
+      "type": "string",
+      "description": "The version of Terraform to use.",
+      "default": "\u003e= 1.7.0"
+    },
+    "networking-data.Terragrunt": {
+      "type": "object",
+      "description": "Enable Terragrunt.\nThis is a experimental feature and should not be used in production.",
+      "default": {
+        "DependenciesPaths": [],
+        "Enable": false
+      },
+      "properties": {
+        "DependenciesPaths": {
+          "default": []
+        },
+        "Enable": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "Enable",
+        "DependenciesPaths"
+      ]
+    },
+    "networking-data.Terragrunt.DependenciesPaths": {
+      "description": "Override single parameter of networking-data.Terragrunt",
+      "default": []
+    },
+    "networking-data.Terragrunt.Enable": {
+      "type": "boolean",
+      "description": "Override single parameter of networking-data.Terragrunt",
+      "default": false
+    }
+  },
+  "required": [
+    "StackName",
+    "networking-data.StackName"
+  ]
+}

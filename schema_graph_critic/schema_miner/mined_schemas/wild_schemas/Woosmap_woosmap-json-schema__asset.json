@@ -1,0 +1,315 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "https://raw.githubusercontent.com/woosmap/woosmap-json-schema/master/asset.json#",
+  "title": "Woosmap Asset",
+  "description": "An Asset as expected for Woosmap Data API",
+  "type": "object",
+  "required": [
+    "location",
+    "name",
+    "storeId"
+  ],
+  "definitions": {
+    "address": {
+      "id": "address",
+      "title": "Woosmap Address",
+      "description": "An Address of an Asset",
+      "type": "object",
+      "properties": {
+        "lines": {
+          "description": "an Array for lines of an Asset Address",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "countryCode": {
+          "description": "An ISO_3166-1 Country Code where the Asset is located (see https://en.wikipedia.org/wiki/ISO_3166-1 for full list)",
+          "type": "string"
+        },
+        "city": {
+          "description": "A City where belongs an Asset",
+          "type": "string"
+        },
+        "zipcode": {
+          "description": "An Zipcode / Postal code of an Asset Address",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "contact": {
+      "id": "contact",
+      "title": "Woosmap Contact",
+      "description": "A Contact for an Asset",
+      "type": "object",
+      "properties": {
+        "website": {
+          "description": "URL to documents about the contact",
+          "type": "string",
+          "format": "uri"
+        },
+        "phone": {
+          "description": "A phone number for contact",
+          "type": "string"
+        },
+        "email": {
+          "description": "An email address for contact",
+          "type": "string",
+          "format": "email"
+        }
+      },
+      "additionalProperties": false
+    },
+    "location": {
+      "id": "location",
+      "title": "Woosmap Location",
+      "description": "A geographical coordinate for an Asset representing a lat/lng pair",
+      "type": "object",
+      "required": [
+        "lat",
+        "lng"
+      ],
+      "properties": {
+        "lat": {
+          "description": "The latitude in degrees. It must be in the range [-90.0, +90.0].",
+          "type": "number",
+          "format": "double"
+        },
+        "lng": {
+          "description": "The longitude in degrees. It must be in the range [-180.0, +180.0].",
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": false
+    },
+    "openingHours": {
+      "id": "openingHours",
+      "title": "Opening Hours",
+      "type": "object",
+      "description": "The Opening Hours for an Asset",
+      "properties": {
+        "timezone": {
+          "description": "String Timezone for the Opening Hours of an Assets (see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)",
+          "type": "string"
+        },
+        "usual": {
+          "type": "object",
+          "description": "The Opening Hours for an Asset",
+          "properties": {
+            "default": {
+              "description": "The Default opening Hours",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "1": {
+              "description": "The opening Hours for Monday",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "2": {
+              "description": "The opening Hours for Tuesday",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "3": {
+              "description": "The opening Hours for Wednesday",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "4": {
+              "description": "The opening Hours for Thursday",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "5": {
+              "description": "The opening Hours for Friday",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "6": {
+              "description": "The opening Hours for Saturday",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "7": {
+              "description": "The opening Hours for Sunday",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "special": {
+          "type": "object",
+          "description": "Special dates for opening and closing hours",
+          "patternProperties": {
+            "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$": {
+              "allOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "string"
+                      },
+                      "end": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "userProperties": {
+      "id": "userProperties",
+      "title": "User Properties",
+      "description": "To store any user properties like photo urls, metadata, ...",
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object"
+            },
+            {
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "properties": {
+    "storeId": {
+      "description": "The unique identifier for an  Asset",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name for an Asset",
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "location": {
+      "$ref": "#/definitions/location"
+    },
+    "contact": {
+      "$ref": "#/definitions/contact"
+    },
+    "address": {
+      "$ref": "#/definitions/address"
+    },
+    "openingHours": {
+      "$ref": "#/definitions/openingHours"
+    },
+    "userProperties": {
+      "$ref": "#/definitions/userProperties"
+    }
+  }
+}

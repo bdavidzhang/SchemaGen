@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hometask.ai/schemas/decision.schema.json",
+  "title": "Decision",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "command_id",
+    "status",
+    "action",
+    "confidence",
+    "payload",
+    "explanation",
+    "trace_id",
+    "schema_version",
+    "decision_version",
+    "created_at"
+  ],
+  "properties": {
+    "decision_id": {"type": "string"},
+    "command_id": {"type": "string"},
+    "status": {"type": "string", "enum": ["ok", "clarify", "error"]},
+    "action": {
+      "type": "string",
+      "enum": [
+        "start_job",
+        "propose_create_task",
+        "propose_add_shopping_item",
+        "clarify"
+      ]
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "payload": {"type": "object"},
+    "explanation": {"type": "string"},
+    "trace_id": {"type": "string"},
+    "schema_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "decision_version": {"type": "string"},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "action": {"const": "start_job"},
+            "payload": {"$ref": "#/definitions/start_job_payload"}
+          },
+          "required": ["action", "payload"]
+        },
+        {
+          "properties": {
+            "action": {"const": "propose_create_task"},
+            "payload": {"$ref": "#/definitions/propose_create_task_payload"}
+          },
+          "required": ["action", "payload"]
+        },
+        {
+          "properties": {
+            "action": {"const": "propose_add_shopping_item"},
+            "payload": {"$ref": "#/definitions/propose_add_shopping_item_payload"}
+          },
+          "required": ["action", "payload"]
+        },
+        {
+          "properties": {
+            "action": {"const": "clarify"},
+            "payload": {"$ref": "#/definitions/clarify_payload"}
+          },
+          "required": ["action", "payload"]
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "task_payload": {
+      "type": "object",
+      "required": ["title"],
+      "properties": {
+        "title": {"type": "string"},
+        "description": {"type": "string"},
+        "assignee_id": {"type": "string"},
+        "zone_id": {"type": "string"},
+        "due": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "shopping_item_payload": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string"},
+        "quantity": {"type": "string"},
+        "unit": {"type": "string"},
+        "list_id": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "proposed_action": {
+      "type": "object",
+      "required": ["action", "payload"],
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": ["propose_create_task", "propose_add_shopping_item"]
+        },
+        "payload": {
+          "oneOf": [
+            {"$ref": "#/definitions/propose_create_task_payload"},
+            {"$ref": "#/definitions/propose_add_shopping_item_payload"}
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "start_job_payload": {
+      "type": "object",
+      "required": ["job_id", "job_type"],
+      "properties": {
+        "job_id": {"type": "string"},
+        "job_type": {
+          "type": "string",
+          "enum": ["create_task", "add_shopping_item", "unknown"]
+        },
+        "proposed_actions": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/proposed_action"}
+        },
+        "ui_message": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "propose_create_task_payload": {
+      "type": "object",
+      "required": ["task"],
+      "properties": {
+        "task": {"$ref": "#/definitions/task_payload"},
+        "idempotency_key": {"type": "string"},
+        "job_hint": {
+          "type": "object",
+          "properties": {
+            "job_type": {
+              "type": "string",
+              "enum": ["create_task", "add_shopping_item", "unknown"]
+            },
+            "job_id": {"type": "string"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "propose_add_shopping_item_payload": {
+      "type": "object",
+      "required": ["item"],
+      "properties": {
+        "item": {"$ref": "#/definitions/shopping_item_payload"},
+        "idempotency_key": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "clarify_payload": {
+      "type": "object",
+      "required": ["question"],
+      "properties": {
+        "question": {"type": "string"},
+        "options": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "missing_fields": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "job_id": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "AU",
+  "properties": {
+    "M1": {
+      "type": "string"
+    },
+    "jsonList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "opdata1": {
+            "type": "object",
+            "properties": {
+              "a1": {
+                "type": "string",
+                "examples": ["ni","n2"]
+              },
+              "a2": {
+                "type": "string"
+              }
+            }
+
+          },
+          "nonoptdata2": {
+            "type": "object",
+            "properties": {
+              "s1": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": ["ni","n2"]
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name", "value"]
+                }
+              },
+              "s2": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": ["ni","n2"]
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name", "value"]
+                }
+              }
+            }
+
+          }
+
+
+        },
+        "required": ["A1"]
+      }
+    }
+  }
+}

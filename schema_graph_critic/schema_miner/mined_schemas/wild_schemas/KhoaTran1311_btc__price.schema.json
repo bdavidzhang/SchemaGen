@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "cryptocompare",
+  "type": "object",
+  "properties": {
+    "Response": {
+      "type": "string"
+    },
+    "Message": {
+      "type": "string"
+    },
+    "HasWarning": {
+      "type": "boolean"
+    },
+    "Type": {
+      "type": "integer"
+    },
+    "RateLimit": {
+      "type": "object",
+      "description": "May contain arbitrary rate limit information",
+      "additionalProperties": true
+    },
+    "Data": {
+      "type": "object",
+      "properties": {
+        "Aggregated": {
+          "type": "boolean"
+        },
+        "TimeFrom": {
+          "type": "integer",
+          "description": "Unix timestamp in seconds"
+        },
+        "TimeTo": {
+          "type": "integer",
+          "description": "Unix timestamp in seconds"
+        },
+        "Data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "time": {
+                "type": "integer",
+                "description": "Unix timestamp in seconds"
+              },
+              "high": { "type": "number" },
+              "low": { "type": "number" },
+              "open": { "type": "number" },
+              "volumefrom": { "type": "number" },
+              "volumeto": { "type": "number" },
+              "close": { "type": "number" },
+              "conversionType": {
+                "type": "string"
+              },
+              "conversionSymbol": {
+                "type": ["string", "null"],
+                "description": "May be an empty string if not applicable"
+              }
+            },
+            "required": [
+              "time", "high", "low", "open",
+              "volumefrom", "volumeto",
+              "close", "conversionType", "conversionSymbol"
+            ]
+          }
+        }
+      },
+      "required": ["Aggregated", "TimeFrom", "TimeTo", "Data"]
+    }
+  },
+  "required": ["Response", "Message", "HasWarning", "Type", "RateLimit", "Data"]
+}

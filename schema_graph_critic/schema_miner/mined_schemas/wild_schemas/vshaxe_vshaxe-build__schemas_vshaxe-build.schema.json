@@ -1,0 +1,187 @@
+{
+	"definitions": {
+		"vshaxeBuild.project.TargetArguments": {
+			"additionalProperties": false,
+			"properties": {
+				"targetDependencies": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<String>"
+				},
+				"releaseAfterBuildCommands": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<vshaxeBuild.project.ArrayHandle<String>>"
+				},
+				"beforeBuildCommands": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<vshaxeBuild.project.ArrayHandle<String>>"
+				},
+				"args": {
+					"$ref": "#/definitions/vshaxeBuild.project.Hxml"
+				},
+				"afterBuildCommands": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<vshaxeBuild.project.ArrayHandle<String>>"
+				}
+			},
+			"type": "object"
+		},
+		"vshaxeBuild.project.Target": {
+			"additionalProperties": false,
+			"properties": {
+				"targetDependencies": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<String>"
+				},
+				"releaseAfterBuildCommands": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<vshaxeBuild.project.ArrayHandle<String>>"
+				},
+				"name": {
+					"type": "string"
+				},
+				"inherit": {
+					"markdownDescription": "name of a target in defaults.json to base this config on",
+					"type": "string"
+				},
+				"display": {
+					"markdownDescription": "arguments that only apply for display",
+					"$ref": "#/definitions/vshaxeBuild.project.TargetArguments"
+				},
+				"debug": {
+					"markdownDescription": "arguments that only apply in debug mode",
+					"$ref": "#/definitions/vshaxeBuild.project.TargetArguments"
+				},
+				"composite": {
+					"markdownDescription": "Whether this target is just a collection of other targets",
+					"type": "boolean"
+				},
+				"beforeBuildCommands": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<vshaxeBuild.project.ArrayHandle<String>>"
+				},
+				"args": {
+					"$ref": "#/definitions/vshaxeBuild.project.Hxml"
+				},
+				"afterBuildCommands": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<vshaxeBuild.project.ArrayHandle<String>>"
+				}
+			},
+			"required": [
+				"name"
+			],
+			"type": "object"
+		},
+		"vshaxeBuild.project.Project": {
+			"additionalProperties": false,
+			"properties": {
+				"targets": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<vshaxeBuild.project.Target>"
+				},
+				"mainTarget": {
+					"type": "string"
+				},
+				"inherit": {
+					"markdownDescription": "name of a target in defaults.json to base all targets in this config on",
+					"type": "string"
+				}
+			},
+			"required": [
+				"targets"
+			],
+			"type": "object"
+		},
+		"vshaxeBuild.project.Output": {
+			"additionalProperties": false,
+			"properties": {
+				"target": {
+					"$ref": "#/definitions/vshaxeBuild.project.HaxeTarget"
+				},
+				"path": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"target"
+			],
+			"type": "object"
+		},
+		"vshaxeBuild.project.Hxml": {
+			"additionalProperties": false,
+			"properties": {
+				"workingDirectory": {
+					"type": "string"
+				},
+				"times": {
+					"type": "boolean"
+				},
+				"packageName": {
+					"type": "string"
+				},
+				"output": {
+					"$ref": "#/definitions/vshaxeBuild.project.Output"
+				},
+				"noInline": {
+					"type": "boolean"
+				},
+				"main": {
+					"type": "string"
+				},
+				"macros": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<String>"
+				},
+				"haxelibs": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<String>"
+				},
+				"defines": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<String>"
+				},
+				"debug": {
+					"type": "boolean"
+				},
+				"deadCodeElimination": {
+					"$ref": "#/definitions/vshaxeBuild.project.DeadCodeElimination"
+				},
+				"classPaths": {
+					"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<String>"
+				}
+			},
+			"type": "object"
+		},
+		"vshaxeBuild.project.HaxeTarget": {
+			"enum": [
+				"swf",
+				"js",
+				"neko",
+				"php",
+				"cpp",
+				"cppia",
+				"as3",
+				"java",
+				"python",
+				"hl",
+				"lua",
+				"interp"
+			]
+		},
+		"vshaxeBuild.project.DeadCodeElimination": {
+			"enum": [
+				"std",
+				"full",
+				"no"
+			]
+		},
+		"vshaxeBuild.project.ArrayHandle<vshaxeBuild.project.Target>": {
+			"items": {
+				"$ref": "#/definitions/vshaxeBuild.project.Target"
+			},
+			"type": "array"
+		},
+		"vshaxeBuild.project.ArrayHandle<vshaxeBuild.project.ArrayHandle<String>>": {
+			"items": {
+				"$ref": "#/definitions/vshaxeBuild.project.ArrayHandle<String>"
+			},
+			"type": "array"
+		},
+		"vshaxeBuild.project.ArrayHandle<String>": {
+			"items": {
+				"type": "string"
+			},
+			"type": "array"
+		}
+	},
+	"$ref": "#/definitions/vshaxeBuild.project.Project",
+	"$schema": "http://json-schema.org/draft-07/schema#"
+}

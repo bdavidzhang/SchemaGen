@@ -1,0 +1,26 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "MessageBaseType",
+	"description": "Basic details of the user or developer message.",
+	"type": "object",
+	"properties": {
+		"messageCode": {
+			"description": "The code associated with the message.",
+			"$ref": "../base/CodeType.json"
+		},
+		"messageTypeCode": {
+			"description": "Process message instances may be of type: success, warning, error, or info.",
+			"type": "string",
+			"enum": [
+					"success",
+					"error",
+					"warning"
+					]
+		},
+		"messageText": {
+			"description": "The content of the message. The content language is identified by the Content-Language header.",
+			"$ref": "../base/SimpleTextType.json"
+		}
+	},
+	"additionalProperties": false
+}

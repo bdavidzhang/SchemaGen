@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/rule.schema.json",
+  "title": "JSON-Schema linter rule metadata",
+  "type": "object",
+  "required": [
+    "title",
+    "description",
+    "message",
+    "categories",
+    "dialects",
+    "examples",
+    "autofixable"
+  ],
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "examples": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [ "before" ],
+        "properties": {
+          "after": {
+            "type": "object"
+          },
+          "before": {
+            "type": "object"
+          },
+          "doc": {
+            "type": "boolean"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "autofixable": {
+      "description": "Whether this rule can automatically fixd by the linter",
+      "type": "boolean"
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "readability",
+          "correctness",
+          "performance",
+          "safety",
+          "style",
+          "opinionated"
+        ]
+      }
+    },
+    "dialects": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "enum": [ "draft4", "draft6", "draft7", "2019-09", "2020-12" ]
+      },
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 0,
+        "items": {
+          "type": "string",
+          "pattern": "^\\$?[A-Za-z][A-Za-z0-9-_]*$"
+        }
+      }
+    },
+    "message": {
+      "type": "string"
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    }
+  },
+  "additionalProperties": false
+}

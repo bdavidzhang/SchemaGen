@@ -1,0 +1,549 @@
+{
+    "swagger": "2.0",
+    "host": "auth.neon-lab.com",
+    "basePath": "/api/v2",
+    "info": {
+        "description": "Provides authentication for Neon services.",
+        "title": "Neon Authentication API",
+        "termsOfService": "https://app.neon-lab.com/terms/",
+        "contact": {},
+        "license": {
+            "name": "Copyright"
+        },
+        "version": "2.1"
+    },
+    "tags": [
+        {
+            "name": "track",
+            "description": "Group Tracking Events"
+        }
+    ],
+    "x-documentationSets": [
+        "public",
+        "internal"
+    ],
+    "schemes": [
+        "https"
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "security": [
+        {
+            "Bearer": []
+        }
+    ],
+    "paths": {
+        "/accounts": {
+            "x-onlyVisibleInDocumentationSets": [
+                "internal"
+            ],
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "Create account",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "customer_name",
+                        "in": "query",
+                        "description": "The company name of the customer.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "The email that is associated with the account.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "admin_user_username",
+                        "in": "query",
+                        "description": "This is expected to be an email for the admin User. This can be the same as the account email or different.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "admin_user_password",
+                        "in": "query",
+                        "description": "The password for the admin user.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "admin_user_first_name",
+                        "in": "query",
+                        "description": "The first name of the person controlling the admin account for this customer.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "admin_user_last_name",
+                        "in": "query",
+                        "description": "The last name of the person controlling the admin account for this customer.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "admin_user_title",
+                        "in": "query",
+                        "description": "The title of the person controlling the admin account for this customer.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "default_width",
+                        "in": "query",
+                        "description": "The default width of the account.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "default_height",
+                        "in": "query",
+                        "description": "The default height of the account.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "default_thumbnail_id",
+                        "in": "query",
+                        "description": "The id of the default thumbnail wanted for the account.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Account verification email sent to {email}"
+                    },
+                    "500": {
+                        "description": "Failed to send verification email to {email}"
+                    }
+                }
+            }
+        },
+        "/accounts/verify": {
+            "x-onlyVisibleInDocumentationSets": [
+                "internal"
+            ],
+            "post": {
+                "tags": [
+                    "verify account"
+                ],
+                "summary": "Verify account",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "The verification token that is sent back on a post to accounts.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Account has been added : name = {customer_name} id = {account_id}",
+                        "schema": {
+                            "$ref": "#/definitions/account"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create a new user and associate it to an account.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "The email of the user.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "The password of the user.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "access_level",
+                        "in": "query",
+                        "description": "The access level of the user, can only have access to what the requesting user has",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "query",
+                        "description": "The first name of the user.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "query",
+                        "description": "The last name of the user.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "The title of the user.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "secondary_email",
+                        "in": "query",
+                        "description": "Another email for the user. Used mainly in a reset password scenario.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cell_phone_number",
+                        "in": "query",
+                        "description": "The cell phone number of the user, used as another form of password recovery.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The newly-created thumbnail.",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "This is used to reset a users password",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "The email of the user.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "new_password",
+                        "in": "query",
+                        "description": "The new password of the user.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "reset_password_token",
+                        "in": "query",
+                        "description": "A jwt, which is provided when a reset password operation starts.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user object of the sent in username.",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "logout"
+                ],
+                "summary": "Log the user out",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "token"
+                            ],
+                            "properties": {
+                                "token": {
+                                    "type": "string",
+                                    "description": "Access token to invalidate."
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully logged out user"
+                    }
+                }
+            }
+        },
+        "/authenticate": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "Authenticate the user with the username/password",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "username",
+                                "password"
+                            ],
+                            "properties": {
+                                "username": {
+                                    "type": "string",
+                                    "description": "The username"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "description": "The user's password"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The tokens and user information to access the API.",
+                        "schema": {
+                            "$ref": "#/definitions/tokens"
+                        }
+                    }
+                }
+            }
+        },
+        "/refresh_token": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "Get a fresh access token",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "token"
+                            ],
+                            "properties": {
+                                "token": {
+                                    "type": "string",
+                                    "description": "Refresh token"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The tokens and user information to access the API.",
+                        "schema": {
+                            "$ref": "#/definitions/tokens"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "account": {
+            "type": "object",
+            "properties": {
+                "tracker_account_id": {
+                    "type": "string",
+                    "description": "ID to use in the tracker code."
+                },
+                "updated": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "An ISO8601 date when the account was last updated."
+                },
+                "account_id": {
+                    "type": "string",
+                    "description": "ID of the account."
+                },
+                "email": {
+                    "type": "string",
+                    "description": "email of the account."
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "An ISO8601 date when the account was created."
+                },
+                "integration_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of integration IDs associated with the account."
+                },
+                "default_size": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "Default size of the image `[width, height]`."
+                },
+                "staging_tracker_account_id": {
+                    "type": "string",
+                    "description": "ID to use in tracking code on staging."
+                },
+                "default_thumbnail_id": {
+                    "type": "string",
+                    "description": "Default thumbnail if no others are found."
+                },
+                "customer_name": {
+                    "type": "string",
+                    "description": "Name of the customer."
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of usernames associated to the account."
+                },
+                "error": {
+                    "$ref": "#/definitions/error"
+                }
+            }
+        },
+        "error": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Description of the error."
+                },
+                "data": {
+                    "type": "string",
+                    "description": "More detail about the error."
+                }
+            }
+        },
+        "user": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "description": "Username of the user, this is always an email."
+                },
+                "updated": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "An ISO8601 date when the account was last updated."
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "An ISO8601 date when the account was created."
+                },
+                "email": {
+                    "type": "string",
+                    "description": "email of the user."
+                },
+                "access_level": {
+                    "type": "integer",
+                    "description": "bit packed integer that represents what this user can access."
+                },
+                "first_name": {
+                    "type": "string",
+                    "description": "First name of the user."
+                },
+                "last_name": {
+                    "type": "string",
+                    "description": "Last name of the user."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Title of the user."
+                },
+                "error": {
+                    "$ref": "#/definitions/error"
+                }
+            }
+        },
+        "tokens": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string",
+                    "description": "Access token for subsequent calls to the API."
+                },
+                "refresh_token": {
+                    "type": "string",
+                    "description": "Token to refresh the access token when it expires."
+                },
+                "account_ids": {
+                    "type": "array",
+                    "description": "List of account ids this user can access.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "user_info": {
+                    "$ref": "#/definitions/user"
+                }
+            }
+        }
+    }
+}

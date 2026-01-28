@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "https://gymbro.app/schemas/exercise_schema.json",
+  "title": "GymBro Exercise Library Seed Data Schema",
+  "description": "JSON Schema for validating GymBro exercise library seed data format",
+  "type": "object",
+  "required": ["schemaVersion", "entity", "entityVersion", "generatedAt", "totalCount", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Editor hint for schema association"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version in semver format"
+    },
+    "entity": {
+      "type": "string",
+      "enum": ["EXERCISE"],
+      "description": "Entity type identifier"
+    },
+    "entityVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Entity version number"
+    },
+    "generatedAt": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix timestamp when data was generated"
+    },
+    "totalCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of exercises in payload"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the dataset"
+    },
+    "payload": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Exercise"
+      },
+      "description": "Array of exercise objects"
+    }
+  },
+  "definitions": {
+    "Exercise": {
+      "type": "object",
+      "required": ["id", "name", "muscleGroup", "category", "equipment", "source", "isCustom", "isOfficial", "createdAt", "updatedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(off_[a-f0-9]+|u_.+_[a-f0-9]{8})$",
+          "description": "Unique exercise identifier"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exercise name (plain string)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Exercise description (plain string)"
+        },
+        "muscleGroup": {
+          "$ref": "#/definitions/MuscleGroup",
+          "description": "Primary muscle group"
+        },
+        "category": {
+          "$ref": "#/definitions/Category",
+          "description": "Exercise category"
+        },
+        "equipment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Equipment"
+          },
+          "minItems": 1,
+          "description": "Required equipment"
+        },
+        "imageUrl": {
+          "type": ["string", "null"],
+          "description": "Exercise image URL (optional)"
+        },
+        "videoUrl": {
+          "type": ["string", "null"],
+          "description": "Exercise video URL (optional)"
+        },
+        "targetMuscles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MuscleGroup"
+          },
+          "description": "Target muscle groups"
+        },
+        "secondaryMuscles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MuscleGroup"
+          },
+          "description": "Secondary muscle groups"
+        },
+        "difficulty": {
+          "$ref": "#/definitions/Difficulty",
+          "description": "Exercise difficulty level"
+        },
+        "defaultSets": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "default": 3,
+          "description": "Default number of sets"
+        },
+        "defaultReps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 10,
+          "description": "Default number of repetitions"
+        },
+        "defaultWeight": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0,
+          "description": "Default weight (kg)"
+        },
+        "restTimeSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600,
+          "default": 60,
+          "description": "Default rest time in seconds"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Exercise execution steps"
+        },
+        "tips": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Training tips and advice"
+        },
+        "instructions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Exercise instructions (optional)"
+        },
+        "media": {
+          "$ref": "#/definitions/Media",
+          "description": "Media resources for the exercise"
+        },
+        "source": {
+          "$ref": "#/definitions/Source",
+          "description": "Exercise source"
+        },
+        "isCustom": {
+          "type": "boolean",
+          "description": "Whether this is a custom exercise"
+        },
+        "userId": {
+          "type": ["string", "null"],
+          "description": "Owner user ID (custom exercise only)"
+        },
+        "isFavorite": {
+          "type": "boolean",
+          "description": "Whether this exercise is favorited"
+        },
+        "difficultyLevel": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Legacy difficulty level (1-5)"
+        },
+        "difficulty": {
+          "anyOf": [{ "$ref": "#/definitions/Difficulty" }, { "type": "null" }],
+          "description": "Difficulty enum (optional)"
+        },
+        "calories": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Calories burned estimate (optional)"
+        },
+        "isOfficial": {
+          "type": "boolean",
+          "description": "Whether this is an official exercise"
+        },
+        "createdAt": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Last update timestamp"
+        },
+        "createdByUserId": {
+          "type": "string",
+          "description": "Creator user ID (empty for official exercises)"
+        },
+        "authorName": {
+          "type": ["string", "null"],
+          "description": "Creator display name (optional)"
+        },
+        "isPublic": {
+          "type": "boolean",
+          "description": "Whether this exercise is public"
+        },
+        "popularity": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Popularity / usage count (optional)"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tags (optional)"
+        },
+        "embedding": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 128,
+              "maxItems": 128
+            },
+            { "type": "null" }
+          ],
+          "description": "Embedding vector (128-dim, optional)"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Notes (optional)"
+        },
+        "targetSets": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ExerciseSet" },
+          "description": "Legacy target sets (optional)"
+        },
+        "completedSets": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ExerciseSet" },
+          "description": "Legacy completed sets (optional)"
+        }
+      }
+    },
+    "Media": {
+      "type": "object",
+      "required": ["thumbnailUrl"],
+      "properties": {
+        "thumbnailUrl": { "type": "string", "format": "uri" },
+        "videoUrl": { "type": ["string", "null"], "format": "uri" },
+        "imageUrls": { "type": "array", "items": { "type": "string", "format": "uri" } },
+        "stepImages": { "type": "array", "items": { "type": "string", "format": "uri" } },
+        "version": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "ExerciseSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "reps": { "type": "integer", "minimum": 0 },
+        "weight": { "type": "number", "minimum": 0 },
+        "duration": { "type": ["integer", "null"], "minimum": 0 },
+        "distance": { "type": ["number", "null"], "minimum": 0 },
+        "restTimeSeconds": { "type": "integer", "minimum": 0 },
+        "notes": { "type": ["string", "null"] },
+        "completedAt": { "type": ["integer", "null"], "minimum": 0 },
+        "isCompleted": { "type": "boolean" }
+      }
+    },
+    "MuscleGroup": {
+      "type": "string",
+      "enum": [
+        "CHEST", "BACK", "SHOULDERS", "ARMS", "BICEPS", "TRICEPS", "FOREARMS",
+        "LEGS", "QUADRICEPS", "HAMSTRINGS", "GLUTES", "CALVES",
+        "CORE", "ABS", "OBLIQUES", "LOWER_BACK", "TRAPEZIUS",
+        "FULL_BODY", "CARDIO", "OTHER"
+      ]
+    },
+    "Category": {
+      "type": "string",
+      "enum": ["UPPER_BODY", "LOWER_BODY", "CORE", "FULL_BODY", "CARDIO", "FLEXIBILITY", "STRENGTH", "OTHER"]
+    },
+    "Equipment": {
+      "type": "string",
+      "enum": [
+        "NONE", "BARBELL", "DUMBBELL", "KETTLEBELL", "CABLE", "CABLES", "MACHINE",
+        "PULL_UP_BAR", "PARALLEL_BARS", "RESISTANCE_BAND", "MEDICINE_BALL", "STABILITY_BALL",
+        "FOAM_ROLLER", "BENCH", "SQUAT_RACK", "SMITH_MACHINE", "LEG_PRESS", "LAT_PULLDOWN",
+        "ROWING_MACHINE", "TREADMILL", "STATIONARY_BIKE", "BIKE", "ELLIPTICAL", "ROWER",
+        "SUSPENSION_TRAINER", "BATTLE_ROPES", "BATTLE_ROPE", "TRX", "PLYO_BOX", "AGILITY_LADDER",
+        "BALANCE_BALL", "OTHER"
+      ]
+    },
+    "Difficulty": {
+      "type": "string",
+      "enum": ["BEGINNER", "NOVICE", "INTERMEDIATE", "ADVANCED", "EXPERT"]
+    },
+    "Source": {
+      "type": "string",
+      "enum": ["OFFICIAL", "USER_CUSTOM", "COMMUNITY_SHARED", "AI_GENERATED"]
+    }
+  }
+}

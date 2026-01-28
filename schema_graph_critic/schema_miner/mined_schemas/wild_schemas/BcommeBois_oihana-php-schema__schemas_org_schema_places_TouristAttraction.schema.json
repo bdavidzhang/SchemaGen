@@ -1,0 +1,1233 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://schema.oihana.xyz/TouristAttraction.json",
+    "title": "TouristAttraction",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "_from": {
+            "type": "string"
+        },
+        "_id": {
+            "type": "string"
+        },
+        "_key": {
+            "type": "string"
+        },
+        "_rev": {
+            "type": "string"
+        },
+        "_to": {
+            "type": "string"
+        },
+        "active": {
+            "type": "boolean"
+        },
+        "additional": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "object"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "additionalType": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "object"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "type": "object"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "address": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/PostalAddress"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/PostalAddress"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "aggregateRating": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/AggregateRating"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/AggregateRating"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "alternateName": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "object"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "amenityFeature": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/LocationFeatureSpecification"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/LocationFeatureSpecification"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "availableLanguage": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "branchCode": {
+            "type": "string"
+        },
+        "containedInsPlace": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "containsPlace": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "created": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "disambiguatingDescription": {
+            "type": "string"
+        },
+        "email": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/PropertyValue"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/PropertyValue"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "event": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Event"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Event"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "faxNumber": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/PropertyValue"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/PropertyValue"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geo": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeoCoordinates"
+                },
+                {
+                    "$ref": "#/$defs/GeoShape"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeoCoordinates"
+                            },
+                            {
+                                "$ref": "#/$defs/GeoShape"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoContains": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoCoveredBy": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoCovers": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoCrosses": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoDisjoint": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoEquals": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoIntersects": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoOverlaps": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoTouches": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "geoWithin": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/GeospatialGeometry"
+                },
+                {
+                    "$ref": "#/$defs/Place"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/GeospatialGeometry"
+                            },
+                            {
+                                "$ref": "#/$defs/Place"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "hasCertification": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Certification"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Certification"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "hasDriveThroughService": {
+            "type": "boolean"
+        },
+        "hasMap": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Map"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "hasPart": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Thing"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Thing"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "id": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "integer"
+                }
+            ]
+        },
+        "identifier": {
+            "type": "string"
+        },
+        "image": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/ImageObject"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/ImageObject"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "images": {
+            "type": "array"
+        },
+        "isAccessibleForFree": {
+            "type": "boolean"
+        },
+        "isPartOf": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Thing"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Thing"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "isicV4": {
+            "type": "string"
+        },
+        "keywords": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/DefinedTerm"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/DefinedTerm"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "latitude": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "number"
+                }
+            ]
+        },
+        "license": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "object"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "logo": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/ImageObject"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "longitude": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "number"
+                }
+            ]
+        },
+        "maximumAttendeeCapacity": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "integer"
+                }
+            ]
+        },
+        "modified": {
+            "type": "string"
+        },
+        "name": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "integer"
+                }
+            ]
+        },
+        "offers": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Offer"
+                },
+                {
+                    "$ref": "#/$defs/Demand"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Offer"
+                            },
+                            {
+                                "$ref": "#/$defs/Demand"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "openingHoursSpecification": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/OpeningHoursSpecification"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/OpeningHoursSpecification"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "photo": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/ImageObject"
+                },
+                {
+                    "$ref": "#/$defs/Photograph"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/ImageObject"
+                            },
+                            {
+                                "$ref": "#/$defs/Photograph"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "publicAccess": {
+            "type": "boolean"
+        },
+        "publisher": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Person"
+                },
+                {
+                    "$ref": "#/$defs/Organization"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Person"
+                            },
+                            {
+                                "$ref": "#/$defs/Organization"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "remainingAttendee": {
+            "type": "integer"
+        },
+        "review": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Review"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Review"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "service": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Service"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Service"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "slogan": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "object"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "smokingAllowed": {
+            "type": "boolean"
+        },
+        "specialOpeningHoursSpecification": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/OpeningHoursSpecification"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/OpeningHoursSpecification"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "telephone": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/PropertyValue"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/PropertyValue"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "tourBookingPage": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Thing"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "touristType": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/Audience"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/Audience"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "url": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "integer"
+                }
+            ]
+        },
+        "website": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/WebSite"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/WebSite"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    "$defs": {
+        "AggregateRating": {
+            "title": "AggregateRating",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Audience": {
+            "title": "Audience",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Certification": {
+            "title": "Certification",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "DefinedTerm": {
+            "title": "DefinedTerm",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Demand": {
+            "title": "Demand",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Event": {
+            "title": "Event",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "GeoCoordinates": {
+            "title": "GeoCoordinates",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "GeoShape": {
+            "title": "GeoShape",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "GeospatialGeometry": {
+            "title": "GeospatialGeometry",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ImageObject": {
+            "title": "ImageObject",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "LocationFeatureSpecification": {
+            "title": "LocationFeatureSpecification",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Map": {
+            "title": "Map",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Offer": {
+            "title": "Offer",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "OpeningHoursSpecification": {
+            "title": "OpeningHoursSpecification",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Organization": {
+            "title": "Organization",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Person": {
+            "title": "Person",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Photograph": {
+            "title": "Photograph",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Place": {
+            "title": "Place",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "PostalAddress": {
+            "title": "PostalAddress",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "PropertyValue": {
+            "title": "PropertyValue",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Review": {
+            "title": "Review",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Service": {
+            "title": "Service",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "Thing": {
+            "title": "Thing",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "WebSite": {
+            "title": "WebSite",
+            "type": "object",
+            "additionalProperties": true
+        }
+    }
+}

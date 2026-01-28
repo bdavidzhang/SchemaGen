@@ -1,0 +1,130 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://sea-forge.ai/schemas/simulation/snapshot.schema.json",
+    "title": "Simulation Snapshot",
+    "description": "Schema for semantic state snapshots used in simulations",
+    "type": "object",
+    "required": [
+        "id",
+        "source_context",
+        "captured_at",
+        "expires_at",
+        "content_hash",
+        "size_bytes"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "pattern": "^snap-[a-f0-9]{64}$",
+            "description": "Snapshot ID (ifl:hash of content)"
+        },
+        "source_context": {
+            "type": "string",
+            "description": "Bounded context this snapshot was captured from"
+        },
+        "captured_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Snapshot capture timestamp"
+        },
+        "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Snapshot expiration timestamp"
+        },
+        "content_hash": {
+            "type": "string",
+            "pattern": "^ifl:[a-f0-9]{64}$",
+            "description": "IFL hash of snapshot content for integrity verification"
+        },
+        "size_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Snapshot size in bytes (after compression)"
+        },
+        "compression": {
+            "type": "string",
+            "enum": [
+                "none",
+                "zstd",
+                "gzip",
+                "brotli"
+            ],
+            "default": "zstd",
+            "description": "Compression algorithm used"
+        },
+        "encryption": {
+            "type": "string",
+            "enum": [
+                "none",
+                "aes-256-gcm"
+            ],
+            "default": "none",
+            "description": "Encryption algorithm used"
+        },
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "entity_count": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Number of entities in snapshot"
+                },
+                "policy_count": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Number of policies active at capture time"
+                },
+                "manifest_version": {
+                    "type": "string",
+                    "description": "Manifest version used to generate semantic state"
+                },
+                "kg_triple_count": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Number of RDF triples in Knowledge Graph snapshot"
+                }
+            },
+            "description": "Additional snapshot metadata"
+        },
+        "storage": {
+            "type": "object",
+            "required": [
+                "backend",
+                "path"
+            ],
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "enum": [
+                        "s3",
+                        "filesystem",
+                        "gcs",
+                        "azure-blob"
+                    ],
+                    "description": "Storage backend"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path/URI to snapshot content"
+                },
+                "bucket": {
+                    "type": "string",
+                    "description": "Storage bucket name (for cloud backends)"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Storage region (for cloud backends)"
+                }
+            },
+            "description": "Snapshot storage location"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Tags for categorization and filtering"
+        }
+    }
+}

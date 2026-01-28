@@ -1,0 +1,75 @@
+{
+    "$id": "https://vng.brp.nl/schemas/brp.verblijfplaatsInOnderzoek.schema.json",
+    "$schema": "https://docs.commongateway.nl/schemas/Entity.schema.json",
+    "version": "0.1.0",
+    "title": "VerblijfplaatsInOnderzoek",
+    "description": "Geeft aan welke gegevens over het verblijf en adres van de persoon in onderzoek zijn. Elementen van het GBA-adres zelf (Dat zou eigenlijk een BAG-adres moeten zijn) kunnen niet in onderzoek zijn. Wel de relatie naar de nummeraanduiding. Dat wordt gedaan door de identificatiecodeNummeraanduiding in onderzoek te zetten. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+        },
+        "aanduidingBijHuisnummer": {
+            "type": "boolean"
+        },
+        "datumAanvangAdreshouding": {
+            "type": "boolean"
+        },
+        "datumIngangGeldigheid": {
+            "type": "boolean"
+        },
+        "datumInschrijvingInGemeente": {
+            "type": "boolean"
+        },
+        "datumVestigingInNederland": {
+            "type": "boolean"
+        },
+        "functieAdres": {
+            "type": "boolean"
+        },
+        "gemeenteVanInschrijving": {
+            "type": "boolean"
+        },
+        "huisletter": {
+            "type": "boolean"
+        },
+        "huisnummer": {
+            "type": "boolean"
+        },
+        "huisnummertoevoeging": {
+            "type": "boolean"
+        },
+        "nummeraanduidingIdentificatie": {
+            "type": "boolean"
+        },
+        "adresseerbaarObjectIdentificatie": {
+            "type": "boolean"
+        },
+        "landVanwaarIngeschreven": {
+            "type": "boolean"
+        },
+        "locatiebeschrijving": {
+            "type": "boolean"
+        },
+        "straat": {
+            "type": "boolean"
+        },
+        "postcode": {
+            "type": "boolean"
+        },
+        "korteNaam": {
+            "type": "boolean"
+        },
+        "verblijfBuitenland": {
+            "type": "boolean"
+        },
+        "woonplaats": {
+            "type": "boolean"
+        },
+        "datumIngangOnderzoek": {
+            "$ref": "https://vng.brp.nl/schemas/brp.datumOnvolledig.schema.json"
+        }
+    }
+}

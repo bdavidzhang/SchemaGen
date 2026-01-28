@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Link Schema",
+  "description": "A schema for representing links in a graph, inheriting from node schema",
+  "type": "object",
+  "definitions": {
+    "link": {
+      "allOf": [
+        {
+          "$ref": "node.schema.json#/definitions/node"
+        },
+        {
+          "type": "object",
+          "required": ["origin", "target", "relationship"],
+          "properties": {
+            "origin": {
+              "type": "string",
+              "description": "ID of the source node"
+            },
+            "target": {
+              "type": "string",
+              "description": "ID of the target node"
+            },
+            "originType": {
+              "type": "string",
+              "description": "Type of the source node",
+              "enum": ["*"]
+            },
+            "targetType": {
+              "type": "string",
+              "description": "Type of the target node",
+              "enum": ["*"]
+            },
+            "relationship": {
+              "type": "string",
+              "description": "Type of relationship between the nodes"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$id": "link.schema.json"
+}

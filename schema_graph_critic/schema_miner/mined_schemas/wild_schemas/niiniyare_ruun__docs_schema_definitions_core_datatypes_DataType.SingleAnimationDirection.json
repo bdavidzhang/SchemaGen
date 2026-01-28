@@ -1,0 +1,11 @@
+{
+  "type": "string",
+  "enum": [
+    "alternate",
+    "alternate-reverse",
+    "normal",
+    "reverse"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./DataType.SingleAnimationDirection.json"
+}

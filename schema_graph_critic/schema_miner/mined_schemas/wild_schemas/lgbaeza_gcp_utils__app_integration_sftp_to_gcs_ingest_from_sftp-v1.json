@@ -1,0 +1,264 @@
+{
+  "description": "\n # Overview\nThis integration downloads a file from SFTP and uploads it to GCS.\n\n## Orchestration\n1. The integration is triggered by a private trigger.\n2. It parses the input parameters.\n3. It downloads a file from SFTP.\n4. It maps the SFTP input.\n5. It uploads the file to GCS.\n6. It maps the GCS input.",
+  "triggerConfigs": [{
+    "label": "Private Trigger",
+    "startTasks": [{
+      "taskId": "10"
+    }],
+    "properties": {
+      "Trigger name": "ingest_from_sftp_Private_1"
+    },
+    "triggerType": "PRIVATE_TRIGGER",
+    "triggerNumber": "3",
+    "triggerId": "private_trigger/ingest_from_sftp_Private_1",
+    "position": {
+      "x": 112
+    }
+  }],
+  "taskConfigs": [{
+    "task": "JsonnetMapperTask",
+    "taskId": "10",
+    "parameters": {
+      "template": {
+        "key": "template",
+        "value": {
+          "stringValue": "local f \u003d import \"functions\"; // Import additional functions\nlocal sftp_file_folder \u003d f.extVar(\"sftp_file_folder\");\nlocal sftp_file_name \u003d f.extVar(\"sftp_filename\");\n\n// TEMPLATE OUTPUT\n// Json Object is expected as on output. The key of the object would be the variable whose value needs to be set.\n// Example:\n// {\n//  hello: \"world\"\n// }\n{\n    sftp_file_path:  sftp_file_folder + \"/\" + sftp_file_name\n}"
+        }
+      }
+    },
+    "nextTasks": [{
+      "taskId": "8"
+    }],
+    "taskExecutionStrategy": "WHEN_ALL_SUCCEED",
+    "displayName": "Parse input params",
+    "externalTaskType": "NORMAL_TASK",
+    "position": {
+      "x": 112,
+      "y": 166
+    }
+  }, {
+    "task": "GenericConnectorTask",
+    "taskId": "2",
+    "parameters": {
+      "connectorInputPayload": {
+        "key": "connectorInputPayload",
+        "value": {
+          "stringValue": "$`Task_2_connectorInputPayload`$"
+        }
+      },
+      "connectionName": {
+        "key": "connectionName",
+        "value": {
+          "stringValue": "projects/{project_id}/locations/us-central1/connections/sftp"
+        }
+      },
+      "connectorOutputPayload": {
+        "key": "connectorOutputPayload",
+        "value": {
+          "stringValue": "$`Task_2_connectorOutputPayload`$"
+        }
+      },
+      "operation": {
+        "key": "operation",
+        "value": {
+          "stringValue": "EXECUTE_ACTION"
+        }
+      },
+      "connectionVersion": {
+        "key": "connectionVersion",
+        "value": {
+          "stringValue": "projects/{project_id}/locations/global/providers/default/connectors/sftp/versions/1"
+        }
+      },
+      "actionName": {
+        "key": "actionName",
+        "value": {
+          "stringValue": "Download"
+        }
+      }
+    },
+    "nextTasks": [{
+      "taskId": "6"
+    }],
+    "taskExecutionStrategy": "WHEN_ALL_SUCCEED",
+    "displayName": "Download file from SFTP",
+    "description": "The integration connects to the sftp server",
+    "externalTaskType": "NORMAL_TASK",
+    "position": {
+      "x": 112,
+      "y": 414
+    }
+  }, {
+    "task": "GenericConnectorTask",
+    "taskId": "4",
+    "parameters": {
+      "connectorInputPayload": {
+        "key": "connectorInputPayload",
+        "value": {
+          "stringValue": "$`Task_4_connectorInputPayload`$"
+        }
+      },
+      "connectionName": {
+        "key": "connectionName",
+        "value": {
+          "stringValue": "projects/{project_id}/locations/{region}/connections/cloud-storage-sftp"
+        }
+      },
+      "connectorOutputPayload": {
+        "key": "connectorOutputPayload",
+        "value": {
+          "stringValue": "$`Task_4_connectorOutputPayload`$"
+        }
+      },
+      "operation": {
+        "key": "operation",
+        "value": {
+          "stringValue": "EXECUTE_ACTION"
+        }
+      },
+      "connectionVersion": {
+        "key": "connectionVersion",
+        "value": {
+          "stringValue": "projects/{project_id}/locations/global/providers/gcp/connectors/gcs/versions/1"
+        }
+      },
+      "actionName": {
+        "key": "actionName",
+        "value": {
+          "stringValue": "UploadObject"
+        }
+      }
+    },
+    "taskExecutionStrategy": "WHEN_ALL_SUCCEED",
+    "displayName": "Upload to GCS",
+    "externalTaskType": "NORMAL_TASK",
+    "position": {
+      "x": 112,
+      "y": 786
+    }
+  }, {
+    "task": "JsonnetMapperTask",
+    "taskId": "6",
+    "parameters": {
+      "template": {
+        "key": "template",
+        "value": {
+          "stringValue": "local f \u003d import \"functions\"; // Import additional functions\nlocal sftpConnectorOutput \u003d f.extVar(\"`Task_2_connectorOutputPayload`\");\n\n{\n    documentContent: sftpConnectorOutput[1].ContentBytes\n}"
+        }
+      }
+    },
+    "nextTasks": [{
+      "taskId": "9"
+    }],
+    "taskExecutionStrategy": "WHEN_ALL_SUCCEED",
+    "displayName": "Parse content for GCS",
+    "externalTaskType": "NORMAL_TASK",
+    "position": {
+      "x": 112,
+      "y": 538
+    }
+  }, {
+    "task": "FieldMappingTask",
+    "taskId": "8",
+    "parameters": {
+      "FieldMappingConfigTaskParameterKey": {
+        "key": "FieldMappingConfigTaskParameterKey",
+        "value": {
+          "jsonValue": "{\n  \"@type\": \"type.googleapis.com/enterprise.crm.eventbus.proto.FieldMappingConfig\",\n  \"mappedFields\": [{\n    \"inputField\": {\n      \"fieldType\": \"STRING_VALUE\",\n      \"transformExpression\": {\n        \"initialValue\": {\n          \"referenceValue\": \"$sftp_file_path$\"\n        }\n      }\n    },\n    \"outputField\": {\n      \"referenceKey\": \"$`Task_2_connectorInputPayload`.RemoteFile$\",\n      \"fieldType\": \"STRING_VALUE\",\n      \"cardinality\": \"OPTIONAL\"\n    }\n  }, {\n    \"inputField\": {\n      \"fieldType\": \"BOOLEAN_VALUE\",\n      \"transformExpression\": {\n        \"initialValue\": {\n          \"literalValue\": {\n            \"booleanValue\": true\n          }\n        }\n      }\n    },\n    \"outputField\": {\n      \"referenceKey\": \"$`Task_2_connectorInputPayload`.HasBytes$\",\n      \"fieldType\": \"JSON_VALUE\",\n      \"cardinality\": \"OPTIONAL\"\n    }\n  }]\n}"
+        }
+      }
+    },
+    "nextTasks": [{
+      "taskId": "2"
+    }],
+    "taskExecutionStrategy": "WHEN_ALL_SUCCEED",
+    "displayName": "Map SFTP input",
+    "externalTaskType": "NORMAL_TASK",
+    "position": {
+      "x": 112,
+      "y": 290
+    }
+  }, {
+    "task": "FieldMappingTask",
+    "taskId": "9",
+    "parameters": {
+      "FieldMappingConfigTaskParameterKey": {
+        "key": "FieldMappingConfigTaskParameterKey",
+        "value": {
+          "jsonValue": "{\n  \"@type\": \"type.googleapis.com/enterprise.crm.eventbus.proto.FieldMappingConfig\",\n  \"mappedFields\": [{\n    \"inputField\": {\n      \"fieldType\": \"STRING_VALUE\",\n      \"transformExpression\": {\n        \"initialValue\": {\n          \"referenceValue\": \"$documentContent$\"\n        }\n      }\n    },\n    \"outputField\": {\n      \"referenceKey\": \"$`Task_4_connectorInputPayload`.ContentBytes$\",\n      \"fieldType\": \"JSON_VALUE\",\n      \"cardinality\": \"OPTIONAL\"\n    }\n  }, {\n    \"inputField\": {\n      \"fieldType\": \"STRING_VALUE\",\n      \"transformExpression\": {\n        \"initialValue\": {\n          \"literalValue\": {\n            \"stringValue\": \"sftp_ingest\"\n          }\n        }\n      }\n    },\n    \"outputField\": {\n      \"referenceKey\": \"$`Task_4_connectorInputPayload`.FolderPath$\",\n      \"fieldType\": \"JSON_VALUE\",\n      \"cardinality\": \"OPTIONAL\"\n    }\n  }, {\n    \"inputField\": {\n      \"fieldType\": \"STRING_VALUE\",\n      \"transformExpression\": {\n        \"initialValue\": {\n          \"referenceValue\": \"$sftp_filename$\"\n        }\n      }\n    },\n    \"outputField\": {\n      \"referenceKey\": \"$`Task_4_connectorInputPayload`.ObjectName$\",\n      \"fieldType\": \"JSON_VALUE\",\n      \"cardinality\": \"OPTIONAL\"\n    }\n  }, {\n    \"inputField\": {\n      \"fieldType\": \"STRING_VALUE\",\n      \"transformExpression\": {\n        \"initialValue\": {\n          \"referenceValue\": \"$GCS_bucketname$\"\n        }\n      }\n    },\n    \"outputField\": {\n      \"referenceKey\": \"$`Task_4_connectorInputPayload`.Bucket$\",\n      \"fieldType\": \"STRING_VALUE\",\n      \"cardinality\": \"OPTIONAL\"\n    }\n  }, {\n    \"inputField\": {\n      \"fieldType\": \"BOOLEAN_VALUE\",\n      \"transformExpression\": {\n        \"initialValue\": {\n          \"literalValue\": {\n            \"booleanValue\": true\n          }\n        }\n      }\n    },\n    \"outputField\": {\n      \"referenceKey\": \"$`Task_4_connectorInputPayload`.HasBytes$\",\n      \"fieldType\": \"JSON_VALUE\",\n      \"cardinality\": \"OPTIONAL\"\n    }\n  }]\n}"
+        }
+      }
+    },
+    "nextTasks": [{
+      "taskId": "4"
+    }],
+    "taskExecutionStrategy": "WHEN_ALL_SUCCEED",
+    "displayName": "Map GCS input",
+    "externalTaskType": "NORMAL_TASK",
+    "position": {
+      "x": 112,
+      "y": 662
+    }
+  }],
+  "integrationParameters": [{
+    "key": "documentContent",
+    "dataType": "STRING_VALUE",
+    "defaultValue": {
+      "stringValue": ""
+    },
+    "displayName": "documentContent"
+  }, {
+    "key": "`Task_4_connectorOutputPayload`",
+    "dataType": "JSON_VALUE",
+    "displayName": "`Task_4_connectorOutputPayload`",
+    "inputOutputType": "OUT",
+    "isTransient": true,
+    "producer": "1_4",
+    "jsonSchema": "{\n  \"type\": \"array\",\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"items\": {\n    \"type\": \"object\",\n    \"properties\": {\n    },\n    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\n  }\n}"
+  }, {
+    "key": "sftp_filename",
+    "dataType": "STRING_VALUE",
+    "displayName": "sftp_filename",
+    "inputOutputType": "IN"
+  }, {
+    "key": "`Task_2_connectorInputPayload`",
+    "dataType": "JSON_VALUE",
+    "displayName": "`Task_2_connectorInputPayload`",
+    "producer": "1_2",
+    "jsonSchema": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"RemoteFile\": {\n      \"type\": \"string\",\n      \"description\": \"The file name on the remote host.\"\n    },\n    \"HasBytes\": {\n      \"type\": [\"boolean\", \"null\"],\n      \"description\": \"Whether to download content as bytes.\"\n    }\n  },\n  \"required\": [\"RemoteFile\"]\n}"
+  }, {
+    "key": "`Task_2_connectorOutputPayload`",
+    "dataType": "JSON_VALUE",
+    "displayName": "`Task_2_connectorOutputPayload`",
+    "inputOutputType": "OUT",
+    "isTransient": true,
+    "producer": "1_2",
+    "jsonSchema": "{\n  \"type\": \"array\",\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"items\": {\n    \"type\": \"object\",\n    \"properties\": {\n    },\n    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\n  }\n}"
+  }, {
+    "key": "GCS_bucketname",
+    "dataType": "STRING_VALUE",
+    "displayName": "GCS_bucketname",
+    "inputOutputType": "IN"
+  }, {
+    "key": "`Task_4_connectorInputPayload`",
+    "dataType": "JSON_VALUE",
+    "displayName": "`Task_4_connectorInputPayload`",
+    "producer": "1_4",
+    "jsonSchema": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"FolderPath\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"The path to the folder that will receive the data of the object.\"\n    },\n    \"Content\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"The Content to be uploaded in the bucket\"\n    },\n    \"ObjectName\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"The name of the uploaded object. It should be specified only when uploading the content as InputStream.\"\n    },\n    \"ContentBytes\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"Bytes content to upload as file.\"\n    },\n    \"ContentType\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"Content-Type of the object data.\",\n      \"default\": \"application/x-www-form-urlencoded\"\n    },\n    \"HasBytes\": {\n      \"type\": [\"boolean\", \"null\"],\n      \"description\": \"Whether to upload content as bytes.\",\n      \"default\": false\n    },\n    \"Bucket\": {\n      \"type\": \"string\",\n      \"description\": \"Bucket name where the object will be uploaded.\"\n    }\n  },\n  \"required\": [\"Bucket\"]\n}"
+  }, {
+    "key": "sftp_file_path",
+    "dataType": "STRING_VALUE",
+    "defaultValue": {
+      "stringValue": ""
+    },
+    "displayName": "sftp_file_path"
+  }, {
+    "key": "sftp_file_folder",
+    "dataType": "STRING_VALUE",
+    "defaultValue": {
+      "stringValue": ""
+    },
+    "displayName": "sftp_file_folder",
+    "inputOutputType": "IN"
+  }]
+}

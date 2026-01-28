@@ -1,0 +1,39 @@
+{
+    "request": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "$ref": "#/definitions/dysonprotocol.nameservice.v1.MsgSetNFTClassAllowedDenoms",
+        "definitions": {
+            "dysonprotocol.nameservice.v1.MsgSetNFTClassAllowedDenoms": {
+                "properties": {
+                    "name_destination": {
+                        "type": "string"
+                    },
+                    "class_id": {
+                        "type": "string"
+                    },
+                    "allowed_denoms": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "additionalProperties": false,
+                "type": "object",
+                "title": "Msg Set NFT Class Allowed Denoms",
+                "description": "MsgSetNFTClassAllowedDenoms sets the per-class allowed denoms list."
+            }
+        }
+    },
+    "response": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "$ref": "#/definitions/dysonprotocol.nameservice.v1.MsgSetNFTClassAllowedDenomsResponse",
+        "definitions": {
+            "dysonprotocol.nameservice.v1.MsgSetNFTClassAllowedDenomsResponse": {
+                "additionalProperties": false,
+                "type": "object",
+                "title": "Msg Set NFT Class Allowed Denoms Response"
+            }
+        }
+    }
+}

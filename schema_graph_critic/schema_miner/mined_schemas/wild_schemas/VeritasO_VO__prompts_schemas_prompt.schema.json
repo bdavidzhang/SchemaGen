@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Veritas Prompt Schema v1.1",
+  "type": "object",
+  "required": ["version","interop_header","role_task","output_format"],
+  "properties": {
+    "version": {"type":"string"},
+    "interop_header": {"type":"object"},
+    "role_task": {"type":"string"},
+    "tone": {"type":"string"},
+    "background": {"type":"string"},
+    "rules": {"type":"array"},
+    "output_format": {"type":"object"}
+  },
+  "additionalProperties": true
+}

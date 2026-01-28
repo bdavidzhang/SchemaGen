@@ -1,0 +1,316 @@
+{
+    "$schema": "http://json-schema.org/radbrtpermi/schema#",
+    "$ref": "#/definitions/Permifrost",
+    "definitions": {
+        "Permifrost": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "version": {
+                    "type": "string",
+                    "description": "Version of the permifrost schema"
+                },
+                "require-owner": {
+                    "type": "boolean",
+                    "description": "Require that all objects have an owner"
+                },
+                "databases": {
+                    "type": "array",
+                    "description": "List of databases with configuration",
+                    "items": {
+                        "patternProperties": {
+                            "^[A-Za-z0-9_]+$": { 
+                                "$ref": "#/definitions/Database"
+                            }
+                        }
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "description": "List of roles and their access",
+                    "items": {
+                        "patternProperties": {
+                            "^[A-Za-z0-9_]+$": { 
+                                "$ref": "#/definitions/Role"
+                            }
+                        }
+                    }
+                },
+                "users": {
+                    "type": "array",
+                    "description": "List of the users and their access",
+                    "items": {
+                        "patternProperties": {
+                            "^[A-Za-z0-9_]+$": { 
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                "warehouses": {
+                    "type": "array",
+                    "items": {
+                        "patternProperties": {
+                            "^[A-Za-z0-9_]+$": { 
+                                "$ref": "#/definitions/Warehouse"
+                            }
+                        }
+                    }
+                },
+                "integrations": {
+                    "type": "array",
+                    "items": {
+                        "patternProperties": {
+                            "^[A-Za-z0-9_]+$": { 
+                                "$ref": "#/definitions/Integration"
+                            }
+                        }
+                    }
+                }
+            },
+            "required": [
+                "databases",
+                "roles",
+                "warehouses"
+            ],
+            "title": "Permifrost"
+        },
+        "Database": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "shared": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "meta": {
+                    "type": "object"
+                }
+            },
+            "required": ["shared"],
+            "title": "Database"
+        },
+        "Integration": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "meta": {
+                    "type": "object"
+                }
+            },
+            "required": [],
+            "title": "Integration"
+        },
+        "Role": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "warehouses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "integrations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "member_of": {
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                        "type": "object",
+                        "properties": {
+                            "include": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "exclude": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": ["include"],
+                        "additionalProperties": false
+                        }
+                    ]
+                    },
+                "owns": {
+                    "properties": {
+                        "databases": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "schemas": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "tables": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "privileges": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "databases": { "$ref": "#/definitions/AccessType" },
+                        "tables": { "$ref": "#/definitions/AccessType" },
+                        "schemas": { "$ref": "#/definitions/AccessType" }
+                    }
+                },
+                "meta": {
+                    "type": "object"
+                }
+            },
+            "required": [],
+            "title": "Role"
+        },
+        "AccessType": {
+            "type": "object",
+            "properties": {
+                "read": { "$ref": "#/definitions/PermissionList" },
+                "write": { "$ref": "#/definitions/PermissionList" }
+            },
+            "additionalProperties": false
+        },
+        "PermissionList": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "Databases": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "read": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "write": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [],
+            "title": "Databases"
+        },
+        "Warehouse": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "size": {
+                    "type": "string",
+                    "enum": [
+                        "x-small", 
+                        "small", 
+                        "medium", 
+                        "large", 
+                        "x-large",
+                        "2x-large",
+                        "3x-large",
+                        "4x-large",
+                        "5x-large",
+                        "6x-large"
+                    ] 
+                },
+                "owner": {
+                    "type": "string"
+                }
+            },
+            "required": ["size"],
+            "title": "Warehouse"
+        },
+        "User": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "can_login": {
+                    "type": "string",
+                    "enum": [
+                        "no", 
+                        "yes"
+                    ] 
+                },
+                "member_of": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "has_password": {
+                    "type": "boolean"
+                },
+                "display_name": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "middle_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "default_warehouse": {
+                    "type": "string"
+                },
+                "default_namespace": {
+                    "type": "string"
+                },
+                "default_role": {
+                    "type": "string"
+                },
+                "meta": {
+                    "type": "string"
+                }
+            },
+            "required": ["can_login"],
+            "title": "User"
+        }
+    }
+}

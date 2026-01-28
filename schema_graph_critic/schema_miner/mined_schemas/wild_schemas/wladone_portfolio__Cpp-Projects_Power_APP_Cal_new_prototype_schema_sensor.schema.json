@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["timestamp", "cpu_percent", "ram_percent"],
+  "properties": {
+    "timestamp": { "type": "string" },
+    "cpu_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+    "ram_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+    "gpu_percent": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+    "temps": {
+      "type": "object",
+      "properties": {
+        "cpu_package": { "type": "number" },
+        "gpu": { "type": "number" }
+      }
+    },
+    "process_top": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "pid", "ram_mb", "cpu_percent"],
+        "properties": {
+          "name": { "type": "string" },
+          "pid": { "type": "integer" },
+          "ram_mb": { "type": "number" },
+          "cpu_percent": { "type": "number" }
+        }
+      }
+    }
+  }
+}

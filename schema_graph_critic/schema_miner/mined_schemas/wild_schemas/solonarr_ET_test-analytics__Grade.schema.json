@@ -1,0 +1,90 @@
+{
+  "type": "object",
+  "title": "Grade",
+  "description": "Уровень квалификации сотрудника в системе грейдирования компании. Определяет требования к навыкам, опыт и зону ответственности.",
+  "required": [
+    "id",
+    "code",
+    "title",
+    "description",
+    "level",
+    "minExperienceMonths",
+    "createdAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Уникальный идентификатор грейда в системе (UUID v4).",
+      "examples": ["grd_001", "550e8400-e29b-41d4-a716-446655440000"]
+    },
+    "code": {
+      "type": "string",
+      "description": "Короткий код грейда. Состоит из буквы категории (J/M/S) и цифры уровня.",
+      "pattern": "^[JMS][1-9]$",
+      "examples": ["J1", "M2", "S1"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Полное название грейда.",
+      "examples": ["Junior Developer", "Middle Analyst Level 2"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Подробное описание требований к сотруднику на этом уровне.",
+      "examples": ["Способен решать типовые задачи под руководством наставника."]
+    },
+    "level": {
+      "type": "integer",
+      "description": "Числовой уровень для сортировки грейдов (1-10, где 10 — максимальный).",
+      "minimum": 1,
+      "maximum": 10,
+      "examples": [3, 5, 8]
+    },
+    "minExperienceMonths": {
+      "type": "integer",
+      "description": "Минимальный опыт работы (в месяцах) для получения грейда.",
+      "minimum": 0,
+      "examples": [12, 24, 36]
+    },
+    "nextGrade": {
+      "type": "string",
+      "description": "Код следующего грейда для карьерного роста. Null для максимального уровня.",
+      "pattern": "^[JMS][1-9]$|^null$",
+      "examples": ["M1", "S2", null]
+    },
+    "isActive": {
+      "type": "boolean",
+      "description": "Флаг активности грейда (false для архивных уровней).",
+      "examples": [true, false],
+      "default": true
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Дата и время создания записи в ISO 8601.",
+      "examples": ["2023-01-15T00:00:00Z"]
+    },
+    "requiredCompetencies": {
+      "type": "array",
+      "description": "Список ID обязательных компетенций для этого грейда.",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "examples": [["comp_001", "comp_002"]]
+    }
+  },
+  "additionalProperties": false,
+  "example": {
+    "id": "grd_001",
+    "code": "M2",
+    "title": "Middle Specialist Level 2",
+    "description": "Самостоятельно решает сложные задачи, участвует в планировании проектов.",
+    "level": 5,
+    "minExperienceMonths": 36,
+    "nextGrade": "S1",
+    "isActive": true,
+    "createdAt": "2023-01-15T00:00:00Z",
+    "requiredCompetencies": ["comp_101", "comp_205"]
+  }
+}

@@ -1,0 +1,16 @@
+{
+	"id":"http://caem.modernizacion.gob.cl/estadoCivil.schema.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "Comment describing your JSON Schema",
+	"definitions": {
+		"estadoCivilValores": {
+			"enum": [
+				"C",
+				"S",
+				"V",
+				"D",
+				"U"
+			]
+		}
+	}
+}

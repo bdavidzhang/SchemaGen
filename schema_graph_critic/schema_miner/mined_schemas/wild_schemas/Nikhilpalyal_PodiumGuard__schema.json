@@ -1,0 +1,282 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Race Telemetry Data Schema",
+  "description": "JSON schema defining the expected format for Formula-One race telemetry data streams",
+  "type": "object",
+  "properties": {
+    "carId": {
+      "type": "string",
+      "description": "Unique identifier for the race car (e.g., 'HAM', 'VER', 'LEC')",
+      "pattern": "^[A-Z]{3}$",
+      "examples": ["HAM", "VER", "LEC", "NOR"]
+    },
+    "driver": {
+      "type": "string",
+      "description": "Full name of the driver",
+      "minLength": 1,
+      "maxLength": 50,
+      "examples": ["Lewis Hamilton", "Max Verstappen", "Charles Leclerc"]
+    },
+    "team": {
+      "type": "string",
+      "description": "Constructor team name",
+      "enum": [
+        "Mercedes",
+        "Red Bull",
+        "Ferrari",
+        "McLaren",
+        "Aston Martin",
+        "Alpine",
+        "Williams",
+        "AlphaTauri",
+        "Alfa Romeo",
+        "Haas"
+      ],
+      "examples": ["Mercedes", "Red Bull", "Ferrari"]
+    },
+    "speed": {
+      "type": "number",
+      "description": "Current speed in kilometers per hour",
+      "minimum": 0,
+      "maximum": 400,
+      "examples": [320.5, 285.2, 198.7]
+    },
+    "position": {
+      "type": "integer",
+      "description": "Current race position (1-based)",
+      "minimum": 1,
+      "maximum": 20,
+      "examples": [1, 2, 3, 15]
+    },
+    "lap": {
+      "type": "integer",
+      "description": "Current lap number",
+      "minimum": 1,
+      "maximum": 100,
+      "examples": [1, 25, 52, 78]
+    },
+    "event": {
+      "type": "string",
+      "description": "Type of telemetry event or status",
+      "enum": [
+        "normal",
+        "overtake",
+        "pit_stop",
+        "crash",
+        "yellow_flag",
+        "safety_car",
+        "red_flag",
+        "retirement",
+        "DRS_enabled",
+        "DRS_disabled"
+      ],
+      "examples": ["normal", "overtake", "pit_stop"]
+    },
+    "timestamp": {
+      "type": "number",
+      "description": "Unix timestamp in milliseconds when the telemetry was recorded",
+      "minimum": 0,
+      "examples": [1703123456789, 1703123456790]
+    },
+    "sector_times": {
+      "type": "object",
+      "description": "Optional sector timing data",
+      "properties": {
+        "sector1": {
+          "type": "number",
+          "description": "Time for sector 1 in seconds",
+          "minimum": 0,
+          "examples": [25.5, 26.2]
+        },
+        "sector2": {
+          "type": "number",
+          "description": "Time for sector 2 in seconds",
+          "minimum": 0,
+          "examples": [32.1, 31.8]
+        },
+        "sector3": {
+          "type": "number",
+          "description": "Time for sector 3 in seconds",
+          "minimum": 0,
+          "examples": [28.7, 29.0]
+        }
+      },
+      "additionalProperties": false
+    },
+    "tyre_compound": {
+      "type": "string",
+      "description": "Current tyre compound",
+      "enum": [
+        "soft",
+        "medium",
+        "hard",
+        "intermediate",
+        "wet"
+      ],
+      "examples": ["soft", "medium", "hard"]
+    },
+    "fuel_level": {
+      "type": "number",
+      "description": "Remaining fuel level as percentage",
+      "minimum": 0,
+      "maximum": 100,
+      "examples": [85.5, 72.3, 45.8]
+    },
+    "engine_temp": {
+      "type": "number",
+      "description": "Engine temperature in Celsius",
+      "minimum": 0,
+      "maximum": 150,
+      "examples": [95.2, 102.8, 88.5]
+    },
+    "brake_temp": {
+      "type": "object",
+      "description": "Brake temperatures for each wheel",
+      "properties": {
+        "front_left": {
+          "type": "number",
+          "description": "Front left brake temperature in Celsius",
+          "minimum": 0,
+          "maximum": 1200,
+          "examples": [850, 920]
+        },
+        "front_right": {
+          "type": "number",
+          "description": "Front right brake temperature in Celsius",
+          "minimum": 0,
+          "maximum": 1200,
+          "examples": [845, 915]
+        },
+        "rear_left": {
+          "type": "number",
+          "description": "Rear left brake temperature in Celsius",
+          "minimum": 0,
+          "maximum": 1200,
+          "examples": [780, 820]
+        },
+        "rear_right": {
+          "type": "number",
+          "description": "Rear right brake temperature in Celsius",
+          "minimum": 0,
+          "maximum": 1200,
+          "examples": [775, 825]
+        }
+      },
+      "additionalProperties": false
+    },
+    "gear": {
+      "type": "integer",
+      "description": "Current gear (1-8)",
+      "minimum": 1,
+      "maximum": 8,
+      "examples": [1, 3, 5, 7]
+    },
+    "rpm": {
+      "type": "number",
+      "description": "Engine RPM",
+      "minimum": 0,
+      "maximum": 15000,
+      "examples": [12000, 13500, 8500]
+    },
+    "throttle": {
+      "type": "number",
+      "description": "Throttle position as percentage",
+      "minimum": 0,
+      "maximum": 100,
+      "examples": [100, 75.5, 45.2]
+    },
+    "brake": {
+      "type": "number",
+      "description": "Brake pressure as percentage",
+      "minimum": 0,
+      "maximum": 100,
+      "examples": [0, 25.5, 85.2]
+    },
+    "drs": {
+      "type": "boolean",
+      "description": "DRS (Drag Reduction System) status",
+      "examples": [true, false]
+    },
+    "ers_mode": {
+      "type": "string",
+      "description": "Energy Recovery System mode",
+      "enum": [
+        "harvest",
+        "balance",
+        "attack"
+      ],
+      "examples": ["harvest", "balance", "attack"]
+    },
+    "lap_time": {
+      "type": "number",
+      "description": "Current lap time in seconds",
+      "minimum": 0,
+      "examples": [85.5, 92.2, 78.8]
+    },
+    "best_lap_time": {
+      "type": "number",
+      "description": "Driver's best lap time in seconds",
+      "minimum": 0,
+      "examples": [78.2, 81.5, 75.9]
+    },
+    "gap_to_leader": {
+      "type": "number",
+      "description": "Time gap to race leader in seconds",
+      "minimum": 0,
+      "examples": [0, 5.2, 12.8]
+    },
+    "gap_to_front": {
+      "type": "number",
+      "description": "Time gap to car in front in seconds",
+      "minimum": 0,
+      "examples": [0.5, 2.1, 8.3]
+    }
+  },
+  "required": [
+    "carId",
+    "driver",
+    "team",
+    "speed",
+    "position",
+    "lap",
+    "event",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "carId": "HAM",
+      "driver": "Lewis Hamilton",
+      "team": "Mercedes",
+      "speed": 312.5,
+      "position": 1,
+      "lap": 45,
+      "event": "normal",
+      "timestamp": 1703123456789,
+      "sector_times": {
+        "sector1": 25.5,
+        "sector2": 32.1,
+        "sector3": 28.7
+      },
+      "tyre_compound": "soft",
+      "fuel_level": 72.3,
+      "engine_temp": 102.8,
+      "brake_temp": {
+        "front_left": 920,
+        "front_right": 915,
+        "rear_left": 820,
+        "rear_right": 825
+      },
+      "gear": 7,
+      "rpm": 13500,
+      "throttle": 95.2,
+      "brake": 0,
+      "drs": true,
+      "ers_mode": "attack",
+      "lap_time": 86.3,
+      "best_lap_time": 78.2,
+      "gap_to_leader": 0,
+      "gap_to_front": 0
+    }
+  ]
+}

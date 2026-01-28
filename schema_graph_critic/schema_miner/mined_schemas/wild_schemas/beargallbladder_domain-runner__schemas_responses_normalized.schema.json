@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"responses_normalized",
+  "type":"object",
+  "required":["id","domain","prompt_id","model","ts_iso","answer","normalized_status","raw_ref"],
+  "properties":{
+    "id":{"type":"string"},
+    "domain":{"type":"string"},
+    "prompt_id":{"type":"string"},
+    "model":{"type":"string"},
+    "ts_iso":{"type":"string","format":"date-time"},
+    "answer":{"type":"string"},
+    "confidence":{"type":["number","null"],"minimum":0,"maximum":1},
+    "citations":{
+      "type":"array",
+      "items":{"type":"string"},
+      "default":[]
+    },
+    "normalized_status":{"type":"string","enum":["valid","malformed","empty"]},
+    "raw_ref":{"type":"string"}
+  },
+  "additionalProperties":false
+}

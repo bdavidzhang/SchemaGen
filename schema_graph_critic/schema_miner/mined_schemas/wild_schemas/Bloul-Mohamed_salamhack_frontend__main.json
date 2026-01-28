@@ -1,0 +1,1146 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CV Genius API",
+    "description": "API documentation for CV Genius",
+    "version": "v1.2.3"
+  },
+  "host": "stepdevs.click:8000",
+  "schemes": ["http"],
+  "basePath": "/api",
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "securityDefinitions": { "Basic": { "type": "basic" } },
+  "security": [{ "Basic": [] }],
+  "paths": {
+    "/cv/analyze-cv-file/": {
+      "post": {
+        "operationId": "cv_analyze-cv-file_create",
+        "summary": "Extracts data from CV files",
+        "description": "Extracts data from CV files (PDF, LaTeX, or Word).",
+        "parameters": [
+          {
+            "name": "cv_file",
+            "in": "formData",
+            "description": "CV file to analyze (PDF, LaTeX, or Word)",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CV data extracted successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "extracted_text": {
+                  "description": "Extracted text content from the CV file",
+                  "type": "string"
+                },
+                "analysis": {
+                  "description": "Analysis of the extracted CV content",
+                  "type": "object"
+                },
+                "score": {
+                  "description": "Score of the CV based on the analysis",
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid file format or content"
+          },
+          "500": { "description": "Server error during file processing" }
+        },
+        "consumes": [
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "tags": ["cv"]
+      },
+      "parameters": []
+    },
+    "/cv/analyze-cv/": {
+      "post": {
+        "operationId": "cv_analyze-cv_create",
+        "summary": "Analyzes CV text and provides feedback",
+        "description": "Analyzes the CV text and returns structured feedback and suggestions.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/CVAnalysis" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CV analysis completed successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "overview": { "type": "object" },
+                "sections": { "type": "object" },
+                "metrics": { "type": "object" },
+                "suggestions": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "strengths": { "type": "array", "items": { "type": "string" } },
+                "weaknesses": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          "400": { "description": "Bad request - Invalid input data" },
+          "500": { "description": "Server error during CV analysis" }
+        },
+        "tags": ["cv"]
+      },
+      "parameters": []
+    },
+    "/cv/generate-latex-cv/": {
+      "post": {
+        "operationId": "cv_generate-latex-cv_create",
+        "summary": "Generates LaTeX CV from JSON data",
+        "description": "Generates a LaTeX CV from JSON data.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/LatexCVGeneration" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "LaTeX CV generated successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "latex_code": {
+                  "description": "Generated LaTeX code for the CV",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": { "description": "Bad request - Invalid input data" },
+          "500": { "description": "Server error during LaTeX generation" }
+        },
+        "tags": ["cv"]
+      },
+      "parameters": []
+    },
+    "/cv/latex-to-pdf/": {
+      "post": {
+        "operationId": "cv_latex-to-pdf_create",
+        "description": "Converts LaTeX content to a PDF file.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/LatexToPdf" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "PDF file successfully generated" },
+          "400": { "description": "Bad request - Invalid LaTeX content" },
+          "500": { "description": "Server error during conversion" }
+        },
+        "tags": ["cv"]
+      },
+      "parameters": []
+    },
+    "/cv/latex-to-word/": {
+      "post": {
+        "operationId": "cv_latex-to-word_create",
+        "description": "Converts LaTeX content to a Word document.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/LatexToWord" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Word document successfully generated" },
+          "400": { "description": "Bad request - Invalid LaTeX content" },
+          "500": { "description": "Server error during conversion" }
+        },
+        "tags": ["cv"]
+      },
+      "parameters": []
+    },
+    "/cv/score-cv/": {
+      "post": {
+        "operationId": "cv_score-cv_create",
+        "summary": "Analyzes and scores the CV text",
+        "description": "Analyzes and scores the CV text out of 100.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/CVAnalysis" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CV scoring completed successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "analysis": { "type": "object" },
+                "score": {
+                  "type": "object",
+                  "properties": {
+                    "overall": {
+                      "description": "Overall CV score out of 100",
+                      "type": "integer"
+                    },
+                    "categories": {
+                      "description": "Scores by category",
+                      "type": "object"
+                    },
+                    "breakdown": {
+                      "description": "Detailed score breakdown",
+                      "type": "object"
+                    },
+                    "suggestions": {
+                      "description": "Improvement suggestions",
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "Bad request - Invalid input data" },
+          "500": { "description": "Server error during CV scoring" }
+        },
+        "tags": ["cv"]
+      },
+      "parameters": []
+    },
+    "/pack/jobs/": {
+      "get": {
+        "operationId": "pack_jobs_list",
+        "summary": "List all jobs",
+        "description": "Returns a list of all available jobs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Job" }
+            }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "post": {
+        "operationId": "pack_jobs_create",
+        "summary": "Create a new job",
+        "description": "Creates a new job",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Job" }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Job" }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "parameters": []
+    },
+    "/pack/jobs/{id}/": {
+      "get": {
+        "operationId": "pack_jobs_read",
+        "summary": "Retrieve a specific job",
+        "description": "Returns a specific job by id",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Job" }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "put": {
+        "operationId": "pack_jobs_update",
+        "summary": "Update a job",
+        "description": "Updates a specific job by id",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Job" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Job" }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "patch": {
+        "operationId": "pack_jobs_partial_update",
+        "summary": "Partially update a job",
+        "description": "Partially updates a specific job by id",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Job" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Job" }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "delete": {
+        "operationId": "pack_jobs_delete",
+        "summary": "Delete a job",
+        "description": "Deletes a specific job by id",
+        "parameters": [],
+        "responses": { "204": { "description": "" } },
+        "tags": ["pack"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this job.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/pack/plans/": {
+      "get": {
+        "operationId": "pack_plans_list",
+        "summary": "List all plans",
+        "description": "Returns a list of all available plans",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Plan" }
+            }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "post": {
+        "operationId": "pack_plans_create",
+        "summary": "Create a new plan",
+        "description": "Creates a new subscription plan",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Plan" }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Plan" }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "parameters": []
+    },
+    "/pack/plans/{id}/": {
+      "get": {
+        "operationId": "pack_plans_read",
+        "summary": "Retrieve a specific plan",
+        "description": "Returns a specific plan by id",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Plan" }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "put": {
+        "operationId": "pack_plans_update",
+        "summary": "Update a plan",
+        "description": "Updates a specific plan by id",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Plan" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Plan" }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "patch": {
+        "operationId": "pack_plans_partial_update",
+        "summary": "Partially update a plan",
+        "description": "Partially updates a specific plan by id",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Plan" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Plan" }
+          }
+        },
+        "tags": ["pack"]
+      },
+      "delete": {
+        "operationId": "pack_plans_delete",
+        "summary": "Delete a plan",
+        "description": "Deletes a specific plan by id",
+        "parameters": [],
+        "responses": { "204": { "description": "" } },
+        "tags": ["pack"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this plans.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/users/client-plans/": {
+      "get": {
+        "operationId": "users_client-plans_list",
+        "summary": "List all client plans",
+        "description": "Returns a list of all client plan associations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/ClientPlan" }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "post": {
+        "operationId": "users_client-plans_create",
+        "summary": "Create a client plan",
+        "description": "Associate a client with a subscription plan",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/ClientPlan" }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/ClientPlan" }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": []
+    },
+    "/users/client-plans/by_client/": {
+      "get": {
+        "operationId": "users_client-plans_by_client",
+        "summary": "Get plans for a specific client",
+        "description": "Get all plan subscriptions for a specific client",
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "query",
+            "description": "Client ID",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of client plans",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/ClientPlan" }
+            }
+          },
+          "400": { "description": "Bad request - client_id is required" }
+        },
+        "tags": ["users"]
+      },
+      "parameters": []
+    },
+    "/users/client-plans/{id}/": {
+      "get": {
+        "operationId": "users_client-plans_read",
+        "summary": "Retrieve a specific client plan",
+        "description": "Get details of a specific client-plan association",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/ClientPlan" }
+          }
+        },
+        "tags": ["users"]
+      },
+      "put": {
+        "operationId": "users_client-plans_update",
+        "summary": "Update a client plan",
+        "description": "Update a client's plan association",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/ClientPlan" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/ClientPlan" }
+          }
+        },
+        "tags": ["users"]
+      },
+      "patch": {
+        "operationId": "users_client-plans_partial_update",
+        "summary": "Partial update a client plan",
+        "description": "Update specific fields of a client-plan association",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/ClientPlan" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/ClientPlan" }
+          }
+        },
+        "tags": ["users"]
+      },
+      "delete": {
+        "operationId": "users_client-plans_delete",
+        "summary": "Delete a client plan",
+        "description": "Remove a client-plan association",
+        "parameters": [],
+        "responses": { "204": { "description": "" } },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this client plan.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/users/clients/": {
+      "get": {
+        "operationId": "users_clients_list",
+        "summary": "List all clients",
+        "description": "Returns a list of all clients in the system",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Client" }
+            }
+          }
+        },
+        "tags": ["users"]
+      },
+      "post": {
+        "operationId": "users_clients_create",
+        "summary": "Create a new client",
+        "description": "Create a new client with the provided information",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Client" }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Client" }
+          }
+        },
+        "tags": ["users"]
+      },
+      "parameters": []
+    },
+    "/users/clients/{id}/": {
+      "get": {
+        "operationId": "users_clients_read",
+        "summary": "Retrieve a specific client",
+        "description": "Get details of a specific client by ID",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Client" }
+          }
+        },
+        "tags": ["users"]
+      },
+      "put": {
+        "operationId": "users_clients_update",
+        "summary": "Update a client",
+        "description": "Update all fields of an existing client",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Client" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Client" }
+          }
+        },
+        "tags": ["users"]
+      },
+      "patch": {
+        "operationId": "users_clients_partial_update",
+        "summary": "Partial update a client",
+        "description": "Update specific fields of an existing client",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Client" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/Client" }
+          }
+        },
+        "tags": ["users"]
+      },
+      "delete": {
+        "operationId": "users_clients_delete",
+        "summary": "Delete a client",
+        "description": "Remove a client from the system",
+        "parameters": [],
+        "responses": { "204": { "description": "" } },
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this client.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/users/cvs/": {
+      "get": {
+        "operationId": "users_cvs_list",
+        "summary": "List all saved CVs",
+        "description": "Returns a list of all saved CV files in the system",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/CvSaved" }
+            }
+          }
+        },
+        "consumes": [
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "tags": ["users"]
+      },
+      "post": {
+        "operationId": "users_cvs_create",
+        "summary": "Save a new CV",
+        "description": "Create a new CV record for a client",
+        "parameters": [
+          {
+            "name": "client",
+            "in": "formData",
+            "required": true,
+            "type": "integer"
+          },
+          { "name": "cv", "in": "formData", "required": true, "type": "file" }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/CvSaved" }
+          }
+        },
+        "consumes": [
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "tags": ["users"]
+      },
+      "parameters": []
+    },
+    "/users/cvs/by_client/": {
+      "get": {
+        "operationId": "users_cvs_by_client",
+        "summary": "Get CVs for a specific client",
+        "description": "Get all saved CV files for a specific client",
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "query",
+            "description": "Client ID",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of client CVs",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/CvSaved" }
+            }
+          },
+          "400": { "description": "Bad request - client_id is required" }
+        },
+        "consumes": [
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "tags": ["users"]
+      },
+      "parameters": []
+    },
+    "/users/cvs/upload_cv/": {
+      "post": {
+        "operationId": "users_cvs_upload_cv",
+        "summary": "Upload a new CV for a client",
+        "description": "Upload a CV file for a client and store it in S3",
+        "parameters": [
+          {
+            "name": "client",
+            "in": "formData",
+            "description": "Client ID",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "cv",
+            "in": "formData",
+            "description": "CV file to upload",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/CvSaved" }
+          },
+          "400": {
+            "description": "Bad request - Client ID and CV file are required"
+          }
+        },
+        "consumes": [
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "tags": ["users"]
+      },
+      "parameters": []
+    },
+    "/users/cvs/{id}/": {
+      "get": {
+        "operationId": "users_cvs_read",
+        "summary": "Retrieve a specific CV",
+        "description": "Get details of a specific CV record by ID",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/CvSaved" }
+          }
+        },
+        "consumes": [
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "tags": ["users"]
+      },
+      "put": {
+        "operationId": "users_cvs_update",
+        "summary": "Update a CV record",
+        "description": "Update all fields of an existing CV record",
+        "parameters": [
+          {
+            "name": "client",
+            "in": "formData",
+            "required": true,
+            "type": "integer"
+          },
+          { "name": "cv", "in": "formData", "required": true, "type": "file" }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/CvSaved" }
+          }
+        },
+        "consumes": [
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "tags": ["users"]
+      },
+      "patch": {
+        "operationId": "users_cvs_partial_update",
+        "summary": "Partial update a CV record",
+        "description": "Update specific fields of an existing CV record",
+        "parameters": [
+          {
+            "name": "client",
+            "in": "formData",
+            "required": true,
+            "type": "integer"
+          },
+          { "name": "cv", "in": "formData", "required": true, "type": "file" }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "$ref": "#/definitions/CvSaved" }
+          }
+        },
+        "consumes": [
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "tags": ["users"]
+      },
+      "delete": {
+        "operationId": "users_cvs_delete",
+        "summary": "Delete a CV record",
+        "description": "Remove a CV record from the system",
+        "parameters": [],
+        "responses": { "204": { "description": "" } },
+        "consumes": [
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "tags": ["users"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this cv saved.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "CVAnalysis": {
+      "required": ["cv_text"],
+      "type": "object",
+      "properties": {
+        "cv_text": {
+          "title": "Cv text",
+          "description": "The text content of the CV/resume to be analyzed",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "LatexCVGeneration": {
+      "required": [
+        "personal_info",
+        "summary",
+        "experience",
+        "education",
+        "skills"
+      ],
+      "type": "object",
+      "properties": {
+        "personal_info": {
+          "title": "Personal info",
+          "description": "Personal information including name, title, contact details",
+          "type": "object",
+          "additionalProperties": { "type": "string", "x-nullable": true }
+        },
+        "summary": {
+          "title": "Summary",
+          "description": "Professional summary or objective statement",
+          "type": "string",
+          "minLength": 1
+        },
+        "experience": {
+          "description": "List of work experiences",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": { "type": "string", "x-nullable": true }
+          }
+        },
+        "education": {
+          "description": "List of educational qualifications",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": { "type": "string", "x-nullable": true }
+          }
+        },
+        "skills": {
+          "title": "Skills",
+          "description": "Technical and other skills grouped by category",
+          "type": "object",
+          "additionalProperties": { "type": "string", "x-nullable": true }
+        }
+      }
+    },
+    "LatexToPdf": {
+      "required": ["latex_content"],
+      "type": "object",
+      "properties": {
+        "latex_content": {
+          "title": "Latex content",
+          "description": "LaTeX content to convert to PDF",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "LatexToWord": {
+      "required": ["latex_content"],
+      "type": "object",
+      "properties": {
+        "latex_content": {
+          "title": "Latex content",
+          "description": "LaTeX content to convert to Word document",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Job": {
+      "required": ["name"],
+      "type": "object",
+      "properties": {
+        "id": { "title": "ID", "type": "integer", "readOnly": true },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "created_at": {
+          "title": "Created at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "Plan": {
+      "required": ["name", "price", "duration", "description"],
+      "type": "object",
+      "properties": {
+        "id": { "title": "ID", "type": "integer", "readOnly": true },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "price": { "title": "Price", "type": "number" },
+        "duration": {
+          "title": "Duration",
+          "type": "integer",
+          "maximum": 9223372036854775807,
+          "minimum": -9223372036854775808
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "title": "Created at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "Client": {
+      "required": ["name", "email", "phone", "job"],
+      "type": "object",
+      "properties": {
+        "id": { "title": "ID", "type": "integer", "readOnly": true },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "format": "email",
+          "maxLength": 254,
+          "minLength": 1
+        },
+        "phone": {
+          "title": "Phone",
+          "type": "string",
+          "maxLength": 15,
+          "minLength": 1
+        },
+        "created_at": {
+          "title": "Created at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "job": { "title": "Job", "type": "integer" },
+        "job_details": { "$ref": "#/definitions/Job" }
+      }
+    },
+    "ClientPlan": {
+      "required": ["client", "plan"],
+      "type": "object",
+      "properties": {
+        "id": { "title": "ID", "type": "integer", "readOnly": true },
+        "client": { "title": "Client", "type": "integer" },
+        "plan": { "title": "Plan", "type": "integer" },
+        "created_at": {
+          "title": "Created at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "client_details": { "$ref": "#/definitions/Client" },
+        "plan_details": { "$ref": "#/definitions/Plan" }
+      }
+    },
+    "CvSaved": {
+      "required": ["client"],
+      "type": "object",
+      "properties": {
+        "id": { "title": "ID", "type": "integer", "readOnly": true },
+        "client": { "title": "Client", "type": "integer" },
+        "cv": {
+          "title": "Cv",
+          "type": "string",
+          "readOnly": true,
+          "format": "uri"
+        },
+        "created_at": {
+          "title": "Created at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "client_details": { "$ref": "#/definitions/Client" }
+      }
+    }
+  }
+}

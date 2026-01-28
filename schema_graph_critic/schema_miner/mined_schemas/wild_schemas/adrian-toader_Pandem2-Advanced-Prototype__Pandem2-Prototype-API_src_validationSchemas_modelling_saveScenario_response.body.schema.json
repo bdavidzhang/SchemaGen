@@ -1,0 +1,58 @@
+{
+  "$id": "modelling.saveScenario.response.body.schema",
+  "description": "Save scenario response body schema",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "$ref": "/base#/definitions/mongoID"
+    },
+    "userId": {
+      "$ref": "/modellingScenario#/definitions/userId"
+    },
+    "modelId": {
+      "$ref": "/modellingScenario#/definitions/modelId"
+    },
+    "name": {
+      "$ref": "/modellingScenario#/definitions/name"
+    },
+    "r0": {
+      "$ref": "/modellingScenario#/definitions/r0"
+    },
+    "date": {
+      "$ref": "/modellingScenario#/definitions/date"
+    },
+    "description": {
+      "$ref": "/modellingScenario#/definitions/description"
+    },
+    "tags": {
+      "$ref": "/modellingScenario#/definitions/tags"
+    },
+    "location": {
+      "$ref": "/modellingScenario#/definitions/location"
+    },
+    "parameters": {
+      "$ref": "/modellingScenario#/definitions/parameters"
+    },
+    "sections_details": {
+      "$ref": "/modellingScenario#/definitions/sections_details"
+    },
+    "exploration": {
+      "$ref": "/modellingScenario#/definitions/exploration"
+    },
+    "is_visible": {
+      "$ref": "/modellingScenario#/definitions/is_visible"
+    },
+    "alternatives": {
+      "$ref": "/modellingScenario#/definitions/alternatives"
+    }
+  },
+  "required": [
+    "userId",
+    "modelId",
+    "name",
+    "date",
+    "tags",
+    "location",
+    "parameters"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sanchopansa.io/schemas/arkham/monster-ability.schema.json",
+  "title": "Monster Ability",
+  "description": "",
+  "type": "string",
+  "enum": [
+    "AMBUSH",
+    "UNDEAD",
+    "ELUSIVE",
+    "ENDLESS",
+    "MAGICAL_IMMUNITY",
+    "MAGICAL_RESISTANCE",
+    "PHYSICAL_IMMUNITY",
+    "PHYSICAL_RESISTANCE",
+    "WEAPON_IMMUNITY"
+  ]
+}

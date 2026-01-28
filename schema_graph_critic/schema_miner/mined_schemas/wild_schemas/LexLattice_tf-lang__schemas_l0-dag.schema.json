@@ -1,0 +1,240 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tf-lang.dev/schemas/l0-dag.schema.json",
+  "title": "TF-Lang L0 DAG",
+  "type": "object",
+  "required": ["pipeline_id", "created_at", "effects", "nodes"],
+  "additionalProperties": false,
+  "properties": {
+    "pipeline_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "effects": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    }
+  },
+  "$defs": {
+    "data": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/data"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/data"
+          }
+        }
+      ]
+    },
+    "binding": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/data"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "condition": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "properties": {
+            "op": {
+              "type": "string",
+              "minLength": 1
+            },
+            "var": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/data"
+          }
+        }
+      ]
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["Transform", "Publish", "Subscribe", "Keypair"]
+        },
+        "description": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "qos": {
+          "type": "string",
+          "enum": ["at_most_once", "at_least_once", "exactly_once"]
+        },
+        "algorithm": {
+          "type": "string",
+          "enum": ["RSA", "EC_P256", "EC_P384", "EC_P521", "Ed25519", "X25519"]
+        },
+        "spec": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/data"
+          }
+        },
+        "in": {
+          "$ref": "#/$defs/binding"
+        },
+        "out": {
+          "$ref": "#/$defs/binding"
+        },
+        "payload": {
+          "$ref": "#/$defs/data"
+        },
+        "filter": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/data"
+              }
+            }
+          ]
+        },
+        "when": {
+          "$ref": "#/$defs/condition"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/data"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "#/$defs/data"
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Subscribe"
+              }
+            }
+          },
+          "then": {
+            "required": ["channel", "qos", "out"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Publish"
+              }
+            }
+          },
+          "then": {
+            "required": ["channel", "qos", "payload"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Transform"
+              }
+            }
+          },
+          "then": {
+            "required": ["spec", "in", "out"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Keypair"
+              }
+            }
+          },
+          "then": {
+            "required": ["algorithm", "out"]
+          }
+        }
+      ]
+    }
+  }
+}

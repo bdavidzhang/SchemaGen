@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schemas.mechanicalninja.com/book.schema.json",
+  "title": "D51Media Book",
+  "type": "object",
+  "properties": {
+    "title": {
+      "description": "Book title",
+      "type": "string"
+    },
+    "author": {
+      "description": "Book author",
+      "type": "string"
+    },
+    "copyright": {
+      "description": "Copyright notice",
+      "type": "string"
+    },
+    "chapters": {
+      "description": "Chapters",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Chapter title",
+            "type": "string"
+          },
+          "body": {
+            "description": "Chapter body",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "title",
+    "author",
+    "chapters"
+  ]
+}

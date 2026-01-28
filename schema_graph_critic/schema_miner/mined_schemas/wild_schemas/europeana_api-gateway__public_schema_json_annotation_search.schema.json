@@ -1,0 +1,133 @@
+{
+    "$id": "https://api.europeana.eu/schemas/json/annotation/search#",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "title": "Annotation API - Search schema",
+    "type": "object",
+    "properties": {
+        "@context"   : {
+            "type": "string", "format": "uri", 
+            "description": "The JSON-LD context.",
+            "const": "http://www.w3.org/ns/anno.jsonld",
+            "example": "http://www.w3.org/ns/anno.jsonld"
+        },
+        "id" : {
+            "type": "string", "format": "uri",
+            "regex": "https[:]//api[.]europeana[.]eu/entity/search?.*",
+            "description": "The identifier of the search results page.",
+            "example": "https://api.europeana.eu/entity/search?query=test&page=0&pageSize=10"
+        },
+        "type": {
+            "const": "ResultPage", "example": "ResultPage"
+        },
+        "partOf": {
+            "type": "object",
+            "properties": {
+                "id":    {
+                    "type": "string", "format": "uri",
+                    "regex": "https[:]//api[.]europeana[.]eu/annotation/search?.*",
+                    "description": "The identifier of the search results.",
+                    "example": "https://api.europeana.eu/annotation/search?query=test"
+                },
+                "total": { 
+                    "type": "number", "minimum": 0,
+                    "description": "The total number of entities matching the search query.",
+                    "example": 1
+                },
+                "first": {
+                    "type": "string", "format": "uri",
+                    "description": "Indicates the first preceding page of results in the result list.",
+                    "example": "https://api.europeana.eu/annotation/search?query=test&page=0&pageSize=10"
+                },
+                "last":  {
+                    "type": "string", "format": "uri",
+                    "description": "Indicates the furthest proceeding page of results in the result list.",
+                    "example": "https://api.europeana.eu/annotation/search?query=test&page=0&pageSize=10"
+                }
+            },
+            "required": [ "id", "total" ]
+        },
+        "facets": {
+            "type": "array", "minItems": 1,
+            "description": "A list of faceting fields.",
+            "items": { "$ref": "#/definitions/Facet" }
+        },
+        "total": {
+            "type": "number", "minimum": 0, "maximum": 50,
+            "description": "The total number of entities in the result page.",
+            "example": 1
+        },
+        "items": {
+            "type": "array", "minItems": 0, "maxItems": 50,
+            "description": "The annotations that are part of this result page.",
+            "items": {
+                "oneOf": [
+                    { "$ref": "#/definitions/AnnotationURI" },
+                    { "$ref": "#/definitions/Annotation"    }
+                ]
+            }
+        },
+        "next": {
+            "type": "string", "format": "uri",
+            "description": "A reference to the previous page in the sequence of pages that make up the search results.",
+            "example": "https://api.europeana.eu/annotation/search?query=test&page=0&pageSize=10"
+        },
+        "prev": {
+            "type": "string", "format": "uri",
+            "description": "A reference to the next page in the sequence of pages that make up the search results.",
+            "example": "https://api.europeana.eu/annotation/search?query=test&page=0&pageSize=10"
+        }
+    },
+    "required": [ "@context", "type", "total" ],
+    "additionalProperties": false,
+    "definitions": {
+        "Annotation": {
+            "type": "object",
+            "description": "An annotation object.",
+            "properties": {
+                "id" : { "$ref": "#/definitions/AnnotationURI" }
+            }
+        },
+        "AnnotationURI": {
+            "type"  : "string", "format": "uri",
+            "regex": "http[:]//data[.]europeana[.]eu/annotation/[0-9]+",
+            "description": "The unique identifier of the Annotation",
+            "example": "http://data.europeana.eu/annotation/1"
+        },
+        "Facet": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "Facet",
+                    "example": "Facet"
+                },
+                "field": {
+                    "type": "string",
+                    "description": "The name of the field being facetted.",
+                    "example": "fieldname"
+                },
+                "values": {
+                    "type": "array", "minItems": 0,
+                    "description": "The top most frequent values that were found in the field.",
+                    "items": { "$ref": "#/definitions/FacetValue" }
+                }
+            },
+            "required": [ "type", "field", "values" ]
+        },
+        "FacetValue": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "The value that was found in the field.",
+                    "example": "xpto"
+                },
+                "value": {
+                    "type": "number", "minimum": 1,
+                    "description": "The total number of annotations that contain this value in the field.",
+                    "example": 1
+                }
+            },
+            "required": [ "label", "value" ]
+        }
+    }
+}

@@ -1,0 +1,105 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/AverseABFun/queerchat/refs/heads/main/queer.json",
+    "x-tombi-toml-version": "v1.0.0",
+    "required": [
+        "users",
+        "prevent_spoofing"
+    ],
+    "properties": {
+        "users": {
+            "default": "./queerusers.toml",
+            "$ref": "queerusers.json"
+        },
+        "prevent_spoofing": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to prevent spoofing names with the mapping attribute in queerusers."
+        },
+        "motd": {
+            "type": [
+                "null",
+                "object"
+            ],
+            "description": "The message of the day. Includes various text properties.",
+            "properties": {
+                "server_name": {
+                    "type": [
+                        "null",
+                        "string"
+                    ],
+                    "description": "The server name."
+                },
+                "motd": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "description": "The message of the day.",
+                    "properties": {
+                        "is_file": {
+                            "type": "boolean",
+                            "description": "Whether the string provided is a path or not."
+                        },
+                        "text": {
+                            "type": "string",
+                            "description": "Either a path or a string containing the message of the day."
+                        }
+                    }
+                },
+                "login_message": {
+                    "type": [
+                        "null",
+                        "string"
+                    ],
+                    "description": "The message to show upon successfully logging in."
+                },
+                "failed_login_message": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "description": "The messages to show upon failing to login.",
+                    "properties": {
+                        "invalid_key": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "description": "The message to show upon the key not matching up with the one in the mapping."
+                        },
+                        "blacklisted": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "description": "The message to show upon the user being on the blacklist."
+                        },
+                        "not_whitelisted": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "description": "The message to show upon the whitelist being enabled and the user not being on it."
+                        }
+                    }
+                }
+            }
+        },
+        "max_msg_len": {
+            "type": "integer",
+            "default": 500,
+            "description": "The maximum length of a message in UTF-8 sequences."
+        }
+    },
+    "title": "queer.json schema for queerchat",
+    "type": "object",
+    "x-taplo-info": {
+        "authors": [
+            "Arthur Beck (https://github.com/AverseABFun)"
+        ],
+        "patterns": [
+            "^(.*(/|\\\\)queer\\.toml|queer\\.toml)$"
+        ]
+    }
+}

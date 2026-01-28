@@ -1,0 +1,74 @@
+{
+	"pluginAlias": "Hubitat",
+	"pluginType": "platform",
+	"singular": true,
+	"headerDisplay": "Use the settings below to configure the Homebridge-Hubitat Plugin. Changes are not applied until you click save at the bottom and restart Homebridge by clicking the power button in the main menu bar. Recommend clicking the \"Config\" button in the main menu bar to verify all values were entered properly.",
+	"footerDisplay": "For help please see the plugin [readme](https://github.com/jvmahon/homebridge-hubitat/).",
+    "schema": {
+        "required": [
+            "name",
+            "MakerAPI"
+        ],
+        "type": "object",
+        "properties": {
+            "name": {
+                "default": "Hubitat",
+                "description": "Leave this as Hubitat",
+                "title": "Name",
+                "type": "string"
+            },
+            "MakerAPI": {
+                "default": "http://",
+                "description": "Copy and Paste here the MakerAPI `Get All Devices with Full Details` link address from Hubitat",
+                "title": "MakerAPI",
+				"format": "url",
+                "type": "string"
+            },
+            "lowBatteryThreshold": {
+                "default": 35,
+                "description": "Defaults to 35. Below this value, iOS reports a low battery.",
+                "title": "Low Battery Threshold",
+                "type": "integer"
+            },
+            "roundUp":{
+                "title": "Round up lighting values to 100%",
+                "default": true,
+                "description": "Z-Wave devices actually only have a range of 1-99, while 0 is off. You can round this in homebridge, since Homekit has a range of 0-100",
+                "type": "boolean"
+            },
+			"temperatureUnits": {
+				"title": "Temperature Display Units",
+				"type": "string",
+				"required": true,
+				"default": "F",
+				"oneOf": [
+						{ "title": "Celsius", "enum": ["C"] },
+						{ "title": "Fahrenheit", "enum": ["F"] }
+					]
+			},
+			"createHSMSecuritySystemDevices": {
+				"title": "Create HomeKit Security System Device to Interface to Hubitat HSM",
+				"type": "array",
+				"uniqueItems": true,
+				"items": {
+					"title": "Types",
+					"type": "string",
+					"enum": ["Intrusion"]
+					}
+			},
+			"createButtonDevices": {
+				"title": "Create Button Devices",
+				"type": "string",
+				"default": "WhenTaggedAsButton",
+				"required": true,
+				"oneOf": [
+						{ "title": "Never", "enum": ["Never"] },
+						{ "title": "When Name or Label includes word Button", "enum": ["WhenTaggedAsButton"]},
+						{ "title": "Always", "enum": ["Always"] }
+					]
+			}
+		}
+	}
+}
+
+

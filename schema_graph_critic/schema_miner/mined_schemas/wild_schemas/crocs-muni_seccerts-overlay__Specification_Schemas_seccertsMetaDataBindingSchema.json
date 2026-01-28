@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "data": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "timestamp": {
+                            "type": "string"
+                        },
+                        "certificate_ids": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "metadata_header_url": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "timestamp",
+                        "certificate_ids",
+                        "metadata_header_url"
+                    ]
+                }
+            ]
+        },
+        "author": {
+            "type": "string"
+        },
+        "version": {
+            "type": "string"
+        },
+        "JWT": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "data",
+        "author",
+        "version",
+        "JWT"
+    ]
+}

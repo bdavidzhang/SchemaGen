@@ -1,0 +1,31 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "AWS_AutoScaling_LaunchConfiguration.BlockDeviceMapping.schema.json",
+  "title" : "LaunchConfigurationBlockDeviceMapping",
+  "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html",
+  "type" : "object",
+  "javaType" : "shiver.me.timbers.aws.autoscaling.LaunchConfigurationBlockDeviceMapping",
+  "javaInterfaces" : [ "shiver.me.timbers.aws.Property<LaunchConfigurationBlockDeviceMapping>" ],
+  "properties" : {
+    "DeviceName" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html#cfn-as-launchconfig-blockdev-mapping-devicename",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "Ebs" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html#cfn-as-launchconfig-blockdev-mapping-ebs",
+      "$ref" : "AWS_AutoScaling_LaunchConfiguration.BlockDevice.schema.json",
+      "javaType" : "shiver.me.timbers.aws.Property<shiver.me.timbers.aws.autoscaling.LaunchConfigurationBlockDevice>"
+    },
+    "NoDevice" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html#cfn-as-launchconfig-blockdev-mapping-nodevice",
+      "type" : "boolean",
+      "javaType" : "java.lang.CharSequence"
+    },
+    "VirtualName" : {
+      "description" : "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html#cfn-as-launchconfig-blockdev-mapping-virtualname",
+      "type" : "string",
+      "javaType" : "java.lang.CharSequence"
+    }
+  }
+}

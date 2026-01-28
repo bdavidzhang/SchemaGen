@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "inventory",
+  "description": "Schema for inventory effect",
+  "type": "object",
+  "required": ["id", "action", "item"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "inventory"
+    },
+    "action": {
+      "type": "string",
+      "description": "Type of inventory action",
+      "enum": ["add", "remove"]
+    },
+    "item": {
+      "type": "string",
+      "description": "ID of the item to be added or removed",
+      "anyOf": [
+        {
+          "$ref": "../../component.schema.json#definitions/param"
+        },
+        {
+          "pattern": "../../component.schema.json#definitions/dataId"
+        }
+      ],
+      "examples": [
+        "$self",
+        "equipment.potion.health",
+        "equipment.scroll.fireball"
+      ]
+    }
+  }
+}

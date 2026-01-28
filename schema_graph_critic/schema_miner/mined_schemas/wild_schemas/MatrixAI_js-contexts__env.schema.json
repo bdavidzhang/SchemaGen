@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "$id": "file:///env.schema.json",
+  "properties": {
+    "NODE_ENV": {
+      "type": "string",
+      "enum": ["development", "production", "test"],
+      "description": "Unused atm (jest sets this to `test`)"
+    },
+    "NODE_DEBUG": {
+      "type": "string",
+      "description": "Debug node modules - https://nodejs.org/api/cli.html#node_debugmodule"
+    },
+    "NODE_DEBUG_NATIVE": {
+      "type": "string",
+      "description": "Debug node native modules - https://nodejs.org/api/cli.html#node_debug_nativemodule"
+    }
+  },
+  "required": []
+}

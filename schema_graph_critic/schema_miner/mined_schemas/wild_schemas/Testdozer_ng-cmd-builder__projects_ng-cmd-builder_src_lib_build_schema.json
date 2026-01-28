@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "title": "Cmd builder schema",
+  "description": "Options for CMD Builder",
+  "type": "object",
+  "properties": {
+    "commands": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/command" }
+    }
+  },
+  "definitions": {
+    "command": {
+      "type": "object",
+      "required": [ "command" ],
+      "properties": {
+        "command": {
+          "type": "string",
+          "description": "The command to run."
+        },
+        "args": {
+          "type": "array",
+          "description": "List of string arguments.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "env": {
+              "type": "object",
+              "description": "Environment key-value pairs.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "cwd": {
+              "type": "string",
+              "description": "Current working directory of the child process."
+            },
+            "shell": {
+              "type": "string",
+              "description": "<boolean> | <string> If true, runs command inside of a shell. Uses '/bin/sh' on Unix, and process.env.ComSpec on Windows. A different shell can be specified as a string. See Shell requirements and Default Windows shell. Default: true.",
+              "default": true
+            },
+            "windowsHide": {
+              "type": "boolean",
+              "description": "Hide the subprocess console window that would normally be created on Windows systems.",
+              "default": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "commands"
+  ]
+}

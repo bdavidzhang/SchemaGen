@@ -1,0 +1,15 @@
+{
+  "$id": "schema.schema.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "allOf": [{ "$ref": "table.schema.json" }]
+      }
+    }
+  }
+}

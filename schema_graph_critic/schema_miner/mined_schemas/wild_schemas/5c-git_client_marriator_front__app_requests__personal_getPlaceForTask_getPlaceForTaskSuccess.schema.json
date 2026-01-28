@@ -1,0 +1,79 @@
+{
+  "$id": "getPlaceForTaskSuccess",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "getPlaceForTaskSuccess",
+  "type": "object",
+
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          },
+          "address_kladr": {
+            "type": "string"
+          },
+          "logo": {
+            "type": ["null", "string"]
+          },
+          "region": {
+            "type": "object",
+
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": ["id", "name"]
+          },
+          "brand": {
+            "type": "object",
+
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              },
+              "logo": {
+                "type": ["null", "string"]
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": ["id", "name", "logo", "description"]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "latitude",
+          "longitude",
+          "address_kladr",
+          "logo",
+          "region",
+          "brand"
+        ]
+      }
+    }
+  },
+  "required": ["data"]
+}

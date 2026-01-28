@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proofdown Table Rows: api",
+  "type": "object",
+  "properties": {
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "collection": {"type": "string"},
+          "request": {"type": "string"},
+          "status": {"type": "string"},
+          "duration_ms": {"type": ["number", "null"], "minimum": 0}
+        },
+        "required": ["collection", "request", "status"],
+        "additionalProperties": true
+      }
+    }
+  },
+  "required": ["rows"],
+  "additionalProperties": false
+}

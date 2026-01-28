@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Debtor Risk Assessment",
+  "type": "object",
+  "properties": {
+    "assessmentSlug": {
+      "type": "string",
+      "enum": ["debtor-risk-assessment"]
+    },
+    "companyId": {
+      "type": "string"
+    },
+    "debtorRiskValue": {
+      "type": "string",
+      "enum": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "probabilityOfDefault": {
+      "type": "number"
+    },
+    "descriptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "short": {
+            "type": "string"
+          },
+          "full": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "short",
+          "full",
+          "language"
+        ]
+      }
+    },
+    "releaseDate": {
+      "type": "string"
+    },
+    "isCurrent": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "assessmentSlug",
+    "companyId",
+    "debtorRiskValue",
+    "probabilityOfDefault",
+    "descriptions",
+    "releaseDate",
+    "isCurrent"
+  ]
+}

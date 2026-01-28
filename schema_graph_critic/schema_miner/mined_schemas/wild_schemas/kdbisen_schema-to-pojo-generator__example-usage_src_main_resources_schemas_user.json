@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "User identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "User's full name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User's email address"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 150,
+      "description": "User's age"
+    },
+    "isActive": {
+      "type": "boolean",
+      "description": "Whether the user account is active"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Account creation timestamp"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "User tags"
+    }
+  },
+  "required": ["id", "name", "email"],
+  "additionalProperties": false
+}

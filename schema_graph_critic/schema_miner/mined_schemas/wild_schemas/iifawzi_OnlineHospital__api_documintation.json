@@ -1,0 +1,4247 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple api documintation, build with love by Fawzi E. Abdulfattah",
+    "version": "1.0.0",
+    "title": "E-clinic",
+    "contact": {
+      "email": "iifawzie@gmail.com"
+    }
+  },
+  "host": "clinice.herokuapp.com",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Everything related to Authentication Endpoints: "
+    },
+    {
+      "name": "ControlPanel",
+      "description": "Specificly For The Control Panel - Endpoints: "
+    },
+    {
+      "name": "doctors",
+      "description": "Everything related to doctors will be listed here"
+    },
+    {
+      "name": "categories",
+      "description": "Everything related to categories will be listed here"
+    },
+    {
+      "name": "user",
+      "description": "Everything related to user will be listed here"
+    },
+    {
+      "name": "slots",
+      "description": "Everything related to slots will be listed here"
+    },
+    {
+      "name": "appointments",
+      "description": "Everything related to appointments will be listed here"
+    },
+    {
+      "name": "messages",
+      "description": "Everything related to messages will be listed here"
+    },
+    {
+      "name": "prescriptions",
+      "description": "Everything related to prescriptions will be listed here"
+    }
+  ],
+  "paths": {
+    "/prescriptions/getPrescription": {
+      "post": {
+        "tags": ["prescriptions"],
+        "summary": "get specific prescription endpoint",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getPrescription"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getPrescriptionResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/prescriptions/updatePrescription": {
+      "put": {
+        "tags": ["prescriptions"],
+        "summary": "update specific prescription endpoint",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updatePrescription"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "201 (success)",
+            "schema": {
+              "$ref": "#/definitions/updatePrescriptionResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "404 (prescription is not found)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/prescriptions/addPrescription": {
+      "post": {
+        "tags": ["prescriptions"],
+        "summary": "add prescription endpoint",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addPrescription"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 (success)",
+            "schema": {
+              "$ref": "#/definitions/addPrescriptionResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/messages/uploadFile": {
+      "post": {
+        "tags": ["messages"],
+        "summary": "upload files in the chat.",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatUploadFile"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/chatUploadFileResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/messages/getFinishedMessages": {
+      "post": {
+        "tags": ["messages"],
+        "summary": "Get messages for the finished appointments for controPanel and mobile applications use.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getFinishedMessages"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getFinishedMessagesResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/joinDoctorToAppointment": {
+      "patch": {
+        "tags": ["appointments"],
+        "summary": "Join doctor to an appointment",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/joinDoctorToAppointment"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 `WITH STATUS TRUE AND ROOM_ID IN THE RESPONSE` (SUCCESS) OR 200 `WITH STATUS FALSE NO ROOM_ID IN RESPONSE` (FAILURE)",
+            "schema": {
+              "$ref": "#/definitions/joinDoctorToAppointmentSuccess"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/joinUserToAppointment": {
+      "patch": {
+        "tags": ["appointments"],
+        "summary": "Join user to an appointment",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/joinUserToAppointment"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 `WITH STATUS TRUE AND ROOM_ID IN THE RESPONSE` (SUCCESS) OR 200 `WITH STATUS FALSE NO ROOM_ID IN RESPONSE` (FAILURE)",
+            "schema": {
+              "$ref": "#/definitions/joinUserToAppointmentSuccess"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/doctorUpcomingAppointments": {
+      "get": {
+        "tags": ["appointments"],
+        "summary": "Get upcoming Appointments for specific doctor  ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/doctorUpcomingAppointmentsResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/doctorFinishedAppointments": {
+      "get": {
+        "tags": ["appointments"],
+        "summary": "Get finished Appointments for specific doctor  ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/doctorFinishedAppointmentsResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/upcomingAppointments": {
+      "get": {
+        "tags": ["appointments"],
+        "summary": "Get upcoming Appointments for specific user  ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/upcomingAppointmentsResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/finishedAppointments": {
+      "get": {
+        "tags": ["appointments"],
+        "summary": "Get finished Appointments for specific user  ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/finishedAppointmentsResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/docAppsByDate": {
+      "post": {
+        "tags": ["appointments"],
+        "summary": "Get doctor's appointments for specific data  ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/docAppsByDate"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/docAppsByDateResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/slots/updateSlot": {
+      "patch": {
+        "tags": ["slots"],
+        "summary": "Update Doctor's Slot",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateSlot"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "200 (updated)",
+            "schema": {
+              "$ref": "#/definitions/updateSlotResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/cancelAppointment": {
+      "patch": {
+        "tags": ["appointments"],
+        "summary": "to cancel specific appointment",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cancelAppointment"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/cancelAppointmentResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/confirmAppointment": {
+      "patch": {
+        "tags": ["appointments"],
+        "summary": "to confirm specific appointment",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/confirmAppointment"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/confirmAppointmentResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/getDocApps": {
+      "post": {
+        "tags": ["appointments"],
+        "summary": "Get all doctor's appointments for control panel use  ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getDocApps"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getDocAppsResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/getUserApps": {
+      "post": {
+        "tags": ["appointments"],
+        "summary": "Get all user's appointments for control panel use  ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getUserApps"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getUserAppsResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/controlPanel/getDoctorSlots": {
+      "post": {
+        "tags": ["ControlPanel"],
+        "summary": "Get all slots for specific doctor  ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getDoctorSlots"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getDoctorSlotsResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/slots/getOpenSlots": {
+      "post": {
+        "tags": ["slots"],
+        "summary": "Get the slots of doctor which are available ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getOpenSlots"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getOpenSlotsResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/addConfirmedAppointment": {
+      "post": {
+        "tags": ["appointments"],
+        "summary": "add new appointment: ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/newConfirmedAppointment"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "201 (created)",
+            "schema": {
+              "$ref": "#/definitions/newConfirmedAppointmentResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/appointments/addAppointment": {
+      "post": {
+        "tags": ["appointments"],
+        "summary": "add new appointment: ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/newAppointment"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "201 (created)",
+            "schema": {
+              "$ref": "#/definitions/newAppointmentResponse"
+            }
+          },
+          "400": {
+            "description": "400 (inputs or missing or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/slots/addSlot": {
+      "post": {
+        "tags": ["slots"],
+        "summary": "add slot for doctor",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addSlot"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 (Created)",
+            "schema": {
+              "$ref": "#/definitions/addSlotResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "The signup end point for users",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/signup"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 (Created)",
+            "schema": {
+              "$ref": "#/definitions/signupRes"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "403 (phone number already exists)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "The signin end point for users",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/signin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (successful)",
+            "schema": {
+              "$ref": "#/definitions/signinResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (phone number is not found)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "403 (User with this phone_number is blocked)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateFirebaseToken": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "update the firebase token id for a specific user",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateToken"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (successful)",
+            "schema": {
+              "$ref": "#/definitions/updateTokenResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (phone number is not found)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "403 (User with this phone_number is blocked)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateDoctorFirebaseToken": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "update the firebase token id for a specific DOCTOR",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateDoctorToken"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (successful)",
+            "schema": {
+              "$ref": "#/definitions/updateDoctorTokenResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (phone number is not found)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/auth/signDoctor": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Doctors Signin Endpoint",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/signinDoctors"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (successful)",
+            "schema": {
+              "$ref": "#/definitions/signinDoctorResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Phone number or password is incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/controlPanel/addDoctor": {
+      "post": {
+        "tags": ["ControlPanel"],
+        "summary": "Adding Doctor endpoint",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addingDoctor"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 (created)",
+            "schema": {
+              "$ref": "#/definitions/addingDoctorResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "401 (Phone Number is already registered)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/controlPanel/signAdmin": {
+      "post": {
+        "tags": ["ControlPanel"],
+        "summary": "Login admin endpoint",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/loginAdmin"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 (created)",
+            "schema": {
+              "$ref": "#/definitions/loginAdminResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not found or password is incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/controlPanel/addAdmin": {
+      "post": {
+        "tags": ["ControlPanel"],
+        "summary": "Adding admin endpoint",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addingAdmin"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 (created)",
+            "schema": {
+              "$ref": "#/definitions/addingAdminResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Error with the inputs)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "401 (Phone number is already registered)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/controlPanel/checkAdminByToken": {
+      "post": {
+        "tags": ["ControlPanel"],
+        "summary": "Check if `admin` using the token",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 (created)",
+            "schema": {
+              "$ref": "#/definitions/checkAdminResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Token is missed)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "403 (unauthorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/controlPanel/addImage": {
+      "post": {
+        "summary": "Uploads a file.",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "file",
+            "type": "file",
+            "description": "The file to upload."
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "201 (uploaded)",
+            "schema": {
+              "$ref": "#/definitions/uploadImageResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "403 (Type not allowed)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "500 (File is so big)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/slots/getDoctorDays": {
+      "post": {
+        "tags": ["slots"],
+        "summary": "get the days which doctor working in just `days`",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "description": "if you passed the doctor_id, it will use it instead of the header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "20 (Success)",
+            "schema": {
+              "$ref": "#/definitions/getDaysResponse"
+            }
+          },
+          "400": {
+            "description": "400 (Doctor_id is missed or incorrect)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/doctors/getDoctor": {
+      "post": {
+        "tags": ["doctors"],
+        "summary": "Get Doctor Details",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getDoctor"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getDoctorResponse"
+            }
+          },
+          "400": {
+            "description": "400 (phone number is missing)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "404 (Doctor not found)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/doctors/getDoctors": {
+      "post": {
+        "tags": ["doctors"],
+        "summary": "Get Doctors data within specific category",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getDoctors"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getDoctorsResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/categories/getCategories": {
+      "get": {
+        "tags": ["categories"],
+        "summary": "This will return the categories where there're doctors registered in",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getCategoriesResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/user/updateInfo": {
+      "patch": {
+        "tags": ["user"],
+        "summary": "to update specific user info.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "description": "You can send whatever you want, made wuth love by fawzii for el belasy <3",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateInfo"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/updateInfoResponse"
+            }
+          },
+          "400": {
+            "description": "There's input not allowed to be updated. (schema validation",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "The entered phone number already associated with an account",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/user/notBlocked": {
+      "get": {
+        "tags": ["user"],
+        "summary": "to know which user is blocked or not",
+
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/notBlockedResponse"
+            }
+          },
+          "403": {
+            "description": "403 User is blocked",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/user/getUser": {
+      "post": {
+        "tags": ["user"],
+        "summary": "to get user's data",
+
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getUser"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getUserResponse"
+            }
+          },
+          "403": {
+            "description": "404 User not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/controlPanel/toggleBlock": {
+      "patch": {
+        "tags": ["ControlPanel"],
+        "summary": "To toggle block coulmn of user (BLOCK / UNBLOCK)",
+
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/toggleBlock"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/toggleBlockResponse"
+            }
+          },
+          "403": {
+            "description": "404 User not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/user/updateImage": {
+      "patch": {
+        "summary": "Update User's image.",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "file",
+            "type": "file",
+            "description": "The file to upload."
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "200 (updated)",
+            "schema": {
+              "$ref": "#/definitions/updateImageResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "403 (Type not allowed)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "500 (File is so big || Server error)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+
+    "/controlPanel/getCategories": {
+      "get": {
+        "tags": ["ControlPanel"],
+        "summary": "to get all categories",
+
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getCategoriesAdminResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/doctors/updateDoctor": {
+      "patch": {
+        "tags": ["doctors"],
+        "summary": "to update specific doctor info.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "description": "You can send whatever you want, made wuth love by fawzii <3",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateDoctor"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/updateDoctorResponse"
+            }
+          },
+          "400": {
+            "description": "There's input not allowed to be updated. (schema validation)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "The entered phone number already associated with an account",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/controlPanel/getDoctors": {
+      "get": {
+        "tags": ["ControlPanel"],
+        "summary": "Get Doctors Data",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/getDoctorsPanel"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/controlPanel/deleteDoctor": {
+      "delete": {
+        "tags": ["ControlPanel"],
+        "summary": "Delete doctor using with phone number",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/deleteDoctor"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 (success)",
+            "schema": {
+              "$ref": "#/definitions/deleteDoctorResponse"
+            }
+          },
+          "401": {
+            "description": "401 (Not Authorized)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "404 (Doctor not found)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "getPrescription": {
+      "type": "object",
+      "properties": {
+        "room_id": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "room_id": "1591389838616"
+      }
+  },
+  "getPrescriptionResponse": {
+    "type": "object",
+    "example": {
+      "status": true,
+      "message": "success",
+      "data": {
+          "prescription_id": 1,
+          "room_id": "1591389838616",
+          "diagnose": "dkkjdkjdkjdjkd",
+          "prescription": "kjdjkdjkdkjdkj",
+          "updatedAt": "2020-06-08T00:13:10.912Z",
+          "createdAt": "2020-06-08T00:13:10.912Z"
+      }
+  }
+},
+    "updatePrescription": {
+      "type": "object",
+      "properties": {
+        "room_id": {
+          "type": "string"
+        },
+        "prescription": {
+          "type": "string"
+        },
+        "diagnose": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "room_id": "1591389838616", 
+        "diagnose": "dkkjdkjdkjdjkd",
+        "prescription": "kjdjkdjkdkjdkj"
+      }
+  },
+  "updatePrescriptionResponse": {
+    "type": "object",
+    "example": {
+      "status": true,
+      "message": "success",
+      "data": {
+          "prescription_id": 1,
+          "room_id": "1591389838616",
+          "diagnose": "dkkjdkjdkjdjkd",
+          "prescription": "kjdjkdjkdkjdkj",
+          "updatedAt": "2020-06-08T00:13:10.912Z",
+          "createdAt": "2020-06-08T00:13:10.912Z"
+      }
+  }
+},
+    "addPrescription": {
+      "type": "object",
+      "properties": {
+        "room_id": {
+          "type": "string"
+        },
+        "prescription": {
+          "type": "string"
+        },
+        "diagnose": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "room_id": "1591389838616", 
+        "diagnose": "dkkjdkjdkjdjkd",
+        "prescription": "kjdjkdjkdkjdkj"
+      }
+  },
+  "addPrescriptionResponse": {
+    "type": "object",
+    "example": {
+      "status": true,
+      "message": "success",
+      "data": {
+          "prescription_id": 1,
+          "room_id": "1591389838616",
+          "diagnose": "dkkjdkjdkjdjkd",
+          "prescription": "kjdjkdjkdkjdkj",
+          "updatedAt": "2020-06-08T00:13:10.912Z",
+          "createdAt": "2020-06-08T00:13:10.912Z"
+      }
+  }
+},
+    "chatUploadFile": {
+      "type": "object",
+      "properties": {
+        "chatRoomId": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "chatRoomId": "837488893198787"
+    }
+  },
+    "getFinishedMessages": {
+      "type": "object",
+      "properties": {
+        "room_id": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "room_id": "837488893198787"
+    }
+  },
+    "chatUploadFileResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": "/489948/2d231a47d6001591563057963.jpeg"
+    }
+  },
+  "getFinishedMessagesResponse": {
+    "type": "object",
+    "example": {
+      "status": true,
+      "message": "success",
+      "data": [
+          {
+              "message_id": 1,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "هاي",
+              "type": "message",
+              "createdAt": "2020-06-06T19:26:43.000Z",
+              "updatedAt": "2020-06-06T19:26:43.000Z"
+          },
+          {
+              "message_id": 11,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "هاي",
+              "type": "message",
+              "createdAt": "2020-06-06T19:26:47.000Z",
+              "updatedAt": "2020-06-06T19:26:47.000Z"
+          },
+          {
+              "message_id": 21,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "ازيك ",
+              "type": "message",
+              "createdAt": "2020-06-06T19:26:49.000Z",
+              "updatedAt": "2020-06-06T19:26:49.000Z"
+          },
+          {
+              "message_id": 31,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "هنا",
+              "type": "message",
+              "createdAt": "2020-06-06T19:26:54.000Z",
+              "updatedAt": "2020-06-06T19:26:54.000Z"
+          },
+          {
+              "message_id": 41,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "ؤبا",
+              "type": "message",
+              "createdAt": "2020-06-06T19:26:56.000Z",
+              "updatedAt": "2020-06-06T19:26:56.000Z"
+          },
+          {
+              "message_id": 51,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "رنرنبه",
+              "type": "message",
+              "createdAt": "2020-06-06T19:26:59.000Z",
+              "updatedAt": "2020-06-06T19:26:59.000Z"
+          },
+          {
+              "message_id": 61,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "لهبهب",
+              "type": "message",
+              "createdAt": "2020-06-06T19:27:01.000Z",
+              "updatedAt": "2020-06-06T19:27:01.000Z"
+          },
+          {
+              "message_id": 71,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "بنبنب",
+              "type": "message",
+              "createdAt": "2020-06-06T19:27:03.000Z",
+              "updatedAt": "2020-06-06T19:27:03.000Z"
+          },
+          {
+              "message_id": 81,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "ىنىمبخبخ",
+              "type": "message",
+              "createdAt": "2020-06-06T19:27:08.000Z",
+              "updatedAt": "2020-06-06T19:27:08.000Z"
+          },
+          {
+              "message_id": 91,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "ظبظيظ",
+              "type": "message",
+              "createdAt": "2020-06-06T19:27:10.000Z",
+              "updatedAt": "2020-06-06T19:27:10.000Z"
+          },
+          {
+              "message_id": 101,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "تقنثتثتثتثنثنق\n",
+              "type": "message",
+              "createdAt": "2020-06-06T19:27:18.000Z",
+              "updatedAt": "2020-06-06T19:27:18.000Z"
+          },
+          {
+              "message_id": 111,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "تيتايةي",
+              "type": "message",
+              "createdAt": "2020-06-06T19:38:59.000Z",
+              "updatedAt": "2020-06-06T19:38:59.000Z"
+          },
+          {
+              "message_id": 121,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "ايااي",
+              "type": "message",
+              "createdAt": "2020-06-06T19:50:01.000Z",
+              "updatedAt": "2020-06-06T19:50:01.000Z"
+          },
+          {
+              "message_id": 131,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "تووويتةيةي",
+              "type": "message",
+              "createdAt": "2020-06-06T19:50:10.000Z",
+              "updatedAt": "2020-06-06T19:50:10.000Z"
+          },
+          {
+              "message_id": 141,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "تلالتت",
+              "type": "message",
+              "createdAt": "2020-06-06T19:51:08.000Z",
+              "updatedAt": "2020-06-06T19:51:08.000Z"
+          },
+          {
+              "message_id": 151,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "ااتتت",
+              "type": "message",
+              "createdAt": "2020-06-06T19:51:11.000Z",
+              "updatedAt": "2020-06-06T19:51:11.000Z"
+          },
+          {
+              "message_id": 161,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "لببعبب٦",
+              "type": "message",
+              "createdAt": "2020-06-06T19:51:13.000Z",
+              "updatedAt": "2020-06-06T19:51:13.000Z"
+          },
+          {
+              "message_id": 171,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "تتااااا",
+              "type": "message",
+              "createdAt": "2020-06-06T19:51:51.000Z",
+              "updatedAt": "2020-06-06T19:51:51.000Z"
+          },
+          {
+              "message_id": 181,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "ملهبخبخلخبخلخبه",
+              "type": "message",
+              "createdAt": "2020-06-06T19:51:53.000Z",
+              "updatedAt": "2020-06-06T19:51:53.000Z"
+          },
+          {
+              "message_id": 191,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "عسهيهبهبخه",
+              "type": "message",
+              "createdAt": "2020-06-06T19:51:56.000Z",
+              "updatedAt": "2020-06-06T19:51:56.000Z"
+          },
+          {
+              "message_id": 201,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "خرمرخبخلح",
+              "type": "message",
+              "createdAt": "2020-06-06T19:51:57.000Z",
+              "updatedAt": "2020-06-06T19:51:57.000Z"
+          },
+          {
+              "message_id": 211,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "ق٨قخبخبخب",
+              "type": "message",
+              "createdAt": "2020-06-06T19:52:01.000Z",
+              "updatedAt": "2020-06-06T19:52:01.000Z"
+          },
+          {
+              "message_id": 221,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "بخبهبهبهب٨",
+              "type": "message",
+              "createdAt": "2020-06-06T19:52:02.000Z",
+              "updatedAt": "2020-06-06T19:52:02.000Z"
+          },
+          {
+              "message_id": 231,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "خبهيخب",
+              "type": "message",
+              "createdAt": "2020-06-06T19:52:04.000Z",
+              "updatedAt": "2020-06-06T19:52:04.000Z"
+          },
+          {
+              "message_id": 241,
+              "room_id": "1591470036382",
+              "sender": "doctor",
+              "sender_name": "Bsbosa Basha",
+              "message": "هاي ",
+              "type": "message",
+              "createdAt": "2020-06-06T20:11:56.000Z",
+              "updatedAt": "2020-06-06T20:11:56.000Z"
+          },
+          {
+              "message_id": 251,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "bhshsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:16.000Z",
+              "updatedAt": "2020-06-06T20:53:16.000Z"
+          },
+          {
+              "message_id": 261,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hshhsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:17.000Z",
+              "updatedAt": "2020-06-06T20:53:17.000Z"
+          },
+          {
+              "message_id": 271,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hshsbbsvs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:18.000Z",
+              "updatedAt": "2020-06-06T20:53:18.000Z"
+          },
+          {
+              "message_id": 281,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shbshsvsbsjjsnns",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:20.000Z",
+              "updatedAt": "2020-06-06T20:53:20.000Z"
+          },
+          {
+              "message_id": 291,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "sbhsvsvsvsbshshsjwkskakw",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:23.000Z",
+              "updatedAt": "2020-06-06T20:53:23.000Z"
+          },
+          {
+              "message_id": 301,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "syhshshsjjwjwjejejjejejejjejejejejjejejejjs\n\nsjshshje\n\nshehhehehhehehehehhe\nehehhehehehhehshehehheheheheh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:35.000Z",
+              "updatedAt": "2020-06-06T20:53:35.000Z"
+          },
+          {
+              "message_id": 311,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "sggsgshshhshwhshhs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:37.000Z",
+              "updatedAt": "2020-06-06T20:53:37.000Z"
+          },
+          {
+              "message_id": 321,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hhshs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:38.000Z",
+              "updatedAt": "2020-06-06T20:53:38.000Z"
+          },
+          {
+              "message_id": 331,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "dhbshs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:39.000Z",
+              "updatedAt": "2020-06-06T20:53:39.000Z"
+          },
+          {
+              "message_id": 341,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "eghehegge",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:40.000Z",
+              "updatedAt": "2020-06-06T20:53:40.000Z"
+          },
+          {
+              "message_id": 351,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shhshsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:41.000Z",
+              "updatedAt": "2020-06-06T20:53:41.000Z"
+          },
+          {
+              "message_id": 361,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shshhshe",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:42.000Z",
+              "updatedAt": "2020-06-06T20:53:42.000Z"
+          },
+          {
+              "message_id": 371,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shhehe",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:43.000Z",
+              "updatedAt": "2020-06-06T20:53:43.000Z"
+          },
+          {
+              "message_id": 381,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shhsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:44.000Z",
+              "updatedAt": "2020-06-06T20:53:44.000Z"
+          },
+          {
+              "message_id": 391,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shhshdh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:45.000Z",
+              "updatedAt": "2020-06-06T20:53:45.000Z"
+          },
+          {
+              "message_id": 401,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "dhhshsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:46.000Z",
+              "updatedAt": "2020-06-06T20:53:46.000Z"
+          },
+          {
+              "message_id": 411,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "dgdhhd",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:47.000Z",
+              "updatedAt": "2020-06-06T20:53:47.000Z"
+          },
+          {
+              "message_id": 421,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "dggegev",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:48.000Z",
+              "updatedAt": "2020-06-06T20:53:48.000Z"
+          },
+          {
+              "message_id": 431,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shhshsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:49.000Z",
+              "updatedAt": "2020-06-06T20:53:49.000Z"
+          },
+          {
+              "message_id": 441,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hehhshe",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:50.000Z",
+              "updatedAt": "2020-06-06T20:53:50.000Z"
+          },
+          {
+              "message_id": 451,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hshshhehs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:51.000Z",
+              "updatedAt": "2020-06-06T20:53:51.000Z"
+          },
+          {
+              "message_id": 461,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hhshdhdhehe",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:52.000Z",
+              "updatedAt": "2020-06-06T20:53:52.000Z"
+          },
+          {
+              "message_id": 471,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "eghrgegdvdbvdgdvdvdv",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:55.000Z",
+              "updatedAt": "2020-06-06T20:53:55.000Z"
+          },
+          {
+              "message_id": 481,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "dhhdgdhdhhshss",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:57.000Z",
+              "updatedAt": "2020-06-06T20:53:57.000Z"
+          },
+          {
+              "message_id": 491,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hshshshhehsjjjjjjj",
+              "type": "message",
+              "createdAt": "2020-06-06T20:53:59.000Z",
+              "updatedAt": "2020-06-06T20:53:59.000Z"
+          },
+          {
+              "message_id": 501,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "dhhshshshshhwhsgsggsgsgsgsgsgs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:03.000Z",
+              "updatedAt": "2020-06-06T20:54:03.000Z"
+          },
+          {
+              "message_id": 511,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hshshhshshshshhdhdhshdhsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:06.000Z",
+              "updatedAt": "2020-06-06T20:54:06.000Z"
+          },
+          {
+              "message_id": 521,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "suhshsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:07.000Z",
+              "updatedAt": "2020-06-06T20:54:07.000Z"
+          },
+          {
+              "message_id": 531,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "suhs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:08.000Z",
+              "updatedAt": "2020-06-06T20:54:08.000Z"
+          },
+          {
+              "message_id": 541,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "yhwhwh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:09.000Z",
+              "updatedAt": "2020-06-06T20:54:09.000Z"
+          },
+          {
+              "message_id": 551,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "suhshs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:10.000Z",
+              "updatedAt": "2020-06-06T20:54:10.000Z"
+          },
+          {
+              "message_id": 561,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hshsjj",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:16.000Z",
+              "updatedAt": "2020-06-06T20:54:16.000Z"
+          },
+          {
+              "message_id": 571,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hshshs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:17.000Z",
+              "updatedAt": "2020-06-06T20:54:17.000Z"
+          },
+          {
+              "message_id": 581,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "hsbb",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:18.000Z",
+              "updatedAt": "2020-06-06T20:54:18.000Z"
+          },
+          {
+              "message_id": 591,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shhshsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:19.000Z",
+              "updatedAt": "2020-06-06T20:54:19.000Z"
+          },
+          {
+              "message_id": 601,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shhshsb",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:20.000Z",
+              "updatedAt": "2020-06-06T20:54:20.000Z"
+          },
+          {
+              "message_id": 611,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shsbbsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:21.000Z",
+              "updatedAt": "2020-06-06T20:54:21.000Z"
+          },
+          {
+              "message_id": 621,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shshhshs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:22.000Z",
+              "updatedAt": "2020-06-06T20:54:22.000Z"
+          },
+          {
+              "message_id": 631,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "bsbsbhs",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:23.000Z",
+              "updatedAt": "2020-06-06T20:54:23.000Z"
+          },
+          {
+              "message_id": 641,
+              "room_id": "1591470036382",
+              "sender": "user",
+              "sender_name": "Muhammad Elblasy",
+              "message": "shhsh",
+              "type": "message",
+              "createdAt": "2020-06-06T20:54:24.000Z",
+              "updatedAt": "2020-06-06T20:54:24.000Z"
+          }
+      ]
+  }
+},
+    "joinDoctorToAppointment": {
+      "type": "object",
+      "properties": {
+        "appointment_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "appointment_id": 1
+    }
+  },
+    "joinDoctorToAppointmentSuccess": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+            "room_id": "83748787",
+            "appEndTime":"2020-05-28T09:03:00.000Z"
+
+        }
+    }
+  },
+    "joinUserToAppointment": {
+      "type": "object",
+      "properties": {
+        "appointment_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "appointment_id": 1
+    }
+  },
+    "joinUserToAppointmentSuccess": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+            "room_id": "83748787",
+            "appEndTime":"2020-05-28T09:03:00.000Z"
+        }
+    }
+  },
+    "updateSlot": {
+      "type": "object",
+      "properties": {
+        "slot_id": {
+          "type": "integer"
+        },
+        "day": {
+          "type": "string"
+        },
+        "start_time": {
+          "type": "string"
+        },
+        "slot_time": {
+          "type": "integer"
+        },
+        "available": {
+          "type": "boolean"
+        }
+      },
+      "example": {
+        "slot_id": 1,
+        "day": "tue",
+        "start_time": "23:00",
+        "slot_time": "60:00",
+        "available": false
+      }
+    },
+    "updateSlotResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "slot_id": 1,
+          "day": "tue",
+          "start_time": "23:00",
+          "slot_time": "60:00",
+          "available": false
+        }
+      }
+    },
+    "cancelAppointment": {
+      "type": "object",
+      "properties": {
+        "appointment_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "appointment_id": 1
+      }
+    },
+    "cancelAppointmentResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+            "appointment_id": 2,
+            "slot_id": 2,
+            "user_id": 1,
+            "date": "2020-05-26",
+            "appointment_status": "canceled",
+            "createdAt": "2020-05-28T09:03:00.000Z",
+            "updatedAt": "2020-05-28T19:49:13.000Z"
+        }
+      }
+    },
+    "confirmAppointment": {
+      "type": "object",
+      "properties": {
+        "appointment_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "appointment_id": 1
+      }
+    },
+    "confirmAppointmentResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+            "appointment_id": 2,
+            "slot_id": 2,
+            "user_id": 1,
+            "date": "2020-05-26",
+            "appointment_status": "upcoming",
+            "createdAt": "2020-05-28T09:03:00.000Z",
+            "updatedAt": "2020-05-28T19:49:13.000Z"
+        }
+      }
+    },
+    "getDocApps": {
+      "type": "object",
+      "properties": {
+        "doctor_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "doctor_id": 11
+      }
+    },
+    "getDocAppsResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+          {
+            "appointment_id": 1,
+            "room_id": "48998498",
+            "first_name": "fawzi",
+            "last_name": "ahmed",
+            "day": "mon",
+            "date": "2020-05-28",
+            "appointment_status": "pending",
+            "start_time": "23:00",
+            "slot_time": "30",
+            "updatedAt": "2020-05-28T19:49:13.000Z"
+          }
+        ]
+      }
+    },
+    "docAppsByDate": {
+      "type": "object",
+      "properties": {
+        "doctor_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "date":"2020-03-20"
+      }
+    },
+    "docAppsByDateResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+          {
+            "appointment_id": 1,
+            "first_name": "fawzi",
+            "last_name": "ahmed",
+            "picture": "fawzi.png",
+            "day": "mon",
+            "date": "2020-03-20",
+            "appointment_status": "upcoming",
+            "start_time": "23:00",
+            "slot_time": "30"
+          },
+          {
+            "appointment_id": 1,
+            "first_name": "fawzi",
+            "last_name": "ahmed",
+            "day": "mon",
+            "date": "2020-03-20",
+            "appointment_status": "finished",
+            "start_time": "23:00",
+            "slot_time": "30"
+          }
+        ]
+      }
+    },
+    "getUserApps": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "user_id": 11
+      }
+    },
+    "doctorFinishedAppointmentsResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+              "room_id": "498498494",
+                "appointment_id": 235,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "finished",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+              "room_id": "498498494",
+                "appointment_id": 234,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "finished",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+              "room_id": "498498494",
+                "appointment_id": 230,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "finished",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+              "room_id": "498498494",
+                "appointment_id": 229,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "finished",
+                "day": "wed"
+            }
+        ]
+      }
+    },
+    "doctorUpcomingAppointmentsResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+            {
+                "start_time":"2020-05-28T09:03:00.000Z",
+                "slot_time":"30",
+                "appointment_id": 235,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "upcoming",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "slot_time":"30",
+                "appointment_id": 234,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "upcoming",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "slot_time":"30",
+                "appointment_id": 230,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "upcoming",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "slot_time":"30",
+                "appointment_id": 229,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "upcoming",
+                "day": "wed"
+            }
+        ]
+      }
+    },
+    "upcomingAppointmentsResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "slot_time":"30",
+                "appointment_id": 235,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "upcoming",
+                "ar":"القلب والاوعية الدموية",
+                "en":"Cardiology",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "slot_time":"30",
+                "appointment_id": 234,
+                "first_name": "Mostfa",
+                "ar":"القلب والاوعية الدموية",
+                "en":"Cardiology",
+                "last_name": "Essam",
+                "appointment_status": "upcoming",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "appointment_id": 230,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "ar":"القلب والاوعية الدموية",
+                "en":"Cardiology",
+                "appointment_status": "upcoming",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "slot_time":"30",
+                "appointment_id": 229,
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "ar":"القلب والاوعية الدموية",
+                "en":"Cardiology",
+                "appointment_status": "upcoming",
+                "day": "wed"
+            }
+        ]
+      }
+    },
+    "finishedAppointmentsResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "appointment_id": 235,
+                "room_id": "498498494",
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "finished",
+                "ar":"القلب والاوعية الدموية",
+                "en":"Cardiology",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "appointment_id": 234,
+                "room_id": "498498494",
+                "first_name": "Mostfa",
+                "last_name": "Essam",
+                "appointment_status": "finished",
+                "ar":"القلب والاوعية الدموية",
+                "en":"Cardiology",
+                "day": "wed"
+            },
+            {
+              "start_time":"2020-05-28T09:03:00.000Z",
+                "appointment_id": 230,
+                "first_name": "Mostfa",
+                "room_id": "498498494",
+                "last_name": "Essam",
+                "ar":"القلب والاوعية الدموية",
+                "en":"Cardiology",
+                "appointment_status": "finished",
+                "day": "wed"
+            },
+            {
+                "start_time":"2020-05-28T09:03:00.000Z",
+                "appointment_id": 229,
+                "first_name": "Mostfa",
+                "room_id": "498498494",
+                "ar":"القلب والاوعية الدموية",
+                "en":"Cardiology",
+                "last_name": "Essam",
+                "appointment_status": "finished",
+                "day": "wed"
+            }
+        ]
+      }
+    },
+    "getUserAppsResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+          {
+            "appointment_id": 1,
+            "roon_id": "04945895",
+            "first_name": "fawzi",
+            "last_name": "ahmed",
+            "ar": "طب الباطنة",
+            "day": "mon",
+            "date": "2020-05-28",
+            "en": "Internal Medicine",
+            "appointment_status": "pending",
+            "start_time": "23:00",
+            "slot_time":"30",
+            "updatedAt": "2020-05-28T19:49:13.000Z"
+          }
+        ]
+      }
+    },
+    "getDaysResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": ["fri", "mon", "wed"]
+      }
+    },
+    "getDoctorSlots": {
+      "type": "object",
+      "properties": {
+        "doctor_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "doctor_id": 11
+      }
+    },
+    "getDoctorSlotsResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+          {
+            "slot_id": 1,
+            "doctor_id": 11,
+            "day": "wed",
+            "start_time": "23:00",
+            "slot_time": "60",
+            "available": 1
+          },
+          {
+            "slot_id": 2,
+            "doctor_id": 11,
+            "day": "wed",
+            "start_time": "22:00",
+            "slot_time": "60",
+            "available": 1
+          },
+          {
+            "slot_id": 5,
+            "doctor_id": 11,
+            "day": "wed",
+            "start_time": "23:00",
+            "slot_time": "60",
+            "available": 1
+          }
+        ]
+      }
+    },
+    "getOpenSlots": {
+      "type": "object",
+      "properties": {
+        "doctor_id": {
+          "type": "integer"
+        },
+        "searchIn": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "doctor_id": 11,
+        "searchIn": 30
+      }
+    },
+    "getOpenSlotsResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+          {
+              "slot_id": 1,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-03T21:00Z"
+          },
+          {
+              "slot_id": 4,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-03T23:00Z"
+          },
+          {
+              "slot_id": 5,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-03T24:00Z"
+          },
+          {
+              "slot_id": 6,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-03T25:00Z"
+          },
+          {
+              "slot_id": 9,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "22:30",
+              "start_time": "2020-06-03T22:00Z"
+          },
+          {
+              "slot_id": 2,
+              "doctor_id": 1,
+              "day": "fri",
+              "slot_time": "60",
+              "start_time": "2020-06-05T21:00Z"
+          },
+          {
+              "slot_id": 1,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-10T21:00Z"
+          },
+          {
+              "slot_id": 4,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-10T23:00Z"
+          },
+          {
+              "slot_id": 5,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-10T24:00Z"
+          },
+          {
+              "slot_id": 6,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-10T25:00Z"
+          },
+          {
+              "slot_id": 9,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "22:30",
+              "start_time": "2020-06-10T22:00Z"
+          },
+          {
+              "slot_id": 2,
+              "doctor_id": 1,
+              "day": "fri",
+              "slot_time": "60",
+              "start_time": "2020-06-12T21:00Z"
+          },
+          {
+              "slot_id": 1,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-17T21:00Z"
+          },
+          {
+              "slot_id": 4,
+              "doctor_id": 1,
+              "day": "wed",
+              "slot_time": "30:00",
+              "start_time": "2020-06-17T23:00Z"
+          }
+        ]
+      }
+    },
+    "newConfirmedAppointment": {
+      "type": "object",
+      "properties": {
+        "slot_id": {
+          "type": "integer"
+        },
+        "user_id": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "slot_id": 1,
+        "user_id": 34,
+        "date": "1999-03-20"
+      }
+    },
+    "newConfirmedAppointmentResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "appointment_status": "upcoming",
+          "appointment_id": 7,
+          "slot_id": 1,
+          "user_id": 34,
+          "date": "1999-03-20"
+        }
+      }
+    },
+    "newAppointment": {
+      "type": "object",
+      "properties": {
+        "slot_id": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "slot_id": 1,
+        "date": "2020-06-17T23:00Z"
+      }
+    },
+    "newAppointmentResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "appointment_status": "pending",
+          "appointment_id": 7,
+          "slot_id": 1,
+          "user_id": 34,
+          "date": "1999-03-20"
+        }
+      }
+    },
+    "addSlot": {
+      "type": "object",
+      "properties": {
+        "doctor_id": {
+          "type": "integer"
+        },
+        "day": {
+          "type": "string"
+        },
+        "start_time": {
+          "type": "string"
+        },
+        "slot_time": {
+          "type": "integer"
+        },
+        "available": {
+          "type": "boolean"
+        }
+      },
+      "example": {
+        "doctor_id": 1,
+        "day": "mon",
+        "start_time": "23:00",
+        "slot_time": "60:00",
+        "available": false
+      }
+    },
+    "addSlotResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "slot_id": 1,
+          "doctor_id": 1,
+          "day": "mon",
+          "start_time": "23:00",
+          "slot_time": "60:00",
+          "available": false
+        }
+      }
+    },
+    "signup": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "birth_date": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "bmi": {
+          "type": "integer"
+        },
+        "fb_token_id": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "picture": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "phone_number": "01590243399",
+        "first_name": "fawzi",
+        "last_name": "ahmed",
+        "birth_date": "1999-03-20",
+        "weight": 100,
+        "height": 180,
+        "bmi": 28,
+        "fb_token_id": "djdj84",
+        "gender": "male",
+        "picture": "3874878487478.png"
+      }
+    },
+    "signin": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "phone_number": "01590243399"
+      }
+    },
+    "updateToken": {
+      "type": "object",
+      "properties": {
+        "new_token": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "new_token": "5895787854hjhjdjhdjhd"
+      }
+    },
+    "updateDoctorToken": {
+      "type": "object",
+      "properties": {
+        "new_token": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "new_token": "5895787854hjhjdjhdjhd"
+      }
+    },
+    "signinDoctors": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "phone_number": "01090243795",
+        "password": "halawallah"
+      }
+    },
+    "signupRes": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImYzYWR3MXN6ZGlpIiwidXNlclJvbGUiOiJ1c2VyIiwiaWF0IjoxNTg4NjQ3NzkxLCJleHAiOjE1ODk1MTE3OTF9.q16hbHroXLD6own-9Bhh32uErZfh0sYfhUYaaCaRpq4",
+          "phone_number": "01590243399",
+          "first_name": "fawzi",
+          "last_name": "ahmed",
+          "birth_date": "1999-03-20",
+          "weight": 100,
+          "height": 180,
+          "blocked": false,
+          "bmi": 28,
+          "fb_token_id": "djdj84",
+          "gender": "male",
+          "role": "user",
+          "picture": "3874878487478.png"
+        }
+      }
+    },
+    "signinResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImYzYWR3MXN6ZGlpIiwidXNlclJvbGUiOiJ1c2VyIiwiaWF0IjoxNTg5MDAzMzMwLCJleHAiOjE1ODk4NjczMzB9.YPwfiTpfqUgtroESoxni417Y1OS_Foy_pVpdJrFjJC4",
+          "user_id":1,
+          "phone_number": "01590243399",
+          "first_name": "fawzi",
+          "last_name": "ahmed",
+          "birth_date": "1999-03-20",
+          "weight": 100,
+          "height": 180,
+          "bmi": 28,
+          "fb_token_id": "djdj84",
+          "gender": "male",
+          "role": "user",
+          "picture": "3874878487478.png",
+          "blocked": false
+        }
+      }
+    },
+    "updateTokenResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "phone_number": "01590243399",
+          "updated_token": "5895787854hjhjdjhdjhd"
+        }
+      }
+    },
+    "updateDoctorTokenResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "phone_number": "01590243399",
+          "updated_token": "5895787854hjhjdjhdjhd"
+        }
+      }
+    },
+    "signinDoctorResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "doctor_id": 11,
+          "phone_number": "01090243795",
+          "first_name": "fawzi",
+          "last_name": "ahmed",
+          "category_id": 1,
+          "picture": "3874878487478.png",
+          "price": "494",
+          "fb_token_id": null,
+          "available": false,
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9udW1iZXIiOiIwMTA5MDI0Mzc5NSIsInVzZXJSb2xlIjoiZG9jdG9yIiwiaWF0IjoxNTg5NjYwNTg3LCJleHAiOjMxNzEzNDEwMjk4N30.g4HBs2FInrgpBeIxP-q0t0nbDeHz98nF5rr8eKKnIlc"
+        }
+      }
+    },
+    "addingDoctor": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "integer"
+        },
+        "picture": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "phone_number": "01090243795",
+        "password": "halawallah",
+        "first_name": "fawzi",
+        "last_name": "ahmed",
+        "category_id": 1,
+        "picture": "498489849984.png",
+        "price": "190"
+      }
+    },
+    "addingDoctorResponse": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "integer"
+        },
+        "picture": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "available": false,
+          "doctor_id": 38,
+          "first_name": "fawzi",
+          "last_name": "ahmed",
+          "phone_number": "01090243795",
+          "category_id": 1,
+          "picture": "3874878487478.png",
+          "price": "190"
+        }
+      }
+    },
+    "loginAdmin": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "phone_number": "01090243795",
+        "password": "testtest"
+      }
+    },
+    "loginAdminResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "admin_id": 21,
+          "name": "Fawzi E. Abdulfattah",
+          "phone_number": "01090243795",
+          "role": "admin",
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZhd3ppIiwidXNlclJvbGUiOiJhZG1pbiIsImlhdCI6MTU4OTc5MDIzNywiZXhwIjozMTcxMzQyMzI2Mzd9.kmnppK8ek5d_Yr2sA86HJY3GsAtShVhohQvXrXrZRMk"
+        }
+      }
+    },
+    "addingAdmin": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "phone_number": "01090243795",
+        "password": "testtest",
+        "name": "Fawzi E. Abdulfattah",
+        "role": "admin"
+      }
+    },
+    "addingAdminResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "admin_id": 21,
+          "phone_number": "01090243795",
+          "name": "Fawzi E. Abdulfattah",
+          "role": "admin"
+        }
+      }
+    },
+    "checkAdminResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "admin_id": 21,
+          "name": "Fawzi E. Abdulfattah",
+          "phone_number": "01090243795",
+          "role": "admin"
+        }
+      }
+    },
+    "uploadImageResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "filename": "6d75d1540c411590056094785.jpeg"
+        }
+      }
+    },
+    "getDoctor": {
+      "type": "object",
+      "properties": {
+        "doctor_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "doctor_id": 1
+      }
+    },
+    "getDoctorResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "available": false,
+          "doctor_id": 38,
+          "first_name": "fawzi",
+          "last_name": "ahmed",
+          "phone_number": "01090243795",
+          "category_id": 1,
+          "picture": "3874878487478.png",
+          "price": "138"
+        }
+      }
+    },
+    "getDoctors": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "category_id": 41
+      }
+    },
+    "getDoctorsResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+          {
+            "doctor_id": 1,
+            "phone_number": "01090243795",
+            "first_name": "fawzi",
+            "last_name": "ahmed",
+            "category_id": 41,
+            "picture": "3a1c3b41259e1590085993534.png",
+            "available": false,
+            "price": "190"
+          },
+          {
+            "doctor_id": 11,
+            "phone_number": "01090243785",
+            "first_name": "bsbosa",
+            "last_name": "ahmed",
+            "category_id": 41,
+            "picture": "4ae44da439e91590091288985.png",
+            "available": false,
+            "price": "90"
+          },
+          {
+            "doctor_id": 21,
+            "phone_number": "01090243715",
+            "first_name": "mostfa",
+            "last_name": "ahmed",
+            "category_id": 41,
+            "picture": "6d75d1540c411590056094785.jpeg",
+            "available": false,
+            "price": "300"
+          }
+        ]
+      }
+    },
+    "getCategoriesResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+          {
+            "category_id": 34,
+            "en": "Space  Medicine",
+            "ar": "طب الفضاء"
+          },
+          {
+            "category_id": 42,
+            "en": "Vascular surgery",
+            "ar": "جراحة الاوعية الدموية"
+          }
+        ]
+      }
+    },
+    "updateInfo": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "birth_date": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "bmi": {
+          "type": "integer"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "picture": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "phone_number": "01090243795",
+        "height": "494"
+      }
+    },
+    "updateInfoResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImYzYWR3MXN6ZGlpIiwidXNlclJvbGUiOiJ1c2VyIiwiaWF0IjoxNTg5MDAzMzMwLCJleHAiOjE1ODk4NjczMzB9.YPwfiTpfqUgtroESoxni417Y1OS_Foy_pVpdJrFjJC4",
+          "phone_number": "01590243399",
+          "first_name": "fawzi",
+          "last_name": "ahmed",
+          "birth_date": "1999-03-20",
+          "weight": 100,
+          "height": 180,
+          "blocked": false,
+          "bmi": 28,
+          "fb_token_id": "djdj84",
+          "gender": "male",
+          "role": "user",
+          "picture": "3874878487478.png"
+        }
+      }
+    },
+    "updateDoctor": {
+      "type": "object",
+      "properties": {
+        "doctor_id": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "integer"
+        },
+        "picture": {
+          "type": "string"
+        },
+        "available": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        }
+      },
+      "example": {
+        "doctor_id": 1,
+        "phone_number": "01090243795",
+        "height": "494"
+      }
+    },
+    "updateDoctorResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "doctor_id": 11,
+          "phone_number": "01090243818",
+          "password": "12qwasz1",
+          "first_name": "fawzi",
+          "last_name": "ahmed",
+          "category_id": 1,
+          "fb_token_id": null,
+          "picture": "fawzi.png",
+          "available": true,
+          "price": "180",
+          "priority": 2
+        }
+      }
+    },
+    "notBlockedResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "blocked": false
+        }
+      }
+    },
+    "updateImageResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "picture": "4i489448.png"
+        }
+      }
+    },
+    "getDoctorsPanel": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+          {
+            "doctor_id": 1,
+            "phone_number": "11111111",
+            "first_name": "fawzi",
+            "last_name": "ahmed",
+            "available": 0,
+            "price": "180",
+            "category_id": 1,
+            "en": "Internal Medicine",
+            "ar": "طب الباطنة"
+          },
+          {
+            "doctor_id": 21,
+            "phone_number": "01090246711",
+            "first_name": "Belassy",
+            "last_name": "ahmed",
+            "available": 0,
+            "price": "280",
+            "category_id": 3,
+            "en": "Cardiology",
+            "ar": "القلب والاوعية الدموية"
+          },
+          {
+            "doctor_id": 292,
+            "phone_number": "87348",
+            "first_name": "fawziii",
+            "last_name": "dffddf",
+            "available": 0,
+            "price": "43434",
+            "category_id": 31,
+            "en": "Tropical  Medicine",
+            "ar": "طب المناطق الحارة"
+          },
+          {
+            "doctor_id": 293,
+            "phone_number": "1122334444",
+            "first_name": "editted",
+            "last_name": "edited",
+            "available": 0,
+            "price": "123456",
+            "category_id": 14,
+            "en": "Allergy and immunology",
+            "ar": "الحساسية والمناعة"
+          },
+          {
+            "doctor_id": 294,
+            "phone_number": "544545",
+            "first_name": "fgfg",
+            "last_name": "fgfg",
+            "available": 0,
+            "price": "4545",
+            "category_id": 3,
+            "en": "Cardiology",
+            "ar": "القلب والاوعية الدموية"
+          }
+        ]
+      }
+    },
+    "getCategoriesAdminResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": [
+          {
+            "category_id": 1,
+            "en": "Internal Medicine",
+            "ar": "طب الباطنة"
+          },
+          {
+            "category_id": 2,
+            "en": "Endocrinology",
+            "ar": "باطنة غدد صماء وسكر"
+          },
+          {
+            "category_id": 3,
+            "en": "Cardiology",
+            "ar": "القلب والاوعية الدموية"
+          },
+          {
+            "category_id": 4,
+            "en": "Gastroenterology",
+            "ar": "باطنة جهاز هضمي ومناظير"
+          },
+          {
+            "category_id": 5,
+            "en": "Obstetrics and Gynecology",
+            "ar": "نساء وتوليد"
+          },
+          {
+            "category_id": 6,
+            "en": "Pediatrics",
+            "ar": "طب اطفال"
+          },
+          {
+            "category_id": 7,
+            "en": "(Ear, nose and throat (ENT",
+            "ar": "طب الانف والاذن والحنجرة"
+          },
+          {
+            "category_id": 8,
+            "en": "Ophthalmology",
+            "ar": "طب امراض العيون"
+          },
+          {
+            "category_id": 9,
+            "en": "Neurology",
+            "ar": "طب الاعصاب"
+          },
+          {
+            "category_id": 10,
+            "en": "nephrology",
+            "ar": "طب امراض الكلى"
+          },
+          {
+            "category_id": 11,
+            "en": "Oncology",
+            "ar": "طب الاورام"
+          },
+          {
+            "category_id": 12,
+            "en": "Urology",
+            "ar": "المسالك البولية"
+          },
+          {
+            "category_id": 13,
+            "en": "Dermatology",
+            "ar": "جلدية"
+          }
+        ]
+      }
+    },
+    "deleteDoctor": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "phone_number": "01590243399"
+      }
+    },
+    "deleteDoctorResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": 1
+      }
+    },
+    "getUser": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "phone_number": "01590243399"
+      }
+    },
+    "toggleBlock": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "phone_number": "01590243399"
+      }
+    },
+    "getUserResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "phone_number": "01590243399",
+          "first_name": "fawzi",
+          "last_name": "ahmed",
+          "birth_date": "1999-03-20",
+          "weight": 100,
+          "height": 180,
+          "blocked": false,
+          "bmi": 28,
+          "fb_token_id": "djdj84",
+          "gender": "male",
+          "role": "user",
+          "picture": "3874878487478.png"
+        }
+      }
+    },
+    "toggleBlockResponse": {
+      "type": "object",
+      "example": {
+        "status": true,
+        "message": "success",
+        "data": {
+          "phone_number": "01590243399",
+          "first_name": "fawzi",
+          "last_name": "ahmed",
+          "birth_date": "1999-03-20",
+          "weight": 100,
+          "height": 180,
+          "blocked": false,
+          "bmi": 28,
+          "fb_token_id": "djdj84",
+          "gender": "male",
+          "role": "user",
+          "picture": "3874878487478.png"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "status": false,
+        "message": "Error message will appear here, it will be an array if there're multiple error",
+        "data": {}
+      }
+    }
+  }
+}

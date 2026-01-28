@@ -1,0 +1,197 @@
+{
+	"$id": "page-users-details.schema.json",
+	"description": "Configuration regarding the detailed view of a user (\"/users/[dn]\" or \"/users/me\")",
+	"title": "UserDetailsConfig",
+	"type": "object",
+	"properties": {
+		"description": {
+			"description": "Configuration regarding the \"description\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "description",
+					"description": "@default \"description\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"description\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"displayName": {
+			"description": "Configuration regarding the \"displayName\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "displayName",
+					"description": "@default \"displayName\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"displayName\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"distinguishedName": {
+			"description": "Configuration regarding the \"distinguishedName\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "distinguishedName",
+					"description": "@default \"distinguishedName\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"distinguishedName\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"givenName": {
+			"description": "Configuration regarding the \"givenName\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "givenName",
+					"description": "@default \"givenName\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"givenName\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"jpegPhoto": {
+			"description": "Configuration regarding the \"jpegPhoto\" attribute of the user. If \"showFallback\" and \"show\" are false then nothing will be shown",
+			"type": "object",
+			"properties": {
+				"show": {
+					"description": "Wether or not to show the \"jpegPhoto\" in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"mail": {
+			"description": "Configuration regarding the \"mail\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "mail",
+					"description": "@default \"mail\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"mail\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"parent": {
+			"$ref": "page-details-parent.schema.json"
+		},
+		"memberOf": {
+			"$ref": "page-details-member.schema.json"
+		},
+		"sAMAccountName": {
+			"description": "Configuration regarding the \"sAMAccountName\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "sAMAccountName",
+					"description": "@default \"sAMAccountName\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"sAMAccountName\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"sn": {
+			"description": "Configuration regarding the \"sn\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "sn",
+					"description": "@default \"sn\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"sn\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"userAccountControl": {
+			"description": "Configuration regarding the \"userAccountControl\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "userAccountControl",
+					"description": "@default \"userAccountControl\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"userAccountControl\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"whenChanged": {
+			"description": "Configuration regarding the \"whenChanged\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "whenChanged",
+					"description": "@default \"whenChanged\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"whenChanged\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		},
+		"whenCreated": {
+			"description": "Configuration regarding the \"whenCreated\" attribute of the user",
+			"type": "object",
+			"properties": {
+				"label": {
+					"default": "whenCreated",
+					"description": "@default \"whenCreated\"",
+					"type": "string"
+				},
+				"show": {
+					"description": "Wether or not to show the \"whenCreated\" attribute in the detail pages (\"/users/[dn]\" or \"/users/me\"). @default true",
+					"type": "boolean",
+					"default": true
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"additionalProperties": false
+}

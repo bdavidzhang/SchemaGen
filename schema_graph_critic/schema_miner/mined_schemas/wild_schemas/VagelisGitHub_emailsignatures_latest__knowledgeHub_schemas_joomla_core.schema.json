@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.local/schemas/joomla_core.schema.json",
+  "title": "Joomla 5 Core Knowledge Schema",
+  "description": "Schema for joomla_core.yaml knowledge file.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "title": { "type": "string" },
+    "version": { "type": "string" },
+    "summary": { "type": "string" },
+    "joomla_version": { "type": "string" },
+    "component_structure": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "overview": { "type": "string" },
+        "required_files": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "administrator": { "$ref": "#/definitions/pathPurposeArray" },
+            "site": { "$ref": "#/definitions/pathPurposeArray" },
+            "shared": { "$ref": "#/definitions/pathPurposeArray" }
+          }
+        }
+      }
+    },
+    "mvc_patterns": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "database_schemas": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "manifest_xml": { "type": "object", "additionalProperties": true },
+    "acl_patterns": { "type": "object", "additionalProperties": true },
+    "language_structure": { "type": "object", "additionalProperties": true },
+    "installation_scripts": { "type": "object", "additionalProperties": true },
+    "common_operations": { "type": "object", "additionalProperties": true },
+    "references": { "type": "array", "items": { "type": "string", "format": "uri" } }
+  },
+  "required": ["title", "version", "summary"],
+  "definitions": {
+    "pathPurposeArray": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "path": { "type": "string" },
+          "purpose": { "type": "string" }
+        },
+        "required": ["path", "purpose"]
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clicksounds.github.io/clicks/pack.schema.json",
+  "title": "Click Pack",
+  "description": "A Pack of Clicks!",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "$comment": "Shows what options are possible, and what options are required. Do not delete this",
+      "type": "string",
+      "description": "The click pack metadata schema URL. Please do NOT remove this."
+    },
+    "id": {
+      "description": "The ID of the click pack. goes in the format of \"{username}.{name},\" (excluding the comma at the end). username being the name you go by online, and name being the name of this click pack. There is a pattern you have to match which is: lowercase letters allowed, numbers are allowed, hyphens/dashes allowed, and one period (as a seperator from the author and name).",
+      "examples": [
+        "myname.myclickpack"
+      ],
+      "type": "string",
+      "pattern": "^([a-z0-9\\-]+\\.[a-z0-9\\-]+)$"
+    },
+    "version": {
+      "description": "The version of the click pack. This is used to determine if the pack has been updated, and should be incremented by 1 when the pack is updated.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "packgen": {
+		  "type": "boolean",
+		  "description": "Indicates if a pack was made using pack generator. This is important for debugging. It must be enabled only on click packs made using pack generator."
+	  },
+    "packcon": {
+      "type": "boolean",
+      "description": "Indicates if a pack was made using pack converter. This is important for debugging. It must be enabled only on click packs made using pack converter."
+    },
+    "type": {
+      "description": "Is this click pack a Meme, or is it Useful. Only allows \"Useful\" or \"Meme\" to be typed. (CASE SENSITIVE)",
+      "type": "string",
+      "pattern": "^(Meme|Useful)$"
+    },
+    "name": {
+      "description": "The name of the click pack. Should not include the words clicks, releases, or pack. Also special characters EXCEPT ' and - are blocked.",
+      "type": "string",
+      "minLength": 2,
+      "pattern": "^(?![a-zA-Z0-9 '-\\?\\!]*?click|[a-zA-Z0-9 '-\\?\\!]*?pack|[a-zA-Z0-9 '-\\?\\!]*?release)[a-zA-Z0-9 '-\\?\\!]*?$"
+    },
+    "description": {
+      "description": "Up to 150 character description of the click pack, optional.",
+      "type": "string"
+    },
+    "authors": {
+      "description": "The authors of the click pack. First author listed is considered the main author.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the author",
+            "type": "string"
+          },
+          "gdAccountID": {
+            "description": "If you put a Geometry Dash ACCOUNT ID here, people will be able to click your name to open up for Geometry Dash profile.",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "type": {
+            "description": "The type of author. Currently can by \"Main\" (default), \"Provider\", or \"Requester\".\nREAD: if you are just providing the sounds, and it's not made by you, then put yourself as the provider and list the author that made the original sound first, AND EITHER PUT \"Main\" FOR THEM OR DON'T USE TYPE FOR THEM.",
+            "type": "string",
+            "pattern": "^(Main|Provider|Requester)$",
+            "examples": [
+              "Main",
+              "Provider",
+              "Requester"
+            ]
+          },
+          "additionalProperties": false
+        },
+        "required": ["name"]
+      }
+    },
+    "click-files": {
+      "description": "All of the click file names for the pack (without the folder name nor the file extension), fills out automaticly if it's accepted on to the clicks index.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "releases-files": {
+      "description": "All of the release file names for the pack (without the folder name nor the file extension), fills out automaticly if it's accepted on to the clicks index.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "additionalProperties": false
+  },
+  "required": ["id", "name", "authors", "type"]
+}

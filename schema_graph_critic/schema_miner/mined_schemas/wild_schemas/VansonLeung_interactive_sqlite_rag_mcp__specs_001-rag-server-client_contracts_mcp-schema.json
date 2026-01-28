@@ -1,0 +1,252 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RAG Search MCP Tool Schema",
+  "description": "FastMCP tool schema for semantic search in RAG knowledge base",
+  "type": "object",
+  "version": "1.0.0",
+  "tools": [
+    {
+      "name": "rag_search",
+      "description": "Search the RAG knowledge base using natural language queries with optional metadata filtering. Returns semantically relevant documents ranked by similarity score.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["query"],
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Natural language search query (e.g., 'How do neural networks learn?')",
+            "minLength": 1,
+            "maxLength": 1000,
+            "examples": [
+              "explain transformer architecture",
+              "what is retrieval augmented generation",
+              "best practices for prompt engineering"
+            ]
+          },
+          "filters": {
+            "type": "object",
+            "description": "Optional metadata filters to narrow search results (AND logic applied)",
+            "properties": {
+              "tags": {
+                "type": "array",
+                "description": "Filter by tags (document must contain ALL specified tags)",
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 10,
+                "examples": [["ai", "tutorial"], ["machine-learning"]]
+              },
+              "category": {
+                "type": "string",
+                "description": "Filter by exact category match",
+                "maxLength": 100,
+                "examples": ["machine-learning", "nlp", "database"]
+              }
+            },
+            "additionalProperties": {
+              "type": "string",
+              "description": "Custom metadata fields (e.g., 'author', 'difficulty', 'language')"
+            },
+            "examples": [
+              { "category": "tutorial", "tags": ["ai"] },
+              { "category": "backend", "metadata.author": "Jane Doe" },
+              { "tags": ["advanced"], "metadata.difficulty": "hard" }
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10,
+            "examples": [5, 10, 20]
+          }
+        },
+        "examples": [
+          {
+            "query": "How do transformers work?",
+            "limit": 5
+          },
+          {
+            "query": "python async programming",
+            "filters": {
+              "category": "tutorial",
+              "tags": ["python"]
+            },
+            "limit": 10
+          },
+          {
+            "query": "database optimization techniques",
+            "filters": {
+              "category": "backend",
+              "metadata.difficulty": "advanced"
+            }
+          }
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "required": ["results", "count"],
+        "properties": {
+          "results": {
+            "type": "array",
+            "description": "Search results ranked by semantic similarity",
+            "items": {
+              "type": "object",
+              "required": ["content", "metadata", "score"],
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Document content excerpt (first 200 characters or full chunk)"
+                },
+                "metadata": {
+                  "type": "object",
+                  "description": "Document metadata including tags, category, and custom fields",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Document title"
+                    },
+                    "tags": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "Topic tags"
+                    },
+                    "category": {
+                      "type": "string",
+                      "description": "Primary category"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "score": {
+                  "type": "number",
+                  "description": "Cosine similarity score (0-1 range, 1 = most similar)",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          },
+          "count": {
+            "type": "integer",
+            "description": "Total number of results returned"
+          }
+        },
+        "examples": [
+          {
+            "results": [
+              {
+                "content": "Transformers are a neural network architecture that relies on self-attention mechanisms...",
+                "metadata": {
+                  "title": "Introduction to Transformer Models",
+                  "tags": ["ai", "nlp", "transformers"],
+                  "category": "machine-learning",
+                  "author": "Jane Smith",
+                  "difficulty": "intermediate"
+                },
+                "score": 0.92
+              },
+              {
+                "content": "The attention mechanism allows transformers to weigh the importance of different parts of the input...",
+                "metadata": {
+                  "title": "Deep Dive: Attention Mechanisms",
+                  "tags": ["ai", "attention", "transformers"],
+                  "category": "machine-learning",
+                  "difficulty": "advanced"
+                },
+                "score": 0.87
+              }
+            ],
+            "count": 2
+          }
+        ]
+      },
+      "errors": [
+        {
+          "code": "INVALID_QUERY",
+          "message": "Query parameter is required and must be a non-empty string",
+          "httpStatus": 400
+        },
+        {
+          "code": "INVALID_FILTERS",
+          "message": "Filters must be a valid JSON object with supported fields",
+          "httpStatus": 400
+        },
+        {
+          "code": "INVALID_LIMIT",
+          "message": "Limit must be an integer between 1 and 100",
+          "httpStatus": 400
+        },
+        {
+          "code": "EMBEDDING_SERVICE_ERROR",
+          "message": "Failed to generate query embedding. Check embedding service availability.",
+          "httpStatus": 503
+        },
+        {
+          "code": "DATABASE_ERROR",
+          "message": "Database query failed. Please retry.",
+          "httpStatus": 500
+        },
+        {
+          "code": "EMPTY_KNOWLEDGE_BASE",
+          "message": "Knowledge base is empty. Add documents to start searching.",
+          "httpStatus": 200,
+          "data": { "results": [], "count": 0 }
+        }
+      ]
+    }
+  ],
+  "mcpVersion": "1.0.0",
+  "serverInfo": {
+    "name": "rag-search-mcp-server",
+    "version": "1.0.0",
+    "description": "MCP server for RAG semantic search with metadata filtering",
+    "capabilities": {
+      "tools": true,
+      "resources": false,
+      "prompts": false
+    }
+  },
+  "transport": {
+    "type": "http",
+    "defaultPort": 3001,
+    "endpoints": {
+      "toolDiscovery": "GET /mcp/tools",
+      "toolInvocation": "POST /mcp/tools/:toolName"
+    }
+  },
+  "authentication": {
+    "type": "none",
+    "note": "Future versions may require API key authentication"
+  },
+  "rateLimits": {
+    "requestsPerMinute": 100,
+    "note": "Rate limits enforced at application layer (express-rate-limit)"
+  },
+  "integrationExamples": [
+    {
+      "framework": "Claude Desktop",
+      "config": {
+        "mcpServers": {
+          "rag-search": {
+            "command": "node",
+            "args": ["/path/to/backend/src/mcp/server.js"],
+            "env": {
+              "MCP_PORT": "3001",
+              "DATABASE_URL": "sqlite://./knowledge.db"
+            }
+          }
+        }
+      }
+    },
+    {
+      "framework": "LangChain (Python)",
+      "code": "from langchain.tools import Tool\nfrom langchain.agents import initialize_agent\nimport requests\n\ndef rag_search(query: str, filters: dict = None, limit: int = 10):\n    response = requests.post(\n        'http://localhost:3001/mcp/tools/rag_search',\n        json={'query': query, 'filters': filters, 'limit': limit}\n    )\n    return response.json()\n\ntool = Tool(\n    name='RAG Search',\n    func=rag_search,\n    description='Search knowledge base for relevant documents'\n)\n\nagent = initialize_agent([tool], llm, agent='zero-shot-react-description')"
+    },
+    {
+      "framework": "OpenAI Function Calling",
+      "code": "const tools = [\n  {\n    type: 'function',\n    function: {\n      name: 'rag_search',\n      description: 'Search the RAG knowledge base',\n      parameters: {\n        type: 'object',\n        required: ['query'],\n        properties: {\n          query: { type: 'string', description: 'Search query' },\n          filters: { type: 'object', description: 'Metadata filters' },\n          limit: { type: 'integer', description: 'Max results', default: 10 }\n        }\n      }\n    }\n  }\n];\n\nconst response = await openai.chat.completions.create({\n  model: 'gpt-4',\n  messages: [...],\n  tools: tools\n});"
+    }
+  ]
+}

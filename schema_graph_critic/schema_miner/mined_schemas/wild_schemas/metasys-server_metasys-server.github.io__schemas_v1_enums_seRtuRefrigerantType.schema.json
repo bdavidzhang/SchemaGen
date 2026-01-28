@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/seRtuRefrigerantType.schema.json",
+  "title": "seRtuRefrigerantType",
+  "description": "SE RTU Refrigerant Type",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "seRtuRefrigerantTypeR22"
+      ],
+      "description": "R22"
+    },
+    {
+      "enum": [
+        1,
+        "seRtuRefrigerantTypeR12"
+      ],
+      "description": "R12"
+    },
+    {
+      "enum": [
+        2,
+        "seRtuRefrigerantTypeR500"
+      ],
+      "description": "R500"
+    },
+    {
+      "enum": [
+        3,
+        "seRtuRefrigerantTypeR134A"
+      ],
+      "description": "R134A"
+    },
+    {
+      "enum": [
+        4,
+        "seRtuRefrigerantTypeR410A"
+      ],
+      "description": "R410A"
+    },
+    {
+      "enum": [
+        5,
+        "seRtuRefrigerantTypeR502"
+      ],
+      "description": "R502"
+    },
+    {
+      "enum": [
+        6,
+        "seRtuRefrigerantTypeR409A"
+      ],
+      "description": "R409A"
+    },
+    {
+      "enum": [
+        7,
+        "seRtuRefrigerantType404A"
+      ],
+      "description": "404A"
+    },
+    {
+      "enum": [
+        8,
+        "seRtuRefrigerantType507A"
+      ],
+      "description": "507A"
+    },
+    {
+      "enum": [
+        9,
+        "seRtuRefrigerantTypeR407C"
+      ],
+      "description": "R407C"
+    },
+    {
+      "enum": [
+        10,
+        "seRtuRefrigerantTypeN"
+      ],
+      "description": "n"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

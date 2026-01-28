@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Ambassador Platform - Function App Settings",
+  "description": "Template for Azure Function App settings",
+  "settings": {
+    "FUNCTIONS_EXTENSION_VERSION": {
+      "value": "~4",
+      "description": "Azure Functions runtime version",
+      "required": true
+    },
+    "FUNCTIONS_WORKER_RUNTIME": {
+      "value": "python",
+      "description": "Runtime language",
+      "required": true
+    },
+    "AzureWebJobsStorage": {
+      "value": "@Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/storage-connection-string/)",
+      "description": "Storage account connection string (from Key Vault)",
+      "required": true
+    },
+    "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": {
+      "value": "@Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/storage-connection-string/)",
+      "description": "File share connection string (from Key Vault)",
+      "required": true
+    },
+    "WEBSITE_CONTENTSHARE": {
+      "value": "<function-app-name>",
+      "description": "File share name for function content",
+      "required": true
+    },
+    "APPINSIGHTS_INSTRUMENTATIONKEY": {
+      "value": "@Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/app-insights-key/)",
+      "description": "Application Insights instrumentation key",
+      "required": true
+    },
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": {
+      "value": "InstrumentationKey=<key>;IngestionEndpoint=<endpoint>",
+      "description": "Application Insights connection string",
+      "required": true
+    },
+    "AZURE_OPENAI_ENDPOINT": {
+      "value": "https://<openai-account>.openai.azure.com/",
+      "description": "Azure OpenAI endpoint URL",
+      "required": true
+    },
+    "AZURE_OPENAI_API_KEY": {
+      "value": "@Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/azure-openai-api-key/)",
+      "description": "Azure OpenAI API key (from Key Vault)",
+      "required": true
+    },
+    "AZURE_OPENAI_DEPLOYMENT_NAME": {
+      "value": "gpt-4",
+      "description": "OpenAI model deployment name",
+      "required": true
+    },
+    "AZURE_OPENAI_API_VERSION": {
+      "value": "2024-02-15-preview",
+      "description": "OpenAI API version",
+      "required": true
+    },
+    "AZURE_FILES_SHARE_NAME": {
+      "value": "agents",
+      "description": "File share for agent storage",
+      "required": true
+    },
+    "ASSISTANT_NAME": {
+      "value": "AI Ambassador",
+      "description": "Default assistant name",
+      "required": false
+    },
+    "CHARACTERISTIC_DESCRIPTION": {
+      "value": "Your friendly AI companion",
+      "description": "Assistant characteristic description",
+      "required": false
+    },
+    "WEBSITE_RUN_FROM_PACKAGE": {
+      "value": "1",
+      "description": "Run from deployment package",
+      "required": true
+    },
+    "ENABLE_ORYX_BUILD": {
+      "value": "true",
+      "description": "Enable Oryx build during deployment",
+      "required": true
+    },
+    "SCM_DO_BUILD_DURING_DEPLOYMENT": {
+      "value": "true",
+      "description": "Build during deployment",
+      "required": true
+    },
+    "ENVIRONMENT": {
+      "value": "<dev|staging|prod>",
+      "description": "Deployment environment",
+      "required": true
+    },
+    "ENABLE_REDIS_CACHE": {
+      "value": "false",
+      "description": "Enable Redis caching",
+      "required": false
+    },
+    "REDIS_CONNECTION_STRING": {
+      "value": "@Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/redis-connection-string/)",
+      "description": "Redis connection string (from Key Vault)",
+      "required": false
+    },
+    "ENABLE_FEATURE_FLAGS": {
+      "value": "true",
+      "description": "Enable feature flag system",
+      "required": false
+    },
+    "JWT_SECRET": {
+      "value": "@Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/jwt-secret/)",
+      "description": "JWT signing secret (from Key Vault)",
+      "required": false
+    },
+    "MAX_CONVERSATION_HISTORY": {
+      "value": "20",
+      "description": "Maximum conversation history items",
+      "required": false
+    },
+    "REQUEST_TIMEOUT_SECONDS": {
+      "value": "120",
+      "description": "Request timeout in seconds",
+      "required": false
+    },
+    "LOG_LEVEL": {
+      "value": "INFO",
+      "description": "Logging level (DEBUG, INFO, WARNING, ERROR)",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"state": {
+			"description": "0: Stopped, 1: Playing, 2: Paused",
+			"enum": [0, 1, 2],
+			"type": "integer"
+		},
+		"title": {
+			"type": "string"
+		},
+		"artist": {
+			"type": "string"
+		},
+		"album": {
+			"type": "string"
+		}
+	},
+	"additionalProperties": false,
+	"required": ["state", "title"],
+	"default": {
+		"state": 0,
+		"title": ""
+	}
+}

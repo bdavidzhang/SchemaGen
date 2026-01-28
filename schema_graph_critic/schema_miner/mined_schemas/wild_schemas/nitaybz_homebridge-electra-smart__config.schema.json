@@ -1,0 +1,128 @@
+{
+    "pluginAlias": "ElectraSmart",
+    "pluginType": "platform",
+    "singular": true,
+    "customUi": true,
+    "headerDisplay": "Homebridge plugin for Electra Smart A/C <br> To retrieve credentials (`imei` && `token`), you must run `electra-extract` command in terminal",
+    "footerDisplay": "Created by @nitaybz",
+    "schema": {
+        "type": "object",
+        "properties": {
+            "imei": {
+                "title": "IMEI",
+                "description": "This value can be obtain via terminal command: `electra-extract`",
+                "type": "string",
+                "required": true
+            },
+            "token": {
+                "title": "Token",
+                "description": "This value can be obtain via terminal command: `electra-extract`",
+                "type": "string",
+                "required": true
+            },
+            "disableFan": {
+                "title": "Disable Fan Accessory",
+                "description": "Disable FAN mode control - remove extra fan accessory",
+                "type": "boolean",
+                "default": false,
+                "required": false
+            },
+            "disableDry": {
+                "title": "Disable Dry Accessory",
+                "description": "Disable DRY mode control - remove extra dehumidifier accessory",
+                "type": "boolean",
+                "default": false,
+                "required": false
+            },
+			"statePollingInterval": {
+				"title": "AC Device Status Polling Interval in Seconds",
+				"description": "Time in seconds between each status polling of the Electra devices (set to 0 for no polling)",
+				"default": 90,
+				"type": "integer",
+				"minimum": 0,
+				"maximum": 600
+			},
+            "minTemperature": {
+                "title": "Minimum Temperature",
+                "description": "Minimum Temperature to show in HomeKit",
+				"default": 16,
+				"type": "integer",
+				"minimum": 10,
+				"maximum": 35
+            },
+            "maxTemperature": {
+                "title": "Maximum Temperature",
+                "description": "Maximum Temperature to show in HomeKit",
+				"default": 30,
+				"type": "integer",
+				"minimum": 10,
+				"maximum": 35
+            },
+            "swingDirection": {
+                "title": "Swing Direction Control",
+                "description": "Choose what kind of swing you would like to control in HomeKit",
+                "type": "string",
+                "default": "both",
+                "required": true,
+                "oneOf": [
+					{ "title": "Both", "enum": [ "both" ] },
+					{ "title": "Vertical", "enum": [ "vertical" ] },
+					{ "title": "Horizontal", "enum": [ "horizontal" ] }
+                ]
+            },
+            "excludeList": {
+                "title": "Devices to exclude (Name/ID/Serial/Mac)",
+                "description": "Add devices identifier (Name, ID from logs or serial from Home app) to exclude from homebridge",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+            },
+            "debug": {
+                "title": "Enable Debug Logs",
+                "description": "When checked, the plugin will produce extra logs for debugging purposes",
+                "type": "boolean",
+                "default": false,
+                "required": false
+            }
+        }
+    },
+	"layout": [
+		{
+			"key": "imei"
+		},
+		{
+			"key": "token"
+		},
+		{
+			"key": "disableFan"
+		},
+		{
+			"key": "disableDry"
+		},
+		{
+			"key": "debug"
+		},
+		{
+			"key": "excludeList",
+            "title": "Devices to exclude (Name/ID/Serial/Mac)",
+            "description": "Add devices identifier (Name, ID from logs or serial from Home app) to exclude from homebridge",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+		},
+		{
+			"type": "fieldset",
+			"expandable": true,
+			"title": "Advanced Settings",
+			"description": "Don't change these, unless you understand what you're doing.",
+			"items": [
+				"statePollingInterval",
+				"minTemperature",
+				"maxTemperature",
+				"swingDirection"
+			]
+		}
+	]
+  }

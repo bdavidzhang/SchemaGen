@@ -1,0 +1,390 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dlang.org/dub.schema.json",
+  "title": "DUB Package Description Schema",
+  "description": "JSON Schema for validating DUB package description files.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "The JSON schema to use for validation",
+      "format": "uri"
+    },
+    "name": {
+      "description": "Name of the package, used to uniquely identify the package.\nhttps://dub.pm/dub-reference/package_settings/#name",
+      "$ref": "#/$defs/nameSpec"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the package.\nhttps://dub.pm/dub-reference/package_settings/#description"
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the project website.\nhttps://dub.pm/dub-reference/package_settings/#homepage"
+    },
+    "authors": {
+      "description": "List of project authors.\nhttps://dub.pm/dub-reference/package_settings/#authors",
+      "$ref": "#/$defs/stringArray"
+    },
+    "copyright": {
+      "type": "string",
+      "description": "Copyright declaration string.\nhttps://dub.pm/dub-reference/package_settings/#copyright"
+    },
+    "license": {
+      "type": "string",
+      "description": "License(s) under which the project can be used.\nhttps://dub.pm/dub-reference/package_settings/#license"
+    },
+    "toolchainRequirements": {
+      "type": "object",
+      "description": "The package can specify version requirements for the toolchain.\nhttps://dub.pm/dub-reference/package_settings/#toolchainrequirements",
+      "properties": {
+        "dub": {
+          "oneOf": [
+            { "$ref": "#/$defs/versionSpec" },
+            { "type": "string", "pattern": "no" }
+          ]
+        },
+        "frontend": { "$ref": "#/$defs/versionSpec" },
+        "dmd": {
+          "oneOf": [
+            { "$ref": "#/$defs/versionSpec" },
+            { "type": "string", "pattern": "no" }
+          ]
+        },
+        "gdc": {
+          "oneOf": [
+            { "$ref": "#/$defs/versionSpec" },
+            { "type": "string", "pattern": "no" }
+          ]
+        },
+        "ldc": {
+          "oneOf": [
+            { "$ref": "#/$defs/versionSpec" },
+            { "type": "string", "pattern": "no" }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "subPackages": {
+      "description": "Defines an array of sub-packages defined in the same directory as the root project.\nhttps://dub.pm/dub-reference/package_settings/#subpackages",
+      "$ref": "#/$defs/stringArray"
+    },
+    "configurations": {
+      "description": "Speficies an optional list of build configurations.\nhttps://dub.pm/dub-reference/package_settings/#configurations",
+      "items": { "$ref": "#/$defs/configurationObject" }
+    },
+    "buildTypes": {
+      "description": "Defines additional custom build types or overrides the default ones.\nhttps://dub.pm/dub-reference/package_settings/#buildtypes",
+      "$ref": "#/$defs/buildObject"
+    },
+    "x:ddoxFilterArgs": {
+      "description": "Specifies a list of command line flags usable for controlling filter behavior for --build=ddox [experimental].\nhttps://dub.pm/dub-reference/package_settings/#xddoxfilterargs",
+      "$ref": "#/$defs/stringArray"
+    },
+
+    "dependencies": {
+      "type": "object",
+      "description": "List of project dependencies.\nhttps://dub.pm/dub-reference/build_settings/#dependencies",
+      "patternProperties": {
+        "^[a-z_-]+$": { "$ref": "#/$defs/dependencyObject" }
+      }
+    },
+    "systemDependencies": {
+      "type": "string",
+      "description": "A textual description of the required system dependencies (external C libraries) required by the package.\nhttps://dub.pm/dub-reference/build_settings/#systemdependencies"
+    },
+    "targetType": {
+      "type": "string",
+      "description": "Specifies a specific target type.\nhttps://dub.pm/dub-reference/build_settings/#targettype",
+      "enum": [
+        "none",
+        "autodetect",
+        "executable",
+        "library",
+        "sourceLibrary",
+        "staticLibrary",
+        "dynamicLibrary"
+      ]
+    },
+    "targetName": {
+      "type": "string",
+      "description": "Sets the base name of the output file.\nhttps://dub.pm/dub-reference/build_settings/#targetname"
+    },
+    "targetPath": {
+      "type": "string",
+      "description": "The destination path of the output binary.\nhttps://dub.pm/dub-reference/build_settings/#targetpath"
+    },
+    "workingDirectory": {
+      "type": "string",
+      "description": "A fixed working directory from which the generated executable will be run.\nhttps://dub.pm/dub-reference/build_settings/#workingdirectory"
+    },
+    "subConfigurations": {
+      "type": "object",
+      "description": "Locks the dependencies to specific configurations.\nhttps://dub.pm/dub-reference/build_settings/#subconfigurations",
+      "patternProperties": {
+        "^:?([a-z]+(?:[-_\/][a-z]+)*)$": {
+          "description": "Map from package name to configuration name.",
+          "$ref": "#/$defs/configurationNameSpec"
+        }
+      }
+    },
+    "buildRequirements": {
+      "type": "array",
+      "description": "List of required settings for the build process.\nhttps://dub.pm/dub-reference/build_settings/#buildrequirements",
+      "items": {
+        "type": "string",
+        "enum": [
+          "allowWarnings",
+          "silenceWarnings",
+          "disallowDeprecations",
+          "silenceDeprecations",
+          "disallowInlining",
+          "disallowOptimization",
+          "requireBoundsCheck",
+          "requireContracts",
+          "noDefaultFlags"
+        ]
+      }
+    },
+    "buildOptions": {
+      "type": "array",
+      "description": "List of build option identifiers.\nhttps://dub.pm/dub-reference/build_settings/#buildrequirements",
+      "items": {
+        "type": "string",
+        "enum": [
+          "debugMode",
+          "releaseMode",
+          "coverage",
+          "coverageCTFE",
+          "debugInfo",
+          "debugInfoC",
+          "alwaysStackFrame",
+          "stackStomping",
+          "inline",
+          "noBoundsCheck",
+          "optimize",
+          "profile",
+          "profileGC",
+          "unittests",
+          "verbose",
+          "ignoreUnknownPragmas",
+          "syntaxOnly",
+          "warnings",
+          "warningsAsErrors",
+          "ignoreDeprecations",
+          "deprecationWarnings",
+          "deprecationErrors",
+          "betterC",
+          "lowmem"
+        ]
+      },
+      "minItems": 1
+    },
+    "frameworks": {
+      "description": "A list of external framework names - Used only for darwin platforms.\nhttps://dub.pm/dub-reference/build_settings/#frameworks",
+      "$ref": "#/$defs/stringArray"
+    },
+    "sourceFiles": {
+      "description": "Additional files passed to the compiler.\nhttps://dub.pm/dub-reference/build_settings/#sourcefiles",
+      "$ref": "#/$defs/stringArray"
+    },
+    "sourcePaths": {
+      "description": "Allows to customize the path where to look for source files.\nhttps://dub.pm/dub-reference/build_settings/#sourcepaths",
+      "$ref": "#/$defs/stringArray"
+    },
+    "excludedSourceFiles": {
+      "description": "Files that should be removed for the set of already added source files (takes precedence over \"sourceFiles\" and \"sourcePaths\").\nhttps://dub.pm/dub-reference/build_settings/#excludedsourcefiles",
+      "$ref": "#/$defs/stringArray"
+    },
+    "mainSourceFile": {
+      "type": "string",
+      "description": "Determines the file that contains the main() function.\nhttps://dub.pm/dub-reference/build_settings/#mainSourceFile"
+    },
+    "extraDependencyFiles": {
+      "description": "A list of globs matching files to be checked for rebuilding the dub project.\nhttps://dub.pm/dub-reference/build_settings/#extradependencyfiles",
+      "$ref": "#/$defs/stringArray"
+    },
+    "versions": {
+      "description": "A list of D's custom conditional compilation versions to be defined during compilation.\nhttps://dub.pm/dub-reference/build_settings/#versions",
+      "$ref": "#/$defs/stringArray"
+    },
+    "debugVersions": {
+      "description": "A list of D's custom debug condition identifiers to be defined during compilation.\nhttps://dub.pm/dub-reference/build_settings/#debugversions",
+      "$ref": "#/$defs/stringArray"
+    },
+    "importPaths": {
+      "description": "Additional import paths to search for D modules.\nhttps://dub.pm/dub-reference/build_settings/#importpaths",
+      "$ref": "#/$defs/stringArray"
+    },
+    "stringImportPaths": {
+      "description": "Additional import paths to search for string imports.\nhttps://dub.pm/dub-reference/build_settings/#stringimportpaths",
+      "$ref": "#/$defs/stringArray"
+    },
+    "cImportPaths": {
+      "description": "Additional import paths to search for C files.\nhttps://dub.pm/dub-reference/build_settings/#cimportpaths",
+      "$ref": "#/$defs/stringArray"
+    },
+    "preGenerateCommands": {
+      "description": "A list of shell commands that is always executed before project generation is started.\nhttps://dub.pm/dub-reference/build_settings/#pregeneratecommands",
+      "$ref": "#/$defs/commandArray"
+    },
+    "postGenerateCommands": {
+      "description": "A list of shell commands that is always executed after project generation is finished.\nhttps://dub.pm/dub-reference/build_settings/#postgeneratecommands",
+      "$ref": "#/$defs/commandArray"
+    },
+    "preBuildCommands": {
+      "description": "A list of shell commands that is executed before the package is built.\nhttps://dub.pm/dub-reference/build_settings/#prebuildcommands",
+      "$ref": "#/$defs/commandArray"
+    },
+    "postBuildCommands": {
+      "description": "A list of shell commands that is executed after the package is built.\nhttps://dub.pm/dub-reference/build_settings/#postbuildcommands",
+      "$ref": "#/$defs/commandArray"
+    },
+    "preRunCommands": {
+      "description": "A list of shell commands that is executed always before the project is run.\nhttps://dub.pm/dub-reference/build_settings/#preruncommands",
+      "$ref": "#/$defs/commandArray"
+    },
+    "postRunCommands": {
+      "description": "A list of shell commands that is executed always after the project is run.\nhttps://dub.pm/dub-reference/build_settings/#postruncommands",
+      "$ref": "#/$defs/commandArray"
+    },
+    "injectSourceFiles": {
+      "description": "Source files that will be compiled into binaries that depend on this package, no matter what targetType the package has.\nhttps://dub.pm/dub-reference/build_settings/#injectsourcefiles",
+      "$ref": "#/$defs/stringArray"
+    },
+    "environments": {
+      "type": "object",
+      "description": "Define environment variables.\nhttps://dub.pm/dub-reference/environment_variables/",
+      "patternProperties": {
+        "^[a-zA-Z0-9_]+$": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
+    }
+  },
+  "patternProperties": {
+    "^libs(-(?:windows|win32|win64|linux|apple|osx|ios|tvos|watchos|visionos|freebsd|openbsd|netbsd|dragonflybsd|bsd|solaris|posix|aix|haiku|skyos|sysv3|sysv4|hurd|android|emscripten|playstation|playstation4|freestanding))?(-(?:x86|x86_64|arm|arm_thumb|arm_softfloat|arm_softfp|arm_hardfloat|aarch64|asmjs|avr|epiphany|ppc|ppc_softfloat|ppc_hardfloat|ppc64|ia64|mips32|mips64|mips_o32|mips_n32|mips_o64|mips_n64|mips_eabi|mips_softfloat|mips_hardfloat|msp430|nvptx|nvptx64|riscv32|riscv64|sparc|sparc_v8plus|sparc_softfloat|sparc_hardfloat|sparc64|s390|systemz|hppa|hppa64|sh|webassembly|wasi|xtensa|alpha|alpha_softfloat|alpha_hardfloat))?(-(?:dmd|gnu|ldc|sdc))?$": {
+      "description": "A list of external library names.\nhttps://dub.pm/dub-reference/build_settings/#libs",
+      "$ref": "#/$defs/stringArray"
+    },
+    "^copyFiles(-(?:windows|win32|win64|linux|apple|osx|ios|tvos|watchos|visionos|freebsd|openbsd|netbsd|dragonflybsd|bsd|solaris|posix|aix|haiku|skyos|sysv3|sysv4|hurd|android|emscripten|playstation|playstation4|freestanding))?(-(?:x86|x86_64|arm|arm_thumb|arm_softfloat|arm_softfp|arm_hardfloat|aarch64|asmjs|avr|epiphany|ppc|ppc_softfloat|ppc_hardfloat|ppc64|ia64|mips32|mips64|mips_o32|mips_n32|mips_o64|mips_n64|mips_eabi|mips_softfloat|mips_hardfloat|msp430|nvptx|nvptx64|riscv32|riscv64|sparc|sparc_v8plus|sparc_softfloat|sparc_hardfloat|sparc64|s390|systemz|hppa|hppa64|sh|webassembly|wasi|xtensa|alpha|alpha_softfloat|alpha_hardfloat))?(-(?:dmd|gnu|ldc|sdc))?$": {
+      "description": "A list of globs matching files or directories to be copied to targetPath.\nhttps://dub.pm/dub-reference/build_settings/#copyfiles",
+      "$ref": "#/$defs/stringArray"
+    },
+    "^dflags(-(?:windows|win32|win64|linux|apple|osx|ios|tvos|watchos|visionos|freebsd|openbsd|netbsd|dragonflybsd|bsd|solaris|posix|aix|haiku|skyos|sysv3|sysv4|hurd|android|emscripten|playstation|playstation4|freestanding))?(-(?:x86|x86_64|arm|arm_thumb|arm_softfloat|arm_softfp|arm_hardfloat|aarch64|asmjs|avr|epiphany|ppc|ppc_softfloat|ppc_hardfloat|ppc64|ia64|mips32|mips64|mips_o32|mips_n32|mips_o64|mips_n64|mips_eabi|mips_softfloat|mips_hardfloat|msp430|nvptx|nvptx64|riscv32|riscv64|sparc|sparc_v8plus|sparc_softfloat|sparc_hardfloat|sparc64|s390|systemz|hppa|hppa64|sh|webassembly|wasi|xtensa|alpha|alpha_softfloat|alpha_hardfloat))?(-(?:dmd|gnu|ldc|sdc))?$": {
+      "description": "Additional flags passed to the D compiler.\nhttps://dub.pm/dub-reference/build_settings/#dflags",
+      "$ref": "#/$defs/commandArray"
+    },
+    "^lflags(-(?:windows|win32|win64|linux|apple|osx|ios|tvos|watchos|visionos|freebsd|openbsd|netbsd|dragonflybsd|bsd|solaris|posix|aix|haiku|skyos|sysv3|sysv4|hurd|android|emscripten|playstation|playstation4|freestanding))?(-(?:x86|x86_64|arm|arm_thumb|arm_softfloat|arm_softfp|arm_hardfloat|aarch64|asmjs|avr|epiphany|ppc|ppc_softfloat|ppc_hardfloat|ppc64|ia64|mips32|mips64|mips_o32|mips_n32|mips_o64|mips_n64|mips_eabi|mips_softfloat|mips_hardfloat|msp430|nvptx|nvptx64|riscv32|riscv64|sparc|sparc_v8plus|sparc_softfloat|sparc_hardfloat|sparc64|s390|systemz|hppa|hppa64|sh|webassembly|wasi|xtensa|alpha|alpha_softfloat|alpha_hardfloat))?(-(?:dmd|gnu|ldc|sdc))?$": {
+      "description": "Additional flags passed to the linker.\nhttps://dub.pm/dub-reference/build_settings/#lflags",
+      "$ref": "#/$defs/commandArray"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "nameSpec": {
+      "type": "string",
+      "pattern": "^[a-z_-]+$"
+    },
+    "versionSpec": {
+      "type": "string",
+      "description": "Version specifiers define a range of acceptable versions. (e.g., '~>1.2.0', '>=1.0.0').\nhttps://dub.pm/dub-reference/dependencies/",
+      "pattern": "^(\\*|(==|~>|>=|<)\\s*\\d+(\\.\\d+)*(\\s+(==|~>|>=|<)\\s*\\d+(\\.\\d+)*)?)$"
+    },
+    "configurationObject": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "$ref": "#/$defs/configurationNameSpec", "minLength": 1 }
+      },
+      "patternProperties": {
+        "^[a-zA-Z]+$": {}
+      }
+    },
+    "configurationNameSpec": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9_-]+$"
+    },
+    "buildObject": {
+      "type": "object",
+      "patternProperties": {
+        "^(plain|debug|release|release-debug|release-nobounds|docs|ddox|profile|profile-gc|cov|cov-ctfe|unittest-cov|unittest-cov-ctfe|syntax)$": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
+    },
+    "dependencyObject": {
+      "description": "A dependency version specification can either be a simple string for the version or a more complex variant.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/versionSpec"
+        },
+        {
+          "type": "object",
+          "description": "A detailed dependency specification.",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Use a folder to source a package from. References a package in a specific path."
+            },
+            "repository": {
+              "type": "string",
+              "description": "Clone a git repository as dependency. (e.g., 'git+https://...')."
+            },
+            "version": {
+              "$ref": "#/$defs/versionSpec",
+              "description": "The version specification as used for the simple form."
+            },
+            "optional": {
+              "type": "boolean",
+              "description": "Indicates an optional dependency."
+            },
+            "default": {
+              "type": "boolean",
+              "description": "Choose an optional dependency by default."
+            },
+            "dflags": {
+              "$ref": "#/$defs/commandArray",
+              "description": "Build settings fields."
+            }
+          },
+          "oneOf": [
+            { "required": ["path"] },
+            { "required": ["repository"] },
+            { "required": ["version"] }
+          ],
+          "dependentRequired": { "default": ["optional"] },
+          "if": {
+            "properties": {
+              "optional": { "const": false }
+            }
+          },
+          "then": { "properties": { "default": { "const": false } } },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "commandArray": {
+      "type": "array",
+      "description": "An array of shell commands to execute.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}

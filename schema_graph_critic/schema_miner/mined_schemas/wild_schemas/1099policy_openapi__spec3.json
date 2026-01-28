@@ -1,0 +1,3039 @@
+{
+  "basePath": "/api",
+  "components": {
+    "examples": {
+      "address": {
+        "line1": "1 Kearny St",
+        "locality": "San Francisco",
+        "postalcode": 94114,
+        "region": "CA"
+      },
+      "assignment": {
+        "contractor": "cn_Ehb3bYa",
+        "effective_date": 1646818364,
+        "end_date": 1678334737,
+        "job": "jb_jsb9KEcTpc"
+      },
+      "assignments": [
+        {
+          "bind": true,
+          "certificates": {
+            "gl_coi_pdf_url": "/bound-policies/prod/gl_coi_pl_wv23Q3lMc1_1691450123.pdf",
+            "wc_coi_pdf_url": "/bound-policies/prod/wc_coi_pl_wv23Q3lMc1_1691420903.pdf"
+          },
+          "contractor": "cn_Ehb3bYa",
+          "created": 1646818364,
+          "effective_date": 1646818364,
+          "eligible": {
+            "message": "Contractor is pre-approved for insurance coverage.,",
+            "result": true
+          },
+          "end_date": 1678334737,
+          "id": "an_TzLQszJmoP",
+          "job": "jb_jsb9KEcTpc"
+        }
+      ],
+      "category_codes": [
+        {
+          "category_code": "jc_MTqpkbkp6G",
+          "name": "Computer Service or Repair"
+        },
+        {
+          "category_code": "jc_5Tqpkbkp6G",
+          "name": "Spokesperson / Influencer"
+        }
+      ],
+      "contractor": {
+        "address": {
+          "line1": "1 Kearny St",
+          "locality": "San Francisco",
+          "postalcode": 94104,
+          "region": "CA"
+        },
+        "company_name": "Acme Co.",
+        "custom_metadata": {
+          "campaign": "Red Bull"
+        },
+        "email": "parker@gmail.com",
+        "first_name": "Joe",
+        "last_name": "Parker",
+        "phone": "415-474-9088",
+        "tax_identification": "12-3456789"
+      },
+      "contractors": [
+        {
+          "address": {
+            "line1": "150 Wythe Ave",
+            "locality": "Brooklyn",
+            "postalcode": 11249,
+            "region": "NY"
+          },
+          "company_name": "Mass Repair",
+          "created": 1646818364,
+          "custom_metadata": {
+            "campaign": "Volvo"
+          },
+          "email": "fmoss@gmail.com",
+          "first_name": "Fredrick",
+          "id": "cn_Zbe1qTc",
+          "last_name": "Moss",
+          "phone": "916-579-1243",
+          "withhold_premium": false
+        },
+        {
+          "address": {
+            "line1": "1 Kearny St",
+            "locality": "San Francisco",
+            "postalcode": 94104,
+            "region": "CA"
+          },
+          "company_name": "Acme Co.",
+          "created": 1646818384,
+          "custom_metadata": {
+            "campaign": "Red Bull"
+          },
+          "email": "parker@gmail.com",
+          "first_name": "Joe",
+          "id": "cn_Ehb3bYa",
+          "last_name": "Parker",
+          "phone": "415-474-9088",
+          "withhold_premium": false
+        }
+      ],
+      "coverage_limit": {
+        "aggregate_limit": 200000000,
+        "occurrence_limit": 100000000
+      },
+      "entities": [
+        {
+          "address": {
+            "line1": "One Apple Park Way",
+            "locality": "Cupertino",
+            "postalcode": 95014,
+            "region": "CA"
+          },
+          "coverage_limit": {
+            "aggregate_limit": 200000000,
+            "occurrence_limit": 100000000
+          },
+          "created": 1646818364,
+          "id": "en_Ah3tqYn",
+          "name": "Apple, Inc",
+          "required_coverage": ["general", "workers-comp"]
+        },
+        {
+          "address": {
+            "line1": "410 Terry Ave N",
+            "locality": "Seattle",
+            "postalcode": 98109,
+            "region": "WA"
+          },
+          "coverage_limit": {
+            "aggregate_limit": 500000000,
+            "occurrence_limit": 100000000
+          },
+          "created": 1646818386,
+          "id": "en_Mg5sqSp",
+          "name": "Amazon, Inc",
+          "required_coverage": ["general", "professional"]
+        }
+      ],
+      "entity": {
+        "address": {
+          "line1": "One Apple Park Way",
+          "locality": "Cupertino",
+          "postalcode": 95014,
+          "region": "CA"
+        },
+        "coverage_limit": {
+          "aggregate_limit": 200000000,
+          "occurrence_limit": 100000000
+        },
+        "name": "Apple, Inc",
+        "required_coverage": ["general", "workers-comp"]
+      },
+      "event": {
+        "created": 1646818364,
+        "data": {
+          "created": 1646818364,
+          "effective_date": 1646818364,
+          "expiration_date": 1678334737,
+          "id": "pl_WzFRszJhoY",
+          "object": "policy",
+          "pdf_url": "http://ten99policy.s3.amazonaws.com/1099policy-coi-sample.pdf",
+          "quote": "qt_5DciVga8Kt",
+          "status": "active"
+        },
+        "id": "abc68ce2-573f-10f0-9e41-a121aae3e32a",
+        "type": "policy.active"
+      },
+      "events": {
+        "events": [
+          {
+            "created": 1646818364,
+            "data": {
+              "created": 1646818364,
+              "effective_date": 1646818364,
+              "expiration_date": 1678334737,
+              "id": "pl_WzFRszJhoY",
+              "object": "policy",
+              "pdf_url": "http://ten99policy.s3.amazonaws.com/1099policy-coi-sample.pdf",
+              "quote": "qt_5DciVga8Kt",
+              "status": "active"
+            },
+            "id": "abc68ce2-573f-10f0-9e41-a121aae3e32a",
+            "type": "policy.active"
+          }
+        ],
+        "pagination": {
+          "next": 0,
+          "page": 1,
+          "perPage": 20,
+          "prev": 0,
+          "total": 3,
+          "totalPage": 1
+        }
+      },
+      "invoice": {
+        "contractor": "cn_Ehb3bYa",
+        "gross_pay": 250000,
+        "job": "jb_jsb9KEcTpc",
+        "paycycle_enddate": 1678334737,
+        "paycycle_startdate": 1646818364
+      },
+      "job": {
+        "category_code": "jc_MTqpkbkp6G",
+        "description": "Install fiber optic cable from back to the front of the store.",
+        "entity": "en_Ah3tqYn",
+        "name": "Field technician",
+        "wage": 15000,
+        "wage_type": "flatfee",
+        "years_experience": 10
+      },
+      "jobs": [
+        {
+          "category_code": "jc_MTqpkbkp6G",
+          "created": 1646818364,
+          "description": "BMW engine diagnostics and troubleshooting.",
+          "entity": "en_C9Z2DmfHSF",
+          "id": "jb_jsb9KEcTpc",
+          "name": "Mechanic technician",
+          "wage": 1500,
+          "wage_type": "flatfee",
+          "years_experience": 5
+        }
+      ],
+      "policies": [
+        {
+          "certificates": {
+            "gl_coi_pdf_url": "/bound-policies/prod/gl_coi_pl_wv23Q3lMc1_1691450123.pdf",
+            "wc_coi_pdf_url": "/bound-policies/prod/wc_coi_pl_wv23Q3lMc1_1691420903.pdf"
+          },
+          "created": 1646818364,
+          "effective_date": 1646818364,
+          "expiration_date": 1678334737,
+          "id": "pl_WzFRszJhoY",
+          "pdf_url": "http://ten99policy.s3.amazonaws.com/1099policy-coi-sample.pdf",
+          "quote": "qt_5DciVga8Kt",
+          "status": "active"
+        }
+      ],
+      "policy": {
+        "effective_date": 1646818364,
+        "expiration_date": 1678334737,
+        "quote": "qt_5DciVga8Kt"
+      },
+      "quote": {
+        "contractor": "cn_Ehb3bYa",
+        "coverage_type": ["general", "workers-comp"],
+        "job": "jb_jsb9KEcTpc"
+      },
+      "quotes": [
+        {
+          "contractor": "cn_Ehb3bYa",
+          "coverage_type": ["general", "workers-comp"],
+          "created": 1646818364,
+          "eligible": true,
+          "gl_net_rate": 20,
+          "id": "qt_5DciVga8Kt",
+          "job": "jb_jsb9KEcTpc",
+          "net_rate": 65,
+          "wc_net_rate": 45
+        }
+      ],
+      "session": {
+        "cancel_url": "https://1099jobcloud.com/1099policy/cancel",
+        "quote": "qt_5DciVga8Kt",
+        "success_url": "https://1099jobcloud.com/1099policy/success"
+      },
+      "sessions": [
+        {
+          "cancel_url": "https://1099jobcloud.com/1099policy/cancel",
+          "created": 1646818364,
+          "expired": false,
+          "id": "ias_01FZCHXE7KNQHE1T3S8AXG2QZE",
+          "quote": "qt_5DciVga8Kt",
+          "success_url": "https://1099jobcloud.com/1099policy/success",
+          "url": "http://apply.1099policy.com?..."
+        }
+      ]
+    },
+    "schemas": {
+      "Address": {
+        "properties": {
+          "country": {
+            "description": "2-letter country code.",
+            "example": "null",
+            "format": null,
+            "nullable": true,
+            "type": "string"
+          },
+          "line1": {
+            "description": "Address line 1 (Street address/PO Box).",
+            "example": "92 Geary St",
+            "type": "string"
+          },
+          "line2": {
+            "description": "Address line 2 (Apartment/Suite/Unit/Building).",
+            "example": "null",
+            "format": null,
+            "nullable": true,
+            "type": "string"
+          },
+          "locality": {
+            "description": "City/District/Suburb/Town/Village.",
+            "example": "San Francisco",
+            "type": "string"
+          },
+          "postalcode": {
+            "description": "ZIP or postal code.",
+            "example": 94114,
+            "type": "string"
+          },
+          "region": {
+            "description": "2-letter state code.",
+            "example": "CA",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Assignment": {
+        "description": "To secure coverage for independent contractors that have previously  had a policy issued through the 1099Policy platform, you create  an `Assignment` object. \n\nIndependent contractors with an existing insurance policy procured  using the 1099Policy platform have the option to receive per-job-assignment insurance coverage without having  to complete additional insurance applications, provided certain  eligibility criteria are met. \n\nYou can find the result of the eligibility check in the API response. Eligiblity is determined by parameters provided, including `job` and  `contractor`. In particular, we look to see if the job `category_code`  is the same as previously approved and the time since the independent  contractor completed their insurance application.\n\n1099Policy automatically charges the independent contractor's credit card  on file, if a credit card exists and `bind` is `true`. 1099Policy first  notifies the contractor via email and then charges the contractor the  premium amount due 24hrs later.",
+        "properties": {
+          "bind": {
+            "default": true,
+            "description": "Indicates whether to start the process of binding coverage, which includes notifying  and subsequently charging the independent contractor for the premium amount due.  Defaults to `true`. When false, 1099Policy does not notify or schedule a charge. Note  that the independent contractor will not be issued coverage if bind is set to `false`."
+          },
+          "certificates": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Certificate"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "contractor": {
+            "description": "ID of the contractor.",
+            "example": "cn_Ehb3bYa",
+            "type": "string"
+          },
+          "created": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Created"
+              }
+            ]
+          },
+          "effective_date": {
+            "description": "The job assignment start date, measured in seconds since the Unix epoch.",
+            "example": 1646818364,
+            "format": "int64",
+            "type": "integer"
+          },
+          "eligible": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Eligible"
+              },
+              {
+                "description": "Indicates whether a contractor is elgible for pre-approved insurance or not based on their most recent insurance application.",
+                "type": "object"
+              }
+            ]
+          },
+          "end_date": {
+            "description": "The projected job assignment end date, measured in seconds since the Unix epoch.",
+            "example": 1678334737,
+            "format": "int64",
+            "type": "integer"
+          },
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "an_5HviNgc2Br",
+                "type": "string"
+              }
+            ]
+          },
+          "job": {
+            "description": "ID of the job that the contractor intends to accept.",
+            "example": "jb_jsb9KEcTpc",
+            "type": "string"
+          },
+          "net_rate": {
+            "description": "The amount of money the 1099 contractor pays in premium  per every $100 earned.\n\nA positive integer representing the premium owed per $100  earned. The `net_rate` is stored in cents (e.g., 48 represents $0.48).",
+            "readOnly": true,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "CategoryCodes": {
+        "description": "The job category code object represents the pre-approved job category name and unique code that you receive when you onboard onto 1099Policy. Use this read-only endpoint to get your full list of the job category names and codes that your organization is pre-approved to use.",
+        "properties": {
+          "category_code": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "jc_MTqpkbkp6G",
+                "type": "string"
+              }
+            ]
+          },
+          "name": {
+            "description": "The name of the job category code.",
+            "example": "Spokesperson / Influencer",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Certificate": {
+        "description": "URLs to the certificates of insurance for each of the types of coverage  issued to the contractor for the specific job assignment.",
+        "properties": {
+          "gl_coi_pdf_url": {
+            "description": "The general liability certificate of insurance PDF URL.",
+            "example": "/bound-policies/prod/gl_coi_pl_wv23Q3lMc1_1691450123.pdf",
+            "type": "string"
+          },
+          "wc_coi_pdf_url": {
+            "description": "The workers compensation certificate of insurance PDF URL.",
+            "example": "/bound-policies/prod/wc_coi_pl_wv23Q3lMc1_1691420903.pdf",
+            "type": "string"
+          }
+        },
+        "readOnly": true,
+        "type": "object"
+      },
+      "Contractor": {
+        "description": "A `Contractor` object represents the contractors that can accept one or more jobs on your platform. The API allows you to create, delete, and update contractors. You can retrieve individual contractors as well as a list of all contractors.",
+        "properties": {
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              },
+              {
+                "description": "The contractor's home address.",
+                "type": "object"
+              }
+            ]
+          },
+          "company_name": {
+            "description": "The contractor's business name.",
+            "example": "Acme Co.",
+            "nullable": true,
+            "type": "string"
+          },
+          "created": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Created"
+              }
+            ]
+          },
+          "custom_metadata": {
+            "description": "Set of key-value pairs that you can attach to the  contractor object. Used for storing additional  information in a structured format. Individual keys can  be unset by posting an empty value to them. Pass an empty  value, e.g. {}, to custom_metadata to unset all keys.",
+            "example": {
+              "campaign": "Red Bull"
+            },
+            "type": "object"
+          },
+          "email": {
+            "description": "The contractor's email address.",
+            "example": "parker@gmail.com",
+            "type": "string"
+          },
+          "first_name": {
+            "description": "The contractor's first name.",
+            "example": "Joe",
+            "type": "string"
+          },
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "cn_Ehb3bYa",
+                "type": "string"
+              }
+            ]
+          },
+          "last_name": {
+            "description": "The contractor's last name.",
+            "example": "Parker",
+            "type": "string"
+          },
+          "middle_name": {
+            "description": "The contractor's middle name.",
+            "example": "null",
+            "format": null,
+            "nullable": true,
+            "type": "string"
+          },
+          "phone": {
+            "description": "The contractor's phone number.",
+            "example": "415-474-9088",
+            "type": "string"
+          },
+          "withhold_premium": {
+            "default": false,
+            "description": "This indicates whether the contractor is paying premium directly with their credit card (i.e., `false`) or if the contractor has given the platform that's integrating with 1099Policy permission to withhold the premium payment from their wages and pay the premium on the contractor's behalf (i.e., `true`). Defaults to `false`. "
+          }
+        },
+        "type": "object"
+      },
+      "Coverage": {
+        "properties": {
+          "coverage_type": {
+            "description": "An array of coverage types that can include one or more of the following insurance coverage values:  `general`, `professional` and `workers-comp`.",
+            "example": ["general", "workers-comp"],
+            "items": {
+              "enum": ["general", "professional", "workers-comp"],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["coverage_type"],
+        "type": "object"
+      },
+      "Created": {
+        "description": "Time at which the object was created. Measured in seconds since  the Unix epoch.",
+        "example": 1646818364,
+        "format": "int64",
+        "readOnly": true,
+        "type": "integer"
+      },
+      "Eligible": {
+        "description": "Object with the result of the insurance eligiblity check for a given job assignment.",
+        "properties": {
+          "message": {
+            "description": "A message with more detail related to the eligibility result.",
+            "example": "Contractor is pre-approved for insurance coverage.",
+            "type": "string"
+          },
+          "result": {
+            "description": "The result of the insurance eligibility check.",
+            "example": true,
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "Entity": {
+        "description": "The `Entity` object represents the contracting entity  responsible for defining the job descriptions and for hiring  contractors.\n\nThe API allows you to create, delete, and update entities.  You can retrieve individual entities as well as a list of  all entities.",
+        "properties": {
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              },
+              {
+                "description": "The contracting entity's address.",
+                "type": "object"
+              }
+            ]
+          },
+          "coverage_limit": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Limit"
+              }
+            ],
+            "description": "The contracting entity's minimum required  coverage limits."
+          },
+          "created": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Created"
+              }
+            ]
+          },
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "en_Ah3tqYn",
+                "type": "string"
+              }
+            ]
+          },
+          "name": {
+            "description": "The contracting entity's legal name.",
+            "example": "Apple, Inc",
+            "type": "string"
+          },
+          "required_coverage": {
+            "description": "An array of coverage types that can include one or more of the following insurance coverage values:  `general`, `professional` and `workers-comp`.",
+            "example": ["general", "workers-comp"],
+            "items": {
+              "enum": ["general", "professional", "workers-comp"],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Event": {
+        "description": "The `Event` object is how we communicate notable activity on an independent  contractor's insurance application and policy. When an event occurs,  we create a new Event object. For example, when an insurance application  is started, we create an `insurance_application.in_progress` event;  and when a policy is issued, we create a `policy.active` event.\n\nAPI resource state changes trigger events. The state of that resource at the time of the change is embedded in the event's data field.  For example, an `insurance_application.in_progress` event  will contain an insurance_application object, and a `policy.active` event  will contain a policy object.\n\nUse the events endpoints to retrieve an individual event or a list of  events. You can listen for events by registering your server endpoint via the 1099Policy [dashboard](https://dashboard.1099policy.com/webhooks). Our webhooks system send the Event objects directly to your registered  endpoint.",
+        "properties": {
+          "created": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Created"
+              }
+            ]
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Object"
+              },
+              {
+                "description": "Object containing data associated with the event.",
+                "type": "object"
+              }
+            ]
+          },
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "cad68ce3-573f-40e0-8e61-a131aae3e88a",
+                "type": "object"
+              }
+            ]
+          },
+          "type": {
+            "description": "Description of the event (e.g., insurance_application.in_progress or  policy.active).",
+            "example": "policy.cancelled",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Id": {
+        "description": "Unique identifier for the object.",
+        "readOnly": true,
+        "type": "string"
+      },
+      "Invoice": {
+        "description": "Invoices are statements of premium amounts owed by a contractor, based on the contractor's gross pay in the last pay period.\n\nThe invoice is used by 1099Policy to determine total amount to charge  the contractor's credit card or relay to the gig-platform the  premium owed by the contractor to the 1099Policy platform.",
+        "properties": {
+          "contractor": {
+            "description": "ID of the contractor.",
+            "example": "cn_Ehb3bYa",
+            "type": "string"
+          },
+          "created": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Created"
+              }
+            ]
+          },
+          "gross_pay": {
+            "description": "The gross pay that the contractor earned in the  last pay period.\n\nA positive integer representing the gross pay (e.g., 15000  cents to charge $150.00). The minimum amount is 1000 cents US. The maximum amount is 100000000 cents US ($1,000,000).",
+            "example": 250000,
+            "maximum": 100000000,
+            "minimum": 1000,
+            "type": "integer"
+          },
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "in_4RviYgc2Wt",
+                "type": "string"
+              }
+            ]
+          },
+          "job": {
+            "description": "ID of the job that the contractor was paid to do.",
+            "example": "jb_jsb9KEcTpc",
+            "type": "string"
+          },
+          "paycycle_enddate": {
+            "description": "Pay period end date. Measured in seconds since the Unix epoch.",
+            "example": 1678334737,
+            "format": "int64",
+            "type": "integer"
+          },
+          "paycycle_startdate": {
+            "description": "Pay period start date. Measured in seconds since the Unix epoch.",
+            "example": 1646818364,
+            "format": "int64",
+            "type": "integer"
+          },
+          "premium_due": {
+            "description": "Premium due for pay cycle. Calculated as a percentage of gross pay for the period.\n\nA positive integer representing the premium due (e.g., 150  cents to charge $1.50). The minimum amount is 100 cents US.",
+            "example": 4325,
+            "readOnly": true,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Job": {
+        "description": "Store representations of the jobs on your platform in  `Job` objects. The `Job` is used to, among other things, ensure that the insurance coverage that the 1099Policy platform issues correctly maps to the work that contractors will do.",
+        "properties": {
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              },
+              {
+                "description": "The job address where the work will be done. Exclude if job will be done remotely.",
+                "type": "object"
+              }
+            ]
+          },
+          "category_code": {
+            "description": "The category code that 1099Policy creates for a group of similarly classified jobs.\n\nJob category codes are pre-approved by 1099Policy so you can  offer contractors insurance to new jobs on your platform in real time.\n\nTo generate pre-approved category codes for a group of similarly classified jobs visit the [1099Policy Dashboard](https://dashboard.1099policy.com/jobs).",
+            "example": "jc_MTqpkbkp6G",
+            "type": "string"
+          },
+          "created": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Created"
+              }
+            ]
+          },
+          "description": {
+            "description": "A description of the job that includes the  role, responsibilities and necessary qualifications.",
+            "example": "Install fiber optic cable from back to the front of the store.",
+            "type": "string"
+          },
+          "entity": {
+            "description": "The entity ID for whom the work is being done.",
+            "example": "en_Ah3tqYn",
+            "type": "string"
+          },
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "jb_jsb9KEcTpc",
+                "type": "string"
+              }
+            ]
+          },
+          "name": {
+            "description": "The name of the contractor job role.",
+            "example": "Field technician",
+            "type": "string"
+          },
+          "wage": {
+            "description": "A positive integer representing the total wage (e.g., 1500  cents is $15.00). The minimum wage amount is 100 cents US. The maximum wage amount is 100000000 cents US ($1,000,000).",
+            "example": 15000,
+            "maximum": 100000000,
+            "minimum": 100,
+            "type": "integer"
+          },
+          "wage_type": {
+            "description": "One of `flatfee`, `hourly`, `unit` or `blended`.",
+            "enum": ["flatfee", "hourly", "unit", "blended"],
+            "example": "flatfee"
+          },
+          "years_experience": {
+            "description": "The number of years of experience required to  be eligible for the job.",
+            "example": 10,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Limit": {
+        "properties": {
+          "aggregate_limit": {
+            "description": "The total amount the insurance company will pay  for multiple claims over the course of one policy  term.\n\nA positive integer representing the aggregate limit  expressed in cents (e.g., 100000000 cents to represent $1,000,000).  The minimum amount is 1000 cents US.",
+            "example": 200000000,
+            "type": "integer"
+          },
+          "occurrence_limit": {
+            "description": "The total amount the insurance company will pay  per incident during the policy term.\n\nA positive integer representing the per occurrence limit  expressed in cents (e.g., 100000000 cents to represent $1,000,000).  The minimum amount is 1000 cents US.",
+            "example": 100000000,
+            "type": "integer"
+          }
+        },
+        "required": ["aggregate_limit", "occurrence_limit"],
+        "type": "object"
+      },
+      "Object": {
+        "description": "Object containing the API resource relevant to the event.  For example, an `policy.active` event will have a full  policy object as the value of the object key.",
+        "readOnly": true,
+        "type": "object"
+      },
+      "Pagination": {
+        "description": "Pagination is currently available for the list `events` API, and takes the `page` query parameter.",
+        "properties": {
+          "next": {
+            "description": "A cursor for use in pagination. The numeric value used to fetch the next result set.",
+            "example": 0,
+            "type": "integer"
+          },
+          "page": {
+            "description": "The current page returned in the response.",
+            "example": 1,
+            "type": "integer"
+          },
+          "perPage": {
+            "description": "The number of results returned per page.",
+            "example": 20,
+            "type": "integer"
+          },
+          "prev": {
+            "description": "A cursor for use in pagination. The numeric value used to fetch the previous result set.",
+            "example": 0,
+            "type": "integer"
+          },
+          "total": {
+            "description": "The total number of objects returned by the query.",
+            "example": 3,
+            "type": "integer"
+          },
+          "totalPage": {
+            "description": "The total number of pages to choose of available paginated results.",
+            "example": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Policy": {
+        "description": "To procure contractor insurance, you create a `Policy` object.  You can retrieve individual policies as well as list all  policies. Policies are identified by a unique, random ID.\n\nImportant note: Creating a policy via the POST endpoint is an exception for most integrations. A policy object is created automatically when a contractor completes their insurance application (see Session API). Contact us if you plan to use the policy POST endpoint.",
+        "properties": {
+          "certificates": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Certificate"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "created": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Created"
+              }
+            ]
+          },
+          "effective_date": {
+            "description": "A timestamp used to determine the insurance policy start date. Measured in seconds since the Unix epoch. The default effective_date is the next day.",
+            "example": 1646818364,
+            "format": "int64",
+            "type": "integer"
+          },
+          "expiration_date": {
+            "description": "A timestemp used to determine the insurance policy end date. Measured in seconds since the Unix epoch. The default expiration_date is 30 days after the effective_date.",
+            "example": 1678334737,
+            "format": "int64",
+            "type": "integer"
+          },
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "pl_WzFRszJhoY",
+                "type": "string"
+              }
+            ]
+          },
+          "pdf_url": {
+            "description": "A URL for the hosted insurnace policy PDF, which contractors can view.",
+            "example": "http://ten99policy.s3.amazonaws.com/1099policy-coi-sample.pdf",
+            "readOnly": true,
+            "type": "string"
+          },
+          "quote": {
+            "description": "The ID of the quote used to create the policy.",
+            "example": "qt_5DciVga8Kt",
+            "type": "string"
+          },
+          "status": {
+            "description": "One of `active`, `cancelled`, or `expired`.",
+            "enum": ["active", "cancelled", "expired"],
+            "example": "active",
+            "readOnly": true
+          }
+        },
+        "type": "object"
+      },
+      "Quote": {
+        "description": "The `Quote` object reflects whether a contractor is eligible for insurance and the premium owed for every $100 earned.\nImportant note: In North Dakota, Ohio, Washington and Wyoming, workers  compensation can only be purchased through a government operated  insurance company. As a result, the quote API returns an error  when a quote request is made for workers compensiation for any one  of these four states.",
+        "properties": {
+          "contractor": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Contractor"
+              }
+            ]
+          },
+          "coverage_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Coverage"
+              }
+            ]
+          },
+          "created": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Created"
+              }
+            ]
+          },
+          "effective_date": {
+            "description": "The date when the insurance coverage is set to take effect. Measured in seconds since the Unix epoch. This date must  be set in the future. The default effective_date is the next day.",
+            "example": 1646818364,
+            "format": "int64",
+            "type": "string"
+          },
+          "eligible": {
+            "default": true,
+            "description": "Indicates whether a contractor is elgible for insurance or not.",
+            "readOnly": true,
+            "type": "boolean"
+          },
+          "end_date": {
+            "description": "The date when the insurance coverage is set to expire. Measured in seconds since the Unix epoch. This date must  be after the effective date. The default end_date is  30 days after the effective date.",
+            "example": 1678334737,
+            "format": "int64",
+            "type": "string"
+          },
+          "gl_net_rate": {
+            "description": "The amount of money the 1099 contractor pays in general liability premium  per every $100 earned.\n\nA positive integer representing the premium owed per $100  earned. The `gl_net_rate` is stored in cents (e.g., 48 represents $0.48).",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "qt_5DciVga8Kt",
+                "type": "string"
+              }
+            ]
+          },
+          "job": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Job"
+              }
+            ]
+          },
+          "net_rate": {
+            "description": "The amount of money the 1099 contractor pays in premium  per every $100 earned.\n\nA positive integer representing the premium owed per $100  earned. The `net_rate` is stored in cents (e.g., 48 represents $0.48).",
+            "readOnly": true,
+            "type": "integer"
+          },
+          "wc_net_rate": {
+            "description": "The amount of money the 1099 contractor pays in workers comp premium  per every $100 earned.\n\nA positive integer representing the premium owed per $100  earned. The `wc_net_rate` is stored in cents (e.g., 48 represents $0.48).",
+            "readOnly": true,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Session": {
+        "description": "A Session represents the independent contractor's session as they  apply for insurance using the application wizard at apply.1099policy.com.  You only need to create a Session for contractors that don't already have insurance coverage.\n\nOnce the contractor successfully completes their insurance application, the  Session will contain a reference to the Quote, the Contractor, the Job, and  the active insurance Policy.\n\nYou can create a Session on your server and pass its URL to  the client to begin the insurance application.",
+        "properties": {
+          "cancel_url": {
+            "description": "The URL the contractor will be directed to if they are ineligible  or decide to abandon the insurance application and return  to your website.",
+            "example": "https://1099jobcloud.com/1099policy/cancel",
+            "type": "string"
+          },
+          "created": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Created"
+              }
+            ]
+          },
+          "id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "example": "ias_01FVCHXE7PNQHA1T3S2AXL2QZE",
+                "type": "string"
+              }
+            ]
+          },
+          "quote": {
+            "description": "The ID of the quote associated with the insurance application session.",
+            "example": "qt_5DciVga8Kt",
+            "type": "string"
+          },
+          "success_url": {
+            "description": "The URL to which 1099Policy should direct independent contractors  when a contractor successfully procures insurance coverage. ",
+            "example": "https://1099jobcloud.com/1099policy/success",
+            "type": "string"
+          },
+          "url": {
+            "description": "The URL to the insurance application Session. Redirect customers to  this URL to take them to their insurance application. The domain will  use apply.1099policy.com.",
+            "example": "http://apply.1099policy.com/...",
+            "readOnly": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  },
+  "definitions": {},
+  "info": {
+    "description": "The 1099Policy API is based on REST principles with resource-oriented URLs that accept JSON request bodies and return JSON responses. Use the 1099Policy API and the keys available on your 1099Policy Dashboard to offer contractors on your platform access to on-demand, pay-as-you-go insurance.\n\nUse the development environment secret key to step through the process of procuring insurance using 1099Policy API for test contractors and job assignments. Because the API key you use to authenticate determines whether the request runs in our production environment or in our development environment, going live on the 1099Policy platform is as easy as replacing the development secret key with the production secret key once you're ready.",
+    "title": "1099Policy API Reference",
+    "version": "1.6.13",
+    "x-logo": {
+      "altText": "1099Policy Logo",
+      "backgroundColor": "#ffffff",
+      "url": "https://www.1099policy.com/img/1099Policy-logo-api.svg"
+    }
+  },
+  "openapi": "3.0.2",
+  "paths": {
+    "/api/v1/apply/sessions": {
+      "get": {
+        "description": "\nReturns a list of insurance application Sessions.\n",
+        "parameters": [
+          {
+            "description": "A limit on the number of objects to be returned. Limit can range between `1` and `100`, and the default is `10`.",
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "example": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/sessions"
+                },
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Session"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Returns an array of session objects. If no more sessions are available, the resulting array will be empty."
+          }
+        },
+        "summary": "List all sessions",
+        "tags": ["Session"]
+      },
+      "post": {
+        "description": "\nCreates a session object.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "$ref": "#/components/examples/session"
+                },
+                "properties": {
+                  "cancel_url": {
+                    "description": "The URL the contractor will be directed to if they  are ineligible or decide to abandon the insurance  application and return to your website.",
+                    "type": "string"
+                  },
+                  "quote": {
+                    "description": "The ID of an existing quote to be associated  with the insurance application session.",
+                    "type": "string"
+                  },
+                  "success_url": {
+                    "description": "The URL to which 1099Policy should direct independent  contractors when a contractor successfully procures  insurance coverage. ",
+                    "type": "string"
+                  }
+                },
+                "required": ["quote"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/examples/session"
+                    },
+                    {
+                      "id": "ias_01FVCHXE7PNQHA1T3S2AXL2QZE"
+                    },
+                    {
+                      "created": 1646818386
+                    },
+                    {
+                      "url": "http://apply.1099policy.com?..."
+                    },
+                    {
+                      "expired": false
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            },
+            "description": "Returns the session object for an insurance application  if quote, job, and contractor are valid."
+          }
+        },
+        "summary": "Create a session",
+        "tags": ["Session"]
+      }
+    },
+    "/api/v1/apply/sessions/{session_id}": {
+      "get": {
+        "description": "\nRetrieves the insurance application session with the given ID.\n",
+        "parameters": [
+          {
+            "description": "The ID of the desired session (e.g., `ias_01FVCHXE7PNQHA1T3S2AXL2QZE`).",
+            "in": "path",
+            "name": "session",
+            "required": true,
+            "schema": {
+              "example": "ias_01FVCHXE7PNQHA1T3S2AXL2QZE",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/examples/session"
+                    },
+                    {
+                      "id": "ias_01FVCHXE7PNQHA1T3S2AXL2QZE"
+                    },
+                    {
+                      "created": 1646818386
+                    },
+                    {
+                      "url": "http://apply.1099policy.com?..."
+                    },
+                    {
+                      "expired": false
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            },
+            "description": "Returns a session object if a valid session ID was provided. Returns an error otherwise."
+          }
+        },
+        "summary": "Retrieve a session",
+        "tags": ["Session"]
+      }
+    },
+    "/api/v1/apply/sessions/{session_id}/expire": {
+      "post": {
+        "description": "\nExpires the insurance application session with the given ID.\nAn insurance application session can't be expired if the\napplication status is complete.\n\nAfter it expires, a contractor can\u2019t complete an insurance application \nsession and contractors loading the insurance application session see \na message saying the insurance application session is expired.\n",
+        "parameters": [
+          {
+            "description": "The ID of the desired session (e.g., `ias_01FVCHXE7PNQHA1T3S2AXL2QZE`).",
+            "in": "path",
+            "name": "session",
+            "required": true,
+            "schema": {
+              "example": "ias_01FVCHXE7PNQHA1T3S2AXL2QZE",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/examples/session"
+                    },
+                    {
+                      "id": "ias_01FVCHXE7PNQHA1T3S2AXL2QZE"
+                    },
+                    {
+                      "created": 1646818386
+                    },
+                    {
+                      "url": "http://apply.1099policy.com?..."
+                    },
+                    {
+                      "expired": true
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            },
+            "description": "Returns a session object if the expiration succeeded. Returns an error if the session is already expired or isn't in an expireable state."
+          }
+        },
+        "summary": "Expire a session",
+        "tags": ["Session"]
+      }
+    },
+    "/api/v1/assignments": {
+      "get": {
+        "description": "\nReturns a list of your assignments. The assigments returned\nare sorted by creation date, with the most recently created\nassignments appearing first.\n",
+        "parameters": [
+          {
+            "description": "A limit on the number of objects to be returned. Limit can range between `1` and `100`, and the default is `10`.",
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "example": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/assignments"
+                },
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Assignment"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Returns an array of assignment objects. If no more assignments are available, the resulting array will be empty."
+          }
+        },
+        "summary": "List all assignments",
+        "tags": ["Assignment"]
+      },
+      "post": {
+        "description": "\nThis endpoint creates an assignment object that you can use \nto attach insurance coverage to any job assignment a contractor \ntakes after the contractor has gone active on the 1099Policy \nplatform (i.e., after completing thier insurance application\nsuccessfully).\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "$ref": "#/components/examples/assignment"
+                },
+                "properties": {
+                  "bind": {
+                    "description": "Indicates whether to start the process of binding coverage, which includes notifying  and subsequently charging the independent contractor for the premium amount due.  Defaults to `true`. When false, 1099Policy does not notify or schedule a charge. Note  that the independent contractor is not issued coverage if bind is set to `false`.",
+                    "type": "boolean"
+                  },
+                  "contractor": {
+                    "description": "ID of the contractor",
+                    "type": "string"
+                  },
+                  "effective_date": {
+                    "description": "The job assignment start date, measured in seconds since the Unix epoch. This date must be set in the future. The default effective_date is the next day.",
+                    "type": "integer"
+                  },
+                  "end_date": {
+                    "description": "The projected job assignment end date, measured in seconds since the Unix epoch. This date must be after the effective date. The default end_date is  30 days after the effective date.",
+                    "type": "integer"
+                  },
+                  "job": {
+                    "description": "ID of the job that the contractor was paid to do.",
+                    "type": "string"
+                  }
+                },
+                "required": ["contractor", "job"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assignment"
+                }
+              }
+            },
+            "description": "Returns the assignment object if the post succeeded."
+          }
+        },
+        "summary": "Create an assignment",
+        "tags": ["Assignment"]
+      }
+    },
+    "/api/v1/assignments/{assignment_id}": {
+      "delete": {
+        "description": "\nPermanently deletes an assignment. This cannot be undone.\nAttempts to delete assignments with jobs that have invoices\npaid in full will fail.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "assignment": "an_G5biPgc5Hc"
+                },
+                "properties": {
+                  "assignment": {
+                    "description": "The ID of the desired assigment.",
+                    "type": "string"
+                  }
+                },
+                "required": ["assignment"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "deleted": true,
+                    "deleted_at": "(utcnow)",
+                    "id": "an_G5biPgc5Hc",
+                    "object": "assignment"
+                  },
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean"
+                    },
+                    "deleted_at": {
+                      "type": "datetime"
+                    },
+                    "id": {
+                      "description": "The assignment ID.",
+                      "type": "string"
+                    },
+                    "object": {
+                      "default": "assignment",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "A successfully deleted assignment. Otherwise, this call returns an error, such as if the assignment has already been deleted."
+          }
+        },
+        "summary": "Delete an assignment",
+        "tags": ["Assignment"]
+      },
+      "get": {
+        "description": "\nRetrieves the assignment with the given ID.\n",
+        "parameters": [
+          {
+            "description": "The ID of the desired assignment (e.g., `an_G5biPgc5Hc`).",
+            "in": "path",
+            "name": "assignment",
+            "required": true,
+            "schema": {
+              "example": "an_G5biPgc5Hc",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assignment"
+                }
+              }
+            },
+            "description": "Returns an assignment object if a valid assignment ID was provided. Returns an error otherwise."
+          }
+        },
+        "summary": "Retrieve an assignment",
+        "tags": ["Assignment"]
+      },
+      "put": {
+        "description": "\nAssignments are editable up until the a related invoice\nis paid in full.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "$ref": "#/components/examples/assignment"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/Assignment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assignment"
+                }
+              }
+            },
+            "description": "Returns an invoice object if a valid invoice ID was provided. Returns an error otherwise."
+          }
+        },
+        "summary": "Update an assignment",
+        "tags": ["Assignment"]
+      }
+    },
+    "/api/v1/category_codes": {
+      "get": {
+        "description": "\nReturns a list of your approved job category codes. The job category\ncodes are returned sorted by approval date, with the most recently\napproved job categories appearing first.\n",
+        "parameters": [
+          {
+            "description": "A limit on the number of objects to be returned. Limit can range between `1` and `100`, and the default is `10`.",
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "example": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/category_codes"
+                },
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryCodes"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Returns an array of job category code objects. If no more job category codes are available, the resulting array will be empty."
+          }
+        },
+        "summary": "List all category codes",
+        "tags": ["Category Code"]
+      }
+    },
+    "/api/v1/contractors": {
+      "get": {
+        "description": "\nReturns a list of your contractors. The contractors are\nreturned sorted by creation date, with the most recent\ncontractors appearing first.\n",
+        "parameters": [
+          {
+            "description": "A limit on the number of objects to be returned. Limit can range between `1` and `100`, and the default is `10`.",
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "example": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/contractors"
+                },
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Contractor"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Returns an array of contractor objects. If no more contractors are available, the resulting array will be empty. "
+          }
+        },
+        "summary": "List all contractors",
+        "tags": ["Contractor"]
+      },
+      "post": {
+        "description": "\nCreates a new contractor object.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "$ref": "#/components/examples/contractor"
+                },
+                "properties": {
+                  "address": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Address"
+                      },
+                      {
+                        "description": "The contractor's home address.",
+                        "required": [
+                          "line1",
+                          "locality",
+                          "region",
+                          "postalcode"
+                        ],
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "company_name": {
+                    "description": "The contractor's business name.",
+                    "type": "string"
+                  },
+                  "custom_metadata": {
+                    "description": "Set of key-value pairs that you can attach to  an object. Used to store additional information  about the contractor in a structured format.",
+                    "type": "object"
+                  },
+                  "email": {
+                    "description": "The contractor's email address.",
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "description": "The contractor's first name.",
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "description": "The contractor's last name.",
+                    "type": "string"
+                  },
+                  "middle_name": {
+                    "description": "The contractor's middle name.",
+                    "type": "string"
+                  },
+                  "phone": {
+                    "description": "The contractor's phone number.",
+                    "type": "string"
+                  },
+                  "tax_identification": {
+                    "description": "The contractor's tax identification number. For  example, an employer identification number (EIN) if the contractor operates as a corporate entity or a social security number if the contractor operates as a sole proprietor.",
+                    "type": "string"
+                  },
+                  "withhold_premium": {
+                    "description": "This indicates whether the contractor is paying premium directly with their credit card (i.e., `false`) or if the contractor has given the platform that's integrating with 1099Policy permission to withhold the premium payment from their wages and pay the premium on the contractor's behalf (i.e., `true`). Defaults to `false`. ",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "address"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contractor"
+                }
+              }
+            },
+            "description": "Returns the contractor object if the post succeeded."
+          }
+        },
+        "summary": "Create a contractor",
+        "tags": ["Contractor"]
+      }
+    },
+    "/api/v1/contractors/{contractor_id}": {
+      "delete": {
+        "description": "\nPermanently deletes a contractor. It cannot be undone.\nAlso immediately cancels any active policies connected\nwith the contractor.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "contractor": "cn_Ehb3bYa"
+                },
+                "properties": {
+                  "contractor": {
+                    "description": "The ID of the contractor to be deleted.",
+                    "type": "string"
+                  }
+                },
+                "required": ["contractor"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "deleted": true,
+                    "deleted_at": "(now)",
+                    "id": "cn_Ehb3bYa",
+                    "object": "contractor"
+                  },
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean"
+                    },
+                    "deleted_at": {
+                      "type": "datetime"
+                    },
+                    "id": {
+                      "description": "The contractor ID.",
+                      "type": "string"
+                    },
+                    "object": {
+                      "default": "contractor",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Returns an object with a deleted parameter on success. If the contractor ID does not exist, this call returns an error."
+          }
+        },
+        "summary": "Delete a contractor",
+        "tags": ["Contractor"]
+      },
+      "get": {
+        "description": "\nRetrieves the details of an existing contractor.\nYou need only supply the unique contractor identifier\nthat was returned upon contractor creation.\n",
+        "parameters": [
+          {
+            "description": "The ID of the desired contractor (e.g., `cn_Ehb3bYa`).",
+            "in": "path",
+            "name": "contractor",
+            "required": true,
+            "schema": {
+              "example": "cn_Ehb3bYa",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contractor"
+                }
+              }
+            },
+            "description": "Returns a contractor object if a valid identifier was provided."
+          }
+        },
+        "summary": "Retrieve a contractor",
+        "tags": ["Contractor"]
+      },
+      "put": {
+        "description": "\nUpdates the specified contractor by setting the values\nof the parameters passed. Any parameters not provided\nwill be left unchanged.\n\nThis request accepts mostly the same arguments as the\ncontractor creation call.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "$ref": "#/components/examples/contractor"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/Contractor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contractor"
+                }
+              }
+            },
+            "description": "Returns the contractor object if the update succeeded. Returns an error if update parameters are invalid."
+          }
+        },
+        "summary": "Update a contractor",
+        "tags": ["Contractor"]
+      }
+    },
+    "/api/v1/entities": {
+      "get": {
+        "description": "\nReturns a list of your contracting entities. The entities\nare returned sorted by creation date, with the most recent\nentities appearing first.\n",
+        "parameters": [
+          {
+            "description": "A limit on the number of objects to be returned. Limit can range between `1` and `100`, and the default is `10`.",
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "example": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/entities"
+                },
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Entity"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Returns an array of entity objects. If no more entities are available, the resulting array will be empty. Returns an error if the entity ID is invalid."
+          }
+        },
+        "summary": "List all entities",
+        "tags": ["Entity"]
+      },
+      "post": {
+        "description": "\nCreates a new contracting entity object.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "$ref": "#/components/examples/entity"
+                },
+                "properties": {
+                  "address": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Address"
+                      },
+                      {
+                        "description": "The contracting entity's address.",
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "coverage_limit": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Limit"
+                      },
+                      {
+                        "description": "The contracting entity's minimum required coverage  limits.",
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "name": {
+                    "description": "The contracting entity's legal name.",
+                    "type": "string"
+                  },
+                  "required_coverage": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Coverage"
+                      },
+                      {
+                        "description": "The insurance coverage that the contracting  entity requires of the independent contractor.",
+                        "type": "object"
+                      }
+                    ]
+                  }
+                },
+                "required": ["name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/examples/entity"
+                    },
+                    {
+                      "id": "en_Ah3tqYn"
+                    },
+                    {
+                      "created": 1646818386
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Entity"
+                }
+              }
+            },
+            "description": "Returns the entity object if the post succeeded."
+          }
+        },
+        "summary": "Create an entity",
+        "tags": ["Entity"]
+      }
+    },
+    "/api/v1/entities/{entity_id}": {
+      "delete": {
+        "description": "\nPermanently deletes an entity. It cannot be undone.\nAlso immediately cancels any insurance policies\nconnected with active jobs managed by the entity.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "entity": "en_Ah3tqYn"
+                },
+                "properties": {
+                  "entity": {
+                    "description": "The ID of the desired entity.",
+                    "type": "string"
+                  }
+                },
+                "required": ["entity"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "deleted": true,
+                    "deleted_at": "(utcnow)",
+                    "id": "en_Ah3tqYn",
+                    "object": "entity"
+                  },
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean"
+                    },
+                    "deleted_at": {
+                      "type": "datetime"
+                    },
+                    "id": {
+                      "description": "The entity ID.",
+                      "type": "string"
+                    },
+                    "object": {
+                      "default": "entity",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "A successfully deleted entity. Otherwise, this call returns an error, such as if the entity has already been deleted."
+          }
+        },
+        "summary": "Delete an entity",
+        "tags": ["Entity"]
+      },
+      "get": {
+        "description": "\nRetrieves the details of an existing entity.\nYou need only supply the unique entity ID \nthat was returned upon entity creation.\n",
+        "parameters": [
+          {
+            "description": "The ID of the desired entity (e.g., `en_Ah3tqYn`).",
+            "in": "path",
+            "name": "entity",
+            "required": true,
+            "schema": {
+              "example": "en_Ah3tqYn",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity"
+                }
+              }
+            },
+            "description": "Returns an entity object if a valid entity ID was provided.  Returns an error otherwise."
+          }
+        },
+        "summary": "Retrieve an entity",
+        "tags": ["Entity"]
+      },
+      "put": {
+        "description": "\nUpdates the specified entity by setting the values\nof the parameters passed. Any parameters not provided\nwill be left unchanged.\n\nThis request accepts mostly the same arguments as the\neneity creation call.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "$ref": "#/components/examples/entity"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/Entity"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/entity"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Entity"
+                }
+              }
+            },
+            "description": "Returns the entity object if the update succeeded. Returns an error if update parameters are invalid."
+          }
+        },
+        "summary": "Update an entity",
+        "tags": ["Entity"]
+      }
+    },
+    "/api/v1/events": {
+      "get": {
+        "description": "\nReturns a list of events with pagination (20 events per page).\nThe events are sorted by creation date, with the most recent\nevent appearing first.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "page": 3
+                },
+                "properties": {
+                  "page": {
+                    "description": "A page in the set of paginated events. Each page includes up to 20 events.",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examnple": {
+                  "$ref": "#/components/examples/events"
+                },
+                "schema": {
+                  "properties": {
+                    "events": {
+                      "items": {
+                        "$ref": "#/components/schemas/Event"
+                      },
+                      "type": "array"
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns an array of event objects with pagination. Each  entry in the array is a separate event object. If no  more events are available, the resulting array will be  empty."
+          }
+        },
+        "summary": "List all events",
+        "tags": ["Event"]
+      }
+    },
+    "/api/v1/events/{event_id}": {
+      "get": {
+        "description": "\nRetrieves the details of an event. You need only \nprovide the unique event ID which you would have\nreceived in a webhook.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "event": {
+                    "description": "The ID of the desired event.",
+                    "required": true,
+                    "type": "string"
+                  },
+                  "example": {
+                    "event": "abc68ce2-573f-10f0-9e41-a121aae3e32a"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/event"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            },
+            "description": "Returns an event object if a valid ID  was provided."
+          }
+        },
+        "summary": "Retrieve an event",
+        "tags": ["Event"]
+      }
+    },
+    "/api/v1/invoices": {
+      "get": {
+        "description": "\nYou can list all invoices, or list the invoices for a\nspecific contractor. The invoices are returned sorted\nby creation date, with the most recently created invoices\nappearing first.\n",
+        "parameters": [
+          {
+            "description": "A limit on the number of objects to be returned. Limit can range between `1` and `100`, and the default is `10`.",
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "example": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Invoice"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Returns an array of invoice objects. If no more invoices are available, the resulting array will be empty. "
+          }
+        },
+        "summary": "List all invoices",
+        "tags": ["Invoice"]
+      },
+      "post": {
+        "description": "\nThis endpoint creates an invoice that reflects the insurance premium\nowed by the contractor for the specified pay period.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "$ref": "#/components/examples/invoice"
+                },
+                "properties": {
+                  "contractor": {
+                    "description": "ID of the contractor",
+                    "type": "string"
+                  },
+                  "gross_pay": {
+                    "description": "The gross pay that the contractor earned  in the last pay period.",
+                    "type": "integer"
+                  },
+                  "job": {
+                    "description": "ID of the job that the contractor was  paid to do.",
+                    "type": "string"
+                  },
+                  "paycycle_enddate": {
+                    "description": "Pay period end date.",
+                    "type": "integer"
+                  },
+                  "paycycle_startdate": {
+                    "description": "Pay period start date.",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "contractor",
+                  "job",
+                  "gross_pay",
+                  "paycycle_startdate",
+                  "paycycle_enddate"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              }
+            },
+            "description": "Returns the invoice object if the post succeeded."
+          }
+        },
+        "summary": "Create an invoice",
+        "tags": ["Invoice"]
+      }
+    },
+    "/api/v1/invoices/{invoice_id}": {
+      "delete": {
+        "description": "\nPermanently deletes an invoice. This cannot be undone.\nAttempts to delete invoices that have been paid will fail.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "invoice": "in_4RviYgc2Wt"
+                },
+                "properties": {
+                  "invoice": {
+                    "description": "The ID of the desired invoice.",
+                    "type": "string"
+                  }
+                },
+                "required": ["invoice"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "deleted": true,
+                    "deleted_at": "(utcnow)",
+                    "id": "in_4RviYgc2Wt",
+                    "object": "invoice"
+                  },
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean"
+                    },
+                    "deleted_at": {
+                      "type": "datetime"
+                    },
+                    "id": {
+                      "description": "The invoice ID.",
+                      "type": "string"
+                    },
+                    "object": {
+                      "default": "invoice",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "A successfully deleted invoice. Otherwise, this call returns an error, such as if the invoice has already been deleted."
+          }
+        },
+        "summary": "Delete an unpaid invoice",
+        "tags": ["Invoice"]
+      },
+      "get": {
+        "description": "\nRetrieves the invoice with the given ID.\n",
+        "parameters": [
+          {
+            "description": "The ID of the desired invoice (e.g., `in_4RviYgc2Wt`).",
+            "in": "path",
+            "name": "invoice",
+            "required": true,
+            "schema": {
+              "example": "in_4RviYgc2Wt",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              }
+            },
+            "description": "Returns an invoice object if a valid invoice ID was provided. Returns an error otherwise."
+          }
+        },
+        "summary": "Retrieve an invoice",
+        "tags": ["Invoice"]
+      },
+      "put": {
+        "description": "\nInvoices that haven't been paid are fully editable.\nOnce an invoice is paid, it becomes uneditable.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "$ref": "#/components/examples/invoice"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/Invoice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              }
+            },
+            "description": "Returns an invoice object if a valid invoice ID was provided. Returns an error otherwise."
+          }
+        },
+        "summary": "Update an invoice",
+        "tags": ["Invoice"]
+      }
+    },
+    "/api/v1/jobs": {
+      "get": {
+        "description": "\nReturns a list of your jobs. The jobs are returned\nsorted by creation date, with the most recently created\njobs appearing first.\n",
+        "parameters": [
+          {
+            "description": "A limit on the number of objects to be returned. Limit can range between `1` and `100`, and the default is `10`.",
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "example": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/jobs"
+                },
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Job"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Returns an array of job objects. If no more jobs are available, the resulting array will be empty."
+          }
+        },
+        "summary": "List all jobs",
+        "tags": ["Job"]
+      },
+      "post": {
+        "description": "\nCreates a new job object. Used to classify\nthe work that 1099Policy applies to insure the\ncontractor.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "$ref": "#/components/examples/job"
+                },
+                "properties": {
+                  "address": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Address"
+                      },
+                      {
+                        "description": "The job address where the work will be done.  Exclude if job will be done remotely.",
+                        "required": ["region"],
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "category_code": {
+                    "description": "The category code that 1099Policy creates for a group of similarly classified jobs.\n\nJob category codes are pre-approved by 1099Policy so you can  offer contractors insurance to new jobs on your platform in real time.\n\nTo generate pre-approved category codes for a group of similarly classified jobs visit the [1099Policy Dashboard](https://dashboard.1099policy.com/jobs).",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "A description of the job that includes the  role, responsibilities and necessary qualifications.",
+                    "type": "string"
+                  },
+                  "entity": {
+                    "description": "The ID of an existing entity for whom the job is being done.",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The name of the contractor job role.",
+                    "type": "string"
+                  },
+                  "wage": {
+                    "description": "A positive integer representing the wage (e.g., 1500  cents is $15.00). The minimum wage amount is $1.00 US.",
+                    "minimum": 100,
+                    "type": "integer"
+                  },
+                  "wage_type": {
+                    "description": "One of `flatfee`, `hourly`, `unit` or `blended`.",
+                    "enum": ["flatfee", "hourly", "unit", "blended"],
+                    "type": "string"
+                  },
+                  "years_experience": {
+                    "description": "The number of years of experience required to  be eligible for the job.",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "wage_type",
+                  "wage",
+                  "entity",
+                  "category_code"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/examples/job"
+                    },
+                    {
+                      "id": "jb_jsb9KEcTpc"
+                    },
+                    {
+                      "created": 1646818386
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            },
+            "description": "Returns the job object if the post succeeded."
+          }
+        },
+        "summary": "Create a job",
+        "tags": ["Job"]
+      }
+    },
+    "/api/v1/jobs/{job_id}": {
+      "delete": {
+        "description": "\nDelete a job. Deleting a job is only possible if it\nhas no insurance policies associated with it.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "job": "jb_jsb9KEcTpc"
+                },
+                "properties": {
+                  "job": {
+                    "description": "The ID of the job to delete.",
+                    "required": true,
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "deleted": true,
+                    "deleted_at": "(utcnow)",
+                    "id": "jb_jsb9KEcTpc",
+                    "object": "job"
+                  },
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean"
+                    },
+                    "deleted_at": {
+                      "type": "datetime"
+                    },
+                    "id": {
+                      "description": "The job ID.",
+                      "type": "string"
+                    },
+                    "object": {
+                      "default": "job",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Returns an object with a deleted parameter on success. Otherwise, this call returns an error."
+          }
+        },
+        "summary": "Delete a job",
+        "tags": ["Job"]
+      },
+      "get": {
+        "description": "\nRetrieves the details of an existing job.\nSupply the unique job ID from either a job\ncreation request or the job list, and 1099Policy \nwill return the corresponding job information.\n",
+        "parameters": [
+          {
+            "description": "The ID of the desired job (e.g., `jb_jsb9KEcTpc`).",
+            "in": "path",
+            "name": "job",
+            "required": true,
+            "schema": {
+              "example": "jb_jsb9KEcTpc",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/examples/job"
+                    },
+                    {
+                      "id": "jb_jsb9KEcTpc"
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            },
+            "description": "Returns a job object if a valid job ID was provided. Returns an error otherwise."
+          }
+        },
+        "summary": "Retrieve a job",
+        "tags": ["Job"]
+      },
+      "put": {
+        "description": "\nUpdates the specific job by setting the values of the\nparameters passed. Any parameters not provided will be\nleft unchanged.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "$ref": "#/components/examples/job"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/Job"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/examples/job"
+                    },
+                    {
+                      "id": "jb_jsb9KEcTpc"
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            },
+            "description": "Returns an job object if a valid job ID was provided. Returns an error otherwise."
+          }
+        },
+        "summary": "Update a job",
+        "tags": ["Job"]
+      }
+    },
+    "/api/v1/policies": {
+      "get": {
+        "description": "\nReturns a list of policies you\u2019ve previously created. \nThe policies are returned in sorted order, with the most \nrecent policies appearing first.\n",
+        "parameters": [
+          {
+            "description": "A limit on the number of objects to be returned. Limit can range between `1` and `100`, and the default is `10`.",
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "example": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/policies"
+                },
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Policy"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "An array of policies, up to limit. Each entry in the array is  a separate policy object. If no more charges are available, the  resulting array will be empty."
+          }
+        },
+        "summary": "List all policies",
+        "tags": ["Policy"]
+      },
+      "post": {
+        "description": "\nCreates a new policy object.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "$ref": "#/components/examples/policy"
+                },
+                "properties": {
+                  "effective_date": {
+                    "description": "A timestamp used to determine the insurance policy  start date.",
+                    "type": "string"
+                  },
+                  "expiration_date": {
+                    "description": "A timestemp used to determine the insurance policy  end date.",
+                    "type": "string"
+                  },
+                  "quote": {
+                    "description": "The ID of the quote used to create the policy.",
+                    "type": "string"
+                  }
+                },
+                "required": ["quote"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            },
+            "description": "Returns the policy object if the post succeeded."
+          }
+        },
+        "summary": "Create a policy",
+        "tags": ["Policy"]
+      }
+    },
+    "/api/v1/policies/{policy_id}": {
+      "delete": {
+        "description": "\nPermanently deletes a policy. Deleting a policy immediately cancels\nthe insurance coverage for the contractor.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "example": {
+                    "policy": "pl_WzFRszJhoY"
+                  },
+                  "policy": {
+                    "description": "The ID of the policy to be deleted.",
+                    "type": "string"
+                  }
+                },
+                "requried": ["policy"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "deleted": true,
+                    "deleted_at": "(utcnow)",
+                    "id": "pl_WzFRszJhoY",
+                    "object": "policy"
+                  },
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean"
+                    },
+                    "deleted_at": {
+                      "type": "datetime"
+                    },
+                    "id": {
+                      "description": "The policy ID.",
+                      "type": "string"
+                    },
+                    "object": {
+                      "default": "policy",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Returns an object with a deleted parameter on success. If the policy ID does not exist, this call returns an error."
+          }
+        },
+        "summary": "Delete a policy",
+        "tags": ["Policy"]
+      },
+      "get": {
+        "description": "\nRetrieves the details of an existing policy.\nSupply the unique policy ID from either a policy\ncreation request or the policy list, and 1099Policy \nwill return the corresponding policy information.\n",
+        "parameters": [
+          {
+            "description": "The ID of the desired policy (e.g., `pl_WzFRszJhoY`).",
+            "in": "path",
+            "name": "policy",
+            "required": true,
+            "schema": {
+              "example": "pl_WzFRszJhoY",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            },
+            "description": "Returns a policy object if a valid ID  was provided."
+          }
+        },
+        "summary": "Retrieve a policy",
+        "tags": ["Policy"]
+      },
+      "put": {
+        "description": "\nPolicies can be switched on and off using the is_active flag.\nUse this functionality if you don't have preset policy\nstart and end times.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "$ref": "#/components/examples/policy"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/Policy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            },
+            "description": "Returns the policy object if the update succeeded. Returns an error if update parameters are invalid."
+          }
+        },
+        "summary": "Update a policy",
+        "tags": ["Policy"]
+      }
+    },
+    "/api/v1/quotes": {
+      "get": {
+        "description": "\nReturns a list of quotes you\u2019ve previously created.\nThe quotes are returned in sorted order, with the most\nrecent quotes appearing first.\n",
+        "parameters": [
+          {
+            "description": "A limit on the number of objects to be returned. Limit can range between `1` and `100`, and the default is `10`.",
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "example": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "$ref": "#/components/examples/quotes"
+                },
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Quote"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Returns an array of quote objects. If no more quotes are available, the resulting array will be empty."
+          }
+        },
+        "summary": "List all quotes",
+        "tags": ["Quote"]
+      },
+      "post": {
+        "description": "\nTo provide insurance coverage to contractors on your platform, you\nfirst create a `Quote` object. If you use your test API keys,\neverything will occur as if in production but the policy that's\ngenerated will be a test policy.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "$ref": "#/components/examples/quote"
+              },
+              "schema": {
+                "properties": {
+                  "contractor": {
+                    "description": "The ID of the contractor seeking a quote for insurance coverage.",
+                    "type": "string"
+                  },
+                  "coverage_type": {
+                    "description": "An array of coverage types that can include one or more of the following insurance coverage values: `general`, `professional` and `workers-comp`.",
+                    "items": {
+                      "enum": ["general", "professional", "workers-comp"],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "effective_date": {
+                    "description": "The date when the insurance coverage is set to take effect. Measured in seconds since the Unix epoch. This date must be set in the future. The default effective_date is the next day.",
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "end_date": {
+                    "description": "The date when the insurance coverage is set to expire. Measured in seconds since the Unix epoch. This date must be after the effective date. The default end_date is 30 days after the effective date.",
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "job": {
+                    "description": "The ID of the job assignment that the contractor will be working on.",
+                    "type": "string"
+                  }
+                },
+                "required": ["job", "contractor", "coverage_type"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/examples/quote"
+                    },
+                    {
+                      "id": "qt_5DciVga8Kt"
+                    },
+                    {
+                      "created": 1646818386
+                    },
+                    {
+                      "net_rate": 65
+                    },
+                    {
+                      "wc_net_rate": 45
+                    },
+                    {
+                      "gl_net_rate": 20
+                    },
+                    {
+                      "eligible": true
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Quote"
+                }
+              }
+            },
+            "description": "Returns the quote object if the post succeeded."
+          }
+        },
+        "summary": "Create a quote",
+        "tags": ["Quote"]
+      }
+    },
+    "/api/v1/quotes/{quote_id}": {
+      "get": {
+        "description": "\nRetrieves the details of a previously created quote. Supply the\nunique quote ID that was returned from your previous request,\nand 1099Policy will return the corresponding quote information.\n",
+        "parameters": [
+          {
+            "description": "The ID of the desired quote (e.g., `qt_5DciVga8Kt`).",
+            "in": "path",
+            "name": "quote",
+            "required": true,
+            "schema": {
+              "example": "qt_5DciVga8Kt",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/examples/quote"
+                    },
+                    {
+                      "id": "qt_5DciVga8Kt"
+                    },
+                    {
+                      "created": 1646818386
+                    },
+                    {
+                      "net_rate": 65
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Quote"
+                }
+              }
+            },
+            "description": "Returns a quote object if a valid identifier was provided."
+          }
+        },
+        "summary": "Retrieve a quote",
+        "tags": ["Quote"]
+      },
+      "put": {
+        "description": "\nQuotes that aren't bound to an issued policy are fully editable. \nOnce a policy is issued for a quote, the quote becomes uneditable.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "$ref": "#/components/examples/quote"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/Quote"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quote"
+                }
+              }
+            },
+            "description": "Returns the quote object if the update succeeded. Returns an error if update parameters are invalid."
+          }
+        },
+        "summary": "Update a quote",
+        "tags": ["Quote"]
+      }
+    }
+  },
+  "servers": [
+    {
+      "description": "Production server",
+      "url": "https://api.1099policy.com"
+    }
+  ],
+  "tags": [
+    {
+      "description": "A `Contractor` object represents the contractor that can accept one or more jobs on your platform. The API allows you to create, delete, and update contractors. You can retrieve individual contractors as well as a list\n of all contractors.",
+      "name": "Contractor"
+    },
+    {
+      "description": "The `Entity` object represents the contracting entity  responsible for defining the job descriptions and for hiring  contractors.\n\nThe API allows you to create, delete, and update entities.  You can retrieve individual entities as well as a list of  all entities.",
+      "name": "Entity"
+    },
+    {
+      "description": "Store representations of the jobs on your platform in  `Job` objects. The `Job` is used to, among other things, ensure that the insurance coverage that the 1099Policy platform issues correctly maps to the work that contractors will do.",
+      "name": "Job"
+    },
+    {
+      "description": "The job category code object represents the pre-approved job category name and unique code that you receive when you onboard onto 1099Policy. Use this read-only endpoint to get your full list of the job category names and codes that your organization is pre-approved to use.",
+      "name": "Category Code"
+    },
+    {
+      "description": "The `Quote` object reflects whether a contractor is eligible for insurance and the premium owed for every $100 earned.",
+      "name": "Quote"
+    },
+    {
+      "description": "A `Session` represents the independent contractor's session as they  apply for insurance using the application wizard at apply.1099policy.com.  You only need to create a `Session` for contractors that don't already have insurance coverage.\n\nOnce the contractor successfully completes their insurance application, the  `Session` will contain a reference to the Contractor, the Job, and the active  insurance Policy.\n\nYou can create a `Session` on your server and pass its ID to  the client to begin the insurance application.",
+      "name": "Session"
+    },
+    {
+      "description": "To procure contractor insurance, you create a `Policy` object.  You can retrieve individual policies as well as list all  policies. Policies are identified by a unique, random ID.\n\nImportant note: Creating a policy via the POST endpoint is an exception for most integrations. A policy object is created automatically when a contractor completes their insurance application (see Session API). Contact us if you plan to use the policy POST endpoint.",
+      "name": "Policy"
+    },
+    {
+      "description": "To secure coverage for independent contractors that have previously  had a policy issued through the 1099Policy platform, you create  an `Assignment` object. \n\nIndependent contractors with an existing insurance policy procured  using the 1099Policy platform have the option to receive per-job-assignment insurance coverage without having  to complete additional insurance applications, provided certain  eligibility criteria are met. \n\nYou can find the result of the eligibility check in the API response. Eligiblity is determined by parameters provided, including `job` and  `contractor`. In particular, we look to see if the job `category_code`  is the same as previously approved and time since the independent  contractor completed their insurance application.\n\n1099Policy automatically charges the independent contractor's credit card  on file, if a credit card exists. 1099Policy first notifies the contractor  via email and then charges the contractor the premium amount due 24hrs  later.",
+      "name": "Assignment"
+    },
+    {
+      "description": "Invoices are statements of premium amounts owed by a contractor, based on the contractor's gross pay in the last pay period.\n\nThe invoice is used by 1099Policy to determine total funds to  charge the contractor or to withdraw from the bank account you  connect to the 1099Policy platform if your platform intends to withold insurance premium payments.",
+      "name": "Invoice"
+    },
+    {
+      "description": "Events are how we communicate notable activity on an independent  contractor's insurance application and policy. When an event occurs,  we create a new Event object. For example, when an insurance application  is started, we create an `insurance_application.in_progress` event;  and when a policy is issued, we create a `policy.active` event.\n\nAPI resource state changes trigger events. The state of that resource at the time of the change is embedded in the event's data field.  For example, an `insurance_application.in_progress.in_progress` event  will contain an insurance_application object, and a `policy.active` event  will contain a policy object.\n\nUse the events endpoints to retrieve an individual event or a list of  events. You can listen for events by registering your server endpoint via the 1099Policy [dashboard](https://dashboard.1099policy.com/webhooks). Our webhooks system send the Event objects directly to your registered  endpoint.",
+      "name": "Event"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Core Resources",
+      "tags": ["Contractor", "Entity", "Job", "Category Code", "Event"]
+    },
+    {
+      "name": "Insurance",
+      "tags": ["Quote", "Session", "Policy"]
+    },
+    {
+      "name": "Billing",
+      "tags": ["Invoice"]
+    }
+  ],
+  "x-topics": [
+    {
+      "content": "To use the 1099Policy API you need to authenticate requests using API keys.  Sign up for a developer account to view and manage your API keys from the 1099Policy  Dashboard. [https://dashboard.1099policy.com/signup](https://dashboard.1099policy.com/signup)\n\nYour API tokens should be guarded closely. As a reminder, do not share your secret API  keys in publicly accessible areas such as GitHub or client-side code, for example.  Instead use environment variables, web server settings, startup script, or a configuration  file that is excluded from your version control.\n\nTest mode secret keys have the prefix `t9k_test_` and live mode secret keys  have the prefix `t9k_live_`.\n\nAll API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests  without authentication will also fail.",
+      "example": "```curl\n  curl \\\n    -X GET https://api.1099policy.com/api/v1/contractor \\\n    -H \"Authorization: Basic t9k_test_wvnsjtZ8aMlbfGbIm0Lc0\"\n```",
+      "title": "Authentication"
+    },
+    {
+      "content": "Clients can make requests to either the `sandbox` or `production`  environment by using the header `Ten99Policy-Environment` and specifying either `sandbox` or `production`. The default is `sandbox`.",
+      "example": "```curl\n  curl \\\n    -X GET https://api.1099policy.com/api/v1/contractor \\\n    -H \"Authorization: Basic t9k_test_wvnsjtZ8aMlbfGbIm0Lc0\" \\\n    -H \"Ten99Policy-Environment: production\"\n```",
+      "title": "Environment"
+    },
+    {
+      "content": "1099Policy uses conventional HTTP response codes to indicate the success or  failure of an API request. In general, codes in the `2xx` range indicate success.  Codes in the `4xx` range indicate an error due to the the information provided  (e.g., a required parameter was omitted, a create policy request failed, etc.).  Codes in the 5xx range indicate an error with 1099Policy's servers (these are rare).\n\nSome `4xx` errors that could be handled programmatically (e.g., contractor ineligible  for coverage) include an error code that briefly explains the error reported.\n\n# Handling Errors\n\nOur API libraries raise exceptions for many reasons, such as a failed create  policy request, invalid parameters, authentication errors, and network unavailability.  We recommend writing code that gracefully handles all possible API exceptions.",
+      "example": "```basic      \n  200   (OK) Everything worked as expected.\n  400   (Bad Request) Check for a missing required parameter.\n  401   (Unauthorized) No valid API key provided.\n  403   (Forbidden) Confirm API key has permissions to make request.\n  404   (Not Found) The requested resource doesn't exist.\n  429   (Too Many Requests) Too many requests to the API too quickly.\n  500   (Server Error) Something went wrong on 1099Policy's end.\n```",
+      "title": "Errors"
+    },
+    {
+      "content": "The 1099Policy API checks every request header for an an additional `Ten99Policy-Idempotent-Key`. We use this field to perform an idempotency check to avoid duplicate transfers in case of  network failures or timeouts. For example, if a request to bind a policy fails to return a response due to a network connection error, you can retry the request  with the same idempotency key to guarantee that no more than one policy  is created.\n\n1099Policy's idempotency works by saving the resulting status code and body of the  first request made for any given idempotency key, regardless of whether it succeeded  or failed. Subsequent requests with the same key return the same result,  including `500` errors.\n\nWe suggest using V4 UUIDs, or another random string with enough entropy  to avoid collisions.\n\nKeys expire after 24 hours, so a new request is generated if a key is reused outside of that  time frame. Results are only saved if an API endpoint started executing. You can safely retry  requests that fail validation or conflicts with another request that was executing  concurrently. \n\nAll `POST` requests accept idempotency keys. Sending idempotency keys  in `GET` and `DELETE` requests has no effect and should be avoided,  as these requests are idempotent by definition.",
+      "example": "```curl\n  curl \\\n      -X POST https://api.1099policy.com/api/v1/jobs \\\n      -u t9k_test_wvnsjtZ8aMlbfGbIm0Lc0: \\\n      -H \"Ten99Policy-Idempotent-Key: d9YozBtG5R\" \\\n      -H 'Content-Type: application/json' \\\n      -d ...\n```",
+      "title": "Idempotent Requests"
+    }
+  ]
+}

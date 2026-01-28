@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Workspaces List Configuration",
+  "description": "Configuration for workspace appearance in Workspaces List extension",
+  "type": "object",
+  "properties": {
+    "icon": {
+      "type": "string",
+      "description": "Icon for the workspace. Can be an emoji, Codicon name, SVG content, file path, or URL.",
+      "examples": [
+        "🚀",
+        "folder",
+        "<svg>...</svg>",
+        "./assets/icon.png",
+        "https://example.com/icon.png"
+      ]
+    },
+    "color": {
+      "type": "string",
+      "description": "Color for the workspace name. Any valid CSS color.",
+      "examples": [
+        "#FF6B6B",
+        "rgb(255, 107, 107)",
+        "red"
+      ]
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Custom display name for the workspace",
+      "examples": [
+        "My Awesome Project",
+        "Frontend App"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

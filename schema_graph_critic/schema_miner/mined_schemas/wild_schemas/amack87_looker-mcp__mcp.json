@@ -1,0 +1,139 @@
+{
+  "name": "looker",
+  "version": "1.0.0",
+  "description": "Looker API integration for accessing dashboards, looks, queries, and user management",
+  "main": "dist/mcp.js",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "baseUrl": {
+        "type": "string",
+        "description": "Looker instance base URL"
+      },
+      "clientId": {
+        "type": "string",
+        "description": "Looker API client ID"
+      },
+      "clientSecret": {
+        "type": "string",
+        "description": "Looker API client secret"
+      }
+    },
+    "required": ["baseUrl", "clientId", "clientSecret"]
+  },
+  "tools": {
+    "mcp_looker_get_dashboard": {
+      "description": "Get a Looker dashboard by ID",
+      "parameters": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Dashboard ID"
+          }
+        },
+        "required": ["id"]
+      }
+    },
+    "mcp_looker_run_query": {
+      "description": "Run a Looker query",
+      "parameters": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "Looker model name"
+          },
+          "view": {
+            "type": "string",
+            "description": "Looker view name"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Fields to include in the query"
+          },
+          "filters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Query filters"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Maximum number of results"
+          },
+          "sorts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sort fields"
+          }
+        },
+        "required": ["model", "view", "fields"]
+      }
+    },
+    "mcp_looker_get_look": {
+      "description": "Get a Looker look by ID",
+      "parameters": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Look ID"
+          }
+        },
+        "required": ["id"]
+      }
+    },
+    "mcp_looker_get_user": {
+      "description": "Get a Looker user by ID",
+      "parameters": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "User ID"
+          }
+        },
+        "required": ["id"]
+      }
+    },
+    "mcp_looker_get_folder": {
+      "description": "Get a Looker folder by ID",
+      "parameters": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Folder ID"
+          }
+        },
+        "required": ["id"]
+      }
+    },
+    "mcp_looker_get_role": {
+      "description": "Get a Looker role by ID",
+      "parameters": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Role ID"
+          }
+        },
+        "required": ["id"]
+      }
+    }
+  }
+} 

@@ -1,0 +1,26 @@
+{
+	"title": "lock request filter",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"javaType": "com.sos.joc.model.lock.LockFilter",
+	"type": "object",
+	"required": [
+		"controllerId",
+		"lockPath"
+	],
+	"properties": {
+		"controllerId": {
+			"$ref": "../common/controllerIdRequired-schema.json"
+		},
+		"lockPath": {
+			"$ref": "../common/string255required-schema.json"
+		},
+		"compact": {
+			"$ref": "../common/compactParam-schema.json"
+		},
+    	"limit": {
+      		"description": "-1=unlimited",
+      		"type": "integer",
+      		"default": 10000
+    	}
+	}
+}

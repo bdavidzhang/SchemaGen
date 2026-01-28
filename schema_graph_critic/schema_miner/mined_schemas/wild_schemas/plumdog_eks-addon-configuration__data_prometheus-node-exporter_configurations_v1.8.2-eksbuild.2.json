@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": false,
+  "definitions": {
+    "limits": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        }
+      },
+      "title": "limits",
+      "type": "object"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "$ref": "#/definitions/limits"
+        },
+        "requests": {
+          "$ref": "#/definitions/limits"
+        }
+      },
+      "title": "resources",
+      "type": "object"
+    }
+  },
+  "description": "Configurable properties for prometheus-node-exporter",
+  "properties": {
+    "affinity": {
+      "default": {
+        "nodeAffinity": {
+          "requiredDuringSchedulingIgnoredDuringExecution": {
+            "nodeSelectorTerms": [
+              {
+                "matchExpressions": [
+                  {
+                    "key": "kubernetes.io/os",
+                    "operator": "In",
+                    "values": [
+                      "linux"
+                    ]
+                  },
+                  {
+                    "key": "kubernetes.io/arch",
+                    "operator": "In",
+                    "values": [
+                      "amd64",
+                      "arm64"
+                    ]
+                  },
+                  {
+                    "key": "eks.amazonaws.com/compute-type",
+                    "operator": "NotIn",
+                    "values": [
+                      "fargate",
+                      "hybrid"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "description": "Affinity of the prometheus-node-exporter pod",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "extraArgs": {
+      "additionalProperties": false,
+      "description": "Extra arguments to pass into the prometheus-node-exporter command",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "extraVolumeMounts": {
+      "description": "Extra volume mounts to add to the prometheus-node-exporter container",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "extraVolumes": {
+      "description": "Extra volumes to add to the prometheus-node-exporter pod",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "kubeRBACProxy": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "description": "Whether or not to enable the kubeRBACProxy",
+          "type": "boolean"
+        },
+        "extraArgs": {
+          "description": "Extra arguments to pass into the kubeRBACProxy command",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extraVolumeMounts": {
+          "description": "Extra volume mounts to add to the kubeRBACProxy",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "resources": {
+          "$ref": "#/definitions/resources",
+          "description": "Resource requests/limits of the kubeRBACProxy"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "networkPolicy": {
+      "description": "Network policy for prometheus-node-exporter",
+      "type": "object"
+    },
+    "nodeSelector": {
+      "description": "Node selector of the prometheus-node-exporter pod",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "podAnnotations": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional annotations to add to the prometheus-node-exporter deployment pods",
+      "type": "object"
+    },
+    "podLabels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional labels to add to the prometheus-node-exporter deployment pods",
+      "type": "object"
+    },
+    "priorityClassName": {
+      "default": "system-node-critical",
+      "description": "Name of priority class for prometheus-node-exporter pod",
+      "type": "string"
+    },
+    "resources": {
+      "$ref": "#/definitions/resources",
+      "description": "Resource requests/limits of the prometheus-node-exporter container"
+    },
+    "tolerations": {
+      "additionalProperties": false,
+      "default": [
+        {
+          "key": "CriticalAddonsOnly",
+          "operator": "Exists"
+        }
+      ],
+      "description": "Tolerations of the prometheus-node-exporter pod",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

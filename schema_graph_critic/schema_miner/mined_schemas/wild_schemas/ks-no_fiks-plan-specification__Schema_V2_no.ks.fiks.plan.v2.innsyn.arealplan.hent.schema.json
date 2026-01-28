@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "no.ks.fiks.plan.v2.innsyn.arealplan.hent.schema.json",
+    "title": "HentArealplan",
+    "definitions": {
+    },
+    "type": "object",
+    "properties": {
+        "nasjonalArealplanId": {
+            "$ref": "no.ks.fiks.plan.v2.felles.nasjonalarealplanid.schema.json"
+        },
+        "inkluderPlanbehandlinger": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "nasjonalArealplanId",
+        "inkluderPlanbehandlinger"
+    ]
+}

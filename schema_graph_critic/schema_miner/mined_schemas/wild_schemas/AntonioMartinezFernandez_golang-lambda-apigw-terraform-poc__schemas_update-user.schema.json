@@ -1,0 +1,22 @@
+{
+  "$id": "update-user.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UpdateUser",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "User id in ULID format"
+    },
+    "name": {
+      "type": ["string", "null"],
+      "description": "User name"
+    },
+    "birthdate": {
+      "type": ["string", "null"],
+      "description": "User birth date with time format RFC3339. Example: '1984-11-25T17:04:05Z'"
+    }
+  },
+  "required": ["id"],
+  "additionalProperties": false
+}

@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quiz Question Bank Schema",
+  "description": "Schema for quiz question bank JSON files",
+  "type": "object",
+  "required": ["id", "name", "description", "questions"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the question bank (e.g., 'dsa', 'network', 'english')"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the subject (e.g., 'English TOEIC Practice')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the question bank"
+    },
+    "questions": {
+      "type": "array",
+      "description": "Array of questions (can be single questions or passage-based questions)",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "title": "Single Question",
+            "description": "A standard single multiple-choice question",
+            "required": ["id", "question", "options", "correctAnswer"],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "Unique question ID within this bank"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["single"],
+                "description": "Question type (optional, defaults to 'single')"
+              },
+              "question": {
+                "type": "string",
+                "description": "The question text"
+              },
+              "options": {
+                "type": "object",
+                "required": ["A", "B", "C", "D"],
+                "properties": {
+                  "A": { "type": "string", "description": "Answer option A" },
+                  "B": { "type": "string", "description": "Answer option B" },
+                  "C": { "type": "string", "description": "Answer option C" },
+                  "D": { "type": "string", "description": "Answer option D" }
+                }
+              },
+              "correctAnswer": {
+                "type": "string",
+                "enum": ["A", "B", "C", "D"],
+                "description": "The correct answer (A, B, C, or D)"
+              },
+              "explanation": {
+                "type": "string",
+                "description": "Optional explanation for the correct answer"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "Passage Question",
+            "description": "A passage-based question group (reading comprehension or fill-in-the-blank)",
+            "required": ["id", "type", "passageType", "passage", "subQuestions"],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "Unique question group ID within this bank"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["passage"],
+                "description": "Must be 'passage' for passage-based questions"
+              },
+              "passageType": {
+                "type": "string",
+                "enum": ["reading-comprehension", "fill-in-the-blank"],
+                "description": "Type of passage question"
+              },
+              "passageTitle": {
+                "type": "string",
+                "description": "Optional title for the passage"
+              },
+              "passage": {
+                "type": "string",
+                "description": "The passage text. For fill-in-the-blank, use ____N____ where N is the sub-question id"
+              },
+              "subQuestions": {
+                "type": "array",
+                "description": "Array of sub-questions related to this passage",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "question", "options", "correctAnswer"],
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "Sub-question ID (used in fill-in-the-blank markers)"
+                    },
+                    "question": {
+                      "type": "string",
+                      "description": "The question text (for reading comprehension) or blank indicator (for fill-in-the-blank)"
+                    },
+                    "options": {
+                      "type": "object",
+                      "required": ["A", "B", "C", "D"],
+                      "properties": {
+                        "A": { "type": "string", "description": "Answer option A" },
+                        "B": { "type": "string", "description": "Answer option B" },
+                        "C": { "type": "string", "description": "Answer option C" },
+                        "D": { "type": "string", "description": "Answer option D" }
+                      }
+                    },
+                    "correctAnswer": {
+                      "type": "string",
+                      "enum": ["A", "B", "C", "D"],
+                      "description": "The correct answer (A, B, C, or D)"
+                    },
+                    "explanation": {
+                      "type": "string",
+                      "description": "Optional explanation for the correct answer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

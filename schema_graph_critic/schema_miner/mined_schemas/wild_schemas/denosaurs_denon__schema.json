@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "denosaurs/denon.json",
+  "definitions": {
+    "script": {
+      "description": "A script representation.",
+      "type": ["string", "object", "array"],
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/definitions/script_object"
+        },
+        {
+          "$ref": "#/definitions/script_array"
+        }
+      ]
+    },
+    "script_array": {
+      "description": "A script array representation.",
+      "type": "array",
+      "items": {
+        "type": ["string", "object"],
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$ref": "#/definitions/script_object"
+          }
+        ]
+      }
+    },
+    "script_object": {
+      "type": "object",
+      "description": "A complex script representation.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/script_options"
+        },
+        {
+          "properties": {
+            "cmd": {
+              "description": "The command that has to be executed (can be in compact form).",
+              "type": "string"
+            },
+            "desc": {
+              "description": "Shown when listing all available scripts.",
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "required": ["cmd"]
+    },
+    "script_options": {
+      "type": "object",
+      "properties": {
+        "env": {
+          "description": "Environment variables passed to the script.",
+          "$ref": "#/definitions/env"
+        },
+        "allow": {
+          "description": "Permissions that are granted to the script.",
+          "$ref": "#/definitions/flags"
+        },
+        "importMap": {
+          "description": "Load import map file.",
+          "type": "string",
+          "default": "importmap.json"
+        },
+        "tsconfig": {
+          "description": "Load tsconfig.json configuration file.",
+          "type": "string",
+          "default": "tsconfig.json"
+        },
+        "unstable": {
+          "description": "Script is using unstable features of deno stdlib.",
+          "type": "boolean",
+          "default": false
+        },
+        "watch": {
+          "description": "Enable file watching.",
+          "type": "boolean",
+          "default": true
+        },
+        "inspect": {
+          "description": "Activate inspector on host:port",
+          "type": "string",
+          "default": "localhost:9229"
+        },
+        "inspectBrk": {
+          "description": "Activate inspector on host:port, and break on first line of script.",
+          "type": "string",
+          "default": "localhost:9229"
+        },
+        "lock": {
+          "description": "Check specified lockfile.",
+          "type": "string",
+          "default": "lock.json"
+        },
+        "cert": {
+          "description": "Load certificate authority from PEM encoded file.",
+          "type": "string",
+          "default": "cert.pem"
+        },
+        "log": {
+          "description": "Set log level.",
+          "type": "string",
+          "enum": ["debug", "info"],
+          "default": "info"
+        },
+        "stdin": {
+          "description": "Set stdin file type.",
+          "$ref": "#/definitions/stdfile",
+          "default": "inherit"
+        },
+        "stdout": {
+          "description": "Set stdout file type.",
+          "$ref": "#/definitions/stdfile",
+          "default": "inherit"
+        },
+        "stderr": {
+          "description": "Set stderr file type.",
+          "$ref": "#/definitions/stdfile",
+          "default": "inherit"
+        },
+        "additionalProperties": false
+      }
+    },
+    "stdfile": {
+      "type": ["string", "number"],
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": ["inherit", "piped", "null"]
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "env": {
+      "type": "object",
+      "additionalProperties": {
+        "description": "Environment variable.",
+        "type": "string"
+      }
+    },
+    "flags": {
+      "type": ["array", "string", "object"],
+      "anyOf": [
+        {
+          "type": "array",
+          "description": "Flag array.",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string",
+          "description": "Single flag."
+        },
+        {
+          "type": "object",
+          "description": "Key value flag.",
+          "additionalProperties": {
+            "type": ["string", "boolean"]
+          }
+        }
+      ]
+    },
+    "watcher": {
+      "type": "object",
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "interval": {
+          "description": "Number of milliseconds after the last change.",
+          "type": "number",
+          "default": 350
+        },
+        "exts": {
+          "description": "The file extensions that watcher will scan for.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["js", "jsx", "ts", "tsx", "json"]
+        },
+        "match": {
+          "description": "The globs that the watcher will scan for.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["**/*.*"]
+        },
+        "skip": {
+          "description": "The globs that the watcher will skip.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["*/.git/*"]
+        },
+        "legacy": {
+          "description": "Use the legacy file monitoring algorithm. (walking)",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "logger": {
+      "type": "object",
+      "properties": {
+        "quiet": {
+          "description": "Output only errors",
+          "type": "boolean",
+          "default": false
+        },
+        "debug": {
+          "description": "Output debug messages",
+          "type": "boolean",
+          "default": false
+        },
+        "fullscreen": {
+          "description": "Clear screen after every restart.",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/definitions/script_options"
+    },
+    {
+      "properties": {
+        "scripts": {
+          "description": "Contains the definition of all the scripts that can be run.",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/script"
+          }
+        },
+        "watcher": { "$ref": "#/definitions/watcher" },
+        "logger": { "$ref": "#/definitions/logger" }
+      }
+    }
+  ],
+  "required": ["scripts"]
+}

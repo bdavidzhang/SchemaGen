@@ -1,0 +1,117 @@
+{
+  "entities": {
+    "Project": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Project",
+      "type": "object",
+      "description": "Represents a portfolio project for the IT consulting firm.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the project.",
+          "format": "uuid"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the project."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the project."
+        },
+        "client": {
+          "type": "string",
+          "description": "Name of the client for whom the project was done."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the image associated with the project.",
+          "format": "uri"
+        },
+        "serviceIds": {
+          "type": "array",
+          "description": "References to Services. (Relationship: Service N:N Project)",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "client",
+        "imageUrl"
+      ]
+    },
+    "Service": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Service",
+      "type": "object",
+      "description": "Represents a service offered by the IT consulting firm.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the service.",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the service."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/projects/{projectId}",
+        "definition": {
+          "entityName": "Project",
+          "schema": {
+            "$ref": "#/backend/entities/Project"
+          },
+          "description": "Stores portfolio project data. No denormalized authorization fields are required since the collection is publicly readable.",
+          "params": [
+            {
+              "name": "projectId",
+              "description": "Unique identifier for the project."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/services/{serviceId}",
+        "definition": {
+          "entityName": "Service",
+          "schema": {
+            "$ref": "#/backend/entities/Service"
+          },
+          "description": "Stores service data. No denormalized authorization fields are required since the collection is publicly readable.",
+          "params": [
+            {
+              "name": "serviceId",
+              "description": "Unique identifier for the service."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "Given the application's requirements for displaying portfolio projects and services, along with the desire for a secure and scalable Firestore structure adhering to the principle of Authorization Independence, the following structure is recommended:\n\n1.  **/projects/{projectId}**: Stores portfolio project data. This collection is publicly readable to showcase the firm's work. Since authorization isn't based on user roles and any user can view projects, no denormalization is required here. If roles were introduced (e.g., only certain users can see draft projects) then the projects collection would need to be re-evaluated.\n2.  **/services/{serviceId}**: Stores service data. Similar to projects, these are publicly readable.\n\nThis structure achieves Authorization Independence because the read operations do not depend on any parent document's data. The QAPs (Rules are not Filters) are supported because any listing or reading is directly authorized at the collection level without relying on complex filtering within the rules.\n\nThis approach avoids hierarchical dependencies which greatly simplifies the security rules and enables atomic operations."
+  }
+}

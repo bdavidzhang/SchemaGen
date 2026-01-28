@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://theki.club/nbt/nbt.schema.json",
+  "title": "NBT Structure Definition",
+  "description": "JSON file defining a Minecraft entity's NBT tags and their types.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "reference": { "type": "string" },
+    "tags": {
+      "type": "object",
+      "patternProperties": {
+        "^.+$": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "type": { "type": "string", "enum": ["byte", "boolean", "short", "int", "long", "float", "double", "string", "list", "compound"] },
+            "required": { "type": "boolean" },
+            "default": { "type": "string" },
+            "description": { "type": "string" },
+            "example": { "type": "string" },
+            "tags": {
+              "type": "array"
+            }
+          },
+          "required": ["name", "type"]
+        }
+      }
+    }
+  },
+  "required": ["name", "tags"]
+}

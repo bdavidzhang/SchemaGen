@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "relations": [
+    {"rel": "all", "href": "/users"},
+    {"rel": "create", "href": "/users", "method": "post"},
+    {"rel": "favorites", "schema": "/schema/nigiri"},
+    {"rel": "favorites/create", "method": "post"}
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1,
+      "readonly": true
+    },
+    "login": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "\\d{8}T\\d{6}Z",
+      "readonly": true
+    },
+    "_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rel": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string",
+            "optional": true
+          },
+          "method": {
+            "type": "string",
+            "default": "get"
+          },
+          "schema": {
+            "type": "string",
+            "optional": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "additionalProperties": false,
+      "readonly": true
+    }
+  }
+}
+

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "statusCode": {
+      "type": "string"
+    },
+    "statusMessage": {
+      "type": "string"
+    },
+    "caseBinders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "caseNumber": {
+            "type": "string"
+          },
+          "ebinderCase": {
+            "type": "string"
+          },
+          "hoc": {
+            "type": "string"
+          },
+          "receiveDate": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "caseNumber",
+          "ebinderCase",
+          "hoc",
+          "receiveDate"
+        ]
+      }
+    }
+  },
+  "required": [
+    "statusCode",
+    "statusMessage",
+    "caseBinders"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://metasys-server.github.io/schemas/v1/enums/unityXlpStationAlarmEnumSet.schema.json",
+  "title": "unityXlpStationAlarmEnumSet",
+  "description": "Unity XLP Station Alarm",
+  "oneOf": [
+    {
+      "enum": [
+        0,
+        "0"
+      ],
+      "description": "SEQ"
+    },
+    {
+      "enum": [
+        1,
+        "1"
+      ],
+      "description": "PSA"
+    },
+    {
+      "enum": [
+        2,
+        "2"
+      ],
+      "description": "DLQ"
+    },
+    {
+      "enum": [
+        3,
+        "3"
+      ],
+      "description": "DLQ1"
+    },
+    {
+      "enum": [
+        4,
+        "4"
+      ],
+      "description": "NORMAL"
+    },
+    {
+      "enum": [
+        5,
+        "5"
+      ],
+      "description": "FIXED, SEQ"
+    },
+    {
+      "enum": [
+        6,
+        "6"
+      ],
+      "description": "FIXED, PSA"
+    },
+    {
+      "enum": [
+        7,
+        "7"
+      ],
+      "description": "FIXED, DLQ"
+    },
+    {
+      "enum": [
+        8,
+        "8"
+      ],
+      "description": "FIXED, DLQ2"
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

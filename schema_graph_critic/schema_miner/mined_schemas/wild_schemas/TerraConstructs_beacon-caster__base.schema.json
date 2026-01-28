@@ -1,0 +1,2033 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "FnRef": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "Ref": {
+              "$comment": "logicalName",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "Fn::Ref": {
+              "$comment": "logicalName",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "comment": "FnRef"
+    },
+    "IntrinsicExpression": {
+      "$comment": "Intrinsic function token expression",
+      "type": [
+        "string",
+        "object"
+      ],
+      "anyOf": [
+        {
+          "$ref": "#/definitions/FnRef"
+        }
+      ],
+      "comment": "IntrinsicExpression"
+    },
+    "@cdktf.provider-aws.securityGroup.SecurityGroupEgress": {
+      "type": "object",
+      "title": "SecurityGroupEgress",
+      "additionalProperties": false,
+      "properties": {
+        "cidrBlocks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/security_group#cidr_blocks SecurityGroup#cidr_blocks}."
+        },
+        "description": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/security_group#description SecurityGroup#description}."
+        },
+        "fromPort": {
+          "type": "number",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/security_group#from_port SecurityGroup#from_port}."
+        },
+        "ipv6CidrBlocks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/security_group#ipv6_cidr_blocks SecurityGroup#ipv6_cidr_blocks}."
+        },
+        "prefixListIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/security_group#prefix_list_ids SecurityGroup#prefix_list_ids}."
+        },
+        "protocol": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/security_group#protocol SecurityGroup#protocol}."
+        },
+        "securityGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/security_group#security_groups SecurityGroup#security_groups}."
+        },
+        "selfAttribute": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/security_group#self SecurityGroup#self}."
+        },
+        "toPort": {
+          "type": "number",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/security_group#to_port SecurityGroup#to_port}."
+        }
+      },
+      "comment": "@cdktf/provider-aws.securityGroup.SecurityGroupEgress"
+    },
+    "@envtio.base.aws.compute.VpcConfig": {
+      "type": "object",
+      "title": "VpcConfig",
+      "additionalProperties": false,
+      "properties": {
+        "subnetIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/lambda_function#subnet_ids LambdaFunction#subnet_ids}."
+        },
+        "egress": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/@cdktf.provider-aws.securityGroup.SecurityGroupEgress"
+          },
+          "description": "Egress rules, used for created securityGroup if `securityGroupIds` are not provided."
+        },
+        "ipv6AllowedForDualStack": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/lambda_function#ipv6_allowed_for_dual_stack LambdaFunction#ipv6_allowed_for_dual_stack}."
+        },
+        "securityGroupIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/lambda_function#security_group_ids LambdaFunction#security_group_ids}."
+        },
+        "vpcId": {
+          "type": "string",
+          "description": "The VPC ID, required if `securityGroupIds` are not provided."
+        }
+      },
+      "required": [
+        "subnetIds"
+      ],
+      "comment": "@envtio/base.aws.compute.VpcConfig"
+    },
+    "@envtio.base.aws.compute.FunctionProps": {
+      "type": "object",
+      "title": "FunctionProps",
+      "additionalProperties": false,
+      "properties": {
+        "friendlyName": {
+          "type": "string",
+          "description": "The friendly name for beacon resources."
+        },
+        "outputName": {
+          "type": "string",
+          "description": "Optional override for the outputs name."
+        },
+        "registerOutputs": {
+          "type": "boolean",
+          "description": "Whether to register Terraform outputs for this beacon."
+        },
+        "account": {
+          "type": "string",
+          "description": "The AWS account ID this resource belongs to."
+        },
+        "environmentFromArn": {
+          "type": "string",
+          "description": "ARN to deduce region and account from.\n\nThe ARN is parsed and the account and region are taken from the ARN.\nThis should be used for imported resources.\n\nCannot be supplied together with either `account` or `region`."
+        },
+        "region": {
+          "type": "string",
+          "description": "The AWS region this resource belongs to."
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The environment variables to be passed to the Lambda function."
+        },
+        "layers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Layers for the Lambda."
+        },
+        "logRetentionInDays": {
+          "type": "number",
+          "description": "The log retention period in days.\n\nDefaults to 7."
+        },
+        "memorySize": {
+          "type": "number",
+          "description": "The memory limit in MB.\n\nDefaults to 512."
+        },
+        "networkConfig": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/@envtio.base.aws.compute.VpcConfig",
+              "description": "Config for network connectivity to AWS resources in a VPC, specify a list of subnet, and optionally security groups, in the VPC.\n\nWhen you connect a function to a VPC, it can only access resources and the internet through that VPC.\n\nSee [VPC Settings](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html)."
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ],
+              "description": "Config for network connectivity to AWS resources in a VPC, specify a list of subnet, and optionally security groups, in the VPC.\n\nWhen you connect a function to a VPC, it can only access resources and the internet through that VPC.\n\nSee [VPC Settings](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html)."
+            }
+          ]
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tags to apply to the Lambda function."
+        },
+        "timeout": {
+          "type": "number",
+          "description": "The timout in seconds.\n\nDefaults to 15."
+        }
+      },
+      "comment": "@envtio/base.aws.compute.FunctionProps"
+    },
+    "Call": {
+      "anyOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2
+        }
+      ],
+      "comment": "Call"
+    },
+    "DependsOn": {
+      "additionalProperties": false,
+      "type": [
+        "array",
+        "string"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "comment": "DependsOn"
+    },
+    "Override": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "ChildConstructPath": {
+          "type": "string",
+          "pattern": "[a-zA-Z0-9\\-\\._]+"
+        },
+        "RemoveResource": {
+          "type": "boolean"
+        },
+        "Delete": {
+          "type": "object",
+          "properties": {
+            "Path": {
+              "type": "string",
+              "pattern": "[a-zA-Z0-9\\-\\._]+"
+            }
+          },
+          "required": [
+            "Path"
+          ]
+        },
+        "Update": {
+          "type": "object",
+          "properties": {
+            "Path": {
+              "type": "string",
+              "pattern": "[a-zA-Z0-9\\-\\._]+"
+            },
+            "Value": {}
+          },
+          "required": [
+            "Path"
+          ]
+        }
+      },
+      "required": [
+        "ChildConstructPath"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "Delete"
+          ]
+        },
+        {
+          "required": [
+            "Update"
+          ]
+        },
+        {
+          "required": [
+            "RemoveResource"
+          ]
+        }
+      ],
+      "comment": "Override"
+    },
+    "@envtio.base.aws.compute.LambdaFunction": {
+      "additionalProperties": false,
+      "properties": {
+        "Properties": {
+          "$ref": "#/definitions/@envtio.base.aws.compute.FunctionProps"
+        },
+        "Call": {
+          "$ref": "#/definitions/Call"
+        },
+        "Type": {
+          "enum": [
+            "@envtio/base.aws.compute.LambdaFunction"
+          ],
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array"
+        },
+        "DependsOn": {
+          "$ref": "#/definitions/DependsOn"
+        },
+        "Overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Override"
+          }
+        }
+      },
+      "required": [
+        "Type"
+      ],
+      "comment": "@envtio/base.aws.compute.LambdaFunction"
+    },
+    "@envtio.base.aws.compute.NodejsFunctionProps": {
+      "type": "object",
+      "title": "NodejsFunctionProps",
+      "additionalProperties": false,
+      "properties": {
+        "friendlyName": {
+          "type": "string",
+          "description": "The friendly name for beacon resources."
+        },
+        "outputName": {
+          "type": "string",
+          "description": "Optional override for the outputs name."
+        },
+        "registerOutputs": {
+          "type": "boolean",
+          "description": "Whether to register Terraform outputs for this beacon."
+        },
+        "account": {
+          "type": "string",
+          "description": "The AWS account ID this resource belongs to."
+        },
+        "environmentFromArn": {
+          "type": "string",
+          "description": "ARN to deduce region and account from.\n\nThe ARN is parsed and the account and region are taken from the ARN.\nThis should be used for imported resources.\n\nCannot be supplied together with either `account` or `region`."
+        },
+        "region": {
+          "type": "string",
+          "description": "The AWS region this resource belongs to."
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The environment variables to be passed to the Lambda function."
+        },
+        "layers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Layers for the Lambda."
+        },
+        "logRetentionInDays": {
+          "type": "number",
+          "description": "The log retention period in days.\n\nDefaults to 7."
+        },
+        "memorySize": {
+          "type": "number",
+          "description": "The memory limit in MB.\n\nDefaults to 512."
+        },
+        "networkConfig": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/@envtio.base.aws.compute.VpcConfig",
+              "description": "Config for network connectivity to AWS resources in a VPC, specify a list of subnet, and optionally security groups, in the VPC.\n\nWhen you connect a function to a VPC, it can only access resources and the internet through that VPC.\n\nSee [VPC Settings](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html)."
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ],
+              "description": "Config for network connectivity to AWS resources in a VPC, specify a list of subnet, and optionally security groups, in the VPC.\n\nWhen you connect a function to a VPC, it can only access resources and the internet through that VPC.\n\nSee [VPC Settings](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html)."
+            }
+          ]
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tags to apply to the Lambda function."
+        },
+        "timeout": {
+          "type": "number",
+          "description": "The timout in seconds.\n\nDefaults to 15."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path to the Handler entry point script, relative to the Spec file.\n\nThis script will be bundled using\n[esbuild-wasm](https://esbuild.github.io/getting-started/#wasm)."
+        },
+        "external": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "You can mark a file or a package as external to exclude it from your build.\n\nInstead of being bundled, the import will be preserved (using\nrequire for the iife and cjs formats and using import for the esm\nformat) and will be evaluated at run time instead."
+        },
+        "runtime": {
+          "type": "string",
+          "description": "The NodeJS runtime for the Lambda function."
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "comment": "@envtio/base.aws.compute.NodejsFunctionProps"
+    },
+    "@envtio.base.aws.compute.NodejsFunction": {
+      "additionalProperties": false,
+      "properties": {
+        "Properties": {
+          "$ref": "#/definitions/@envtio.base.aws.compute.NodejsFunctionProps"
+        },
+        "Call": {
+          "$ref": "#/definitions/Call"
+        },
+        "Type": {
+          "enum": [
+            "@envtio/base.aws.compute.NodejsFunction"
+          ],
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array"
+        },
+        "DependsOn": {
+          "$ref": "#/definitions/DependsOn"
+        },
+        "Overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Override"
+          }
+        }
+      },
+      "required": [
+        "Type"
+      ],
+      "comment": "@envtio/base.aws.compute.NodejsFunction"
+    },
+    "@envtio.base.aws.network.PrivateSubnetProps": {
+      "type": "object",
+      "title": "PrivateSubnetProps",
+      "additionalProperties": false,
+      "properties": {
+        "friendlyName": {
+          "type": "string",
+          "description": "The friendly name for beacon resources."
+        },
+        "outputName": {
+          "type": "string",
+          "description": "Optional override for the outputs name."
+        },
+        "registerOutputs": {
+          "type": "boolean",
+          "description": "Whether to register Terraform outputs for this beacon."
+        },
+        "account": {
+          "type": "string",
+          "description": "The AWS account ID this resource belongs to."
+        },
+        "environmentFromArn": {
+          "type": "string",
+          "description": "ARN to deduce region and account from.\n\nThe ARN is parsed and the account and region are taken from the ARN.\nThis should be used for imported resources.\n\nCannot be supplied together with either `account` or `region`."
+        },
+        "region": {
+          "type": "string",
+          "description": "The AWS region this resource belongs to."
+        },
+        "availabilityZone": {
+          "type": "string",
+          "description": "The availability zone for the subnet."
+        },
+        "ipv4CidrBlock": {
+          "type": "string",
+          "description": "The IPv4 CIDR block for the subnet."
+        },
+        "vpc": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/FnRef"
+            }
+          ],
+          "description": "The VPC to create the subnet into."
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional tags for the subnet."
+        },
+        "routeTable": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/FnRef"
+            }
+          ]
+        }
+      },
+      "required": [
+        "availabilityZone",
+        "ipv4CidrBlock",
+        "vpc",
+        "routeTable"
+      ],
+      "comment": "@envtio/base.aws.network.PrivateSubnetProps"
+    },
+    "@envtio.base.aws.network.DataSubnet": {
+      "additionalProperties": false,
+      "properties": {
+        "Properties": {
+          "$ref": "#/definitions/@envtio.base.aws.network.PrivateSubnetProps"
+        },
+        "Call": {
+          "$ref": "#/definitions/Call"
+        },
+        "Type": {
+          "enum": [
+            "@envtio/base.aws.network.DataSubnet"
+          ],
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array"
+        },
+        "DependsOn": {
+          "$ref": "#/definitions/DependsOn"
+        },
+        "Overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Override"
+          }
+        }
+      },
+      "required": [
+        "Type"
+      ],
+      "comment": "@envtio/base.aws.network.DataSubnet"
+    },
+    "@envtio.base.aws.AwsEnvironment": {
+      "type": "object",
+      "title": "AwsEnvironment",
+      "additionalProperties": false,
+      "properties": {
+        "account": {
+          "type": "string",
+          "description": "The AWS account ID that this resource belongs to."
+        },
+        "partition": {
+          "type": "string",
+          "description": "The AWS partition that this resource belongs to."
+        },
+        "region": {
+          "type": "string",
+          "description": "The AWS region that this resource belongs to."
+        }
+      },
+      "required": [
+        "account",
+        "partition",
+        "region"
+      ],
+      "comment": "@envtio/base.aws.AwsEnvironment"
+    },
+    "@envtio.base.aws.network.ISubnet": {
+      "type": "object",
+      "title": "ISubnet",
+      "additionalProperties": false,
+      "properties": {
+        "environmentName": {
+          "type": "string",
+          "description": "Environment Name passed in from the CLI."
+        },
+        "gridUUID": {
+          "type": "string"
+        },
+        "outputs": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "env": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/@envtio.base.aws.AwsEnvironment",
+              "description": "The environment this resource belongs to.\n\nFor resources that are created and managed by the CDKTF\n(generally, those created by creating new class instances like Environment, EcsDeployment, etc.),\nthis is always the same as the environment of the stack they belong to;\nhowever, for imported resources\n(those obtained from static methods like fromRoleArn, fromBucketName, etc.),\nthat might be different than the stack they were imported into."
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ],
+              "description": "The environment this resource belongs to.\n\nFor resources that are created and managed by the CDKTF\n(generally, those created by creating new class instances like Environment, EcsDeployment, etc.),\nthis is always the same as the environment of the stack they belong to;\nhowever, for imported resources\n(those obtained from static methods like fromRoleArn, fromBucketName, etc.),\nthat might be different than the stack they were imported into."
+            }
+          ]
+        },
+        "stack": {
+          "anyOf": [
+            {
+              "@envtio/base.aws.AwsSpec.ofAwsBeacon": {}
+            },
+            {
+              "$ref": "#/definitions/FnRef"
+            }
+          ],
+          "description": "The stack into which this resource is contructed by the environment toolkit."
+        },
+        "availabilityZone": {
+          "type": "string",
+          "description": "The availability zone for the subnet."
+        },
+        "ipv4CidrBlock": {
+          "type": "string",
+          "description": "The IPv4 CIDR block for the subnet."
+        },
+        "subnetId": {
+          "type": "string",
+          "description": "The subnet ID of the subnet."
+        },
+        "vpcId": {
+          "type": "string",
+          "description": "The VPC ID of the subnet."
+        }
+      },
+      "required": [
+        "environmentName",
+        "gridUUID",
+        "outputs",
+        "env",
+        "stack",
+        "availabilityZone",
+        "ipv4CidrBlock",
+        "subnetId",
+        "vpcId"
+      ],
+      "comment": "@envtio/base.aws.network.ISubnet"
+    },
+    "@envtio.base.aws.network.SubnetGroupProps": {
+      "type": "object",
+      "title": "SubnetGroupProps",
+      "additionalProperties": false,
+      "properties": {
+        "friendlyName": {
+          "type": "string",
+          "description": "The friendly name for beacon resources."
+        },
+        "outputName": {
+          "type": "string",
+          "description": "Optional override for the outputs name."
+        },
+        "registerOutputs": {
+          "type": "boolean",
+          "description": "Whether to register Terraform outputs for this beacon."
+        },
+        "account": {
+          "type": "string",
+          "description": "The AWS account ID this resource belongs to."
+        },
+        "environmentFromArn": {
+          "type": "string",
+          "description": "ARN to deduce region and account from.\n\nThe ARN is parsed and the account and region are taken from the ARN.\nThis should be used for imported resources.\n\nCannot be supplied together with either `account` or `region`."
+        },
+        "region": {
+          "type": "string",
+          "description": "The AWS region this resource belongs to."
+        },
+        "subnets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/@envtio.base.aws.network.ISubnet"
+          }
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "subnets"
+      ],
+      "comment": "@envtio/base.aws.network.SubnetGroupProps"
+    },
+    "@envtio.base.aws.network.DbSubnetGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "Properties": {
+          "$ref": "#/definitions/@envtio.base.aws.network.SubnetGroupProps"
+        },
+        "Call": {
+          "$ref": "#/definitions/Call"
+        },
+        "Type": {
+          "enum": [
+            "@envtio/base.aws.network.DbSubnetGroup"
+          ],
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array"
+        },
+        "DependsOn": {
+          "$ref": "#/definitions/DependsOn"
+        },
+        "Overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Override"
+          }
+        }
+      },
+      "required": [
+        "Type"
+      ],
+      "comment": "@envtio/base.aws.network.DbSubnetGroup"
+    },
+    "@envtio.base.aws.network.ElastiCacheSubnetGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "Properties": {
+          "$ref": "#/definitions/@envtio.base.aws.network.SubnetGroupProps"
+        },
+        "Call": {
+          "$ref": "#/definitions/Call"
+        },
+        "Type": {
+          "enum": [
+            "@envtio/base.aws.network.ElastiCacheSubnetGroup"
+          ],
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array"
+        },
+        "DependsOn": {
+          "$ref": "#/definitions/DependsOn"
+        },
+        "Overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Override"
+          }
+        }
+      },
+      "required": [
+        "Type"
+      ],
+      "comment": "@envtio/base.aws.network.ElastiCacheSubnetGroup"
+    },
+    "@envtio.base.aws.network.PrivateSubnet": {
+      "additionalProperties": false,
+      "properties": {
+        "Properties": {
+          "$ref": "#/definitions/@envtio.base.aws.network.PrivateSubnetProps"
+        },
+        "Call": {
+          "$ref": "#/definitions/Call"
+        },
+        "Type": {
+          "enum": [
+            "@envtio/base.aws.network.PrivateSubnet"
+          ],
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array"
+        },
+        "DependsOn": {
+          "$ref": "#/definitions/DependsOn"
+        },
+        "Overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Override"
+          }
+        }
+      },
+      "required": [
+        "Type"
+      ],
+      "comment": "@envtio/base.aws.network.PrivateSubnet"
+    },
+    "@envtio.base.aws.network.PublicSubnetProps": {
+      "type": "object",
+      "title": "PublicSubnetProps",
+      "additionalProperties": false,
+      "properties": {
+        "friendlyName": {
+          "type": "string",
+          "description": "The friendly name for beacon resources."
+        },
+        "outputName": {
+          "type": "string",
+          "description": "Optional override for the outputs name."
+        },
+        "registerOutputs": {
+          "type": "boolean",
+          "description": "Whether to register Terraform outputs for this beacon."
+        },
+        "account": {
+          "type": "string",
+          "description": "The AWS account ID this resource belongs to."
+        },
+        "environmentFromArn": {
+          "type": "string",
+          "description": "ARN to deduce region and account from.\n\nThe ARN is parsed and the account and region are taken from the ARN.\nThis should be used for imported resources.\n\nCannot be supplied together with either `account` or `region`."
+        },
+        "region": {
+          "type": "string",
+          "description": "The AWS region this resource belongs to."
+        },
+        "availabilityZone": {
+          "type": "string",
+          "description": "The availability zone for the subnet."
+        },
+        "ipv4CidrBlock": {
+          "type": "string",
+          "description": "The IPv4 CIDR block for the subnet."
+        },
+        "vpc": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/FnRef"
+            }
+          ],
+          "description": "The VPC to create the subnet into."
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional tags for the subnet."
+        },
+        "defaultRouteTableId": {
+          "type": "string",
+          "description": "The Route Table ID to associate with the subnet."
+        },
+        "createNatGateway": {
+          "type": "boolean",
+          "description": "Whether to create a NAT gateway in the subnet."
+        },
+        "eipAllocationId": {
+          "type": "string",
+          "description": "The EIP allocation ID to use for the NAT gateway."
+        }
+      },
+      "required": [
+        "availabilityZone",
+        "ipv4CidrBlock",
+        "vpc",
+        "defaultRouteTableId"
+      ],
+      "comment": "@envtio/base.aws.network.PublicSubnetProps"
+    },
+    "@envtio.base.aws.network.PublicSubnet": {
+      "additionalProperties": false,
+      "properties": {
+        "Properties": {
+          "$ref": "#/definitions/@envtio.base.aws.network.PublicSubnetProps"
+        },
+        "Call": {
+          "$ref": "#/definitions/Call"
+        },
+        "Type": {
+          "enum": [
+            "@envtio/base.aws.network.PublicSubnet"
+          ],
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array"
+        },
+        "DependsOn": {
+          "$ref": "#/definitions/DependsOn"
+        },
+        "Overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Override"
+          }
+        }
+      },
+      "required": [
+        "Type"
+      ],
+      "comment": "@envtio/base.aws.network.PublicSubnet"
+    },
+    "@envtio.base.aws.network.SimpleIPv4Props": {
+      "type": "object",
+      "title": "SimpleIPv4Props",
+      "additionalProperties": false,
+      "properties": {
+        "friendlyName": {
+          "type": "string",
+          "description": "The friendly name for beacon resources."
+        },
+        "outputName": {
+          "type": "string",
+          "description": "Optional override for the outputs name."
+        },
+        "registerOutputs": {
+          "type": "boolean",
+          "description": "Whether to register Terraform outputs for this beacon."
+        },
+        "account": {
+          "type": "string",
+          "description": "The AWS account ID this resource belongs to."
+        },
+        "environmentFromArn": {
+          "type": "string",
+          "description": "ARN to deduce region and account from.\n\nThe ARN is parsed and the account and region are taken from the ARN.\nThis should be used for imported resources.\n\nCannot be supplied together with either `account` or `region`."
+        },
+        "region": {
+          "type": "string",
+          "description": "The AWS region this resource belongs to."
+        },
+        "internalDomain": {
+          "type": "string",
+          "description": "Provides a Service Discovery Private DNS Namespace resource."
+        },
+        "ipv4CidrBlock": {
+          "type": "string",
+          "description": "The IPv4 CIDR block for the VPC."
+        },
+        "azCount": {
+          "type": "number",
+          "description": "The number of availability zones to use."
+        },
+        "natGatewayOption": {
+          "enum": [
+            "SINGLE_NAT_GATEWAY",
+            "NAT_PER_AVAILABILITY_ZONE"
+          ],
+          "description": "The NAT Gateway set up."
+        }
+      },
+      "required": [
+        "internalDomain",
+        "ipv4CidrBlock"
+      ],
+      "comment": "@envtio/base.aws.network.SimpleIPv4Props"
+    },
+    "@envtio.base.aws.network.SimpleIPv4Vpc": {
+      "additionalProperties": false,
+      "properties": {
+        "Properties": {
+          "$ref": "#/definitions/@envtio.base.aws.network.SimpleIPv4Props"
+        },
+        "Call": {
+          "$ref": "#/definitions/Call"
+        },
+        "Type": {
+          "enum": [
+            "@envtio/base.aws.network.SimpleIPv4Vpc"
+          ],
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array"
+        },
+        "DependsOn": {
+          "$ref": "#/definitions/DependsOn"
+        },
+        "Overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Override"
+          }
+        }
+      },
+      "required": [
+        "Type"
+      ],
+      "comment": "@envtio/base.aws.network.SimpleIPv4Vpc"
+    },
+    "@envtio.base.aws.staticsite.CorsRuleConfig": {
+      "type": "object",
+      "title": "CorsRuleConfig",
+      "additionalProperties": false,
+      "properties": {
+        "allowedMethods": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "GET",
+              "PUT",
+              "HEAD",
+              "POST",
+              "DELETE"
+            ]
+          },
+          "description": "Set of HTTP methods that you allow the origin to execute."
+        },
+        "allowedOrigins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_cors_configuration#allowed_origins S3BucketCorsConfiguration#allowed_origins}."
+        },
+        "allowedHeaders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_cors_configuration#allowed_headers S3BucketCorsConfiguration#allowed_headers}."
+        },
+        "exposeHeaders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_cors_configuration#expose_headers S3BucketCorsConfiguration#expose_headers}."
+        },
+        "id": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_cors_configuration#id S3BucketCorsConfiguration#id}. Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2. If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable."
+        },
+        "maxAgeSeconds": {
+          "type": "number",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_cors_configuration#max_age_seconds S3BucketCorsConfiguration#max_age_seconds}."
+        }
+      },
+      "required": [
+        "allowedMethods",
+        "allowedOrigins"
+      ],
+      "comment": "@envtio/base.aws.staticsite.CorsRuleConfig"
+    },
+    "cdktf.SSHProvisionerConnection": {
+      "type": "object",
+      "title": "SSHProvisionerConnection",
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "The address of the resource to connect to."
+        },
+        "type": {
+          "type": "string",
+          "description": "The connection type.\n\nValid values are \"ssh\" and \"winrm\".\nProvisioners typically assume that the remote system runs Microsoft Windows when using WinRM.\nBehaviors based on the SSH target_platform will force Windows-specific behavior for WinRM, unless otherwise specified."
+        },
+        "agent": {
+          "type": "string",
+          "description": "Set to false to disable using ssh-agent to authenticate.\n\nOn Windows the only supported SSH authentication agent is Pageant."
+        },
+        "agentIdentity": {
+          "type": "string",
+          "description": "The preferred identity from the ssh agent for authentication."
+        },
+        "bastionCertificate": {
+          "type": "string",
+          "description": "The contents of a signed CA Certificate.\n\nThe certificate argument must be used in conjunction with a bastion_private_key.\nThese can be loaded from a file on disk using the the file function."
+        },
+        "bastionHost": {
+          "type": "string",
+          "description": "Setting this enables the bastion Host connection.\n\nThe provisioner will connect to bastion_host first, and then connect from there to host."
+        },
+        "bastionHostKey": {
+          "type": "string",
+          "description": "The public key from the remote host or the signing CA, used to verify the host connection."
+        },
+        "bastionPassword": {
+          "type": "string",
+          "description": "The password to use for the bastion host."
+        },
+        "bastionPort": {
+          "type": "number",
+          "description": "The port to use connect to the bastion host."
+        },
+        "bastionPrivateKey": {
+          "type": "string",
+          "description": "The contents of an SSH key file to use for the bastion host.\n\nThese can be loaded from a file on disk using the file function."
+        },
+        "bastionUser": {
+          "type": "string",
+          "description": "The user for the connection to the bastion host."
+        },
+        "certificate": {
+          "type": "string",
+          "description": "The contents of a signed CA Certificate.\n\nThe certificate argument must be used in conjunction with a private_key.\nThese can be loaded from a file on disk using the the file function."
+        },
+        "hostKey": {
+          "type": "string",
+          "description": "The public key from the remote host or the signing CA, used to verify the connection."
+        },
+        "password": {
+          "type": "string",
+          "description": "The password to use for the connection."
+        },
+        "port": {
+          "type": "number",
+          "description": "The port to connect to."
+        },
+        "privateKey": {
+          "type": "string",
+          "description": "The contents of an SSH key to use for the connection.\n\nThese can be loaded from a file on disk using the file function.\nThis takes preference over password if provided."
+        },
+        "proxyHost": {
+          "type": "string",
+          "description": "Setting this enables the SSH over HTTP connection.\n\nThis host will be connected to first, and then the host or bastion_host connection will be made from there."
+        },
+        "proxyPort": {
+          "type": "number",
+          "description": "The port to use connect to the proxy host."
+        },
+        "proxyScheme": {
+          "type": "string",
+          "description": "The ssh connection also supports the following fields to facilitate connections by SSH over HTTP proxy."
+        },
+        "proxyUserName": {
+          "type": "string",
+          "description": "The username to use connect to the private proxy host.\n\nThis argument should be specified only if authentication is required for the HTTP Proxy server."
+        },
+        "proxyUserPassword": {
+          "type": "string",
+          "description": "The password to use connect to the private proxy host.\n\nThis argument should be specified only if authentication is required for the HTTP Proxy server."
+        },
+        "scriptPath": {
+          "type": "string",
+          "description": "The path used to copy scripts meant for remote execution.\n\nRefer to {@link https://developer.hashicorp.com/terraform/language/resources/provisioners/connection#how-provisioners-execute-remote-scripts How Provisioners Execute Remote Scripts below for more details}"
+        },
+        "targetPlatform": {
+          "type": "string",
+          "description": "The target platform to connect to.\n\nValid values are \"windows\" and \"unix\".\nIf the platform is set to windows, the default script_path is c:\\windows\\temp\\terraform_%RAND%.cmd, assuming the SSH default shell is cmd.exe.\nIf the SSH default shell is PowerShell, set script_path to \"c:/windows/temp/terraform_%RAND%.ps1\""
+        },
+        "timeout": {
+          "type": "string",
+          "description": "The timeout to wait for the connection to become available.\n\nShould be provided as a string (e.g., \"30s\" or \"5m\".)"
+        },
+        "user": {
+          "type": "string",
+          "description": "The user to use for the connection."
+        }
+      },
+      "required": [
+        "host",
+        "type"
+      ],
+      "comment": "cdktf.SSHProvisionerConnection"
+    },
+    "cdktf.WinrmProvisionerConnection": {
+      "type": "object",
+      "title": "WinrmProvisionerConnection",
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "The address of the resource to connect to."
+        },
+        "type": {
+          "type": "string",
+          "description": "The connection type.\n\nValid values are \"ssh\" and \"winrm\".\nProvisioners typically assume that the remote system runs Microsoft Windows when using WinRM.\nBehaviors based on the SSH target_platform will force Windows-specific behavior for WinRM, unless otherwise specified."
+        },
+        "cacert": {
+          "type": "string",
+          "description": "The CA certificate to validate against."
+        },
+        "https": {
+          "type": "boolean",
+          "description": "Set to true to connect using HTTPS instead of HTTP."
+        },
+        "insecure": {
+          "type": "boolean",
+          "description": "Set to true to skip validating the HTTPS certificate chain."
+        },
+        "password": {
+          "type": "string",
+          "description": "The password to use for the connection."
+        },
+        "port": {
+          "type": "number",
+          "description": "The port to connect to."
+        },
+        "scriptPath": {
+          "type": "string",
+          "description": "The path used to copy scripts meant for remote execution.\n\nRefer to {@link https://developer.hashicorp.com/terraform/language/resources/provisioners/connection#how-provisioners-execute-remote-scripts How Provisioners Execute Remote Scripts below for more details}"
+        },
+        "timeout": {
+          "type": "string",
+          "description": "The timeout to wait for the connection to become available.\n\nShould be provided as a string (e.g., \"30s\" or \"5m\".)"
+        },
+        "useNtlm": {
+          "type": "boolean",
+          "description": "Set to true to use NTLM authentication rather than default (basic authentication), removing the requirement for basic authentication to be enabled within the target guest.\n\nRefer to Authentication for Remote Connections in the Windows App Development documentation for more details."
+        },
+        "user": {
+          "type": "string",
+          "description": "The user to use for the connection."
+        }
+      },
+      "required": [
+        "host",
+        "type"
+      ],
+      "comment": "cdktf.WinrmProvisionerConnection"
+    },
+    "cdktf.TerraformCount.of": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cdktf.TerraformCount.of": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/IntrinsicExpression"
+                    }
+                  ]
+                }
+              ],
+              "maxItems": 1
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/IntrinsicExpression"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "comment": "cdktf.TerraformCount.of"
+    },
+    "cdktf.TerraformCount": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/cdktf.TerraformCount.of"
+        },
+        {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "Type": {
+              "type": "string",
+              "enum": [
+                "cdktf.TerraformCount"
+              ]
+            },
+            "Call": {
+              "$ref": "#/definitions/Call"
+            }
+          }
+        }
+      ],
+      "comment": "cdktf.TerraformCount"
+    },
+    "cdktf.ITerraformDependable": {
+      "type": "object",
+      "title": "ITerraformDependable",
+      "additionalProperties": false,
+      "properties": {
+        "fqn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fqn"
+      ],
+      "comment": "cdktf.ITerraformDependable"
+    },
+    "cdktf.ITerraformIterator": {
+      "type": "object",
+      "title": "ITerraformIterator",
+      "additionalProperties": false,
+      "properties": {},
+      "comment": "cdktf.ITerraformIterator"
+    },
+    "cdktf.Postcondition": {
+      "type": "object",
+      "title": "Postcondition",
+      "additionalProperties": false,
+      "properties": {
+        "condition": {
+          "description": "This is a boolean expression that should return true if the intended assumption or guarantee is fulfilled or false if it does not."
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "This contains the text that Terraform will include as part of error messages when it detects an unmet condition."
+        }
+      },
+      "required": [
+        "condition",
+        "errorMessage"
+      ],
+      "comment": "cdktf.Postcondition"
+    },
+    "cdktf.Precondition": {
+      "type": "object",
+      "title": "Precondition",
+      "additionalProperties": false,
+      "properties": {
+        "condition": {
+          "description": "This is a boolean expression that should return true if the intended assumption or guarantee is fulfilled or false if it does not."
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "This contains the text that Terraform will include as part of error messages when it detects an unmet condition."
+        }
+      },
+      "required": [
+        "condition",
+        "errorMessage"
+      ],
+      "comment": "cdktf.Precondition"
+    },
+    "cdktf.TerraformResourceLifecycle": {
+      "type": "object",
+      "title": "TerraformResourceLifecycle",
+      "additionalProperties": false,
+      "properties": {
+        "createBeforeDestroy": {
+          "type": "boolean"
+        },
+        "ignoreChanges": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "postcondition": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cdktf.Postcondition"
+          }
+        },
+        "precondition": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cdktf.Precondition"
+          }
+        },
+        "preventDestroy": {
+          "type": "boolean"
+        },
+        "replaceTriggeredBy": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/definitions/cdktf.ITerraformDependable"
+              }
+            ]
+          }
+        }
+      },
+      "comment": "cdktf.TerraformResourceLifecycle"
+    },
+    "cdktf.FileProvisioner": {
+      "type": "object",
+      "title": "FileProvisioner",
+      "additionalProperties": false,
+      "properties": {
+        "destination": {
+          "type": "string",
+          "description": "The source file or directory.\n\nSpecify it either relative to the current working directory or as an absolute path.\nThis argument cannot be combined with content."
+        },
+        "type": {
+          "type": "string"
+        },
+        "connection": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/cdktf.SSHProvisionerConnection"
+            },
+            {
+              "$ref": "#/definitions/cdktf.WinrmProvisionerConnection"
+            }
+          ],
+          "description": "Most provisioners require access to the remote resource via SSH or WinRM and expect a nested connection block with details about how to connect."
+        },
+        "content": {
+          "type": "string",
+          "description": "The destination path to write to on the remote system.\n\nSee Destination Paths below for more information."
+        },
+        "source": {
+          "type": "string",
+          "description": "The direct content to copy on the destination.\n\nIf destination is a file, the content will be written on that file.\nIn case of a directory, a file named tf-file-content is created inside that directory.\nWe recommend using a file as the destination when using content.\nThis argument cannot be combined with source."
+        }
+      },
+      "required": [
+        "destination",
+        "type"
+      ],
+      "comment": "cdktf.FileProvisioner"
+    },
+    "cdktf.LocalExecProvisioner": {
+      "type": "object",
+      "title": "LocalExecProvisioner",
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "type": "string",
+          "description": "This is the command to execute.\n\nIt can be provided as a relative path to the current working directory or as an absolute path.\nIt is evaluated in a shell, and can use environment variables or Terraform variables."
+        },
+        "type": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A record of key value pairs representing the environment of the executed command.\n\nIt inherits the current process environment."
+        },
+        "interpreter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "If provided, this is a list of interpreter arguments used to execute the command.\n\nThe first argument is the interpreter itself.\nIt can be provided as a relative path to the current working directory or as an absolute path\nThe remaining arguments are appended prior to the command.\nThis allows building command lines of the form \"/bin/bash\", \"-c\", \"echo foo\".\nIf interpreter is unspecified, sensible defaults will be chosen based on the system OS."
+        },
+        "when": {
+          "type": "string",
+          "description": "If provided, specifies when Terraform will execute the command.\n\nFor example, when = destroy specifies that the provisioner will run when the associated resource is destroyed"
+        },
+        "workingDir": {
+          "type": "string",
+          "description": "If provided, specifies the working directory where command will be executed.\n\nIt can be provided as a relative path to the current working directory or as an absolute path.\nThe directory must exist."
+        }
+      },
+      "required": [
+        "command",
+        "type"
+      ],
+      "comment": "cdktf.LocalExecProvisioner"
+    },
+    "cdktf.RemoteExecProvisioner": {
+      "type": "object",
+      "title": "RemoteExecProvisioner",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "connection": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/cdktf.SSHProvisionerConnection"
+            },
+            {
+              "$ref": "#/definitions/cdktf.WinrmProvisionerConnection"
+            }
+          ],
+          "description": "Most provisioners require access to the remote resource via SSH or WinRM and expect a nested connection block with details about how to connect.\n\nA connection must be provided here or in the parent resource."
+        },
+        "inline": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "This is a list of command strings.\n\nThey are executed in the order they are provided.\nThis cannot be provided with script or scripts."
+        },
+        "script": {
+          "type": "string",
+          "description": "This is a path (relative or absolute) to a local script that will be copied to the remote resource and then executed.\n\nThis cannot be provided with inline or scripts."
+        },
+        "scripts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "This is a list of paths (relative or absolute) to local scripts that will be copied to the remote resource and then executed.\n\nThey are executed in the order they are provided.\nThis cannot be provided with inline or script."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "comment": "cdktf.RemoteExecProvisioner"
+    },
+    "@envtio.base.aws.staticsite.CorsConfig": {
+      "type": "object",
+      "title": "CorsConfig",
+      "additionalProperties": false,
+      "properties": {
+        "corsRule": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/@envtio.base.aws.staticsite.CorsRuleConfig"
+              }
+            }
+          ],
+          "description": "A set of origins and methods (cross-origin access that you want to allow).\n\nDocs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_cors_configuration#cors_rule S3BucketCorsConfiguration#cors_rule}"
+        },
+        "connection": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/cdktf.SSHProvisionerConnection"
+            },
+            {
+              "$ref": "#/definitions/cdktf.WinrmProvisionerConnection"
+            }
+          ]
+        },
+        "count": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/cdktf.TerraformCount"
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cdktf.ITerraformDependable"
+          }
+        },
+        "expectedBucketOwner": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_cors_configuration#expected_bucket_owner S3BucketCorsConfiguration#expected_bucket_owner}."
+        },
+        "forEach": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/cdktf.ITerraformIterator"
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ]
+            }
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_cors_configuration#id S3BucketCorsConfiguration#id}. Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2. If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable."
+        },
+        "lifecycle": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/cdktf.TerraformResourceLifecycle"
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ]
+            }
+          ]
+        },
+        "provider": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/FnRef"
+            }
+          ]
+        },
+        "provisioners": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/cdktf.FileProvisioner"
+              },
+              {
+                "$ref": "#/definitions/cdktf.LocalExecProvisioner"
+              },
+              {
+                "$ref": "#/definitions/cdktf.RemoteExecProvisioner"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "corsRule"
+      ],
+      "comment": "@envtio/base.aws.staticsite.CorsConfig"
+    },
+    "@cdktf.provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationErrorDocument": {
+      "type": "object",
+      "title": "S3BucketWebsiteConfigurationErrorDocument",
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#key S3BucketWebsiteConfiguration#key}."
+        }
+      },
+      "required": [
+        "key"
+      ],
+      "comment": "@cdktf/provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationErrorDocument"
+    },
+    "@cdktf.provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationRoutingRuleRedirect": {
+      "type": "object",
+      "title": "S3BucketWebsiteConfigurationRoutingRuleRedirect",
+      "additionalProperties": false,
+      "properties": {
+        "hostName": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#host_name S3BucketWebsiteConfiguration#host_name}."
+        },
+        "httpRedirectCode": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#http_redirect_code S3BucketWebsiteConfiguration#http_redirect_code}."
+        },
+        "protocol": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#protocol S3BucketWebsiteConfiguration#protocol}."
+        },
+        "replaceKeyPrefixWith": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#replace_key_prefix_with S3BucketWebsiteConfiguration#replace_key_prefix_with}."
+        },
+        "replaceKeyWith": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#replace_key_with S3BucketWebsiteConfiguration#replace_key_with}."
+        }
+      },
+      "comment": "@cdktf/provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationRoutingRuleRedirect"
+    },
+    "@cdktf.provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationRoutingRuleCondition": {
+      "type": "object",
+      "title": "S3BucketWebsiteConfigurationRoutingRuleCondition",
+      "additionalProperties": false,
+      "properties": {
+        "httpErrorCodeReturnedEquals": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#http_error_code_returned_equals S3BucketWebsiteConfiguration#http_error_code_returned_equals}."
+        },
+        "keyPrefixEquals": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#key_prefix_equals S3BucketWebsiteConfiguration#key_prefix_equals}."
+        }
+      },
+      "comment": "@cdktf/provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationRoutingRuleCondition"
+    },
+    "@cdktf.provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationRoutingRule": {
+      "type": "object",
+      "title": "S3BucketWebsiteConfigurationRoutingRule",
+      "additionalProperties": false,
+      "properties": {
+        "redirect": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/@cdktf.provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationRoutingRuleRedirect",
+              "description": "redirect block.\n\nDocs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#redirect S3BucketWebsiteConfiguration#redirect}"
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ],
+              "description": "redirect block.\n\nDocs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#redirect S3BucketWebsiteConfiguration#redirect}"
+            }
+          ]
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/@cdktf.provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationRoutingRuleCondition",
+              "description": "condition block.\n\nDocs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#condition S3BucketWebsiteConfiguration#condition}"
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ],
+              "description": "condition block.\n\nDocs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.65.0/docs/resources/s3_bucket_website_configuration#condition S3BucketWebsiteConfiguration#condition}"
+            }
+          ]
+        }
+      },
+      "required": [
+        "redirect"
+      ],
+      "comment": "@cdktf/provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationRoutingRule"
+    },
+    "@envtio.base.aws.staticsite.WebsiteConfig": {
+      "type": "object",
+      "title": "WebsiteConfig",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Set this to true to enable static website hosting."
+        },
+        "connection": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/cdktf.SSHProvisionerConnection"
+            },
+            {
+              "$ref": "#/definitions/cdktf.WinrmProvisionerConnection"
+            }
+          ]
+        },
+        "count": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/cdktf.TerraformCount"
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cdktf.ITerraformDependable"
+          }
+        },
+        "errorDocument": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/@cdktf.provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationErrorDocument",
+              "description": "error_document block.\n\nDocs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_website_configuration#error_document S3BucketWebsiteConfiguration#error_document}"
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ],
+              "description": "error_document block.\n\nDocs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_website_configuration#error_document S3BucketWebsiteConfiguration#error_document}"
+            }
+          ]
+        },
+        "forEach": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/cdktf.ITerraformIterator"
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ]
+            }
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_website_configuration#id S3BucketWebsiteConfiguration#id}. Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2. If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable."
+        },
+        "indexDocument": {
+          "type": "string",
+          "description": "index_document block.\n\nDocs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_website_configuration#index_document S3BucketWebsiteConfiguration#index_document}"
+        },
+        "lifecycle": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/cdktf.TerraformResourceLifecycle"
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ]
+            }
+          ]
+        },
+        "provider": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/FnRef"
+            }
+          ]
+        },
+        "provisioners": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/cdktf.FileProvisioner"
+              },
+              {
+                "$ref": "#/definitions/cdktf.LocalExecProvisioner"
+              },
+              {
+                "$ref": "#/definitions/cdktf.RemoteExecProvisioner"
+              }
+            ]
+          }
+        },
+        "routingRule": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/@cdktf.provider-aws.s3BucketWebsiteConfiguration.S3BucketWebsiteConfigurationRoutingRule"
+              }
+            }
+          ],
+          "description": "routing_rule block.\n\nDocs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_website_configuration#routing_rule S3BucketWebsiteConfiguration#routing_rule}"
+        },
+        "routingRules": {
+          "type": "string",
+          "description": "Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/aws/5.60.0/docs/resources/s3_bucket_website_configuration#routing_rules S3BucketWebsiteConfiguration#routing_rules}."
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "comment": "@envtio/base.aws.staticsite.WebsiteConfig"
+    },
+    "@envtio.base.aws.staticsite.BucketProps": {
+      "type": "object",
+      "title": "BucketProps",
+      "additionalProperties": false,
+      "properties": {
+        "friendlyName": {
+          "type": "string",
+          "description": "The friendly name for beacon resources."
+        },
+        "outputName": {
+          "type": "string",
+          "description": "Optional override for the outputs name."
+        },
+        "registerOutputs": {
+          "type": "boolean",
+          "description": "Whether to register Terraform outputs for this beacon."
+        },
+        "account": {
+          "type": "string",
+          "description": "The AWS account ID this resource belongs to."
+        },
+        "environmentFromArn": {
+          "type": "string",
+          "description": "ARN to deduce region and account from.\n\nThe ARN is parsed and the account and region are taken from the ARN.\nThis should be used for imported resources.\n\nCannot be supplied together with either `account` or `region`."
+        },
+        "region": {
+          "type": "string",
+          "description": "The AWS region this resource belongs to."
+        },
+        "corsConfig": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/@envtio.base.aws.staticsite.CorsConfig",
+              "description": "Provides an S3 bucket CORS configuration resource.\n\nFor more information about CORS, go to\n[Enabling Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html)\nin the Amazon S3 User Guide."
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ],
+              "description": "Provides an S3 bucket CORS configuration resource.\n\nFor more information about CORS, go to\n[Enabling Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html)\nin the Amazon S3 User Guide."
+            }
+          ]
+        },
+        "forceDestroy": {
+          "type": "boolean",
+          "description": "Boolean that indicates all objects (including any locked objects) should be deleted from the bucket when the bucket is destroyed so that the bucket can be destroyed without error.\n\nThese objects are not recoverable. This only deletes objects when\nthe bucket is destroyed, not when setting this parameter to true.\n\nOnce this parameter is set to true, there must be a successful\nterraform apply run before a destroy is required to update this\nvalue in the resource state.\n\nWithout a successful terraform apply after this parameter is set,\nthis flag will have no effect. If setting this field in the same\noperation that would require replacing the bucket or destroying\nthe bucket, this flag will not work.\n\nAdditionally when importing a bucket, a successful terraform apply\nis required to set this value in state before it will take effect\non a destroy operation."
+        },
+        "namePrefix": {
+          "type": "string",
+          "description": "NamePrefix.\n\nMust be lowercase and less than or equal to 37 characters in length.\nA full list of bucket naming rules [may be found here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)."
+        },
+        "path": {
+          "type": "string",
+          "description": "The path to static files to upload, relative to the Spec file."
+        },
+        "public": {
+          "type": "boolean",
+          "description": "Enable public read access for all the files in the bucket.\n\nEnable this only if you're not using CDN (CloudFront) to serve files from the bucket.\nShould only be turned on if you want to host public files directly from the bucket."
+        },
+        "websiteConfig": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/@envtio.base.aws.staticsite.WebsiteConfig",
+              "description": "Provides an S3 bucket website configuration resource.\n\nImportant: Amazon S3 website endpoints do not support HTTPS or access points.\nIf you want to use HTTPS, you can use Amazon CloudFront to serve a static\nwebsite hosted on Amazon S3.\n\nFor more information, see [Hosting Websites on S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)."
+            },
+            {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/FnRef"
+                }
+              ],
+              "description": "Provides an S3 bucket website configuration resource.\n\nImportant: Amazon S3 website endpoints do not support HTTPS or access points.\nIf you want to use HTTPS, you can use Amazon CloudFront to serve a static\nwebsite hosted on Amazon S3.\n\nFor more information, see [Hosting Websites on S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)."
+            }
+          ]
+        }
+      },
+      "comment": "@envtio/base.aws.staticsite.BucketProps"
+    },
+    "@envtio.base.aws.staticsite.Bucket": {
+      "additionalProperties": false,
+      "properties": {
+        "Properties": {
+          "$ref": "#/definitions/@envtio.base.aws.staticsite.BucketProps"
+        },
+        "Call": {
+          "$ref": "#/definitions/Call"
+        },
+        "Type": {
+          "enum": [
+            "@envtio/base.aws.staticsite.Bucket"
+          ],
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array"
+        },
+        "DependsOn": {
+          "$ref": "#/definitions/DependsOn"
+        },
+        "Overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Override"
+          }
+        }
+      },
+      "required": [
+        "Type"
+      ],
+      "comment": "@envtio/base.aws.staticsite.Bucket"
+    }
+  },
+  "properties": {
+    "ETSpecFormatVersion": {
+      "enum": [
+        "2024-09-01"
+      ],
+      "type": "string"
+    },
+    "Resources": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^[a-zA-Z0-9]+$": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/@envtio.base.aws.compute.LambdaFunction"
+            },
+            {
+              "$ref": "#/definitions/@envtio.base.aws.compute.NodejsFunction"
+            },
+            {
+              "$ref": "#/definitions/@envtio.base.aws.network.DataSubnet"
+            },
+            {
+              "$ref": "#/definitions/@envtio.base.aws.network.DbSubnetGroup"
+            },
+            {
+              "$ref": "#/definitions/@envtio.base.aws.network.ElastiCacheSubnetGroup"
+            },
+            {
+              "$ref": "#/definitions/@envtio.base.aws.network.PrivateSubnet"
+            },
+            {
+              "$ref": "#/definitions/@envtio.base.aws.network.PublicSubnet"
+            },
+            {
+              "$ref": "#/definitions/@envtio.base.aws.network.SimpleIPv4Vpc"
+            },
+            {
+              "$ref": "#/definitions/@envtio.base.aws.staticsite.Bucket"
+            }
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

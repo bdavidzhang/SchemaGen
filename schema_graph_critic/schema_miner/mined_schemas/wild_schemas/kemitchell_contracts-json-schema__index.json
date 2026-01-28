@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "description": "list of contributors available to work on contract",
+  "type": "array",
+  "items": {
+    "description": "person",
+    "type": "object",
+    "properties": {
+      "name": {
+        "description": "the person's name",
+        "type": "string",
+        "minLength": 1
+      },
+      "email": {
+        "desription": "the person's email",
+        "type": "string",
+        "format": "email"
+      },
+      "where": {
+        "description": "the person's location",
+        "type": "string",
+        "minLength": 1
+      },
+      "services": {
+        "description": "contracts available",
+        "type": "object",
+        "properties": {
+          "integration": {
+            "$ref": "#/definitions/terms"
+          },
+          "hosting": {
+            "$ref": "#/definitions/terms"
+          },
+          "support": {
+            "$ref": "#/definitions/terms"
+          },
+          "training": {
+            "$ref": "#/definitions/terms"
+          },
+          "bounty": {
+            "$ref": "#/definitions/terms"
+          },
+          "maintenance": {
+            "$ref": "#/definitions/terms"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "name",
+      "email",
+      "services"
+    ],
+    "additionalProperties": false
+  },
+  "minItems": 1,
+  "definitions": {
+    "terms": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

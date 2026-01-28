@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "mycomp",
+  "title": "mycomp Component",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string",
+      "title": "Text Content",
+      "description": "The main text to display",
+      "default": "Hello World",
+      "ui": {
+        "widget": "text"
+      }
+    },
+    "variant": {
+      "type": "string",
+      "title": "Style Variant",
+      "description": "Visual style of the component",
+      "enum": [
+        "primary",
+        "secondary",
+        "success",
+        "warning"
+      ],
+      "default": "primary",
+      "ui": {
+        "widget": "select",
+        "enumNames": [
+          "Primary",
+          "Secondary",
+          "Success",
+          "Warning"
+        ]
+      }
+    },
+    "size": {
+      "type": "string",
+      "title": "Size",
+      "description": "Size of the component",
+      "enum": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "default": "md",
+      "ui": {
+        "widget": "select",
+        "enumNames": [
+          "Small",
+          "Medium",
+          "Large"
+        ]
+      }
+    },
+    "showIcon": {
+      "type": "boolean",
+      "title": "Show Icon",
+      "description": "Whether to show the sparkle icon",
+      "default": true,
+      "ui": {
+        "widget": "checkbox"
+      }
+    }
+  },
+  "required": [
+    "text"
+  ],
+  "additionalProperties": false,
+  "component": {
+    "category": "custom",
+    "hasSlot": true,
+    "icon": "🎨",
+    "examples": [
+      {
+        "title": "Basic Usage",
+        "data": {
+          "text": "Hello World",
+          "variant": "primary",
+          "size": "md"
+        }
+      }
+    ],
+    "custom": true,
+    "created": "2025-07-25T14:29:02.563Z",
+    "modified": "2025-07-25T14:34:55.816Z"
+  },
+  "description": "Custom mycomp component"
+}

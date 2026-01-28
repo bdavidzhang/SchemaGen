@@ -1,0 +1,18 @@
+{
+  "$id": "https://openactive.io/core/imageobject.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ImageObject",
+  "type": "object",
+  "required": [ "contentUrl", "@type" ],
+  "properties": {
+    "@type": {
+      "type": "string",
+      "const": "ImageObject"
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "Actual bytes of the media object, for example the image file or video file.",
+      "maxLength": 250
+    }
+  }
+}

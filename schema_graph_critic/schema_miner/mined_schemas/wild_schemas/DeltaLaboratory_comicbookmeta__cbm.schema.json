@@ -1,0 +1,159 @@
+{
+  "$id":"https://schema.deltalab-cdn.cloud/cbm/0.1.1/cbm.schema.json",
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Comic Book Metadata",
+  "description":"Metadata Schema for Comic Book Metadata",
+  "version":"0.1.1",
+  "type":"object",
+  "required":[
+    "title",
+    "identifiers",
+    "read_direction"
+  ],
+  "properties":{
+    "title":{
+      "type":"string",
+      "description":"The title of the comic book"
+    },
+    "identifiers":{
+      "type":"array",
+      "description":"The identifiers of the comic book",
+      "items":{
+        "type":"object",
+        "required":[
+          "type",
+          "value"
+        ],
+        "properties":{
+          "type":{
+            "type":"string",
+            "description":"The type of the identifier",
+            "enum":[
+              "isbn",
+              "issn",
+              "doi",
+              "pmid",
+              "pmcid",
+              "arxiv",
+              "wikidata",
+              "orcid",
+              "handle",
+              "url",
+              "urn"
+            ]
+          },
+          "value":{
+            "type":"string",
+            "description":"The value of the identifier"
+          }
+        }
+      }
+    },
+    "authors":{
+      "type":"array",
+      "description":"The authors of the comic book",
+      "items":{
+        "type":"object",
+        "required":[
+          "name"
+        ],
+        "properties":{
+          "identifier":{
+            "type":"string",
+            "description":"The identifier of the author"
+          },
+          "name":{
+            "type":"string",
+            "description":"The name of the author"
+          },
+          "role":{
+            "type":"string",
+            "description":"The role of the author",
+            "enum": [
+              "author",
+              "editor",
+              "illustrator",
+              "translator",
+              "publisher",
+              "distributor",
+              "original_author",
+              "original_illustrator"
+            ]
+          }
+        }
+      }
+    },
+    "series":{
+      "type":"object",
+      "required":[
+        "title",
+        "index"
+      ],
+      "description":"The series data of the comic book",
+      "properties":{
+        "identifier":{
+          "type":"string",
+          "description":"The identifier of the series"
+        },
+        "title":{
+          "type":"string",
+          "description":"The title of the series"
+        },
+        "index":{
+          "type":"integer",
+          "description":"The number of the comic book in the series"
+        },
+        "parent":{
+          "type":"object",
+          "required":[
+            "title"
+          ],
+          "description":"The parent series data of the comic book",
+          "properties":{
+            "identifier":{
+              "type":"string",
+              "description":"The identifier of the parent series"
+            },
+            "title":{
+              "type":"string",
+              "description":"The title of the parent series"
+            }
+          }
+        }
+      }
+    },
+    "tags":{
+      "type":"array",
+      "description":"The tags of the comic book",
+      "items":{
+        "type":"string",
+        "description":"The tag of the comic book"
+      }
+    },
+    "language":{
+      "type":"string",
+      "description":"The language of the comic book in ISO 639-1 format",
+      "pattern":"^[a-z]{2}(-[A-Z]{2})?$"
+    },
+    "published_date":{
+      "type":"string",
+      "description":"The date of publication of the comic book",
+      "format":"date"
+    },
+    "distributed_date":{
+      "type":"string",
+      "description":"The date of distribution of the comic book",
+      "format":"date"
+    },
+    "read_direction":{
+      "type":"string",
+      "description":"The read direction of the comic book",
+      "enum":[
+        "ltr",
+        "rtl",
+        "ttb",
+        "btt"
+      ]
+    }
+  }
+}

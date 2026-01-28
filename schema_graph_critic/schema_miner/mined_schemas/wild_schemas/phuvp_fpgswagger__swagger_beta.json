@@ -1,0 +1,2088 @@
+{
+  "definitions": {
+    "DailyOrderReport": {
+      "properties": {
+        "base_delta": {
+          "description": "Change in the base currency.", 
+          "type": "number"
+        }, 
+        "base_delta_period": {
+          "description": "Change in the base currency during the period.", 
+          "type": "number"
+        }, 
+        "current_price": {
+          "description": "Current price of the symbol", 
+          "type": "number"
+        }, 
+        "id": {
+          "description": "ID of the dailyorderreport", 
+          "type": "integer"
+        }, 
+        "market_volume": {
+          "description": "Market Volume (in base) over the period.", 
+          "type": "number"
+        }, 
+        "market_volume_period": {
+          "description": "Market Volume (in base) over the period.", 
+          "type": "number"
+        }, 
+        "order": {
+          "description": "ID of the order", 
+          "type": "integer"
+        }, 
+        "progress": {
+          "description": "Progress (%) of the order", 
+          "type": "integer"
+        }, 
+        "quote_delta": {
+          "description": "Change in the quote currency.", 
+          "type": "number"
+        }, 
+        "quote_delta_period": {
+          "description": "Change in the quote currency during the period.", 
+          "type": "number"
+        }, 
+        "report_time": {
+          "description": "Time of the order. MM/DD/YY HH:MM:SS", 
+          "type": "string"
+        }, 
+        "twap": {
+          "description": "TWAP metric", 
+          "type": "number"
+        }, 
+        "twap_period": {
+          "description": "TWAP metric over the period", 
+          "type": "number"
+        }, 
+        "visible": {
+          "description": "To show this to customers or not.", 
+          "type": "boolean"
+        }, 
+        "vwap": {
+          "description": "VWAP metric", 
+          "type": "number"
+        }, 
+        "vwap_period": {
+          "description": "VWAP metric over the period", 
+          "type": "number"
+        }
+      }, 
+      "required": [
+        "id", 
+        "report_time", 
+        "order"
+      ], 
+      "type": "object"
+    }, 
+    "ExchangeAccount": {
+      "properties": {
+        "admin": {
+          "default": true, 
+          "description": "My main admin", 
+          "type": "boolean"
+        }, 
+        "apiKey": {
+          "description": "Public APIKey for that ExchangeAccount", 
+          "type": "string"
+        }, 
+        "descriptioon": {
+          "description": "Description of the ExchangeAccount", 
+          "type": "string"
+        }, 
+        "exchange": {
+          "description": "Name of the exchange", 
+          "type": "string"
+        }, 
+        "id": {
+          "description": "ID of the ExchangeAccount", 
+          "type": "integer"
+        }, 
+        "parent_id": {
+          "description": "The integer I want", 
+          "type": "integer"
+        }, 
+        "password": {
+          "description": "Encoded password for the API (not sent for security)", 
+          "type": "string"
+        }, 
+        "permissions": {
+          "description": "(opt) List of permissions", 
+          "items": {
+            "type": "string"
+          }, 
+          "type": "array"
+        }, 
+        "secret": {
+          "description": "Encoded secret key (not sent for security)", 
+          "type": "string"
+        }, 
+        "url": {
+          "default": null, 
+          "description": "(opt) URl of the exchange", 
+          "type": "string"
+        }, 
+        "user": {
+          "description": "User ID who owns the ExchangeAccount", 
+          "type": "integer"
+        }
+      }, 
+      "required": [
+        "id", 
+        "user", 
+        "description", 
+        "apiKey", 
+        "secret", 
+        "exchange"
+      ], 
+      "type": "object"
+    }, 
+    "FPGEO": {
+      "properties": {
+        "amount": {
+          "description": "amount of the trade", 
+          "type": "number"
+        }, 
+        "created_time": {
+          "description": "created time", 
+          "type": "string"
+        }, 
+        "exchange": {
+          "description": "Name of exchange it is executing on", 
+          "type": "string"
+        }, 
+        "exchange_account": {
+          "description": "ID of the exchange account it is on", 
+          "type": "integer"
+        }, 
+        "exchange_order_id": {
+          "description": "Exchange order ID", 
+          "type": "string"
+        }, 
+        "execution_average_price": {
+          "description": "Price of the execution", 
+          "type": "number"
+        }, 
+        "execution_cost": {
+          "description": "Cost of the execution", 
+          "type": "number"
+        }, 
+        "execution_fee": {
+          "description": "Fee", 
+          "type": "number"
+        }, 
+        "execution_fee_currency": {
+          "description": "Currency the fee is in", 
+          "type": "string"
+        }, 
+        "execution_size": {
+          "description": "Size of the execution", 
+          "type": "number"
+        }, 
+        "id": {
+          "description": "ID of the exchange order", 
+          "type": "integer"
+        }, 
+        "order": {
+          "description": "ID of the order", 
+          "type": "integer"
+        }, 
+        "order_type": {
+          "description": "order type (taker or maker)", 
+          "type": "string"
+        }, 
+        "price": {
+          "description": "price of the trade", 
+          "type": "number"
+        }, 
+        "side": {
+          "description": "side (buy or sell)", 
+          "type": "string"
+        }, 
+        "status": {
+          "description": "status (open or complete)", 
+          "type": "string"
+        }, 
+        "symbol": {
+          "description": "symbol of the trade", 
+          "type": "string"
+        }, 
+        "update_time": {
+          "description": "Time of last update.", 
+          "type": "string"
+        }
+      }, 
+      "required": [
+        "id", 
+        "exchange", 
+        "order", 
+        "exchange_account", 
+        "symbol", 
+        "order_type", 
+        "side", 
+        "amount", 
+        "status"
+      ], 
+      "type": "object"
+    }, 
+    "Order": {
+      "example": {
+        "exchange_accounts": [
+          1, 
+          2, 
+          3
+        ], 
+        "id": 1, 
+        "user": "2,"
+      }, 
+      "properties": {
+        "algo_params": {
+          "description": "Custom parameters for the algorithm", 
+          "type": "string"
+        }, 
+        "algo_type": {
+          "description": "Algorithm type", 
+          "type": "string"
+        }, 
+        "amount": {
+          "description": "Amount of the order", 
+          "type": "number"
+        }, 
+        "base": {
+          "description": "Base currency for the order", 
+          "type": "string"
+        }, 
+        "customer_id": {
+          "description": "ID for the customer identification of unique orders", 
+          "type": "string"
+        }, 
+        "description": {
+          "description": "Human readable description of the order", 
+          "type": "string"
+        }, 
+        "exchange_accounts": {
+          "description": "List of the exchange account IDs used.", 
+          "items": {
+            "type": "integer"
+          }, 
+          "type": "array"
+        }, 
+        "execution_amount": {
+          "description": "Amount executed so far", 
+          "type": "number"
+        }, 
+        "execution_cost": {
+          "description": "Cost executed so far", 
+          "type": "number"
+        }, 
+        "execution_end_time": {
+          "description": "Time of the last execution", 
+          "type": "string"
+        }, 
+        "execution_start_time": {
+          "description": "Time of the first execution", 
+          "type": "string"
+        }, 
+        "id": {
+          "description": "ID of the order", 
+          "type": "integer"
+        }, 
+        "monitoring_info": {
+          "description": "Monitoring Information. Will be deprecated and moved to algo_params.", 
+          "type": "string"
+        }, 
+        "order_status": {
+          "description": "Status of the order (open/closed)", 
+          "type": "string"
+        }, 
+        "primary_aggression": {
+          "description": "Aggression of the order. Will be deprecated and moved to algo_params.", 
+          "type": "number"
+        }, 
+        "quote": {
+          "description": "Quote currency for the order", 
+          "type": "string"
+        }, 
+        "secondary_aggression": {
+          "description": "Secondary aggression of the order. Will be deprecated and moved to algo_params.", 
+          "type": "number"
+        }, 
+        "side": {
+          "description": "Side - 'buy' or 'sell'", 
+          "type": "string"
+        }, 
+        "status": {
+          "description": "Status of the order (on/off/done). Will be deprecated and moved to algo_params.", 
+          "type": "string"
+        }, 
+        "templateable": {
+          "description": "Allow this to be used for templates", 
+          "type": "boolean"
+        }, 
+        "user": {
+          "description": "User who owns the order", 
+          "type": "integer"
+        }
+      }, 
+      "required": [
+        "id", 
+        "exchange_accounts", 
+        "user"
+      ], 
+      "type": "object"
+    }, 
+    "OrderUpdate": {
+      "properties": {
+        "base_delta": {
+          "description": "Change in the base currency", 
+          "type": "number"
+        }, 
+        "current_price": {
+          "description": "Current Price of the pair", 
+          "type": "number"
+        }, 
+        "id": {
+          "description": "ID of the OrderUpdate", 
+          "type": "integer"
+        }, 
+        "order": {
+          "description": "ID of the order", 
+          "type": "integer"
+        }, 
+        "order_aggression": {
+          "description": "Order Aggression value", 
+          "type": "number"
+        }, 
+        "pov": {
+          "description": "Percent of Volume over the lifetime of the order", 
+          "type": "number"
+        }, 
+        "pov_1_hr": {
+          "description": "Percent of Volume over the past one hour", 
+          "type": "number"
+        }, 
+        "price": {
+          "description": "Effective Price of the trade", 
+          "type": "number"
+        }, 
+        "progress": {
+          "description": "Progress (%) of the order", 
+          "type": "integer"
+        }, 
+        "quote_delta": {
+          "description": "Change in the quote currency", 
+          "type": "number"
+        }, 
+        "report_time": {
+          "description": "Time of the order. MM/DD/YY HH:MM:SS", 
+          "type": "string"
+        }, 
+        "suggested_aggression": {
+          "description": "Suggested Aggression", 
+          "type": "number"
+        }, 
+        "twap": {
+          "description": "TWAP metric", 
+          "type": "number"
+        }, 
+        "vwap": {
+          "description": "VWAP metric", 
+          "type": "number"
+        }
+      }, 
+      "required": [
+        "id", 
+        "report_time", 
+        "order"
+      ], 
+      "type": "object"
+    }, 
+    "User": {
+      "properties": {
+        "description": {
+          "description": "Human readable description of the user", 
+          "type": "string"
+        }, 
+        "email": {
+          "description": "Email of the user", 
+          "type": "string"
+        }, 
+        "id": {
+          "description": "ID of the User", 
+          "type": "integer"
+        }, 
+        "password": {
+          "description": "Password of the user (encrypted)", 
+          "type": "string"
+        }, 
+        "tenant": {
+          "description": "The organization of the user", 
+          "type": "string"
+        }
+      }, 
+      "required": [
+        "id"
+      ], 
+      "type": "object"
+    }
+  }, 
+  "host": "beta.tradingdashboard.floating.group", 
+  "info": {
+    "description": "Floating Point Group Trading & Execution API", 
+    "termsOfService": "https://www.floating.group/trading/terms", 
+    "title": "FPG Trading API", 
+    "version": "0.1.0"
+  }, 
+  "paths": {
+    "/api/v1/dailyorderreport": {
+      "get": {
+        "description": "Returns a list of Daily Order Reports that belong to the user or order.<br/>Only return up to 200 records.<br/>", 
+        "parameters": [
+          {
+            "default": null, 
+            "description": "If set, will only return daily order reports for that user.", 
+            "in": "query", 
+            "name": "user", 
+            "required": false, 
+            "type": "integer"
+          }, 
+          {
+            "default": null, 
+            "description": "If set, will only return daily order reports for that order.", 
+            "in": "query", 
+            "name": "order", 
+            "required": false, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "A list of daily order reports (may be filtered by user or order)", 
+            "examples": {
+              "application/json": [
+                {
+                  "base_delta": 30, 
+                  "base_delta_period": 40, 
+                  "current_price": 10.4, 
+                  "id": 1, 
+                  "market_volume": 200000, 
+                  "market_volume_period": 404000, 
+                  "order": 1, 
+                  "progress": 4, 
+                  "quote_delta": 20, 
+                  "quote_delta_period": 50, 
+                  "report_time": "04/08/21 16:16", 
+                  "twap": 1.3, 
+                  "twap_period": 3.4, 
+                  "visible": false, 
+                  "vwap": 1.4, 
+                  "vwap_period": 3.5
+                }
+              ]
+            }, 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/DailyOrderReport"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Returns a list of Daily Order Reports."
+      }, 
+      "post": {
+        "description": "Create a new daily order report.<br/>", 
+        "parameters": [
+          {
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "example": {
+                "base_delta": 30, 
+                "base_delta_period": 0.4, 
+                "current_price": 2.5, 
+                "market_volume": 20000000, 
+                "market_volume_period": 10000000, 
+                "order": 1, 
+                "progress": 4, 
+                "quote_delta": 20, 
+                "quote_delta_period": 40, 
+                "report_time": "04/01/21 04:50", 
+                "twap": 2.3, 
+                "twap_period": 3.4, 
+                "visible": false, 
+                "vwap": 2.4, 
+                "vwap_period": 3.5
+              }, 
+              "properties": {
+                "base_delta": {
+                  "description": "Change in the base currency.", 
+                  "type": "number"
+                }, 
+                "base_delta_period": {
+                  "description": "Change in the base currency during the period.", 
+                  "type": "number"
+                }, 
+                "current_price": {
+                  "description": "Current price of the symbol", 
+                  "type": "number"
+                }, 
+                "market_volume": {
+                  "description": "Market Volume (in base) over the period.", 
+                  "type": "number"
+                }, 
+                "market_volume_period": {
+                  "description": "Market Volume (in base) over the period.", 
+                  "type": "number"
+                }, 
+                "order": {
+                  "description": "ID of the order", 
+                  "type": "integer"
+                }, 
+                "progress": {
+                  "default": 0, 
+                  "description": "Progress (%) of the order", 
+                  "type": "integer"
+                }, 
+                "quote_delta": {
+                  "description": "Change in the quote currency.", 
+                  "type": "number"
+                }, 
+                "quote_delta_period": {
+                  "description": "Change in the quote currency during the period.", 
+                  "type": "number"
+                }, 
+                "report_time": {
+                  "description": "Time of the order. MM/DD/YY HH:MM:SS", 
+                  "type": "string"
+                }, 
+                "twap": {
+                  "description": "TWAP metric", 
+                  "type": "number"
+                }, 
+                "twap_period": {
+                  "description": "TWAP metric over the period", 
+                  "type": "number"
+                }, 
+                "visible": {
+                  "description": "To show this to customers or not", 
+                  "type": "boolean"
+                }, 
+                "vwap": {
+                  "description": "VWAP metric", 
+                  "type": "number"
+                }, 
+                "vwap_period": {
+                  "description": "VWAP metric over the period", 
+                  "type": "number"
+                }
+              }, 
+              "required": [
+                "report_time", 
+                "order"
+              ]
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK, The ID of the created record.", 
+            "examples": {
+              "application/json": {
+                "id": 1
+              }
+            }, 
+            "schema": {
+              "properties": {
+                "id": {
+                  "description": "ID of the created record.", 
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Create a new daily order report."
+      }
+    }, 
+    "/api/v1/dailyorderreport/{id}": {
+      "delete": {
+        "description": "Delete daily order report by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the daily order report to delete.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Delete daily order report by ID."
+      }, 
+      "get": {
+        "description": "Get daily order report by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the daily order report to get.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "The order update given by the ID.", 
+            "examples": {
+              "application/json": {
+                "base_delta": 30, 
+                "base_delta_period": 40, 
+                "current_price": 10.4, 
+                "id": 1, 
+                "market_volume": 200000, 
+                "market_volume_period": 404000, 
+                "order": 1, 
+                "progress": 4, 
+                "quote_delta": 20, 
+                "quote_delta_period": 50, 
+                "report_time": "04/08/21 16:16", 
+                "twap": 1.3, 
+                "twap_period": 3.4, 
+                "visible": false, 
+                "vwap": 1.4, 
+                "vwap_period": 3.5
+              }
+            }, 
+            "schema": {
+              "$ref": "#/definitions/DailyOrderReport"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Get daily order report by ID."
+      }, 
+      "put": {
+        "description": "Edit daily order report by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the daily order report to edit", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }, 
+          {
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "example": {
+                "market_volume_period": 10000000, 
+                "quote_delta_period": 40, 
+                "twap_period": 3.4, 
+                "vwap_period": 3.5
+              }, 
+              "properties": {
+                "base_delta": {
+                  "description": "Change in the base currency.", 
+                  "type": "number"
+                }, 
+                "base_delta_period": {
+                  "description": "Change in the base currency during the period.", 
+                  "type": "number"
+                }, 
+                "current_price": {
+                  "description": "Current price of the symbol", 
+                  "type": "number"
+                }, 
+                "market_volume": {
+                  "description": "Market Volume (in base) over the period.", 
+                  "type": "number"
+                }, 
+                "market_volume_period": {
+                  "description": "Market Volume (in base) over the period.", 
+                  "type": "number"
+                }, 
+                "order": {
+                  "default": 0, 
+                  "description": "ID of the order", 
+                  "type": "integer"
+                }, 
+                "progress": {
+                  "default": 0, 
+                  "description": "Progress (%) of the order", 
+                  "type": "integer"
+                }, 
+                "quote_delta": {
+                  "description": "Change in the quote currency.", 
+                  "type": "number"
+                }, 
+                "quote_delta_period": {
+                  "description": "Change in the quote currency during the period.", 
+                  "type": "number"
+                }, 
+                "report_time": {
+                  "default": null, 
+                  "description": "Time of the order. MM/DD/YY HH:MM:SS", 
+                  "type": "string"
+                }, 
+                "twap": {
+                  "description": "TWAP metric", 
+                  "type": "number"
+                }, 
+                "twap_period": {
+                  "description": "TWAP metric over the period", 
+                  "type": "number"
+                }, 
+                "visible": {
+                  "description": "To show this to customers or not", 
+                  "type": "boolean"
+                }, 
+                "vwap": {
+                  "description": "VWAP metric", 
+                  "type": "number"
+                }, 
+                "vwap_period": {
+                  "description": "VWAP metric over the period", 
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Edit daily order report by ID."
+      }
+    }, 
+    "/api/v1/exchangeaccount": {
+      "get": {
+        "description": "Returns all exchange accounts that belong to the user.<br/>", 
+        "parameters": [
+          {
+            "description": "If set, will only return admin accounts.", 
+            "in": "query", 
+            "name": "admin", 
+            "required": false, 
+            "type": "boolean"
+          }, 
+          {
+            "description": "If set, will only return exchange accounts only for that user.", 
+            "in": "query", 
+            "name": "user", 
+            "required": false, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "A list of exchange accounts (may be filtered by admin)", 
+            "examples": {
+              "application/json": [
+                {
+                  "apiKey": "fake-api-key", 
+                  "description": "Coinbayse Subaccount 1", 
+                  "exchange": "coinbayes", 
+                  "id": 1, 
+                  "password": "fake-password", 
+                  "secret": "fake-secret", 
+                  "user": "coinbayes_sub_1"
+                }
+              ]
+            }, 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ExchangeAccount"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Returns a list of Exchange Accounts"
+      }, 
+      "post": {
+        "description": "Create a new exchange account.<br/>", 
+        "parameters": [
+          {
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "example": {
+                "account_name": "johns_coinbayes_account", 
+                "apiKey": "api_key", 
+                "exchange": "coinbayes", 
+                "secret": "super_secret_key"
+              }, 
+              "properties": {
+                "account_name": {
+                  "description": "Accoutn Name", 
+                  "type": "string"
+                }, 
+                "admin": {
+                  "default": true, 
+                  "description": "(opt) Is the account admin or not?", 
+                  "type": "boolean"
+                }, 
+                "apiKey": {
+                  "description": "API Key for the account", 
+                  "type": "string"
+                }, 
+                "description": {
+                  "default": null, 
+                  "description": "(opt) Human Readable description", 
+                  "type": "string"
+                }, 
+                "exchange": {
+                  "description": "Name of the exchange", 
+                  "type": "string"
+                }, 
+                "parent_id": {
+                  "default": null, 
+                  "description": "(opt) ID of the parent user", 
+                  "type": "integer"
+                }, 
+                "password": {
+                  "default": null, 
+                  "description": "(opt) Password for the account", 
+                  "type": "string"
+                }, 
+                "secret": {
+                  "description": "Secret for the account", 
+                  "type": "string"
+                }, 
+                "url": {
+                  "default": null, 
+                  "description": "(opt) URL to connect to.", 
+                  "type": "string"
+                }
+              }, 
+              "required": [
+                "account_name", 
+                "apiKey", 
+                "secret", 
+                "exchange"
+              ]
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK, The ID of the created record,", 
+            "examples": {
+              "application/json": {
+                "id": 1
+              }
+            }, 
+            "schema": {
+              "properties": {
+                "id": {
+                  "description": "ID of the created record", 
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Create a new exchange account"
+      }
+    }, 
+    "/api/v1/exchangeaccount/transfer": {
+      "post": {
+        "description": "Transfer money from one exchange account to another.<br/>", 
+        "parameters": [
+          {
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "example": {
+                "amount": 419.1, 
+                "currency": "DOGE", 
+                "from": 1, 
+                "to": 2
+              }, 
+              "properties": {
+                "amount": {
+                  "description": "Amount of currency to transfer", 
+                  "type": "number"
+                }, 
+                "currency": {
+                  "description": "Currency to transfer", 
+                  "type": "string"
+                }, 
+                "from": {
+                  "description": "Numeric ID of account to transfer from.", 
+                  "type": "integer"
+                }, 
+                "to": {
+                  "description": "Numeric ID of account to transfer to.", 
+                  "type": "integer"
+                }
+              }, 
+              "required": [
+                "currency", 
+                "from", 
+                "to", 
+                "amount"
+              ]
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Transfer money from one exchange account to another."
+      }
+    }, 
+    "/api/v1/exchangeaccount/{id}": {
+      "delete": {
+        "description": "Delete exchange account by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the exchange account to delete.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Delete exchange account by ID."
+      }, 
+      "get": {
+        "description": "Get exchange account by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the exchange account to get.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "The exchange account given by the ID.", 
+            "examples": {
+              "application/json": {
+                "apiKey": "fake-api-key", 
+                "description": "Coinbayse Subaccount 1", 
+                "exchange": "coinbayes", 
+                "id": 1, 
+                "password": "fake-password", 
+                "secret": "fake-secret", 
+                "user": "coinbayes_sub_1"
+              }
+            }, 
+            "schema": {
+              "$ref": "#/definitions/ExchangeAccount"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Get exchange account by ID."
+      }, 
+      "put": {
+        "description": "Edit exchange account by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the exchange account to edit", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }, 
+          {
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "example": {
+                "account_name": "johns_coinbayes_account", 
+                "apiKey": "api_key", 
+                "exchange": "coinbayes", 
+                "secret": "super_secret_key"
+              }, 
+              "properties": {
+                "account_name": {
+                  "description": "Accoutn Name", 
+                  "type": "string"
+                }, 
+                "admin": {
+                  "default": true, 
+                  "description": "(opt) Is the account admin or not?", 
+                  "type": "boolean"
+                }, 
+                "apiKey": {
+                  "description": "API Key for the account", 
+                  "type": "string"
+                }, 
+                "description": {
+                  "default": null, 
+                  "description": "(opt) Human Readable description", 
+                  "type": "string"
+                }, 
+                "exchange": {
+                  "description": "Name of the exchange", 
+                  "type": "string"
+                }, 
+                "parent_id": {
+                  "default": null, 
+                  "description": "(opt) ID of the parent user", 
+                  "type": "integer"
+                }, 
+                "password": {
+                  "default": null, 
+                  "description": "(opt) Password for the account", 
+                  "type": "string"
+                }, 
+                "secret": {
+                  "description": "Secret for the account", 
+                  "type": "string"
+                }, 
+                "url": {
+                  "default": null, 
+                  "description": "(opt) URL to connect to.", 
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Edit exchange account by ID."
+      }
+    }, 
+    "/api/v1/exchangeaccount/{id}/balance": {
+      "get": {
+        "description": "Fetch balance on an exchange account.<br/>", 
+        "parameters": [
+          {
+            "default": 1, 
+            "description": "ID of the exchange account to fetch the balance of.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK", 
+            "examples": {
+              "application/json": {
+                "BTC": {
+                  "tokens": 40, 
+                  "usd_notional": 400
+                }
+              }
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Fetch balance on an exchange account."
+      }
+    }, 
+    "/api/v1/exchangeaccount/{id}/login": {
+      "post": {
+        "description": "Login to an exchange account for trading. Returns ID of user who owns that account.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the exchange account to log into.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK", 
+            "examples": {
+              "application/json": {
+                "user_id": 1
+              }
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Login to an exchange account for trading."
+      }
+    }, 
+    "/api/v1/login": {
+      "post": {
+        "description": "Login with username/password.<br/>", 
+        "parameters": [
+          {
+            "description": "Email to log in with.", 
+            "in": "body", 
+            "name": "email", 
+            "required": true, 
+            "schema": {
+              "type": "string"
+            }
+          }, 
+          {
+            "description": "Password to log in with.", 
+            "in": "body", 
+            "name": "password", 
+            "required": true, 
+            "schema": {
+              "type": "string"
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "The login information. Look in the session data for the cookie"
+          }
+        }, 
+        "summary": "Login with username/password."
+      }
+    }, 
+    "/api/v1/order": {
+      "get": {
+        "description": "Return a list of Orders. Can filter by only particular stati,<br/>or a certain type of algorithm or user.<br/>", 
+        "parameters": [
+          {
+            "default": null, 
+            "description": "If set, will only return orders for that user.", 
+            "in": "query", 
+            "name": "user", 
+            "required": false, 
+            "type": "integer"
+          }, 
+          {
+            "default": null, 
+            "description": "Only return orders of that status.", 
+            "in": "query", 
+            "name": "status", 
+            "required": false, 
+            "type": "string"
+          }, 
+          {
+            "default": null, 
+            "description": "Only return orders of that algoirthm type.", 
+            "in": "query", 
+            "name": "algo", 
+            "required": false, 
+            "type": "string"
+          }, 
+          {
+            "default": null, 
+            "description": "Only returns orders with templateable set to true.", 
+            "in": "query", 
+            "name": "templateable", 
+            "type": "boolean"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "A list of orders.", 
+            "examples": {
+              "application/json": [
+                {
+                  "algo_params": "{}", 
+                  "algo_type": "TWAP", 
+                  "amount": 4000, 
+                  "base": "BTC", 
+                  "customer_id": 1, 
+                  "delay_interval": 4, 
+                  "description": "TWAP Order 1", 
+                  "exchange_accounts": [
+                    1, 
+                    2, 
+                    3
+                  ], 
+                  "execution_amount": 0.4, 
+                  "execution_cost": 0.8, 
+                  "execution_end_time": "04/02/20 09:00", 
+                  "execution_start_time": "04/01/20 08:00", 
+                  "id": 1, 
+                  "monitoring_info": "{}", 
+                  "order_stats": "open", 
+                  "primary_aggression": 0.4, 
+                  "quote": "USD", 
+                  "secondary_aggression": 0.5, 
+                  "side": "buy", 
+                  "status": "on", 
+                  "templateable": false, 
+                  "user": 1
+                }
+              ]
+            }, 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Order"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Returns a list of Orders."
+      }, 
+      "patch": {
+        "description": "Cancells all fpgeo orders.<br/>", 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Cancells all fpgeo orders"
+      }, 
+      "post": {
+        "description": "Create a new order.<br/>", 
+        "parameters": [
+          {
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "$ref": "#/definitions/Order", 
+              "example": {
+                "algo_type": "TWAP", 
+                "amount": 100, 
+                "exchange_accounts": [
+                  1, 
+                  2, 
+                  3
+                ], 
+                "primary_aggression": 0.4, 
+                "user": "1,"
+              }
+            }
+          }, 
+          {
+            "description": "Order ID to associate this with (only for Market/limit)", 
+            "in": "body", 
+            "name": "order_id", 
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK, The ID of the created record,", 
+            "examples": {
+              "application/json": {
+                "id": 1
+              }
+            }, 
+            "schema": {
+              "properties": {
+                "id": {
+                  "description": "ID of the created record", 
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Create a new order."
+      }
+    }, 
+    "/api/v1/order/{id}": {
+      "get": {
+        "description": "Get order by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the order to get.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "The order given by the ID.", 
+            "examples": {
+              "application/json": {
+                "algo_params": "{}", 
+                "algo_type": "TWAP", 
+                "customer_id": 1, 
+                "description": "TWAP Order 1", 
+                "exchange_accounts": [
+                  1, 
+                  2, 
+                  3
+                ], 
+                "id": 1, 
+                "primary_aggression": 0.4, 
+                "secondary_aggression": 0.5, 
+                "status": "on", 
+                "user": 1
+              }
+            }, 
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Get order by ID."
+      }, 
+      "patch": {
+        "description": "Cancel order by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the order to delete.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Cancel order by ID."
+      }, 
+      "put": {
+        "description": "Edit order by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the order to edit", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }, 
+          {
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "example": {
+                "algo_type": "TWAP", 
+                "amount": 100, 
+                "exchange_accounts": [
+                  1, 
+                  2, 
+                  3
+                ], 
+                "primary_aggression": 0.4, 
+                "user": 1
+              }, 
+              "properties": {
+                "algo_params": {
+                  "description": "Custom parameters for the algorithm", 
+                  "type": "string"
+                }, 
+                "algo_type": {
+                  "description": "Algorithm type", 
+                  "type": "string"
+                }, 
+                "amount": {
+                  "description": "Amount of the order", 
+                  "type": "number"
+                }, 
+                "base": {
+                  "description": "Base currency for the order", 
+                  "type": "string"
+                }, 
+                "customer_id": {
+                  "description": "ID for the customer identification of unique orders", 
+                  "type": "string"
+                }, 
+                "delay_interval": {
+                  "description": "Delay between order iterations", 
+                  "type": "integer"
+                }, 
+                "description": {
+                  "description": "Human readable description of the order", 
+                  "type": "string"
+                }, 
+                "exchange_accounts": {
+                  "description": "List of the exchange account IDs used.", 
+                  "items": {
+                    "type": "integer"
+                  }, 
+                  "type": "array"
+                }, 
+                "execution_amount": {
+                  "description": "Amount executed so far", 
+                  "type": "number"
+                }, 
+                "execution_cost": {
+                  "description": "Cost executed so far", 
+                  "type": "number"
+                }, 
+                "execution_end_time": {
+                  "description": "Time of the last execution", 
+                  "type": "string"
+                }, 
+                "execution_start_time": {
+                  "description": "Time of the first execution", 
+                  "type": "string"
+                }, 
+                "monitoring_info": {
+                  "description": "Monitoring Information", 
+                  "type": "string"
+                }, 
+                "primary_aggression": {
+                  "description": "Aggression of the order.", 
+                  "type": "number"
+                }, 
+                "quote": {
+                  "description": "Quote currency for the order", 
+                  "type": "string"
+                }, 
+                "secondary_aggression": {
+                  "description": "Secondary aggression of the order", 
+                  "type": "number"
+                }, 
+                "side": {
+                  "description": "Side - 'buy' or 'sell'", 
+                  "type": "string"
+                }, 
+                "status": {
+                  "description": "Status of the order (on/off/done)", 
+                  "type": "string"
+                }, 
+                "templateable": {
+                  "description": "Allow this to be used for templates", 
+                  "type": "boolean"
+                }, 
+                "user": {
+                  "description": "User who owns the order", 
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Edit order by ID."
+      }
+    }, 
+    "/api/v1/order/{id}/suborders": {
+      "get": {
+        "description": "Return all suborders for an order.<br/>", 
+        "parameters": [
+          {
+            "default": null, 
+            "description": "Will only return orders for that order.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "A list of sub orders.", 
+            "examples": {
+              "application/json": [
+                {
+                  "amount": 40, 
+                  "created_time": "04/01/2020 01:30", 
+                  "exchange": "coinbayes", 
+                  "exchange_account": 1, 
+                  "exchange_order_id": 419, 
+                  "execution_average_price": 2.1, 
+                  "execution_cost": 2.3, 
+                  "execution_fee": 0.5, 
+                  "execution_fee_currency": "USD", 
+                  "execution_size": 1.2, 
+                  "id": 1, 
+                  "order": 1, 
+                  "order_type": "taker", 
+                  "price": 3.4, 
+                  "side": "sell", 
+                  "status": "open", 
+                  "symbol": "BTC/USD", 
+                  "update_time": "04/02/2020 02:00"
+                }
+              ]
+            }, 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/FPGEO"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Returns all suborders for an order"
+      }
+    }, 
+    "/api/v1/orderupdate": {
+      "get": {
+        "description": "Returns a list of Order Updates that belong to the user or order.<br/>Only return up to 200 records.<br/>", 
+        "parameters": [
+          {
+            "default": null, 
+            "description": "If set, will only return orderupdates for that user.", 
+            "in": "query", 
+            "name": "user", 
+            "required": false, 
+            "type": "integer"
+          }, 
+          {
+            "default": null, 
+            "description": "If set, will only return orderupdates for that order.", 
+            "in": "query", 
+            "name": "order", 
+            "required": false, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "A list of order updates (may be filtered by user or order)", 
+            "examples": {
+              "application/json": [
+                {
+                  "base_delta": 100, 
+                  "current_price": 120.4, 
+                  "id": 1, 
+                  "order": 1, 
+                  "order_aggression": 0.5, 
+                  "pov": 0.4, 
+                  "pov_1_hr": 0.8, 
+                  "price": 2, 
+                  "progress": 4, 
+                  "quote_delta": 200, 
+                  "report_time": "04/08/21 16:16", 
+                  "suggested_aggression": 0.6, 
+                  "twap": 2.1, 
+                  "vwap": 2.2
+                }
+              ]
+            }, 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/OrderUpdate"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Returns a list of Order Updates."
+      }
+    }, 
+    "/api/v1/orderupdate/{id}": {
+      "get": {
+        "description": "Get order update by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the order update to get.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "The order update given by the ID.", 
+            "examples": {
+              "application/json": {
+                "base_delta": 100, 
+                "current_price": 120.4, 
+                "id": 1, 
+                "order": 1, 
+                "order_aggression": 0.5, 
+                "pov": 0.4, 
+                "pov_1_hr": 0.8, 
+                "price": 2, 
+                "progress": 4, 
+                "quote_delta": 200, 
+                "report_time": "04/08/21 16:16", 
+                "suggested_aggression": 0.6, 
+                "twap": 2.1, 
+                "vwap": 2.2
+              }
+            }, 
+            "schema": {
+              "$ref": "#/definitions/OrderUpdate"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Get order update by ID."
+      }
+    }, 
+    "/api/v1/price/{symbol}": {
+      "get": {
+        "description": "Get price of a symbol.<br/>", 
+        "parameters": [
+          {
+            "description": "Symbol to get the price of (seperated by -).", 
+            "in": "path", 
+            "name": "symbol", 
+            "required": true, 
+            "type": "string"
+          }, 
+          {
+            "default": [
+              "now"
+            ], 
+            "description": "Times to get the price on. Options are - now, 1m, 1h, 1d, 1w", 
+            "in": "query", 
+            "items": {
+              "type": "string"
+            }, 
+            "name": "times", 
+            "type": "array"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "The price of the symbol.", 
+            "examples": {
+              "application/json": {
+                "BTC/USDT": {
+                  "1h": 12021.3, 
+                  "now": 12000.3
+                }
+              }
+            }
+          }
+        }, 
+        "summary": "Get price of symbol."
+      }
+    }, 
+    "/api/v1/symbols": {
+      "get": {
+        "description": "Return supported symbols for trading (later versions will give data too).<br/>", 
+        "responses": {
+          "200": {
+            "description": "A list of supported currencies.", 
+            "examples": {
+              "application/json": [
+                "BTC/USD", 
+                "BTC/USDT", 
+                "ETH/USD", 
+                "ETH/USDT"
+              ]
+            }, 
+            "schema": {
+              "items": {
+                "type": "string"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "summary": "Return supported symbols for trading."
+      }
+    }, 
+    "/api/v1/user": {
+      "get": {
+        "description": "Returns all users.<br/>", 
+        "responses": {
+          "200": {
+            "description": "A list of users", 
+            "examples": {
+              "application/json": [
+                {
+                  "description": "our trading account", 
+                  "email": "trading@floating.grouo", 
+                  "id": 1, 
+                  "password": "super_secret_password", 
+                  "tenant": "FPG"
+                }
+              ]
+            }, 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/User"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Returns a list of Users"
+      }, 
+      "post": {
+        "description": "Create a new user.<br/>", 
+        "parameters": [
+          {
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "example": {
+                "description": "just a test user", 
+                "email": "testing@floating.group", 
+                "password": "bitcoin_hash"
+              }, 
+              "properties": {
+                "description": {
+                  "description": "Human readable description of the user", 
+                  "type": "string"
+                }, 
+                "email": {
+                  "description": "Email of the user", 
+                  "type": "string"
+                }, 
+                "password": {
+                  "description": "Password of the user (encrypted)", 
+                  "type": "string"
+                }, 
+                "tenant": {
+                  "description": "The organization of the user", 
+                  "type": "string"
+                }
+              }, 
+              "required": [
+                "email", 
+                "password"
+              ]
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK, The ID of the created record,", 
+            "examples": {
+              "application/json": {
+                "id": 1
+              }
+            }, 
+            "schema": {
+              "properties": {
+                "id": {
+                  "description": "ID of the created record", 
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Create a new user"
+      }
+    }, 
+    "/api/v1/user/{id}": {
+      "delete": {
+        "description": "Delete user by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the user to delete.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Delete user by ID."
+      }, 
+      "get": {
+        "description": "Get user by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the user to get.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "The user given by the ID.", 
+            "examples": {
+              "application/json": {
+                "description": "test description", 
+                "email": "something", 
+                "id": 1, 
+                "password": "donttellanyone", 
+                "tenant": "FPG"
+              }
+            }, 
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Get user by ID."
+      }, 
+      "put": {
+        "description": "Edit user by ID.<br/>", 
+        "parameters": [
+          {
+            "description": "Numeric ID of the user to edit", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }, 
+          {
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "example": {
+                "description": "just a test user", 
+                "email": "testing@floating.group", 
+                "password": "bitcoin_hash"
+              }, 
+              "properties": {
+                "description": {
+                  "description": "Human readable description of the user", 
+                  "type": "string"
+                }, 
+                "email": {
+                  "description": "Email of the user", 
+                  "type": "string"
+                }, 
+                "password": {
+                  "description": "Password of the user (encrypted)", 
+                  "type": "string"
+                }, 
+                "tenant": {
+                  "description": "The organization of the user", 
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Edit user by ID."
+      }
+    }, 
+    "/api/v1/user/{id}/balance": {
+      "get": {
+        "description": "Fetch balance across a user.<br/>", 
+        "parameters": [
+          {
+            "default": 1, 
+            "description": "ID of the user to fetch the balance of.", 
+            "in": "path", 
+            "name": "id", 
+            "required": true, 
+            "type": "integer"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK", 
+            "examples": {
+              "application/json": {
+                "consolidated": {
+                  "BTC": {
+                    "tokens": 40, 
+                    "usd_notional": 400
+                  }
+                }
+              }
+            }
+          }
+        }, 
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ], 
+        "summary": "Fetch balance across a user."
+      }
+    }, 
+    "/login": {
+      "post": {
+        "description": "Login with username/password.<br/>", 
+        "parameters": [
+          {
+            "description": "Email to log in with.", 
+            "in": "body", 
+            "name": "email", 
+            "required": true, 
+            "schema": {
+              "type": "string"
+            }
+          }, 
+          {
+            "description": "Password to log in with.", 
+            "in": "body", 
+            "name": "password", 
+            "required": true, 
+            "schema": {
+              "type": "string"
+            }
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "The login information. Look in the session data for the cookie"
+          }
+        }, 
+        "summary": "Login with username/password."
+      }
+    }
+  }, 
+  "schemes": [
+    "https"
+  ], 
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  }, 
+  "swagger": "2.0"
+}

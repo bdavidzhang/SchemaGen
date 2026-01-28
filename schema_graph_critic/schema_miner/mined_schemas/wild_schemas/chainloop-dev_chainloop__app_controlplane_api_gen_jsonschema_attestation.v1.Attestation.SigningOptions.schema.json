@@ -1,0 +1,27 @@
+{
+  "$id": "attestation.v1.Attestation.SigningOptions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^(signingCa)$": {
+      "description": "Signing CA to be used for signing",
+      "type": "string"
+    },
+    "^(timestampAuthorityUrl)$": {
+      "description": "TSA URL",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "signing_ca": {
+      "description": "Signing CA to be used for signing",
+      "type": "string"
+    },
+    "timestamp_authority_url": {
+      "description": "TSA URL",
+      "type": "string"
+    }
+  },
+  "title": "Signing Options",
+  "type": "object"
+}

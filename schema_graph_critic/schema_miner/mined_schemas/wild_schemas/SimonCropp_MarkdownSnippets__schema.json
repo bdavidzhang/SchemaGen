@@ -1,0 +1,220 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "MarkdownSnippets",
+  "title": "Root",
+  "type": "object",
+  "required": [
+  ],
+  "properties": {
+    "OmitSnippetLinks": {
+      "$id": "#root/OmitSnippetLinks",
+      "title": "OmitSnippetLinks",
+      "type": "boolean",
+      "examples": [
+        true
+      ],
+      "default": false
+    },
+    "ReadOnly": {
+      "$id": "#root/ReadOnly",
+      "title": "Readonly",
+      "type": "boolean",
+      "examples": [
+        true
+      ],
+      "default": false
+    },
+    "LinkFormat": {
+      "$id": "#root/LinkFormat",
+      "title": "Linkformat",
+      "type": "string",
+      "default": "GitHub",
+      "enum": [
+        "Tfs",
+        "GitHub",
+        "Bitbucket",
+        "GitLab",
+        "DevOps",
+        "None"
+      ],
+      "pattern": "^.*$"
+    },
+    "TocLevel": {
+      "$id": "#root/TocLevel",
+      "title": "Toclevel",
+      "type": "integer",
+      "examples": [
+        3
+      ],
+      "default": 1
+    },
+    "UrlsAsSnippets": {
+      "$id": "#root/UrlsAsSnippets",
+      "title": "Urlsassnippets",
+      "type": "array",
+      "default": [],
+      "items": {
+        "$id": "#root/UrlsAsSnippets/items",
+        "title": "Items",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "https://github.com/SimonCropp/MarkdownSnippets/snippet.cs"
+        ],
+        "pattern": "^.*$"
+      }
+    },
+    "TocExcludes": {
+      "$id": "#root/TocExcludes",
+      "title": "Tocexcludes",
+      "type": "array",
+      "default": [],
+      "items": {
+        "$id": "#root/TocExcludes/items",
+        "title": "Items",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "heading1",
+          "heading2"
+        ],
+        "pattern": "^.*$"
+      }
+    },
+    "ExcludeMarkdownDirectories": {
+      "$id": "#root/ExcludeMarkdownDirectories",
+      "title": "ExcludeMarkdownDirectories",
+      "type": "array",
+      "default": [],
+      "items": {
+        "$id": "#root/ExcludeMarkdownDirectories/items",
+        "title": "Items",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "directory1",
+          "directory2"
+        ],
+        "pattern": "^.*$"
+      }
+    },
+    "ExcludeSnippetDirectories": {
+      "$id": "#root/ExcludeSnippetDirectories",
+      "title": "ExcludeSnippetDirectories",
+      "type": "array",
+      "default": [],
+      "items": {
+        "$id": "#root/ExcludeSnippetDirectories/items",
+        "title": "Items",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "directory1",
+          "directory1"
+        ],
+        "pattern": "^.*$"
+      }
+    },
+    "ExcludeDirectories": {
+      "$id": "#root/ExcludeDirectories",
+      "title": "ExcludeDirectories",
+      "type": "array",
+      "default": [],
+      "items": {
+        "$id": "#root/ExcludeDirectories/items",
+        "title": "Items",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "directory1",
+          "directory2"
+        ],
+        "pattern": "^.*$"
+      }
+    },
+    "DocumentExtensions": {
+      "$id": "#root/DocumentExtensions",
+      "title": "Documentextensions",
+      "type": "array",
+      "default": [],
+      "items": {
+        "$id": "#root/DocumentExtensions/items",
+        "title": "Items",
+        "type": "string",
+        "default": "md",
+        "examples": [
+          "md"
+        ],
+        "pattern": "^.*$"
+      }
+    },
+    "Convention": {
+      "$id": "#root/Convention",
+      "title": "Convention",
+      "type": "string",
+      "default": "InPlaceOverwrite",
+      "enum": [
+        "InPlaceOverwrite",
+        "SourceTransform"
+      ],
+      "pattern": "^.*$"
+    },
+    "WriteHeader": {
+      "$id": "#root/WriteHeader",
+      "title": "Writeheader",
+      "type": "boolean",
+      "examples": [
+        false
+      ],
+      "default": true
+    },
+    "MaxWidth": {
+      "$id": "#root/MaxWidth",
+      "title": "Maxwidth",
+      "type": "integer",
+      "examples": [
+        80
+      ],
+      "default": 100
+    },
+    "Header": {
+      "$id": "#root/Header",
+      "title": "Header",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "GENERATED FILE - Source File: {relativePath}"
+      ],
+      "pattern": "^.*$"
+    },
+    "UrlPrefix": {
+      "$id": "#root/UrlPrefix",
+      "title": "UrlPrefix",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "TheUrlPrefix"
+      ],
+      "pattern": "^.*$"
+    },
+    "TreatMissingAsWarning": {
+      "$id": "#root/TreatMissingAsWarning",
+      "title": "TreatMissingAsWarning",
+      "type": "boolean",
+      "examples": [
+        false
+      ],
+      "default": true
+    },
+    "ValidateContent": {
+      "$id": "#root/ValidateContent",
+      "title": "ValidateContent",
+      "type": "boolean",
+      "examples": [
+        false
+      ],
+      "default": true
+    }
+  }
+}

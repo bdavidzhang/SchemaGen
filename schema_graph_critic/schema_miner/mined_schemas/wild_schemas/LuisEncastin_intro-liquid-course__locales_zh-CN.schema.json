@@ -1,0 +1,347 @@
+{
+  "settings_schema": {
+    "social_media": {
+      "name": "社交媒体",
+      "settings": {
+        "header": {
+          "content": "社交媒体账户"
+        },
+        "social_twitter_link": {
+          "label": "Twitter",
+          "info": "https://twitter.com/shopify"
+        },
+        "social_facebook_link": {
+          "label": "Facebook",
+          "info": "https://facebook.com/shopify"
+        },
+        "social_pinterest_link": {
+          "label": "Pinterest",
+          "info": "https://pinterest.com/shopify"
+        },
+        "social_instagram_link": {
+          "label": "Instagram",
+          "info": "http://instagram.com/shopify"
+        },
+        "social_tiktok_link": {
+          "label": "TikTok",
+          "info": "https://tiktok.com/@shopify"
+        },
+        "social_tumblr_link": {
+          "label": "Tumblr",
+          "info": "https://shopify.tumblr.com"
+        },
+        "social_snapchat_link": {
+          "label": "Snapchat",
+          "info": "https://www.snapchat.com/add/shopify"
+        },
+        "social_youtube_link": {
+          "label": "YouTube",
+          "info": "https://www.youtube.com/shopify"
+        },
+        "social_vimeo_link": {
+          "label": "Vimeo",
+          "info": "https://vimeo.com/shopify"
+        }
+      }
+    },
+    "favicon": {
+      "name": "网站图标",
+      "settings": {
+        "favicon": {
+          "label": "网站图标图片",
+          "info": "将缩小到 32 x 32px"
+        }
+      }
+    }
+  },
+  "sections": {
+    "announcement-bar": {
+      "name": "公告栏",
+      "settings": {
+        "text": {
+          "label": "文本"
+        }
+      }
+    },
+    "apps": {
+      "name": "应用",
+      "presets": {
+        "name": "应用"
+      }
+    },
+    "image-with-text": {
+      "name": "带文本图片",
+      "settings": {
+        "image": {
+          "label": "图片"
+        }
+      },
+      "blocks": {
+        "heading": {
+          "name": "标题",
+          "settings": {
+            "heading": {
+              "label": "标题"
+            }
+          }
+        },
+        "text": {
+          "name": "文本",
+          "settings": {
+            "text": {
+              "label": "内容"
+            }
+          }
+        },
+        "button": {
+          "name": "按钮",
+          "settings": {
+            "button_label": {
+              "label": "按钮标签",
+              "info": "将标签留空可隐藏按钮。"
+            },
+            "button_link": {
+              "label": "按钮链接"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "带文本图片"
+      }
+    },
+    "footer": {
+      "name": "页脚"
+    },
+    "main-blog": {
+      "name": "博客文章",
+      "settings": {
+        "header": {
+          "content": "博客文章卡"
+        },
+        "posts_per_page": {
+          "label": "每页文章数"
+        }
+      }
+    },
+    "main-page": {
+      "name": "页面"
+    },
+    "custom-liquid": {
+      "name": "自定义 Liquid",
+      "settings": {
+        "custom_liquid": {
+          "label": "自定义 Liquid",
+          "info": "添加应用代码片段或其他 Liquid 代码以创建高级自定义。"
+        }
+      },
+      "presets": {
+        "name": "自定义 Liquid"
+      }
+    },
+    "page": {
+      "name": "页面",
+      "settings": {
+        "page": {
+          "label": "页面"
+        }
+      },
+      "presets": {
+        "name": "页面"
+      }
+    },
+    "main-login": {
+      "name": "登录"
+    },
+    "main-register": {
+      "name": "注册"
+    },
+    "rich-text": {
+      "name": "富文本",
+      "blocks": {
+        "heading": {
+          "name": "标题",
+          "settings": {
+            "heading": {
+              "label": "标题"
+            }
+          }
+        },
+        "text": {
+          "name": "文本",
+          "settings": {
+            "text": {
+              "label": "内容"
+            }
+          }
+        },
+        "button": {
+          "name": "按钮",
+          "settings": {
+            "button_label": {
+              "label": "按钮标签",
+              "info": "将标签留空可隐藏按钮。"
+            },
+            "button_link": {
+              "label": "按钮链接"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "富文本"
+      }
+    },
+    "main-article": {
+      "name": "博客文章",
+      "blocks": {
+        "featured_image": {
+          "name": "配图"
+        },
+        "title": {
+          "name": "标题"
+        },
+        "details": {
+          "name": "详细信息"
+        },
+        "content": {
+          "name": "内容"
+        }
+      }
+    },
+    "main-product": {
+      "name": "产品信息",
+      "blocks": {
+        "text": {
+          "name": "文本",
+          "settings": {
+            "text": {
+              "label": "文本"
+            }
+          }
+        },
+        "title": {
+          "name": "标题"
+        },
+        "price": {
+          "name": "价格"
+        },
+        "quantity_selector": {
+          "name": "数量选择器"
+        },
+        "variant_picker": {
+          "name": "多属性选择器"
+        },
+        "buy_buttons": {
+          "name": "Buy Button",
+          "settings": {
+            "show_dynamic_checkout": {
+              "label": "显示动态结账按钮",
+              "info": "通过使用您商店中提供的付款方式，客户会看到他们的首选付款方式，例如 PayPal 或 Apple Pay。[了解详细信息](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+            },
+            "show_gift_card_recipient": {
+              "label": "显示礼品卡产品的收件人信息表单",
+              "info": "礼品卡产品可以选择在预定的日期直接寄给收件人，并附上个人信息。[了解更多信息](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)"
+            }
+          }
+        },
+        "pickup_availability": {
+          "name": "是否提供取货服务"
+        },
+        "description": {
+          "name": "描述"
+        },
+        "rating": {
+          "name": "产品评分",
+          "settings": {
+            "paragraph": {
+              "content": "若要显示评分，请添加产品评分应用。[详细了解](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#featured-product-rating)"
+            }
+          }
+        },
+        "complementary_products": {
+          "name": "互补产品",
+          "settings": {
+            "paragraph": {
+              "content": "若要选择互补产品，请添加 Search & Discovery 应用。[详细了解](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations)"
+            },
+            "heading": {
+              "label": "标题"
+            }
+          }
+        }
+      }
+    },
+    "main-reset-password": {
+      "name": "密码重置"
+    },
+    "main-list-collections": {
+      "name": "产品系列列表页面",
+      "settings": {
+        "title": {
+          "label": "标题"
+        },
+        "collections_per_page": {
+          "label": "每页产品系列数"
+        }
+      }
+    },
+    "main-addresses": {
+      "name": "地址"
+    },
+    "contact-form": {
+      "name": "联系表",
+      "heading": "标题",
+      "presets": {
+        "name": "联系表"
+      }
+    },
+    "product-recommendations": {
+      "name": "产品推荐",
+      "settings": {
+        "heading": {
+          "label": "标题"
+        },
+        "paragraph": {
+          "content": "动态推荐使用订单和产品信息来随着时间而变化和改进。[详细了解](https://help.shopify.com/themes/development/recommended-products)"
+        }
+      }
+    },
+    "main-account": {
+      "name": "账户"
+    },
+    "featured-blog": {
+      "name": "博客文章",
+      "settings": {
+        "heading": {
+          "label": "标题"
+        },
+        "blog": {
+          "label": "博客"
+        }
+      },
+      "presets": {
+        "name": "博客文章"
+      }
+    },
+    "email-signup": {
+      "name": "电子邮件注册信息",
+      "settings": {
+        "heading": {
+          "label": "标题"
+        }
+      },
+      "presets": {
+        "name": "电子邮件注册信息"
+      }
+    },
+    "password-header": {
+      "name": "密码标头",
+      "settings": {
+        "logo": {
+          "label": "logo 图片"
+        }
+      }
+    }
+  }
+}

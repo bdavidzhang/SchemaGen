@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/agroqirax/timberborn-schemas/main/schemas/NeedCollection.schema.json",
+  "title": "Need collection specification",
+  "description": "Add or modify a need collection",
+  "type": "object",
+  "properties": {
+    "NeedCollectionSpec": {
+      "type": "object",
+      "properties": {
+        "CollectionId": {
+          "type": "string",
+          "title": "Collection id",
+          "examples": ["Folktails", "IronTeeth", "Common"]
+        },
+        "Needs": {
+          "$ref": "#/$defs/Needs"
+        },
+        "Needs#append": {
+          "$ref": "#/$defs/Needs"
+        },
+        "Needs#remove": {
+          "$ref": "#/$defs/Needs"
+        },
+        "Needs#delete": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        }
+      },
+      "minProperties": 1,
+      "additionalProperties": false,
+      "title": "Need collection specification"
+    }
+  },
+  "minProperties": 1,
+  "additionalProperties": false,
+  "$defs": {
+    "Needs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "examples": [
+          "BeaverStatue",
+          "Detailer",
+          "Campfire",
+          "Agora",
+          "Antidote",
+          "BeeSting",
+          "Biofuel",
+          "Books",
+          "BrazierOfBonding",
+          "Bread",
+          "BulletinPole",
+          "Carousel",
+          "Carrots",
+          "Catalyst",
+          "CattailCracker",
+          "ContemplationSpot",
+          "DanceHall",
+          "EarthRecultivator",
+          "FarmerMonument",
+          "FountainOfJoy",
+          "GrilledChestnuts",
+          "GrilledPotatoes",
+          "GrilledSpadderdock",
+          "Lido",
+          "MaplePastry",
+          "MudPit",
+          "PunchCard",
+          "Scarecrow",
+          "SunflowerSeeds",
+          "AlgaeRation",
+          "BeaverBust",
+          "Brazier",
+          "Clock",
+          "Coffee",
+          "ControlTower",
+          "CornRation",
+          "EarthRepopulator",
+          "EggplantRation",
+          "Energy",
+          "ExercisePlaza",
+          "FermentedCassava",
+          "FermentedMushroom",
+          "FermentedSoybean",
+          "FlameOfUnity",
+          "Grease",
+          "Kohlrabi",
+          "LaborerMonument",
+          "MangroveFruit",
+          "Motivatorium",
+          "MudBath",
+          "Scratcher",
+          "SwimmingPool",
+          "TributeToIngenuity",
+          "WindTunnel",
+          "BadwaterContamination",
+          "BrokenTeeth",
+          "Hunger",
+          "Injury",
+          "Lantern",
+          "Roof",
+          "RooftopTerrace",
+          "Shelter",
+          "Shrub",
+          "Sleep",
+          "Thirst",
+          "WetFur"
+        ]
+      },
+      "title": "Needs"
+    }
+  }
+}

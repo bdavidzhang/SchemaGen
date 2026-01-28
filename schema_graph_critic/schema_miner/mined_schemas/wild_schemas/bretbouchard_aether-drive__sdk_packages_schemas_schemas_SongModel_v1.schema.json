@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://whiteroom.dev/schemas/SongModel_v1.schema.json",
+  "title": "SongModel_v1",
+  "description": "Executable song representation - what actually plays",
+  "type": "object",
+  "required": [
+    "version",
+    "id",
+    "sourceSongId",
+    "derivationId",
+    "timeline",
+    "notes",
+    "duration",
+    "tempo",
+    "timeSignature",
+    "sampleRate",
+    "voiceAssignments",
+    "console",
+    "derivedAt",
+    "performances"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "sourceSongId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "SchillingerSong_v1 ID this was derived from"
+    },
+    "derivationId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "DerivationRecord_v1 ID"
+    },
+    "timeline": {
+      "type": "object",
+      "required": ["sections", "tempo", "timeSignature"],
+      "properties": {
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "startTime", "duration"],
+            "properties": {
+              "id": { "type": "string", "format": "uuid" },
+              "name": { "type": "string" },
+              "startTime": { "type": "integer", "minimum": 0 },
+              "duration": { "type": "integer", "minimum": 0 },
+              "tempo": { "type": "number", "exclusiveMinimum": 0, "maximum": 500 },
+              "timeSignature": {
+                "type": "array",
+                "items": { "type": "integer" },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          }
+        },
+        "tempo": { "type": "number", "exclusiveMinimum": 0, "maximum": 500 },
+        "timeSignature": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "voiceId", "startTime", "duration", "pitch", "velocity"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "voiceId": { "type": "string", "format": "uuid" },
+          "startTime": { "type": "integer", "minimum": 0 },
+          "duration": { "type": "integer", "minimum": 0 },
+          "pitch": { "type": "integer", "minimum": 0, "maximum": 127 },
+          "velocity": { "type": "number", "minimum": 0, "maximum": 1 },
+          "derivation": {
+            "type": "object",
+            "properties": {
+              "systemType": { "type": "string", "enum": ["rhythm", "melody", "harmony"] },
+              "systemId": { "type": "string", "format": "uuid" },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        }
+      }
+    },
+    "automations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "target", "time", "value"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "target": { "type": "string" },
+          "time": { "type": "integer", "minimum": 0 },
+          "value": { "type": "number" },
+          "interpolation": { "type": "string", "enum": ["linear", "curve", "step"] }
+        }
+      }
+    },
+    "duration": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total duration in samples"
+    },
+    "tempo": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 500
+    },
+    "timeSignature": {
+      "type": "array",
+      "items": { "type": "integer" },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "[numerator, denominator]"
+    },
+    "sampleRate": {
+      "type": "integer",
+      "enum": [44100, 48000, 96000]
+    },
+    "voiceAssignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["voiceId", "instrumentId", "busId"],
+        "properties": {
+          "voiceId": { "type": "string", "format": "uuid" },
+          "instrumentId": { "type": "string", "enum": ["LocalGal", "KaneMarco", "KaneMarcoAether", "KaneMarcoAetherString", "NexSynth", "SamSampler", "DrumMachine"] },
+          "presetId": { "type": "string" },
+          "busId": { "type": "string", "format": "uuid" }
+        }
+      }
+    },
+    "console": {
+      "description": "ConsoleModel_v1 snapshot",
+      "type": "object",
+      "required": ["version", "id"],
+      "properties": {
+        "version": { "type": "string", "const": "1.0" },
+        "id": { "type": "string", "format": "uuid" }
+      }
+    },
+    "presets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["instrumentType", "presetId"],
+        "properties": {
+          "instrumentType": { "type": "string" },
+          "presetId": { "type": "string" }
+        }
+      }
+    },
+    "derivedAt": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix timestamp (ms)"
+    },
+    "performances": {
+      "type": "array",
+      "items": {
+        "$ref": "PerformanceState_v1.schema.json"
+      },
+      "description": "Multiple performance interpretations of this song (Piano, SATB, Techno, etc.)"
+    },
+    "activePerformanceId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID of the currently active performance from the performances array"
+    }
+  }
+}

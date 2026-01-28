@@ -1,0 +1,158 @@
+{
+	"$schema": "https://json-schema.org/draft-07/schema",
+	"$id": "/v1/pl-question-data.schema.json",
+	"type": "object",
+	"definitions": {
+		"taggable": {
+			"type": "object",
+			"properties": {
+				"color": {
+					"type": "string"
+				},
+				"course_id": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"id": {
+					"type": "string"
+				},
+				"implicit": {
+					"type": "boolean"
+				},
+				"json_comment": {
+					"type": ["string", "array", "object", "null"]
+				},
+				"name": {
+					"type": "string",
+					"minLength": 1
+				},
+				"number": {
+					"type": ["number", "null"]
+				}
+			},
+			"required": [
+				"color",
+				"course_id",
+				"description",
+				"id",
+				"implicit",
+				"json_comment",
+				"name",
+				"number"
+			]
+		}
+	},
+	"properties": {
+		"id": {
+			"type": "string",
+			"pattern": "^\\d+$"
+		},
+		"qid": {
+			"type": "string",
+			"minLength": 1
+		},
+		"title": {
+			"type": "string",
+			"minLength": 1
+		},
+		"sync_errors": {
+			"type": ["string", "null"]
+		},
+		"sync_warnings": {
+			"type": ["string", "null"]
+		},
+		"grading_method": {
+			"type": "string",
+			"enum": ["Internal", "External"]
+		},
+		"external_grading_image": {
+			"type": ["string", "null"]
+		},
+		"display_type": {
+			"type": "string"
+		},
+		"open_issue_count": {
+			"type": "integer",
+			"minimum": 0,
+			"default": 0
+		},
+		"topic": {
+			"$ref": "#/definitions/taggable"
+		},
+		"tags": {
+			"type": ["array", "null"],
+			"items": {
+				"$ref": "#/definitions/taggable"
+			}
+		},
+		"share_publicly": {
+			"type": "boolean"
+		},
+		"share_source_publicly": {
+			"type": "boolean"
+		},
+		"sharing_sets": {
+			"type": ["array", "null"],
+			"items": {
+				"type": "object",
+				"properties": {
+					"course_id": {
+						"type": "string"
+					},
+					"description": {
+						"type": ["string", "null"]
+					},
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": ["string", "null"]
+					}
+				},
+				"required": ["course_id", "description", "id", "name"]
+			}
+		},
+		"assessments": {
+			"type": ["object", "null"],
+			"properties": {
+				"assessment_id": {
+					"type": "string"
+				},
+				"color": {
+					"type": "string"
+				},
+				"course_instance_id": {
+					"type": "string"
+				},
+				"label": {
+					"type": "string"
+				},
+				"share_source_publicly": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"assessment_id",
+				"color",
+				"course_instance_id",
+				"label",
+				"share_source_publicly"
+			]
+		}
+	},
+	"required": [
+		"id",
+		"qid",
+		"title",
+		"grading_method",
+		"external_grading_image",
+		"display_type",
+		"open_issue_count",
+		"topic",
+		"tags",
+		"share_publicly",
+		"share_source_publicly"
+	]
+}

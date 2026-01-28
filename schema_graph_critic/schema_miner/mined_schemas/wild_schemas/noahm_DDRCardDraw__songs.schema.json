@@ -1,0 +1,229 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Game Data",
+  "description": "Describes the shape of data that any individual json file under `src/songs` will conform to",
+  "additionalProperties": false,
+  "required": ["songs", "meta", "defaults", "i18n"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Describes unique configuration options for this game",
+      "required": ["lastUpdated", "styles", "difficulties", "flags"],
+      "additionalProperties": false,
+      "properties": {
+        "menuParent": {
+          "type": "string",
+          "description": "If supplied, the parent folder name in the game select menu"
+        },
+        "lastUpdated": {
+          "type": "integer",
+          "description": "Unix timestamp of last update to this data file"
+        },
+        "styles": {
+          "$ref": "#/definitions/uniqueStringArr",
+          "description": "List of all play styles available"
+        },
+        "difficulties": {
+          "type": "array",
+          "description": "List of all difficulty classes available",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "A unique string key to identify this difficulty class"
+              },
+              "color": {
+                "type": "string",
+                "description": "A css color to use to visually define this difficulty class"
+              }
+            },
+            "required": ["key", "color"],
+            "additionalProperties": false
+          },
+          "additionalItems": false
+        },
+        "flags": {
+          "$ref": "#/definitions/uniqueStringArr",
+          "description": "List of all special flags one might filter songs by"
+        },
+        "folders": {
+          "$ref": "#/definitions/uniqueStringArr",
+          "description": "List of all possible folders, in order"
+        },
+        "usesDrawGroups": {
+          "type": "boolean"
+        },
+        "granularTierResolution": {
+          "type": "integer",
+          "description": "Number of steps from one level to the next when using the `sanbaiTier` granular levels"
+        }
+      }
+    },
+    "defaults": {
+      "type": "object",
+      "description": "Defines the default configuration for this game",
+      "required": [
+        "style",
+        "difficulties",
+        "lowerLvlBound",
+        "upperLvlBound",
+        "flags"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "style": { "type": "string" },
+        "difficulties": { "$ref": "#/definitions/uniqueStringArr" },
+        "flags": { "$ref": "#/definitions/uniqueStringArr" },
+        "folders": { "$ref": "#/definitions/uniqueStringArr" },
+        "lowerLvlBound": { "type": "number" },
+        "upperLvlBound": { "type": "number" }
+      }
+    },
+    "i18n": {
+      "type": "object",
+      "description": "Set of localized values for display of any styles, difficulties, or flags",
+      "required": ["en"],
+      "additionalProperties": {
+        "$ref": "#/definitions/i18nDictRoot"
+      }
+    },
+    "songs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "Song",
+        "properties": {
+          "flags": { "$ref": "#/definitions/uniqueStringArr" },
+          "name": {
+            "type": "string"
+          },
+          "artist": {
+            "type": "string"
+          },
+          "genre": {
+            "type": "string"
+          },
+          "artist_translation": {
+            "type": "string"
+          },
+          "bpm": {
+            "type": "string"
+          },
+          "name_translation": {
+            "type": "string"
+          },
+          "search_hint": {
+            "type": "string"
+          },
+          "date_added": {
+            "type": "string"
+          },
+          "charts": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/chart" },
+            "additionalItems": false
+          },
+          "jacket": {
+            "type": "string"
+          },
+          "folder": {
+            "type": "string"
+          },
+          "saHash": {
+            "type": "string"
+          },
+          "saIndex": {
+            "type": "string"
+          },
+          "remyLink": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "artist", "bpm", "jacket", "charts"],
+        "additionalProperties": false
+      },
+      "additionalItems": false
+    }
+  },
+  "definitions": {
+    "chart": {
+      "type": "object",
+      "title": "Chart",
+      "additionalProperties": false,
+      "properties": {
+        "flags": { "$ref": "#/definitions/uniqueStringArr" },
+        "style": { "type": "string", "description": "e.g. single/double" },
+        "diffClass": {
+          "type": "string",
+          "description": "e.g. expert/challenge"
+        },
+        "lvl": {
+          "type": "number",
+          "description": "in-game numeric rating"
+        },
+        "sanbaiTier": {
+          "type": "number",
+          "description": "a more granular rating sourced from 3icecream, calculated based on community performance"
+        },
+        "drawGroup": {
+          "type": "number",
+          "description": "tournament-specific grouping of charts (e.g. tier)"
+        },
+        "step": {
+          "type": "number"
+        },
+        "shock": {
+          "type": "number"
+        },
+        "freeze": {
+          "type": "number"
+        },
+        "jacket": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "bpm": {
+          "type": "string",
+          "description": "per-chart BPM range, if one applies"
+        }
+      },
+      "required": ["lvl", "diffClass", "style"]
+    },
+    "uniqueStringArr": {
+      "type": "array",
+      "description": "An array of strings without any duplicate values",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "i18nDictRoot": {
+      "type": "object",
+      "title": "I18nDict",
+      "description": "Dictionary of localized strings",
+      "required": ["name", "$abbr"],
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string" },
+          { "$ref": "#/definitions/i18nDictBranch" }
+        ]
+      }
+    },
+    "i18nDictBranch": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string" },
+          { "$ref": "#/definitions/i18nDictBranch" }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.anarq.com/qwallet/wallet.json",
+  "title": "Wallet",
+  "description": "Schema for Qwallet wallet objects",
+  "type": "object",
+  "properties": {
+    "walletId": {
+      "type": "string",
+      "pattern": "^wallet_[a-f0-9]{32}$",
+      "description": "Unique wallet identifier"
+    },
+    "owner": {
+      "$ref": "https://schemas.anarq.com/common/identity-ref.json",
+      "description": "Wallet owner identity"
+    },
+    "address": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{40}$",
+      "description": "Wallet address"
+    },
+    "balances": {
+      "type": "object",
+      "properties": {
+        "QToken": {
+          "type": "number",
+          "minimum": 0
+        },
+        "PI": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "daily": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "used": {
+              "type": "number",
+              "minimum": 0
+            },
+            "resetAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": ["amount", "used", "resetAt"]
+        },
+        "monthly": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "used": {
+              "type": "number",
+              "minimum": 0
+            },
+            "resetAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": ["amount", "used", "resetAt"]
+        },
+        "dao": {
+          "type": "object",
+          "properties": {
+            "daoId": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "used": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": ["daoId", "amount", "used"]
+        }
+      }
+    },
+    "networks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "chainId": {
+            "type": "integer"
+          },
+          "address": {
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        },
+        "required": ["name", "chainId", "address", "isActive"]
+      }
+    },
+    "security": {
+      "type": "object",
+      "properties": {
+        "multiSig": {
+          "type": "boolean"
+        },
+        "requiresApproval": {
+          "type": "boolean"
+        },
+        "approvers": {
+          "type": "array",
+          "items": {
+            "$ref": "https://schemas.anarq.com/common/identity-ref.json"
+          }
+        },
+        "riskLevel": {
+          "type": "string",
+          "enum": ["LOW", "MEDIUM", "HIGH"]
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ACTIVE", "SUSPENDED", "FROZEN", "CLOSED"],
+      "description": "Wallet status"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    },
+    "lastActivity": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last activity timestamp"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Additional wallet metadata"
+    }
+  },
+  "required": [
+    "walletId",
+    "owner",
+    "address",
+    "balances",
+    "status",
+    "createdAt"
+  ],
+  "additionalProperties": false
+}

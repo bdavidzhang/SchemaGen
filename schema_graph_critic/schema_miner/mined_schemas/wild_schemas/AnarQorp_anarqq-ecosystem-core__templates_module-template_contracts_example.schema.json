@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.q-ecosystem.com/{{MODULE_NAME}}/example.json",
+  "title": "{{MODULE_NAME}} Example Schema",
+  "description": "Example request/response schemas for {{MODULE_NAME}}",
+  "definitions": {
+    "ExampleRequest": {
+      "type": "object",
+      "description": "Example request schema",
+      "required": ["squidId", "action"],
+      "properties": {
+        "squidId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "sQuid identity identifier"
+        },
+        "subId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Subidentity identifier (optional)"
+        },
+        "action": {
+          "type": "string",
+          "enum": ["create", "read", "update", "delete"],
+          "description": "Action to perform"
+        },
+        "data": {
+          "type": "object",
+          "description": "Request data",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "description": "Resource name"
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 1000,
+              "description": "Resource description"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50
+              },
+              "maxItems": 10,
+              "description": "Resource tags"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ExampleResponse": {
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/definitions/StandardResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "Resource identifier"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Resource name"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Resource description"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Resource tags"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Creation timestamp"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Last update timestamp"
+                },
+                "owner": {
+                  "$ref": "common.schema.json#/definitions/IdentityRef"
+                }
+              },
+              "required": ["id", "name", "createdAt", "owner"],
+              "additionalProperties": false
+            }
+          }
+        }
+      ]
+    }
+  }
+}

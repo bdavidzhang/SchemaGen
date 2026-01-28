@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://github.com/tjurczyk/arkadia-data/magics_data.schema.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "Magics schema.",
+    "default": {},
+    "required": [
+        "version",
+        "magics"
+    ],
+    "properties": {
+        "version": {
+            "$id": "#/properties/version",
+            "type": "integer",
+            "title": "The version of schema",
+            "default": 0,
+            "examples": [
+                2
+            ]
+        },
+        "magics": {
+            "default": {},
+            "required": [],
+            "title": "The magics schema",
+            "additionalProperties": true,
+            "patternProperties": {
+                "^.*$": {
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "regexps"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1
+                        },
+                        "regexps": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "additionalProperties": true
+}

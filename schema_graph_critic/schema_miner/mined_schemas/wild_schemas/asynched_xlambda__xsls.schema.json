@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "path": { "type": "string" },
+    "port": { "type": "number" },
+    "file": { "type": "string" }
+  },
+  "required": ["path", "file"]
+}

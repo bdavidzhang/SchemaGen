@@ -1,0 +1,183 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "doctracker",
+  "$id": "DocTracker",
+  "title": "DocTracker configuration schema",
+  "properties": {
+    "git": {
+      "$ref": "#/definitions/GitConfig"
+    },
+    "trackers": {
+      "items": {
+        "$ref": "#/definitions/TrackerConfig"
+      },
+      "type": "array"
+    },
+    "reporter": {
+      "$ref": "#/definitions/ReporterConfig"
+    },
+    "sourceRoot": {
+      "type": "string"
+    },
+    "configPath": {
+      "type": "string"
+    }
+  },
+  "definitions": {
+    "GitConfig": {
+      "properties": {
+        "branch": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": ["branch"]
+    },
+    "ReportMessageConfig": {
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": ["msg"]
+    },
+    "SegmentDefinition": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "items": {},
+          "type": "array"
+        },
+        "docs": {
+          "items": {},
+          "type": "array"
+        },
+        "report": {
+          "$ref": "#/definitions/ReportMessageConfig"
+        }
+      },
+      "type": "object",
+      "required": ["id", "source", "docs"]
+    },
+    "TrackerDefinition": {
+      "properties": {
+        "segments": {
+          "items": {
+            "$ref": "#/definitions/SegmentDefinition"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "required": ["segments"]
+    },
+    "ChannelOptionsConfig": {
+      "properties": {
+        "log": {
+          "type": "boolean"
+        },
+        "format": {
+          "enum": ["default", "json"],
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": ["log", "format"]
+    },
+    "ConsoleOptionsConfig": {
+      "properties": {
+        "verbose": {
+          "type": "boolean"
+        },
+        "log": {
+          "type": "boolean"
+        },
+        "format": {
+          "enum": ["default", "json"],
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": ["verbose", "log", "format"]
+    },
+    "HttpOptionsConfig": {
+      "properties": {
+        "url": {
+          "format": "url",
+          "type": "string"
+        },
+        "method": {
+          "enum": ["post", "put"],
+          "type": "string"
+        },
+        "log": {
+          "type": "boolean"
+        },
+        "format": {
+          "enum": ["default", "json"],
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": ["url", "method", "log", "format"]
+    },
+    "ChannelConfig": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["console", "http", "github_pr"],
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/ChannelOptionsConfig"
+        }
+      },
+      "type": "object",
+      "required": ["id", "type", "options"]
+    },
+    "ReporterConfig": {
+      "properties": {
+        "channels": {
+          "items": {
+            "$ref": "#/definitions/ChannelConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "required": ["channels"]
+    },
+    "TrackerConfig": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        },
+        "docsPath": {
+          "type": "string"
+        },
+        "trackerPath": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "string"
+        },
+        "segments": {
+          "items": {
+            "$ref": "#/definitions/SegmentDefinition"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "required": ["id", "sourcePath", "docsPath"]
+    }
+  }
+}

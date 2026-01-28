@@ -1,0 +1,8 @@
+{
+    "id": "http://LRS/DefectAreaSeverityDictionaryCollection",
+    "type": "array",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "items": {
+        "$ref": "DefectAreaSeverityDictionary"
+    }
+}

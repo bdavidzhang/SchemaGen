@@ -1,0 +1,190 @@
+{
+	"pluginAlias": "Pico",
+	"pluginType": "platform",
+	"singular": true,
+	"schema": {
+		"type": "object",
+		"properties": {
+			"buslog": {
+				"title": "Bus Logging",
+				"type": "string",
+				"default": "off",
+				"oneOf": [
+					{ "title": "Off", "enum": ["off"]},
+					{ "title": "Monitor", "enum": ["monitor"]},
+					{ "title": "Full", "enum": ["full"]}
+				],
+				"required": true
+			},
+			"servers": {
+				"type": "array",
+				"items": {
+					"title": "Bridge",
+					"type": "object",
+					"properties": {
+						"host": {
+							"type": "string",
+							"required": true,
+							"format": "hostname"
+						},
+						"port": {
+							"required": true,
+							"type": "integer",
+							"default": 23
+						},
+						"switches": {
+							"type": "array",
+							"required": true,
+							"items": {
+								"title": "Switch",
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string",
+										"required": true
+									},
+									"type": {
+										"type": "string",
+										"oneOf": [{
+												"title": "PJ2-2B",
+												"enum": ["PJ2-2B"]
+											},
+											{
+												"title": "PJ2-2BRL",
+												"enum": ["PJ2-2BRL"]
+											},
+											{
+												"title": "PJ2-3B",
+												"enum": ["PJ2-3B"]
+											},
+											{
+												"title": "PJ2-3BRL",
+												"enum": ["PJ2-3BRL"]
+											},
+											{
+												"title": "PJ2-4B-XXX-L01",
+												"enum": ["PJ2-4B-XXX-L01"]
+											},
+											{
+												"title": "PJ2-4B-XXX-S01",
+												"enum": ["PJ2-4B-XXX-S01"]
+											},
+											{
+												"title": "PJ2-4B-XXX-L21",
+												"enum": ["PJ2-4B-XXX-L21"]
+											},
+											{
+												"title": "PJ2-4B-XXX-S21",
+												"enum": ["PJ2-4B-XXX-S21"]
+											},
+											{
+												"title": "PJ2-4B-XXX-LS21",
+												"enum": ["PJ2-4B-XXX-LS21"]
+											},
+											{
+												"title": "PJ2-4B-XXX-L31",
+												"enum": ["PJ2-4B-XXX-L31"]
+											},
+											{
+												"title": "PJ2-4B-XXX-S31",
+												"enum": ["PJ2-4B-XXX-S31"]
+											},
+											{
+												"title": "PJ2-4B-XXX-L41",
+												"enum": ["PJ2-4B-XXX-L41"]
+											},
+											{
+												"title": "Simple (Two Button)",
+												"enum": ["simple"]
+											},
+											{
+												"title": "Dimmer (No favorite button)",
+												"enum": ["dimmer"]
+											},
+											{
+												"title": "Dimmer (Favorite button)",
+												"enum": ["favorite"]
+											},
+											{
+												"title": "custom",
+												"enum": ["custom"]
+											}
+										],
+										"required": true
+									},
+									"buttons": {
+										"type": "array",
+										"required": false,
+										"items": {
+											"title": "Button",
+											"type": "integer",
+											"required": true
+										}
+									},
+									"repeat": {
+										"type": "array",
+										"required": false,
+										"items": {
+											"title": "Button",
+											"type": "integer",
+											"required": true
+										}
+									},
+									"repeatmax": {
+										"title": "Maximum repeats",
+										"type": "integer",
+										"required": false,
+										"default": 10
+									},
+									"pico": {
+										"type": "array",
+										"required": true,
+										"items": {
+											"title": "Remote",
+											"type": "integer",
+											"required": true
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"longname": {
+				"title": "Use long names for buttons",
+				"type": "boolean",
+				"required": false,
+				"default": false
+			},
+			"clicktime": {
+				"title": "Double click detection time",
+				"type": "integer",
+				"required": false,
+				"default": 500
+			},
+			"slowextra": {
+				"title": "Additional time for slower pico buttons",
+				"type": "integer",
+				"required": false,
+				"default": 250
+			},
+			"repeattime": {
+				"title": "Delay between repeated long presses",
+				"type": "integer",
+				"required": false,
+				"default": 500
+			},
+			"slowbuttons": {
+				"type": "array",
+				"required": false,
+				"items": {
+					"title": "Button",
+					"type": "integer",
+					"required": true
+				},
+				"default": [5,6]
+			}
+		}
+	}
+}

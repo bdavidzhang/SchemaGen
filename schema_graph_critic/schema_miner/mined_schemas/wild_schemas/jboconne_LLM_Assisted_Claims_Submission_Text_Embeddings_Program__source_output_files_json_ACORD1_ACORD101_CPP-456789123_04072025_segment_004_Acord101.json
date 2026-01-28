@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ACORD 101 - Additional Remarks Schedule",
+  "type": "object",
+  "properties": {
+    "agency": {
+      "type": "object",
+      "properties": {
+        "agency_customer_id": {
+          "type": "string",
+          "description": "The unique ID for the customer within the agency's system."
+        },
+        "loc_number": {
+          "type": "string",
+          "description": "The location number for the agency."
+        }
+      }
+    },
+    "carrier": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the insurance carrier."
+        },
+        "naic_code": {
+          "type": "string",
+          "description": "The NAIC code of the insurance carrier."
+        }
+      }
+    },
+    "schedule_details": {
+      "type": "object",
+      "properties": {
+        "acord_form_number": {
+          "type": "string",
+          "description": "The ACORD form number this schedule is attached to."
+        },
+        "acord_form_title": {
+          "type": "string",
+          "description": "The title of the ACORD form this schedule is attached to."
+        },
+        "edition_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The edition date of the form (e.g., YYYY/MM)."
+        }
+      },
+      "required": [
+        "acord_form_number",
+        "acord_form_title"
+      ]
+    },
+    "additional_remarks": {
+      "type": "string",
+      "description": "The free-form text containing the additional remarks. This may include details about additional insureds, waivers of subrogation, or specific coverage information referenced by other forms."
+    }
+  },
+  "required": [
+    "schedule_details",
+    "additional_remarks"
+  ],
+  "metadata": {
+    "extraction_date": "2025-08-29T00:30:11.854872",
+    "source_file": "ACORD1_ACORD101_CPP-456789123_04072025_segment_004.txt",
+    "confidence_score": 0.8500000000000001,
+    "processing_notes": "Processed using unknown template"
+  }
+}

@@ -1,0 +1,85 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/clientParty",
+    "type": "object",
+    "title": "The PPR Client Party (reusable party) Schema",
+    "definitions": {
+        "contact": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "description": "The name of the person requesting the client party."
+                },
+                "areaCode": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 3,
+                    "description": "Three digit contact phone number area code."
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "minLength": 7,
+                    "maxLength": 15,
+                    "description": "Contact phone number with no hyphen or space."
+                },
+                "emailAddress": {
+                    "type": "string",
+                    "format": "email",
+                    "maxLength": 250,
+                    "description": "The email address of the person requesting the client party."
+                }
+            },
+            "required": [
+                "name",
+                "areaCode",
+                "phoneNumber"
+            ]
+        }
+    },
+    "properties": {
+        "code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20,
+            "description": "Registering or Secured Party''s PPR Client Code."
+        },
+       "businessName": {
+            "type": "string",
+            "maxLength": 150,
+            "description": "Legal business name."
+        },
+        "personName": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/personName"
+        },
+        "address": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/address"
+        },
+        "emailAddress": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 250,
+            "description": "The email address of the individual or business."
+        },
+        "contact": {
+            "$ref": "#/definitions/contact"
+        }
+    },
+    "oneOf":[
+        {
+            "required": [
+                "businessName",
+                "address",
+                "contact"
+            ]
+        },
+        {
+            "required": [
+                "personName",
+                "address",
+                "contact"
+            ]
+        }
+      ]
+    }

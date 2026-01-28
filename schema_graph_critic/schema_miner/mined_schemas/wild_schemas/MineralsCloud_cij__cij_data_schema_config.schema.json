@@ -1,0 +1,148 @@
+{
+    "title": "Configuration file",
+    "description": "The configuration file controls the behavior of the elast program",
+
+    "type": "object",
+    "required": ["qha", "elast"],
+    "properties": {
+        "qha": {
+            "title": "Configuration passed to QHA",
+            "type": "object",
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "title": "The file name of the QHA input data file"
+                },
+                "settings": {
+                    "type": "object",
+                    "$ref": "#/definitions/qha_settings"
+                }
+            }
+        },
+        "elast": {
+            "title": "Configuration for thermalelasticity calculation",
+            "type": "object",
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "title": "Static elasticity input file name",
+                    "description": "The name of the static elasticity input file"
+                },
+                "settings": {
+                    "type": "object",
+                    "$ref": "#/definitions/elast_settings"
+                }
+            }
+        },
+        "output": {
+            "title": "The list of output variables",
+            "type": "object"
+        },
+        "additionalProperties": false
+    },
+
+    "definitions": {
+
+        "qha_settings": {
+            "title": "QHA calculation settings",
+            "type": "object",
+            "properties": {
+                "NT": {
+                    "type": "integer",
+                    "title": "Number of temperatures on the grid",
+                    "minimum": 1
+                },
+                "DT": {
+                    "type": "number",
+                    "title": "The interval between two nearest temperatures on the grid, in Kelvin."
+                },
+                "T_MIN": {
+                    "type": "number",
+                    "minimum": 0,
+                    "title": "The minimum temperature, in Kelvin."
+                },
+                "NTV": {
+                    "type": "integer",
+                    "title": "Number of volumes (or equivivalently, pressures) on the grid.",
+                    "minimum": 1
+                },
+
+                "P_MIN": {
+                    "type": "number",
+                    "title": "Desired minimum pressure to calculate, in GPa."
+                },
+                "DELTA_P": {
+                    "type": "number",
+                    "title": "The interval between two nearest pressures on the grid"
+                },
+                "DELTA_P_SAMPLE": {
+                    "type": "number",
+                    "title": "Pressure-sampling interval, used for output, the default value is 1 GPa"
+                },
+                "volume_ratio": {
+                    "type": "number",
+                    "title": "Ratio to expand the volume range when extrapolate equation of states. (from (vmin, vmax) to (vmin / volume_ratio, vmax * volume_ratio))",
+                    "minimum": 1.0
+                },
+                "order": {
+                    "type": "number",
+                    "minimum": 2,
+                    "title": "The order of equation of state to fit energy vs. volume."
+                },
+                "additionalProperties": false
+            },
+            "$$target": "#/definitions/qha_settings"
+        },
+
+        "elast_settings": {
+            "title": "Themoelasticity calculation setttings",
+            "type": "object",
+            "properties": {
+                "mode_gamma": {
+                    "type": "object",
+                    "properties": {
+                        "interpolator": {
+                            "type": "string",
+                            "title": "The method to interpolate phonon frequencies vs. volume. Should be one of: ``spline``, ``lsq_poly``, ``lagrange``, ``krogh``, ``pchip``, ``hermite``, ``akima``.",
+                            "enum": ["lsq_poly", "lagrange", "spline", "krogh", "pchip", "hermite", "akima"]
+                        },
+                        "order": {
+                            "type": "integer",
+                            "title": "The order of phonon frequencies spline interpolation.",
+                            "minimum": 1
+                        }
+                    }
+                },
+                "symmetry": {
+                    "type": "object",
+                    "properties": {
+                        "system": {
+                            "type": "string",
+                            "title": "Name of the crystal system whose symmetry is applied to fill the missing elastic tensor components. Should be one of: ``triclinic``, ``monoclinic``, ``hexagonal``, ``trigonal6``, ``trigonal7``, ``orthorhombic``, ``tetragonal6``, ``tetragonal7``, ``cubic``. ",
+                            "enum": ["triclinic", "monoclinic", "hexagonal", "trigonal6", "trigonal7", "orthorhombic", "tetragonal6", "tetragonal7", "cubic"]
+                        },
+                        "ignore_residuals": {
+                            "type": "boolean",
+                            "title": "Keep filling the missing elastic tensor components based on the crystal system even if the disagreements exceeds tolerance."
+                        },
+                        "ignore_rank": {
+                            "type": "boolean",
+                            "title": "Keep filling the missing elastic tensor components based on the crystal system even if not all necessary components are given."
+                        },
+                        "drop_atol": {
+                            "type": "number",
+                            "title": "Drop the elastic tensor components if the magnitude of the elastic tensor components if this component in all volume points are less than this value."
+                        },
+                        "residual_atol": {
+                            "type": "number",
+                            "title": "Disagreement allowed between the input elastic tenor components and constraints enforced by the symmetry of the system."
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "$$target": "#/definitions/elast_settings"
+        }
+    }
+}

@@ -1,0 +1,486 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Event Management",
+    "description": "This is a sample API for event management",
+    "termsOfService": "https://my-events-demo.com/eula",
+    "contact": {
+      "name": "API Support",
+      "url": "https://my-events-demo.com/support",
+      "email": "support@my-events-demo.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0"
+  },
+  "host": "swagger-workshop.westeurope.azurecontainer.io",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/api",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/events": {
+      "get": {
+        "operationId": "GetEvents",
+        "summary": "Returns all events",
+        "tags": [
+          "Events"
+        ],
+        "description": "This API returns a list of events. It supports getting only future events and events in the past, too.",
+        "externalDocs": {
+          "description": "Conceptual documentation about events",
+          "url": "https://my-events-demo.com/docs/overview/events"
+        },
+        "parameters": [
+          {
+            "name": "past",
+            "in": "query",
+            "description": "Indicates whether events from the past should be returned. If not specified, past events are **not** returned",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of events",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/event"
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "AddEvent",
+        "summary": "Adds an event",
+        "tags": [
+          "Events"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Data of the new event",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/newEvent"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Added event",
+            "schema": {
+              "$ref": "#/definitions/event"
+            },
+            "headers": {
+              "Location": {
+                "description": "URL where to get details of the created event",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid event data in request body",
+            "schema": {
+              "type": "string",
+              "description": "Cause of the error",
+              "example": "Mandatory member 'location' is missing."
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/events/{_id}": {
+      "get": {
+        "operationId": "GetEvent",
+        "summary": "Returns a specific event",
+        "tags": [
+          "Events"
+        ],
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "description": "ID of the event to load",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event",
+            "schema": {
+              "$ref": "#/definitions/event"
+            }
+          },
+          "404": {
+            "description": "Event with the specified it not found"
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/events/{_id}/registrations": {
+      "post": {
+        "operationId": "AddEventRegistration",
+        "summary": "Adds a registration for an event",
+        "tags": [
+          "Registrations"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Data of the registration",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/newRegistration"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Added registration",
+            "schema": {
+              "$ref": "#/definitions/registration"
+            },
+            "headers": {
+              "Location": {
+                "description": "URL where to get details of the created registration",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid registration data in request body",
+            "schema": {
+              "type": "string",
+              "description": "Cause of the error",
+              "example": "Missing member 'participant'"
+            }
+          },
+          "404": {
+            "description": "Specified event ID not found"
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "GetEventRegistrations",
+        "summary": "Gets registrations for an event",
+        "tags": [
+          "Registrations"
+        ],
+        "responses": {
+          "200": {
+            "description": "Registrations",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/registration"
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "_id",
+          "in": "path",
+          "description": "ID of the event for the registration",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/participants/{participantId}/checkin/{eventId}": {
+      "post": {
+        "operationId": "CheckIn",
+        "summary": "Checks in a participant for an event",
+        "tags": [
+          "Participants"
+        ],
+        "parameters": [
+          {
+            "name": "participantId",
+            "in": "path",
+            "description": "ID of the participant",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "ID of the event",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Added registration",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "newCheckin": {
+                  "type": "boolean",
+                  "description": "Indicates whether this has been a new check-in. False if the participant was already checked in for the event."
+                },
+                "givenName": {
+                  "type": "string"
+                },
+                "numberOfCheckins": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Total number of checkins of the participant"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event or participant with specified ID not found"
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "newEvent": {
+      "type": "object",
+      "required": [
+        "date",
+        "location"
+      ],
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date and time of the event start"
+        },
+        "location": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 250
+        },
+        "eventbriteId": {
+          "type": "string",
+          "description": "ID of the event in [Eventbrite](https://www.eventbrite.de/)"
+        },
+        "quantitySold": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        },
+        "quantityTotal": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        },
+        "url": {
+          "type": "string",
+          "readOnly": true,
+          "description": "URL for getting event details"
+        }
+      }
+    },
+    "event": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/newEvent"
+        },
+        {
+          "type": "object",
+          "required": [
+            "_id"
+          ],
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "Unique identifier or the event",
+              "pattern": "^[a-f\\d]{24}$"
+            }
+          }
+        }
+      ]
+    },
+    "newRegistration": {
+      "type": "object",
+      "required": [
+        "participant"
+      ],
+      "properties": {
+        "participant": {
+          "type": "object",
+          "required": [
+            "givenName",
+            "familyName"
+          ],
+          "properties": {
+            "givenName": {
+              "type": "string"
+            },
+            "familyName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "googleSubject": {
+              "type": "string",
+              "description": "ID of the associated Google account ([more about auth with Google...](https://developers.google.com/identity/protocols/OAuth2))"
+            },
+            "eventbriteId": {
+              "type": "string",
+              "description": "ID of the participant in [Eventbrite](https://www.eventbrite.de/)"
+            },
+            "yearOfBirth": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "gender": {
+              "type": "string",
+              "enum": [
+                "Male",
+                "Female"
+              ]
+            }
+          }
+        },
+        "needsComputer": {
+          "type": "boolean",
+          "description": "Indicates whether the participant needs a rental computer. Default value is false."
+        },
+        "checkedin": {
+          "type": "boolean",
+          "description": "Indicates whether the participant should be checked in during registration. Default value is false."
+        }
+      }
+    },
+    "registration": {
+      "type": "object",
+      "required": [
+        "_id",
+        "event",
+        "participant",
+        "registered"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique identifier of the registration",
+          "pattern": "^[a-f\\d]{24}$"
+        },
+        "event": {
+          "type": "object",
+          "required": [
+            "id",
+            "date"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier of the event",
+              "pattern": "^[a-f\\d]{24}$"
+            },
+            "date": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Date and time of the event start"
+            }
+          }
+        },
+        "participant": {
+          "type": "object",
+          "required": [
+            "id",
+            "givenName",
+            "familyName"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier of the participant",
+              "pattern": "^[a-f\\d]{24}$"
+            },
+            "givenName": {
+              "type": "string"
+            },
+            "familyName": {
+              "type": "string"
+            }
+          }
+        },
+        "needsComputer": {
+          "type": "boolean",
+          "description": "Indicates whether the participant needs a rental computer. Default value is false."
+        },
+        "registered": {
+          "type": "boolean",
+          "description": "Indicates whether the participant is registered (can be false if participant has registered and unregistered afterwards)"
+        },
+        "checkedin": {
+          "type": "boolean",
+          "description": "Indicates whether the participant has checked in for the event"
+        }
+      }
+    },
+    "errorResponse": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "Description of the error"
+        }
+      }
+    }
+  }
+}

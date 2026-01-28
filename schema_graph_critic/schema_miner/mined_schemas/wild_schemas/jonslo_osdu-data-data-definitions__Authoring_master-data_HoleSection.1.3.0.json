@@ -1,0 +1,180 @@
+{
+  "x-osdu-review-status": "Accepted",
+  "$id": "https://schema.osdu.opengroup.org/json/master-data/HoleSection.1.3.0.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HoleSection",
+  "description": "A section of a wellbore drilled with a constant bit and/or under-reamer diameter",
+  "type": "object",
+  "x-osdu-virtual-properties": {
+    "data.VirtualProperties.DefaultLocation": {
+      "type": "object",
+      "priority": [
+        {
+          "path": "data.SpatialLocation"
+        }
+      ]
+    },
+    "data.VirtualProperties.DefaultName": {
+      "type": "string",
+      "priority": [
+        {
+          "path": "data.Name"
+        }
+      ]
+    }
+  },
+  "x-osdu-common-resources-version": "AbstractCommonResources.1.0.0",
+  "allOf": [
+    {
+      "$ref": "../abstract/AbstractMaster.1.2.0.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "WellboreID": {
+          "type": "string",
+          "title": "Wellbore ID",
+          "description": "Parent Wellbore Identifier",
+          "example": "namespace:master-data--Wellbore:11000091175501:",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen",
+          "x-osdu-existing-standard": "Y",
+          "pattern": "^[\\w\\-\\.]+:master-data\\-\\-Wellbore:[\\w\\-\\.\\:\\%]+:[0-9]*$"
+        },
+        "WellActivityID": {
+          "type": "string",
+          "title": "Well Activity ID",
+          "description": "Identifier of the Well Activity in which the hole section was drilled",
+          "example": "namespace:master-data--WellActivity:110000911755DRO:",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen",
+          "x-osdu-existing-standard": "Y",
+          "pattern": "^[\\w\\-\\.]+:master-data\\-\\-WellActivity:[\\w\\-\\.\\:\\%]+:[0-9]*$"
+        },
+        "Name": {
+          "type": "string",
+          "title": "Name",
+          "description": "Human recognizable context/name of the hole section.",
+          "example": "8.5\" Hole Section",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "VerticalMeasurement": {
+          "$ref": "../abstract/AbstractFacilityVerticalMeasurement.1.0.0.json",
+          "title": "Vertical Measurement Reference",
+          "description": "References an entry in the VerticalMeasurements array for the Wellbore identified by WellboreID, or a standalone vertical reference which defines the vertical reference datum for all measured depths of the HoleSection record. If this is not populated, the VerticalMeasurement is derived from the Wellbore.",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "Size": {
+          "type": "number",
+          "title": "Size",
+          "description": "The nominal diameter of the hole section.",
+          "example": 8.5,
+          "x-osdu-frame-of-reference": "UOM:length",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "MeasuredDepthTop": {
+          "type": "number",
+          "title": "Measured Depth Start",
+          "description": "The Measured depth at the top of the hole section. For actual wellbores use data.VerticalMeasurement as wellbore ZDP. For planned wellbores, navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in data.VerticalMeasurement.",
+          "example": 10500,
+          "x-osdu-frame-of-reference": "UOM:length",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "MeasuredDepthBase": {
+          "type": "number",
+          "title": "Measured Depth End",
+          "description": "The Measured depth at the base of the hole section. For actual wellbores use data.VerticalMeasurement as wellbore ZDP. For planned wellbores, navigate via WellboreID to the side-car WellPlanningWellbore, which holds the depth reference in. data.VerticalMeasurement.",
+          "example": 19600,
+          "x-osdu-frame-of-reference": "UOM:length",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "StartDateTime": {
+          "type": "string",
+          "title": "Start Date/time",
+          "description": "Date/time when drilling commenced on the hole section.",
+          "format": "date-time",
+          "example": "2023-01-01T11:00:00.000Z",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "EndDateTime": {
+          "type": "string",
+          "title": "End Date/time",
+          "description": "Date/time when drilling completed on the hole section.",
+          "format": "date-time",
+          "example": "2023-01-17T18:30:00.000Z",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "IsPilotHole": {
+          "type": "boolean",
+          "title": "Is Pilot Hole",
+          "description": "Flag if Hole Section was drilled as a pilot hole",
+          "example": false,
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "PlannedMeasuredDepthBase": {
+          "type": "number",
+          "title": "Planned Measured Depth Base",
+          "description": "Planned Base measured depth of the Hole Section. Only used for Actual Hole Sections to enable a comparison against plan.",
+          "example": 10000,
+          "x-osdu-frame-of-reference": "UOM:length",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "PlannedTrueVerticalDepthBase": {
+          "type": "number",
+          "title": "Planned True Vertical Depth Base",
+          "description": "Planned Base true vertical depth of the Hole Section. Only used for Actual Hole Sections to enable a comparison against plan.",
+          "example": 20000,
+          "x-osdu-frame-of-reference": "UOM:length",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "DrillingActivityCode": {
+          "type": "string",
+          "title": "Drilling Activity Code",
+          "description": "Activity Code relevant for drilling the hole section.",
+          "example": "PROD",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        },
+        "Comment": {
+          "type": "string",
+          "title": "Comment",
+          "description": "A comment or description associated with the hole section",
+          "example": "8-1/2\" hole section drilled 400' deeper than plan.",
+          "x-osdu-attribution-authority": "OSDU",
+          "x-osdu-attribution-publication": "The OSDU Data Platform",
+          "x-osdu-attribution-revision": "Evergreen"
+        }
+      },
+      "required": [
+        "WellboreID",
+        "Name",
+        "Size",
+        "MeasuredDepthTop",
+        "MeasuredDepthBase"
+      ]
+    }
+  ]
+}

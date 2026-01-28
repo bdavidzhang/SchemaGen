@@ -1,0 +1,126 @@
+{
+  "type": "object",
+  "properties": {
+    "previewUrl": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "preview_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requestId": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "const": "processing"
+    },
+    "requiresWatermark": {
+      "type": "boolean"
+    },
+    "requires_watermark": {
+      "type": "boolean"
+    },
+    "remainingTokens": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "remaining_tokens": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "tier": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "string"
+    },
+    "storageUrl": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "storagePath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "storage_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "storage_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "softRemaining": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "soft_remaining": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "sourceStoragePath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_storage_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sourceDisplayUrl": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_display_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "previewLogId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "preview_log_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cropConfig": {}
+  },
+  "additionalProperties": true,
+  "$id": "previewProcessing"
+}

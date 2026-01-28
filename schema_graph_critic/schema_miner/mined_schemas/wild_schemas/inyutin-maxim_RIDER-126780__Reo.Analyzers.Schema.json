@@ -1,0 +1,381 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Reo.Analyzers Configuration",
+	"type": "object",
+	"properties": {
+		"Annotations": {
+			"description": "Настройки для анализаторов аннотаций.",
+			"type": "object",
+			"properties": {
+				"CaseInsensitiveAllowedCategories": {
+					"description": "Список имён категорий, в которых можно использовать атрибут SuppressMessage. Нечувствительны к регистру.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"XmlDoc": {
+			"description": "Настройки для генерации XML-документации.",
+			"type": "object",
+			"properties": {
+				"Types": {
+					"description": "Полные типы данных для генерации документации",
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"PropertiesOrParameters": {
+					"description": "Сопоставление имен свойств или параметров с их русскими описаниями.",
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"Methods": {
+					"description": "Сопоставление имен методов с их русскими описаниями.",
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"InheritdocIgnoreTypes": {
+					"description": "Список типов, для которых не нужно унаследовать документацию.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"InheritdocIgnoreNamespaces": {
+					"description": "Список пространств имен, из которых не нужно унаследовать документацию.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"Types",
+				"PropertiesOrParameters",
+				"Methods",
+				"InheritdocIgnoreTypes",
+				"InheritdocIgnoreNamespaces"
+			]
+		},
+		"PerformanceLoopAnalyzerConfig": {
+			"description": "Настройки для анализа производительности циклов.",
+			"type": "object",
+			"properties": {
+				"Types": {
+					"description": "Список типов, которые могут вызвать проблемы с производительностью в циклах.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"Namespaces": {
+					"description": "Список пространств имен, связанных с возможными проблемами производительности в циклах.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreTypes": {
+					"description": "Список имён типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreBaseTypes": {
+					"description": "Список имён базовых типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreMethods": {
+					"description": "Список имён методов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"Types",
+				"Namespaces"
+			]
+		},
+		"DDD": {
+			"description": "Настройки для Domain-Driven Design (DDD).",
+			"type": "object",
+			"properties": {
+				"ModelTypes": {
+					"description": "Список типов, представляющих доменные модели.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"ValueObjectType": {
+					"description": "Тип, представляющий Value Object в контексте DDD.",
+					"type": "string"
+				},
+				"IgnoreTypes": {
+					"description": "Список имён типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreBaseTypes": {
+					"description": "Список имён базовых типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreMethods": {
+					"description": "Список имён методов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"ModelTypes",
+				"ValueObjectType"
+			]
+		},
+		"DateTime": {
+			"description": "Настройки для обработки типов DateTime.",
+			"type": "object",
+			"properties": {
+				"IgnoreTypes": {
+					"description": "Список имён типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreBaseTypes": {
+					"description": "Список имён базовых типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreMethods": {
+					"description": "Список имён методов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"UsedImplicitly": {
+			"description": "Настройки для определения, какие базовые типы следует помечать как неиспользуемые.",
+			"type": "object",
+			"properties": {
+				"BaseTypes": {
+					"description": "Список базовых типов, которые должны быть помечены как неиспользуемые.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"BaseTypes"
+			]
+		},
+		"CancellationTokenParameter": {
+			"description": "Настройки для обработки параметра CancellationToken.",
+			"type": "object",
+			"properties": {
+				"IgnoreTypes": {
+					"description": "Список имён типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreBaseTypes": {
+					"description": "Список имён базовых типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreMethods": {
+					"description": "Список имён методов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"CodeStyle": {
+			"description": "Настройки для анализа стиля кодирования.",
+			"type": "object",
+			"properties": {
+				"IgnoreTypes": {
+					"description": "Список имён типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreBaseTypes": {
+					"description": "Список имён базовых типов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"IgnoreMethods": {
+					"description": "Список имён методов, которые следует игнорировать.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"Controllers": {
+			"description": "Настройки для обработки контроллеров.",
+			"type": "object",
+			"properties": {
+				"AuthorizationAnnotationsAndNamespaces": {
+					"description": "Сопоставление аннотаций авторизации с их пространствами имен.",
+					"type": "object",
+					"properties": {
+						"Authorize": {
+							"description": "Пространство имен для аннотации Authorize.",
+							"type": "string"
+						},
+						"AllowAnonymous": {
+							"description": "Пространство имен для аннотации AllowAnonymous.",
+							"type": "string"
+						},
+						"AllAuthorizePolicyFrom": {
+							"description": "Пространство имен для аннотации AllAuthorizePolicyFrom.",
+							"type": "string"
+						},
+						"AnyAuthorizePolicyFrom": {
+							"description": "Пространство имен для аннотации AnyAuthorizePolicyFrom.",
+							"type": "string"
+						}
+					}
+				}
+			},
+			"required": [
+				"AuthorizationAnnotationsAndNamespaces"
+			]
+		},
+		"Testing": {
+			"description": "Настройки для анализа тестовых проектов.",
+			"type": "object",
+			"properties": {
+				"Replace": {
+					"description": "Сопоставление выражений, которые подлежат замене.",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"From": {
+								"description": "Строковое представление выражения, которое необходимо заменить.",
+								"type": "string"
+							},
+							"To": {
+								"description": "Строковое представление выражения, на которое будет произведена замена.",
+								"type": "string"
+							}
+						},
+						"required": [
+							"From",
+							"To"
+						]
+					}
+				}
+			}
+		},
+		"ObsoleteMigrator": {
+			"description": "Настройки для анализа замены устаревших свойств и методов.",
+			"type": "object",
+			"properties": {
+				"Replace": {
+					"description": "Описание выражений, которые подлежат замене.",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Documentation": {
+								"description": "Ссылка на документацию.",
+								"type": "string"
+							},
+							"From": {
+								"description": "Описание выражения, подлежащего замене.",
+								"type": "object",
+								"properties": {
+									"FullNameClass": {
+										"description": "Полное имя типа, в котором содержится свойство или метод.",
+										"type": "string"
+									},
+									"MemberName": {
+										"description": "Имя свойства или метода.",
+										"type": "string"
+									}
+								},
+								"required": [
+									"FullNameClass",
+									"MemberName"
+								]
+							},
+							"To": {
+								"description": "Описание выражения, на которое необходимо произвести замену.",
+								"type": "object",
+								"properties": {
+									"FullNameClass": {
+										"description": "Полное имя типа, в котором содержится свойство или метод.",
+										"type": "string"
+									},
+									"MemberName": {
+										"description": "Имя свойства или метода.",
+										"type": "string"
+									}
+								},
+								"required": [
+									"FullNameClass",
+									"MemberName"
+								]
+							},
+							"TypesDefinitions": {
+								"description": "Сопоставление псевдонимов типов, которые требуются при замене и их полных имён.",
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"Result": {
+								"description": "Шаблон результирующего выражения.",
+								"type": "string"
+							}
+						},
+						"required": [
+							"From",
+							"To",
+							"Result"
+						]
+					}
+				}
+			}
+		}
+	}
+}

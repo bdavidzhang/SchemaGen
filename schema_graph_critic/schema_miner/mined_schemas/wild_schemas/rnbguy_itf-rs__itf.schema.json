@@ -1,0 +1,212 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Trace",
+  "type": "object",
+  "required": [
+    "states",
+    "vars"
+  ],
+  "properties": {
+    "#meta": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/TraceMeta"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "states": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/State"
+      }
+    },
+    "vars": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "definitions": {
+    "ITFValue": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/Tagged"
+        },
+        {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Untagged"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      ]
+    },
+    "State": {
+      "type": "object",
+      "properties": {
+        "#meta": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/StateMeta"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "StateMeta": {
+      "type": "object",
+      "required": [
+        "index"
+      ],
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "uint",
+          "minimum": 0.0
+        }
+      }
+    },
+    "Tagged": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "#bigint"
+          ],
+          "properties": {
+            "#bigint": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "#map"
+          ],
+          "properties": {
+            "#map": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": [
+                  {
+                    "$ref": "#/definitions/ITFValue"
+                  },
+                  {
+                    "$ref": "#/definitions/ITFValue"
+                  }
+                ],
+                "maxItems": 2,
+                "minItems": 2
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "#set"
+          ],
+          "properties": {
+            "#set": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ITFValue"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "#seq"
+          ],
+          "properties": {
+            "#seq": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ITFValue"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "#tup"
+          ],
+          "properties": {
+            "#tup": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ITFValue"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "TraceMeta": {
+      "type": "object",
+      "required": [
+        "description",
+        "format",
+        "format-description"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "format-description": {
+          "type": "string"
+        }
+      }
+    },
+    "Untagged": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer",
+          "format": "int64"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ITFValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ITFValue"
+          }
+        }
+      ]
+    }
+  }
+}

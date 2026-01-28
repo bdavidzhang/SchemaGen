@@ -1,0 +1,82 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"properties": {
+		"keys": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/Keyframe"
+			},
+			"description": "Keys"
+		},
+		"preWrapMode": {
+			"$ref": "#/definitions/WrapMode"
+		},
+		"postWrapMode": {
+			"$ref": "#/definitions/WrapMode"
+		}
+	},
+	"required": [
+		"keys"
+	],
+	"definitions": {
+		"Keyframe": {
+			"type": "object",
+			"properties": {
+				"m_Time": {
+					"type": "number",
+					"description": "Time"
+				},
+				"m_Value": {
+					"type": "number",
+					"description": "Value"
+				},
+				"m_InTangent": {
+					"type": "number",
+					"description": "In tangent",
+					"default": 0
+				},
+				"m_OutTangent": {
+					"type": "number",
+					"description": "Out tangent",
+					"default": 0
+				},
+				"m_WeightedMode": {
+					"type": "number",
+					"description": "Weighted mode",
+					"default": 0
+				},
+				"m_InWeight": {
+					"type": "number",
+					"description": "In weight",
+					"default": 0
+				},
+				"m_OutWeight": {
+					"type": "number",
+					"description": "Out weight",
+					"default": 0
+				}
+			},
+			"required": [
+				"m_Time",
+				"m_Value",
+				"m_InTangent",
+				"m_OutTangent",
+				"m_WeightedMode",
+				"m_InWeight",
+				"m_OutWeight"
+			]
+		},
+		"WrapMode": {
+			"type":"string",
+			"enum": [
+				"Once",
+				"Loop",
+				"PingPong",
+				"Default",
+				"ClampForever",
+				"Clamp"			
+			]
+		}
+	}
+}

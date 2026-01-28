@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "./getTasksRequest.schema.json",
+    "title": "get_tasks Request JSON",
+    "description": "JSON for storing request schema (GET /tasks)",
+    "type": "object",
+    "properties": {
+        "userId": {
+            "type": "string",
+            "description": "user ID"
+        },
+        "offset": {
+            "type": "integer",
+            "description": "offset value"
+        },
+        "limit": {
+            "type": "integer",
+            "description": "limit value"
+        }
+    },
+    "required": [
+        "userId", "offset", "limit"
+    ]
+}

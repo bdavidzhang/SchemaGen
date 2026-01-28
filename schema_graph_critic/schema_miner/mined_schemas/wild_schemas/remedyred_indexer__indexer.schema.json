@@ -1,0 +1,156 @@
+{
+    "$ref": "#/definitions/GenerateConfig",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "DefaultFileExport": {
+            "enum": [
+                "default",
+                "group",
+                "slug"
+            ],
+            "type": "string"
+        },
+        "DefaultIndexConfig": {
+            "description": "Special interface for Default Index",
+            "properties": {
+                "casing": {
+                    "enum": [
+                        "camel",
+                        "keep",
+                        "lower",
+                        "pascal",
+                        "snake",
+                        "upper"
+                    ],
+                    "type": "string"
+                },
+                "ignore": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "include": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "overrides": {
+                    "additionalProperties": {
+                        "$ref": "#/definitions/DefaultFileExport"
+                    },
+                    "type": "object"
+                },
+                "source": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "type": {
+                    "$ref": "#/definitions/DefaultFileExport"
+                }
+            },
+            "type": "object"
+        },
+        "FileExport": {
+            "enum": [
+                "default",
+                "group",
+                "individual",
+                "skip",
+                "slug",
+                "wildcard"
+            ],
+            "type": "string"
+        },
+        "GenerateConfig": {
+            "description": "Root config interface for config file",
+            "properties": {
+                "casing": {
+                    "enum": [
+                        "camel",
+                        "keep",
+                        "lower",
+                        "pascal",
+                        "snake",
+                        "upper"
+                    ],
+                    "type": "string"
+                },
+                "default": {
+                    "$ref": "#/definitions/DefaultIndexConfig",
+                    "description": "Special interface for Default Index"
+                },
+                "ignore": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "include": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "indexes": {
+                    "items": {
+                        "$ref": "#/definitions/GenerateConfig"
+                    },
+                    "type": "array"
+                },
+                "noExit": {
+                    "type": "boolean"
+                },
+                "output": {
+                    "type": "string"
+                },
+                "overrides": {
+                    "additionalProperties": {
+                        "$ref": "#/definitions/FileExport"
+                    },
+                    "type": "object"
+                },
+                "recursive": {
+                    "type": "boolean"
+                },
+                "source": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "type": {
+                    "enum": [
+                        "default",
+                        "group",
+                        "individual",
+                        "skip",
+                        "slug",
+                        "wildcard"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "description": "Root config interface for config file"
+}
+

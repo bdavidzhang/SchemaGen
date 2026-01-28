@@ -1,0 +1,361 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CDC Bridge Configuration",
+  "description": "Configuration schema for CDC Bridge application settings",
+  "type": "object",
+  "properties": {
+    "Serilog": {
+      "type": "object",
+      "description": "Serilog structured logging configuration",
+      "properties": {
+        "MinimumLevel": {
+          "type": "object",
+          "description": "Minimum logging level configuration",
+          "properties": {
+            "Default": {
+              "type": "string",
+              "description": "Default minimum logging level for all namespaces",
+              "enum": [
+                "Verbose",
+                "Debug",
+                "Information",
+                "Warning",
+                "Error",
+                "Fatal"
+              ],
+              "default": "Information"
+            },
+            "Override": {
+              "type": "object",
+              "description": "Override minimum logging levels for specific namespaces",
+              "additionalProperties": {
+                "type": "string",
+                "enum": [
+                  "Verbose",
+                  "Debug",
+                  "Information",
+                  "Warning",
+                  "Error",
+                  "Fatal"
+                ]
+              }
+            }
+          }
+        },
+        "Enrich": {
+          "type": "array",
+          "description": "List of enrichers to add contextual information to log events",
+          "items": {
+            "type": "string",
+            "enum": [
+              "FromLogContext",
+              "WithThreadId",
+              "WithMachineName",
+              "WithEnvironmentName",
+              "WithProcessId",
+              "WithProcessName",
+              "WithCaller"
+            ]
+          },
+          "default": [
+            "FromLogContext",
+            "WithThreadId",
+            "WithMachineName"
+          ]
+        },
+        "WriteTo": {
+          "type": "array",
+          "description": "List of sinks to write log events to",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Name": {
+                "type": "string",
+                "description": "Name of the sink (Console, SQLite, File, Seq, etc.)",
+                "examples": [
+                  "Console",
+                  "SQLite",
+                  "File",
+                  "Seq"
+                ]
+              },
+              "Args": {
+                "type": "object",
+                "description": "Arguments specific to the sink",
+                "properties": {
+                  "outputTemplate": {
+                    "type": "string",
+                    "description": "Output template for Console and File sinks. Supports placeholders: {Timestamp}, {Level}, {Message}, {Exception}, {Properties}, etc.",
+                    "examples": [
+                      "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}"
+                    ]
+                  },
+                  "sqliteDbPath": {
+                    "type": "string",
+                    "description": "Path to SQLite database file for SQLite sink",
+                    "examples": [
+                      "data/logs.db",
+                      "/var/logs/app.db"
+                    ]
+                  },
+                  "tableName": {
+                    "type": "string",
+                    "description": "Table name in SQLite database for logs",
+                    "default": "Logs"
+                  },
+                  "restrictedToMinimumLevel": {
+                    "type": "string",
+                    "description": "Minimum log level for this specific sink",
+                    "enum": [
+                      "Verbose",
+                      "Debug",
+                      "Information",
+                      "Warning",
+                      "Error",
+                      "Fatal"
+                    ]
+                  },
+                  "storeTimestampInUtc": {
+                    "type": "boolean",
+                    "description": "Store timestamps in UTC format (SQLite sink)",
+                    "default": true
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File path for File sink",
+                    "examples": [
+                      "logs/log-.txt",
+                      "/var/logs/app-.log"
+                    ]
+                  },
+                  "rollingInterval": {
+                    "type": "string",
+                    "description": "Rolling interval for File sink",
+                    "enum": [
+                      "Infinite",
+                      "Year",
+                      "Month",
+                      "Day",
+                      "Hour",
+                      "Minute"
+                    ],
+                    "default": "Day"
+                  },
+                  "retainedFileCountLimit": {
+                    "type": "integer",
+                    "description": "Number of log files to retain (File sink)",
+                    "minimum": 1,
+                    "default": 31
+                  },
+                  "serverUrl": {
+                    "type": "string",
+                    "description": "Server URL for Seq sink",
+                    "examples": [
+                      "http://localhost:5341",
+                      "http://seq:5341"
+                    ]
+                  },
+                  "apiKey": {
+                    "type": "string",
+                    "description": "API key for Seq sink"
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "required": [
+              "Name"
+            ]
+          }
+        }
+      }
+    },
+    "Logging": {
+      "type": "object",
+      "description": "ASP.NET Core default logging configuration (legacy, prefer Serilog configuration)",
+      "properties": {
+        "LogLevel": {
+          "type": "object",
+          "description": "Log levels for different categories",
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "Trace",
+              "Debug",
+              "Information",
+              "Warning",
+              "Error",
+              "Critical",
+              "None"
+            ]
+          }
+        }
+      }
+    },
+    "Intervals": {
+      "type": "object",
+      "description": "Timing intervals configuration for internal processing",
+      "properties": {
+        "ChangesDelayIntervalInSeconds": {
+          "type": "integer",
+          "description": "Delay interval in seconds for processing changes. Used for throttling change detection.",
+          "minimum": 1,
+          "maximum": 3600,
+          "default": 13
+        }
+      },
+      "required": [
+        "ChangesDelayIntervalInSeconds"
+      ]
+    },
+    "ConnectionStrings": {
+      "type": "object",
+      "description": "Database connection strings for SQL Server CDC tracking",
+      "properties": {
+        "default": {
+          "type": "string",
+          "description": "Default SQL Server connection string for CDC tracking. Should point to the database with enabled CDC.",
+          "examples": [
+            "Data Source=localhost;Initial Catalog=mydb;Integrated Security=True",
+            "Data Source=server;Initial Catalog=db;User ID=user;Password=pass;Encrypt=True;TrustServerCertificate=True"
+          ]
+        }
+      },
+      "additionalProperties": {
+        "type": "string",
+        "description": "Additional named connection strings for multiple CDC sources"
+      }
+    },
+    "CdcBridge": {
+      "type": "object",
+      "description": "CDC Bridge core configuration section",
+      "properties": {
+        "ConfigurationPath": {
+          "type": "string",
+          "description": "Path to the YAML configuration file containing CDC tracking instances, receivers, filters, and transformers. This file defines what tables to track and where to send changes.",
+          "default": "cdc-settings.yaml",
+          "examples": [
+            "cdc-settings.yaml",
+            "config/cdc-config.yaml",
+            "/etc/cdc-bridge/config.yaml"
+          ]
+        },
+        "WorkersConfiguration": {
+          "type": "object",
+          "description": "Configuration for background worker processes that poll for changes and deliver them",
+          "properties": {
+            "ReceiverWorker": {
+              "type": "object",
+              "description": "Configuration for receiver workers that deliver buffered changes to endpoints (webhooks, APIs, etc.)",
+              "properties": {
+                "PollingIntervalMs": {
+                  "type": "integer",
+                  "description": "Polling interval in milliseconds for checking pending changes to deliver. Lower values mean faster delivery but higher CPU usage.",
+                  "minimum": 100,
+                  "maximum": 60000,
+                  "default": 5000
+                },
+                "BatchSize": {
+                  "type": "integer",
+                  "description": "Maximum number of changes to process in a single batch per receiver. Higher values improve throughput but increase memory usage.",
+                  "minimum": 1,
+                  "maximum": 1000,
+                  "default": 200
+                }
+              },
+              "required": [
+                "PollingIntervalMs",
+                "BatchSize"
+              ]
+            },
+            "CleanupWorker": {
+              "type": "object",
+              "description": "Configuration for cleanup worker that removes old successfully delivered events from the buffer to prevent database growth",
+              "properties": {
+                "CleanupIntervalHours": {
+                  "type": "integer",
+                  "description": "Interval in hours between cleanup operations. Cleanup runs periodically to remove old events.",
+                  "minimum": 1,
+                  "maximum": 168,
+                  "default": 6
+                },
+                "BufferTimeToLiveHours": {
+                  "type": "integer",
+                  "description": "Time in hours to keep successfully delivered events in the buffer before cleanup. Events older than this will be deleted if successfully delivered to all receivers.",
+                  "minimum": 1,
+                  "maximum": 8760,
+                  "default": 24
+                }
+              },
+              "required": [
+                "CleanupIntervalHours",
+                "BufferTimeToLiveHours"
+              ]
+            }
+          },
+          "required": [
+            "ReceiverWorker",
+            "CleanupWorker"
+          ]
+        }
+      },
+      "required": [
+        "ConfigurationPath",
+        "WorkersConfiguration"
+      ]
+    },
+    "Persistence": {
+      "type": "object",
+      "description": "Persistence layer configuration for storing buffered changes and tracking state",
+      "properties": {
+        "DbFilePath": {
+          "type": "string",
+          "description": "Path to the SQLite database file for storing buffered changes, delivery statuses, and CDC tracking state. Database is created automatically if it doesn't exist.",
+          "default": "data/cdc_bridge.db",
+          "examples": [
+            "data/cdc_bridge.db",
+            "/var/data/cdc.db",
+            "C:\\ProgramData\\CdcBridge\\cdc.db"
+          ]
+        }
+      },
+      "required": [
+        "DbFilePath"
+      ]
+    },
+    "ApiKeys": {
+      "type": "object",
+      "description": "API Key authentication configuration for securing the management API",
+      "properties": {
+        "MasterPassword": {
+          "type": "string",
+          "description": "Master password for initial API key creation and management. MUST be changed in production! Used to create the first admin API key via /api/Admin/initialize endpoint.",
+          "minLength": 8,
+          "default": "CHANGE_THIS_MASTER_PASSWORD_IN_PRODUCTION",
+          "examples": [
+            "MySecurePassword123!",
+            "P@ssw0rd!2024"
+          ]
+        }
+      },
+      "required": [
+        "MasterPassword"
+      ]
+    },
+    "AllowedHosts": {
+      "type": "string",
+      "description": "Semicolon-separated list of allowed host names for the application. Use '*' to allow all hosts (not recommended for production).",
+      "default": "*",
+      "examples": [
+        "*",
+        "localhost;example.com",
+        "api.mycompany.com;backup.mycompany.com"
+      ]
+    }
+  },
+  "required": [
+    "CdcBridge",
+    "Persistence",
+    "ApiKeys"
+  ]
+}
